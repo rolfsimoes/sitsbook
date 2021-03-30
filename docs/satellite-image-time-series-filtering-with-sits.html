@@ -287,14 +287,14 @@ where <span class="math inline">\(\hat{x}\)</span> is the the filtered time seri
   C_{j}=\frac{3(3n^2+3n-1-5j^2)}{(2n+3)(2n+1)(2n-1)}.
 \]</span></p>
 <p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">(Chen et al. 2004)</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on the original time series.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
-<span id="cb37-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
-<span id="cb37-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-3"></a><span class="co"># apply Savitzky–Golay filter</span></span>
-<span id="cb37-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-4"></a>point_sg.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, <span class="dt">filter =</span> <span class="kw">sits_sgolay</span>())</span>
-<span id="cb37-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-5"></a><span class="co"># plot the series</span></span>
-<span id="cb37-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-6"></a><span class="kw">sits_merge</span>(point_sg.tb, point.tb) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-25-1.png" alt="Savitzky-Golay filter applied on a one-year NDVI time series." width="70%" />
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
+<span id="cb38-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
+<span id="cb38-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-3"></a><span class="co"># apply Savitzky–Golay filter</span></span>
+<span id="cb38-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-4"></a>point_sg.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, <span class="dt">filter =</span> <span class="kw">sits_sgolay</span>())</span>
+<span id="cb38-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-5"></a><span class="co"># plot the series</span></span>
+<span id="cb38-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-6"></a><span class="kw">sits_merge</span>(point_sg.tb, point.tb) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-24"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-24-1.png" alt="Savitzky-Golay filter applied on a one-year NDVI time series." width="70%" />
 <p class="caption">
 Figure 3.1: Savitzky-Golay filter applied on a one-year NDVI time series.
 </p>
@@ -333,18 +333,18 @@ where <span class="math inline">\({\rm I}\)</span> is the identity matrix and
 is the third order difference matrix. The Whitakker filter can be a large but sparse optimization problem, as we can note from <span class="math inline">\(D\)</span> matrix.</p>
 <p>Whittaker smoother has been used only recently in satellite image time series investigations. According to <span class="citation">Atzberger and Eilers (2011)</span>, the smoother has an advantage over other filtering techniques such as Fourier and wavelets as it does not assume signal periodicity. Moreover, the authors argue that is enables rapid processing of large amounts of data, and handles incomplete time series with missing values.</p>
 <p>In the <code>sits</code> package, the Whittaker smoother has two parameters: <code>lambda</code> controls the degree of smoothing and <code>differences</code> the order of the finite difference penalty. The default values are <code>lambda = 1</code> and <code>differences = 3</code>. Users should be aware that increasing <code>lambda</code> results in much smoother data. When dealing with land use/land cover classes that include both natural vegetation and agriculture, a strong smoothing can reduce the amount of noise in natural vegetation (e.g., forest) time series; however, higher values of <code>lambda</code> reduce the information present in agricultural time series, since they reduce the peak values of crop plantations.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-1"></a><span class="co"># filter NDVI band</span></span>
-<span id="cb38-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-2"></a>point_ndvi &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, <span class="dt">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
-<span id="cb38-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-3"></a></span>
-<span id="cb38-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-4"></a><span class="co"># apply Whitaker filter to an NDVI time series from 2000 to 2016</span></span>
-<span id="cb38-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-5"></a><span class="co"># merge with the original data</span></span>
-<span id="cb38-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-6"></a><span class="co"># plot the original and the modified series</span></span>
-<span id="cb38-7"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-7"></a>point_whit &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point_ndvi, <span class="kw">sits_whittaker</span>(<span class="dt">lambda =</span> <span class="dv">3</span>))</span>
-<span id="cb38-8"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-8"></a>point_whit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-9"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-9"></a><span class="st">  </span><span class="kw">sits_merge</span>(point_ndvi) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-10"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-10"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-26-1.png" alt="Whittaker smoother filter applied on 16-year NDVI time series" width="70%" />
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-1"></a><span class="co"># filter NDVI band</span></span>
+<span id="cb39-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-2"></a>point_ndvi &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, <span class="dt">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb39-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-4"></a><span class="co"># apply Whitaker filter to an NDVI time series from 2000 to 2016</span></span>
+<span id="cb39-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-5"></a><span class="co"># merge with the original data</span></span>
+<span id="cb39-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-6"></a><span class="co"># plot the original and the modified series</span></span>
+<span id="cb39-7"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-7"></a>point_whit &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point_ndvi, <span class="kw">sits_whittaker</span>(<span class="dt">lambda =</span> <span class="dv">3</span>))</span>
+<span id="cb39-8"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-8"></a>point_whit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb39-9"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-9"></a><span class="st">  </span><span class="kw">sits_merge</span>(point_ndvi) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb39-10"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-10"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-25-1.png" alt="Whittaker smoother filter applied on 16-year NDVI time series" width="70%" />
 <p class="caption">
 Figure 3.2: Whittaker smoother filter applied on 16-year NDVI time series
 </p>
@@ -364,22 +364,22 @@ Here, <span class="math inline">\(x\)</span> is the input time series and, <span
 <p>The <code>sits_envelope()</code> can combine both maximum and minimum window sequentially. The function can receive a string sequence with <code>"U"</code> (for maximization) and <code>"L"</code> (for minimization) characters passed to its parameter. A repeated sequence of the same character is equivalent to one operation with a larger window. The sequential operations on the input time series produces the final filtered result that is returned.</p>
 <p>The envelope filter can be viewed through mathematical morphology lenses, a very common field in digital image processing <span class="citation">(Haralick, Sternberg, and Zhuang 1987)</span>. Here the operations of <code>"U"</code> and <code>"L"</code> corresponds to the <em>dilation</em> and <em>erosion</em> morphological operators applied to univariate arrays <span class="citation">(Vávra et al. 2004)</span>. Furthermore, the compounds operation of <em>opening</em> and <em>closing</em> can be obtained by <code>"UL"</code> and <code>"LU"</code>, respectively. This technique has been applied on time series analysis in other fields <span class="citation">(Accardo et al. 1997)</span> but, for our knowledge, there is no application in satellite image time series literature.</p>
 <p>In the following example we can see an application of <code>sits_envelope()</code> function. There, we performs the <em>opening filtration</em> and <em>closing filtration</em> introduced by <span class="citation">Vávra et al. (2004)</span>. The correspondent operations sequence are <code>"ULLULUUL"</code> and <code>"LUULULLU"</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-1"></a><span class="co"># Take the NDVI band of the first sample data set</span></span>
-<span id="cb39-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
-<span id="cb39-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-3"></a><span class="co"># apply envelope filter (remove downward and upward noises)</span></span>
-<span id="cb39-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-4"></a>point_env1.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
-<span id="cb39-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-5"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;ULLULUUL&quot;</span>, </span>
-<span id="cb39-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-6"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;OF&quot;</span>))</span>
-<span id="cb39-7"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-7"></a>point_env2.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
-<span id="cb39-8"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-8"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;LUULULLU&quot;</span>, </span>
-<span id="cb39-9"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-9"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;CF&quot;</span>))</span>
-<span id="cb39-10"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-10"></a></span>
-<span id="cb39-11"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-11"></a><span class="co"># plot the series</span></span>
-<span id="cb39-12"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-12"></a><span class="kw">sits_merge</span>(point_env1.tb, point_env2.tb) <span class="op">%&gt;%</span></span>
-<span id="cb39-13"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-13"></a><span class="st">  </span><span class="kw">sits_merge</span>(point.tb) <span class="op">%&gt;%</span></span>
-<span id="cb39-14"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-14"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-27"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-27-1.png" alt="Envelope filter applied on one-year NDVI time series. The examples uses two morfological filters: opening filtration (~.OF) and closing filtration (~.CF)." width="70%" />
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-1"></a><span class="co"># Take the NDVI band of the first sample data set</span></span>
+<span id="cb40-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
+<span id="cb40-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-3"></a><span class="co"># apply envelope filter (remove downward and upward noises)</span></span>
+<span id="cb40-4"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-4"></a>point_env1.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
+<span id="cb40-5"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-5"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;ULLULUUL&quot;</span>, </span>
+<span id="cb40-6"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-6"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;OF&quot;</span>))</span>
+<span id="cb40-7"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-7"></a>point_env2.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
+<span id="cb40-8"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-8"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;LUULULLU&quot;</span>, </span>
+<span id="cb40-9"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-9"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;CF&quot;</span>))</span>
+<span id="cb40-10"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-10"></a></span>
+<span id="cb40-11"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-11"></a><span class="co"># plot the series</span></span>
+<span id="cb40-12"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-12"></a><span class="kw">sits_merge</span>(point_env1.tb, point_env2.tb) <span class="op">%&gt;%</span></span>
+<span id="cb40-13"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-13"></a><span class="st">  </span><span class="kw">sits_merge</span>(point.tb) <span class="op">%&gt;%</span></span>
+<span id="cb40-14"><a href="satellite-image-time-series-filtering-with-sits.html#cb40-14"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-26-1.png" alt="Envelope filter applied on one-year NDVI time series. The examples uses two morfological filters: opening filtration (~.OF) and closing filtration (~.CF)." width="70%" />
 <p class="caption">
 Figure 3.3: Envelope filter applied on one-year NDVI time series. The examples uses two morfological filters: opening filtration (~.OF) and closing filtration (~.CF).
 </p>
