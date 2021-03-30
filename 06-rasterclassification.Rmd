@@ -6,7 +6,7 @@ source("common.R")
 
 ---
 
-This vignette shows the use of the SITS package for classification of satellite images that are associated to Earth observation data cubes.
+This chapter shows the use of the SITS package for classification of satellite images that are associated to Earth observation data cubes.
 
 ---
 

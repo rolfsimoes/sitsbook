@@ -2,7 +2,7 @@
 
 ---
 
-This vignette describes a Bayesian smoothing method to reclassify the pixels,
+This chapter describes a Bayesian smoothing method to reclassify the pixels,
 based on the machine learning probabilities. We consider that the output of the
 machine learning algorithm provides, for each pixel, the information on the probability
 of such pixel belonging to each of the target classes. Usually, we label a pixel

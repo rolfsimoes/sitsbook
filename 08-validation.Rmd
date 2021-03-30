@@ -2,7 +2,7 @@
 
 ---
 
-This vignette presents the validation and accuracy measures available in the SITS package.
+This chapter presents the validation and accuracy measures available in the SITS package.
 
 ---
 
