@@ -38,6 +38,11 @@ vignettes/*.pdf
 
 # add bookdown files
 _bookdown_files
+/docs-local
+sitsbook.bbl
+sitsbook.log
+sitsbook.toc
+
 
 # R Environment Variables
 .Renviron
