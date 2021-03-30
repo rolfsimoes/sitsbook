@@ -1,33 +1,17 @@
 --- 
 knit: "bookdown::render_book"
 title: '**sits**: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series'
-author:
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Rolf Simoes
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Gilberto Camara
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Felipe Souza
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Lorena Santos
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Pedro R. Andrade
-- affiliation: Institute for Applied Economics Research (IPEA), Brazil
-  name: Alexandre Carvalho
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Karine Ferreira
-- affiliation: National Institute for Space Research (INPE), Brazil
-  name: Gilberto Queiroz
+author: ["Rolf Simoes", "Gilberto Camara", "Felipe Souza", "Lorena Santos", "Pedro R. Andrade", "Alexandre Carvalho", "Karine Ferreira", "Gilberto Queiroz"]
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
+output:
+  html_document:
+    df_print: kable
 cover-image: images/cover.png
 bibliography:
-- book.bib
-- packages.bib
 - references-sits.bib
 biblio-style: apalike
-link-citations: yes
 description: | 
   This is a minimal example of using the bookdown package to write a book.
   The output format for this example is bookdown::gitbook.
