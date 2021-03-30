@@ -43,13 +43,12 @@ Generalizing @Appel2019, we consider that a data cube is a four-dimensional stru
 
 One of the distinguishing features of **sits** is that it has been designed to work with big satellite image data sets which reside on the cloud and with data cubes. Many *R* packages working with remote sensing images require data to be accessible in a local computer. However, with the coming of age of big Earth observation data, it is not always practical to transfer large data sets. Users have to rely on web services to provide access to these data sets. In this context, **sits** is based on access to data cubes using the information provided by STAC (Spatio-temporal Access Catalogue).
 
-Currently, **sits** supports data cubes available in the following cloud services:
+Besides local image collections, currently, **sits** supports data cubes available in the following cloud services:
 
 1. Sentinel-2/2A level 2A images in Amazon Web Services (AWS);
 2. Collections of Sentinel, Landsat, and CBERS images in the Brazil Data Cube (BDC);
 3. Collections available in Digital Earth Africa;
-4. Data cubes produced by the [gdalcubes package](https://github.com/appelmar/gdalcubes);
-5. Local image collections.
+4. Data cubes produced by the [gdalcubes package](https://github.com/appelmar/gdalcubes).
 
 In order, to access different STAC cloud services supported by **sits**, the [rstac](http://github.com/brazil-data-cube/rstac) package is used. This package is developed under the Brazil Data Cube project and provides features for consuming STAC services. Besides, the [aws.s3](https://github.com/cloudyr/aws.s3) package is used to access data in AWS.
 

@@ -16,6 +16,5 @@ knitr::opts_chunk$set(
 # load essentials packages
 library(sits)
 library(sitsdata)
-library(sitsdocs)
 library(dtwclust)
 library(magrittr)
