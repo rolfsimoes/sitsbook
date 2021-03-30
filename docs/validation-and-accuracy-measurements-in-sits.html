@@ -24,6 +24,14 @@ The output format for this example is bookdown::gitbook.</p>" />
 The output format for this example is bookdown::gitbook.</p>" />
   <meta name="twitter:image" content="/images/cover.png" />
 
+<meta name="author" content="Rolf Simoes" />
+<meta name="author" content="Gilberto Camara" />
+<meta name="author" content="Felipe Souza" />
+<meta name="author" content="Lorena Santos" />
+<meta name="author" content="Pedro R. Andrade" />
+<meta name="author" content="Alexandre Carvalho" />
+<meta name="author" content="Karine Ferreira" />
+<meta name="author" content="Gilberto Queiroz" />
 
 
 <meta name="date" content="2021-03-30" />
@@ -248,15 +256,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="validation-techniques-1" class="section level2">
 <h2><span class="header-section-number">8.1</span> Validation techniques</h2>
-<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">(Hastie, Tibshirani, and J. <a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">(Hastie, Tibshirani, and J. 2009)</span>.</p>
 <p>To be sure, cross-validation estimates the expected prediction error. It uses part of the available samples to fit the classification model, and a different part to test it. The so-called <em>k-fold</em> validation, we split the data into <span class="math inline">\(k\)</span> partitions with approximately the same size and proceed by fitting the model and testing it <span class="math inline">\(k\)</span> times. At each step, we take one distinct partition for test and the remaining <span class="math inline">\({k-1}\)</span> for training the model, and calculate its prediction error for classifying the test partition. A simple average gives us an estimation of the expected prediction error.</p>
-<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation">Hastie, Tibshirani, and J. (<a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span> <span class="citation">(Hastie, Tibshirani, and J. <a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>, which somewhat overestimates the true prediction error.</p>
+<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation">Hastie, Tibshirani, and J. (2009)</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span> <span class="citation">(Hastie, Tibshirani, and J. 2009)</span>, which somewhat overestimates the true prediction error.</p>
 <p><code>sits_kfold_validate()</code> gives support the k-fold validation in <code>sits</code>. The following code gives an example on how to proceed a k-fold cross-validation in the package. It perform a five-fold validation using SVM classification model as a default classifier. We can see in the output text the corresponding confusion matrix and the accuracy statistics (overall and by class).</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-1"></a><span class="co"># perform a five fold validation for the &quot;cerrado_2classes&quot; data set</span></span>
-<span id="cb93-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-2"></a><span class="co"># Random Forest machine learning method using default parameters</span></span>
-<span id="cb93-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-3"></a>prediction.mx &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(cerrado_2classes, </span>
-<span id="cb93-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-4"></a>                                     <span class="dt">folds =</span> <span class="dv">5</span>, </span>
-<span id="cb93-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-5"></a>                                     <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb85-1"></a><span class="co"># perform a five fold validation for the &quot;cerrado_2classes&quot; data set</span></span>
+<span id="cb85-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb85-2"></a><span class="co"># Random Forest machine learning method using default parameters</span></span>
+<span id="cb85-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb85-3"></a>prediction.mx &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(cerrado_2classes, </span>
+<span id="cb85-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb85-4"></a>                                     <span class="dt">folds =</span> <span class="dv">5</span>, </span>
+<span id="cb85-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb85-5"></a>                                     <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>())</span></code></pre></div>
 <pre><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;           Reference
@@ -278,20 +286,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="comparing-different-validation-methods" class="section level2">
 <h2><span class="header-section-number">8.2</span> Comparing different validation methods</h2>
 <p>One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-1"></a><span class="co"># Retrieve the set of samples for the Mato Grosso region (provided by EMBRAPA)</span></span>
-<span id="cb95-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
-<span id="cb95-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-3"></a></span>
-<span id="cb95-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-4"></a><span class="co"># create a list to store the results</span></span>
-<span id="cb95-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-5"></a>results &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
-<span id="cb95-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-6"></a></span>
-<span id="cb95-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-7"></a><span class="co"># adjust the multicores parameters to suit your machine</span></span>
-<span id="cb95-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-8"></a></span>
-<span id="cb95-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-9"></a><span class="co">## SVM model</span></span>
-<span id="cb95-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-10"></a>conf_svm.tb &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(</span>
-<span id="cb95-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-11"></a>    samples_matogrosso_mod13q1,</span>
-<span id="cb95-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-12"></a>    <span class="dt">folds =</span> <span class="dv">5</span>,</span>
-<span id="cb95-13"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-13"></a>    <span class="dt">multicores =</span> <span class="dv">2</span>,</span>
-<span id="cb95-14"><a href="validation-and-accuracy-measurements-in-sits.html#cb95-14"></a>    <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>(<span class="dt">kernel =</span> <span class="st">&quot;radial&quot;</span>, <span class="dt">cost =</span> <span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-1"></a><span class="co"># Retrieve the set of samples for the Mato Grosso region (provided by EMBRAPA)</span></span>
+<span id="cb87-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
+<span id="cb87-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-3"></a></span>
+<span id="cb87-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-4"></a><span class="co"># create a list to store the results</span></span>
+<span id="cb87-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-5"></a>results &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb87-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-6"></a></span>
+<span id="cb87-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-7"></a><span class="co"># adjust the multicores parameters to suit your machine</span></span>
+<span id="cb87-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-8"></a></span>
+<span id="cb87-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-9"></a><span class="co">## SVM model</span></span>
+<span id="cb87-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-10"></a>conf_svm.tb &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(</span>
+<span id="cb87-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-11"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb87-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-12"></a>    <span class="dt">folds =</span> <span class="dv">5</span>,</span>
+<span id="cb87-13"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-13"></a>    <span class="dt">multicores =</span> <span class="dv">2</span>,</span>
+<span id="cb87-14"><a href="validation-and-accuracy-measurements-in-sits.html#cb87-14"></a>    <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>(<span class="dt">kernel =</span> <span class="st">&quot;radial&quot;</span>, <span class="dt">cost =</span> <span class="dv">10</span>))</span></code></pre></div>
 <pre><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;                Reference
@@ -346,18 +354,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; Specificity                          0.9994
 #&gt; User Acc (Pos Pred Value)            0.9884
 #&gt; Neg Pred Value                       0.9989</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-1"></a><span class="co"># Give a name to the SVM model</span></span>
-<span id="cb97-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-2"></a>conf_svm.tb<span class="op">$</span>name &lt;-<span class="st"> &quot;svm_10&quot;</span></span>
-<span id="cb97-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-3"></a></span>
-<span id="cb97-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-4"></a><span class="co"># store the result</span></span>
-<span id="cb97-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-5"></a>results[[<span class="kw">length</span>(results) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]] &lt;-<span class="st"> </span>conf_svm.tb</span>
-<span id="cb97-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-6"></a></span>
-<span id="cb97-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-7"></a></span>
-<span id="cb97-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-8"></a>conf_rfor.tb &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(</span>
-<span id="cb97-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-9"></a>    samples_matogrosso_mod13q1,</span>
-<span id="cb97-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-10"></a>    <span class="dt">folds =</span> <span class="dv">5</span>,</span>
-<span id="cb97-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-11"></a>    <span class="dt">multicores =</span> <span class="dv">1</span>,</span>
-<span id="cb97-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb97-12"></a>    <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>(<span class="dt">num_trees =</span> <span class="dv">500</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-1"></a><span class="co"># Give a name to the SVM model</span></span>
+<span id="cb89-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-2"></a>conf_svm.tb<span class="op">$</span>name &lt;-<span class="st"> &quot;svm_10&quot;</span></span>
+<span id="cb89-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-3"></a></span>
+<span id="cb89-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-4"></a><span class="co"># store the result</span></span>
+<span id="cb89-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-5"></a>results[[<span class="kw">length</span>(results) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]] &lt;-<span class="st"> </span>conf_svm.tb</span>
+<span id="cb89-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-6"></a></span>
+<span id="cb89-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-7"></a></span>
+<span id="cb89-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-8"></a>conf_rfor.tb &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(</span>
+<span id="cb89-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-9"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb89-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-10"></a>    <span class="dt">folds =</span> <span class="dv">5</span>,</span>
+<span id="cb89-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-11"></a>    <span class="dt">multicores =</span> <span class="dv">1</span>,</span>
+<span id="cb89-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-12"></a>    <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>(<span class="dt">num_trees =</span> <span class="dv">500</span>))</span></code></pre></div>
 <pre><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;                Reference
@@ -412,22 +420,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; Specificity                          0.9994
 #&gt; User Acc (Pos Pred Value)            0.9884
 #&gt; Neg Pred Value                       0.9989</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-1"></a><span class="co"># Give a name to the model</span></span>
-<span id="cb99-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-2"></a>conf_rfor.tb<span class="op">$</span>name &lt;-<span class="st"> &quot;rfor_500&quot;</span></span>
-<span id="cb99-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-3"></a></span>
-<span id="cb99-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-4"></a><span class="co"># store the results in a list</span></span>
-<span id="cb99-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-5"></a>results[[<span class="kw">length</span>(results) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]] &lt;-<span class="st"> </span>conf_rfor.tb</span>
-<span id="cb99-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-6"></a></span>
-<span id="cb99-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-7"></a><span class="co"># Save to an XLS file</span></span>
-<span id="cb99-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb99-8"></a><span class="kw">sits_to_xlsx</span>(results, <span class="dt">file =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.xlsx&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-1"></a><span class="co"># Give a name to the model</span></span>
+<span id="cb91-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-2"></a>conf_rfor.tb<span class="op">$</span>name &lt;-<span class="st"> &quot;rfor_500&quot;</span></span>
+<span id="cb91-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-3"></a></span>
+<span id="cb91-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-4"></a><span class="co"># store the results in a list</span></span>
+<span id="cb91-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-5"></a>results[[<span class="kw">length</span>(results) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]] &lt;-<span class="st"> </span>conf_rfor.tb</span>
+<span id="cb91-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-6"></a></span>
+<span id="cb91-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-7"></a><span class="co"># Save to an XLS file</span></span>
+<span id="cb91-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-8"></a><span class="kw">sits_to_xlsx</span>(results, <span class="dt">file =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.xlsx&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; Saved Excel file /tmp/RtmpZO0DCx/file1d4926601bdf2.xlsx</code></pre>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Hastie2009">
-<p>Hastie, T., R. Tibshirani, and Friedman J. 2009. <em>The Elements of Statistical Learning. Data Mining, Inference, and Prediction</em>. New York: Springer.</p>
 </div>
 </div>
             </section>
@@ -478,7 +480,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["sitsbook.pdf", "sitsbook.epub"],
+"download": ["sitsbook.pdf"],
 "toc": {
 "collapse": "subsection"
 }

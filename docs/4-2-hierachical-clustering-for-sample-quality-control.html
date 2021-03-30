@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.2 Hierachical clustering for Sample Quality Control | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+<meta property="og:type" content="book" />
+
+<meta property="og:image" content="images/cover.png" />
+<meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The output format for this example is bookdown::gitbook.</p>" />
+
+
+
+<meta name="date" content="2021-03-30" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The output format for this example is bookdown::gitbook.</p>">
+
+<title>4.2 Hierachical clustering for Sample Quality Control | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#preface">Preface</a></li>
+<li class="has-sub"><a href="1-introduction.html#introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-workflow.html#workflow"><span class="toc-section-number">1.1</span> Workflow</a></li>
+<li class="has-sub"><a href="1-2-handling-data-cubes-in-sits.html#handling-data-cubes-in-sits"><span class="toc-section-number">1.2</span> Handling Data Cubes in <strong>sits</strong></a><ul>
+<li><a href="1-2-handling-data-cubes-in-sits.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><span class="toc-section-number">1.2.1</span> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li><a href="1-2-handling-data-cubes-in-sits.html#using-stac-to-access-image-data-cubes"><span class="toc-section-number">1.2.2</span> Using STAC to Access Image Data Cubes</a></li>
+<li><a href="1-2-handling-data-cubes-in-sits.html#defining-a-data-cube-using-files"><span class="toc-section-number">1.2.3</span> Defining a data cube using files</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-3-handling-satellite-image-time-series-in-sits.html#handling-satellite-image-time-series-in-sits"><span class="toc-section-number">1.3</span> Handling satellite image time series in <strong>sits</strong></a><ul>
+<li><a href="1-3-handling-satellite-image-time-series-in-sits.html#data-structure"><span class="toc-section-number">1.3.1</span> Data structure</a></li>
+<li><a href="1-3-handling-satellite-image-time-series-in-sits.html#obtaining-time-series-data"><span class="toc-section-number">1.3.2</span> Obtaining time series data</a></li>
+</ul></li>
+<li><a href="1-4-filtering-techniques.html#filtering-techniques"><span class="toc-section-number">1.4</span> Filtering techniques</a></li>
+<li><a href="1-5-clustering-for-sample-quality-control-using-self-organizing-maps.html#clustering-for-sample-quality-control-using-self-organizing-maps"><span class="toc-section-number">1.5</span> Clustering for sample quality control using self-organizing maps</a></li>
+<li><a href="1-6-classification-using-machine-learning.html#classification-using-machine-learning"><span class="toc-section-number">1.6</span> Classification using machine learning</a></li>
+<li><a href="1-7-validation-techniques.html#validation-techniques"><span class="toc-section-number">1.7</span> Validation techniques</a></li>
+<li class="has-sub"><a href="1-8-cube-classification.html#cube-classification"><span class="toc-section-number">1.8</span> Cube classification</a><ul>
+<li><a href="1-8-cube-classification.html#steps-for-cube-classification"><span class="toc-section-number">1.8.1</span> Steps for cube classification</a></li>
+<li><a href="1-8-cube-classification.html#adjustments-for-improved-performance"><span class="toc-section-number">1.8.2</span> Adjustments for improved performance</a></li>
+</ul></li>
+<li><a href="1-9-smoothing-and-labelling-of-raster-data-after-classification.html#smoothing-and-labelling-of-raster-data-after-classification"><span class="toc-section-number">1.9</span> Smoothing and Labelling of raster data after classification</a></li>
+<li><a href="1-10-final-remarks.html#final-remarks"><span class="toc-section-number">1.10</span> Final remarks</a></li>
+<li><a href="1-11-acknowledgements.html#acknowledgements"><span class="toc-section-number">1.11</span> Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-acessing-time-series-information-in-sits.html#acessing-time-series-information-in-sits"><span class="toc-section-number">2</span> Acessing time series information in SITS</a><ul>
+<li><a href="2-1-data-structures-for-satellite-time-series.html#data-structures-for-satellite-time-series"><span class="toc-section-number">2.1</span> Data structures for satellite time series</a></li>
+<li><a href="2-2-utilities-for-handling-time-series.html#utilities-for-handling-time-series"><span class="toc-section-number">2.2</span> Utilities for handling time series</a></li>
+<li><a href="2-3-time-series-visualisation.html#time-series-visualisation"><span class="toc-section-number">2.3</span> Time series visualisation</a></li>
+<li><a href="2-4-obtaining-time-series-data-from-data-cubes.html#obtaining-time-series-data-from-data-cubes"><span class="toc-section-number">2.4</span> Obtaining time series data from data cubes</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-satellite-image-time-series-filtering-with-sits.html#satellite-image-time-series-filtering-with-sits"><span class="toc-section-number">3</span> Satellite Image Time Series Filtering with SITS</a><ul>
+<li><a href="3-1-filtering-techniques-in-sits.html#filtering-techniques-in-sits"><span class="toc-section-number">3.1</span> Filtering techniques in SITS</a></li>
+<li class="has-sub"><a href="3-2-common-interface-to-sits-filter-functions.html#common-interface-to-sits-filter-functions"><span class="toc-section-number">3.2</span> Common interface to SITS filter functions</a><ul>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#savitzkygolay-filter"><span class="toc-section-number">3.2.1</span> Savitzky–Golay filter</a></li>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#whittaker-filter"><span class="toc-section-number">3.2.2</span> Whittaker filter</a></li>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#envelope-filter"><span class="toc-section-number">3.2.3</span> Envelope filter</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-time-series-clustering-to-improve-the-quality-of-training-samples.html#time-series-clustering-to-improve-the-quality-of-training-samples"><span class="toc-section-number">4</span> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
+<li><a href="4-1-clustering-for-sample-quality-control.html#clustering-for-sample-quality-control"><span class="toc-section-number">4.1</span> Clustering for sample quality control</a></li>
+<li class="has-sub"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#hierachical-clustering-for-sample-quality-control"><span class="toc-section-number">4.2</span> Hierachical clustering for Sample Quality Control</a><ul>
+<li><a href="4-2-hierachical-clustering-for-sample-quality-control.html#creating-a-dendogram"><span class="toc-section-number">4.2.1</span> Creating a dendogram</a></li>
+<li><a href="4-2-hierachical-clustering-for-sample-quality-control.html#using-a-dendrogram-to-evaluate-sample-quality"><span class="toc-section-number">4.2.2</span> Using a dendrogram to evaluate sample quality</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-using-self-organizing-maps-for-sample-quality.html#using-self-organizing-maps-for-sample-quality"><span class="toc-section-number">4.3</span> Using Self-organizing Maps for Sample Quality</a><ul>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#introduction-to-self-organizing-maps"><span class="toc-section-number">4.3.1</span> Introduction to Self-organizing Maps</a></li>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#using-som-for-removing-class-noise"><span class="toc-section-number">4.3.2</span> Using SOM for removing class noise</a></li>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#comparing-global-accuracy-of-original-and-clean-samples"><span class="toc-section-number">4.3.3</span> Comparing Global Accuracy of Original and Clean Samples</a></li>
+</ul></li>
+<li><a href="4-4-conclusion.html#conclusion"><span class="toc-section-number">4.4</span> Conclusion</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-for-data-cubes-using-the-sits-package"><span class="toc-section-number">5</span> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li><a href="5-1-machine-learning-classification.html#machine-learning-classification"><span class="toc-section-number">5.1</span> Machine learning classification</a></li>
+<li><a href="5-2-data-used-in-the-machine-learning-examples.html#data-used-in-the-machine-learning-examples"><span class="toc-section-number">5.2</span> Data used in the machine learning examples</a></li>
+<li><a href="5-3-visualizing-samples.html#visualizing-samples"><span class="toc-section-number">5.3</span> Visualizing Samples</a></li>
+<li><a href="5-4-common-interface-to-machine-learning-and-deeplearning-models.html#common-interface-to-machine-learning-and-deeplearning-models"><span class="toc-section-number">5.4</span> Common interface to machine learning and deeplearning models</a></li>
+<li><a href="5-5-random-forests.html#random-forests"><span class="toc-section-number">5.5</span> Random forests</a></li>
+<li><a href="5-6-support-vector-machines.html#support-vector-machines"><span class="toc-section-number">5.6</span> Support Vector Machines</a></li>
+<li><a href="5-7-extreme-gradient-boosting.html#extreme-gradient-boosting"><span class="toc-section-number">5.7</span> Extreme Gradient Boosting</a></li>
+<li><a href="5-8-deep-learning-using-multi-layer-perceptrons.html#deep-learning-using-multi-layer-perceptrons"><span class="toc-section-number">5.8</span> Deep learning using multi-layer perceptrons</a></li>
+<li><a href="5-9-d-convolutional-neural-networks.html#d-convolutional-neural-networks"><span class="toc-section-number">5.9</span> 1D Convolutional Neural Networks</a></li>
+<li><a href="5-10-residual-1d-cnn-networks-resnet.html#residual-1d-cnn-networks-resnet"><span class="toc-section-number">5.10</span> Residual 1D CNN Networks (ResNet)</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-classification-of-images-in-data-cubes-using-satellite-image-time-series.html#classification-of-images-in-data-cubes-using-satellite-image-time-series"><span class="toc-section-number">6</span> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li><a href="6-1-image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><span class="toc-section-number">6.1</span> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li><a href="6-2-defining-a-data-cube-using-files-organised-as-raster-bricks.html#defining-a-data-cube-using-files-organised-as-raster-bricks"><span class="toc-section-number">6.2</span> Defining a data cube using files organised as raster bricks</a></li>
+<li><a href="6-3-classification-using-machine-learning-1.html#classification-using-machine-learning-1"><span class="toc-section-number">6.3</span> Classification using machine learning</a></li>
+<li class="has-sub"><a href="6-4-cube-classification-1.html#cube-classification-1"><span class="toc-section-number">6.4</span> Cube classification</a><ul>
+<li><a href="6-4-cube-classification-1.html#steps-for-cube-classification-1"><span class="toc-section-number">6.4.1</span> Steps for cube classification</a></li>
+<li><a href="6-4-cube-classification-1.html#adjustments-for-improved-performance-1"><span class="toc-section-number">6.4.2</span> Adjustments for improved performance</a></li>
+</ul></li>
+<li><a href="6-5-final-remarks-1.html#final-remarks-1"><span class="toc-section-number">6.5</span> Final remarks</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-post-classification-smoothing-using-bayesian-techniques-in-sits.html#post-classification-smoothing-using-bayesian-techniques-in-sits"><span class="toc-section-number">7</span> Post classification smoothing using Bayesian techniques in SITS</a><ul>
+<li><a href="7-1-introduction-1.html#introduction-1"><span class="toc-section-number">7.1</span> Introduction</a></li>
+<li class="has-sub"><a href="7-2-overview-of-bayesian-estimattion.html#overview-of-bayesian-estimattion"><span class="toc-section-number">7.2</span> Overview of Bayesian estimattion</a><ul>
+<li><a href="7-2-overview-of-bayesian-estimattion.html#smmothing-using-bayes-rule"><span class="toc-section-number">7.2.1</span> Smmothing using Bayes’ rule</a></li>
+</ul></li>
+<li><a href="7-3-use-of-bayesian-smoothing-in-sits.html#use-of-bayesian-smoothing-in-sits"><span class="toc-section-number">7.3</span> Use of Bayesian smoothing in SITS</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-validation-and-accuracy-measurements-in-sits.html#validation-and-accuracy-measurements-in-sits"><span class="toc-section-number">8</span> Validation and accuracy measurements in SITS</a><ul>
+<li><a href="8-1-validation-techniques-1.html#validation-techniques-1"><span class="toc-section-number">8.1</span> Validation techniques</a></li>
+<li><a href="8-2-comparing-different-validation-methods.html#comparing-different-validation-methods"><span class="toc-section-number">8.2</span> Comparing different validation methods</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="hierachical-clustering-for-sample-quality-control" class="section level2">
+<h2><span class="header-section-number">4.2</span> Hierachical clustering for Sample Quality Control</h2>
+<div id="creating-a-dendogram" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Creating a dendogram</h3>
+<p>Cluster analysis has been used for many purposes in satellite image time series literature ranging from unsupervised classification and pattern detection <span class="citation">(Petitjean, Inglada, and Gançarskv 2011)</span>. Here, we are interested in the second use of clustering, using it as a way to improve training data to feed machine learning classification models. In this regard, cluster analysis can assist the identification of structural <em>time series patterns</em> and anomalous samples <span class="citation">(<span class="citeproc-not-found" data-reference-id="Frenay2014"><strong>???</strong></span>)</span>.</p>
+<p>Agglomerative hierarchical clustering (AHC) is a family of methods that groups elements using a distance function to associate a real value to a pair of elements. From this distance measure, we can compute the dissimilarity between any two elements from a data set. Depending on the distance functions and linkage criteria, the algorithm decides which two clusters are merged at each iteration. AHC approach is suitable for the purposes of samples data exploration due to its visualization power and ease of use <span class="citation">(Keogh, Lin, and Truppel 2003)</span>. Moreover, AHC does not require a predefined number of clusters as an initial parameter. This is an important feature in satellite image time series clustering since defining the number of clusters present in a set of multi-attribute time series is not straightforward <span class="citation">(Aghabozorgi, Shirkhorshidi, and Wah 2015)</span>.</p>
+<p>The main result of AHC method is a <em>dendrogram</em>. It is the ultrametric relation formed by the successive merges in the hierarchical process that can be represented by a tree. Dendrograms are quite useful to decide the number of clusters to partition the data. It shows the height where each merging happens, which corresponds to the minimum distance between two clusters defined by a <em>linkage criterion</em>. The most common linkage criteria are: <em>single-linkage</em>, <em>complete-linkage</em>, <em>average-linkage</em>, and <em>Ward-linkage</em>. Complete-linkage prioritizes the within-cluster dissimilarities, producing clusters with shorter distance samples. Complete-linkage clustering can be sensitive to outliers, which can increase the resulting intracluster data variance. As an alternative, Ward proposes a criteria to minimize the data variance by means of either <em>sum-of-squares</em> or <em>sum-of-squares-error</em> <span class="citation">(Ward 1963)</span>. Ward’s intuition is that clusters of multivariate observations, such as time series, should be approximately elliptical in shape <span class="citation">(Hennig 2015)</span>. In <code>sits</code>, a dendrogram can be generated by <code>sits_dendrogram()</code>. The following codes illustrate how to create, visualize, and cut a dendrogram (for details, see <code>?sits_dendrogram()</code>).</p>
+</div>
+<div id="using-a-dendrogram-to-evaluate-sample-quality" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Using a dendrogram to evaluate sample quality</h3>
+<p>After creating a dendrogram, an important question emerges: <em>where to cut the dendrogram?</em> The answer depends on what are the purposes of the cluster analysis. We need to balance two objectives: get clusters as large as possible, and get clusters as homogeneous as possible with respect to their known classes. To help this process, <code>sits</code> provides <code>sits_dendro_bestcut()</code> function that computes an external validity index <em>Adjusted Rand Index</em> (ARI) for a series of different number of generated clusters. This function returns the height where the cut of the dendrogram maximizes the index.</p>
+<p>In this example, the height optimizes the ARI and generates <span class="math inline">\(6\)</span> clusters. The ARI considers any pair of distinct samples and computes the following counts:
+(a) the number of distinct pairs whose samples have the same label and are in the same cluster;
+(b) the number of distinct pairs whose samples have the same label and are in different clusters;
+(c) the number of distinct pairs whose samples have different labels and are in the same cluster; and
+(d) the number of distinct pairs whose samples have the different labels and are in different clusters.
+Here, <span class="math inline">\(a\)</span> and <span class="math inline">\(d\)</span> consist in all agreements, and <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> all disagreements. The ARI is obtained by:</p>
+<p><span class="math display">\[
+ARI=\frac{a+d-E}{a+d+b+c-E},
+\]</span>
+where <span class="math inline">\(E\)</span> is the expected agreement, a random chance correction calculated by
+<span class="math display">\[
+E=(a+b)(b+c)+(c+d)(b+d).
+\]</span></p>
+<p>Unlike other validity indexes such as Jaccard (<span class="math inline">\({J=a/(a+b+c)}\)</span>), Fowlkes-Mallows (<span class="math inline">\({FM=a/(a^2+a(b+c)+bc)^{1/2}}\)</span>), and Rand (the same as ARI without the <span class="math inline">\(E\)</span> adjustment) indices, ARI is more appropriate either when the number of clusters is outweighed by the number of labels (and <em>vice versa</em>) or when the amount of samples in labels and clusters is imbalanced <span class="citation">(Hubert and Arabie 1985)</span>, which is usually the case.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb40-1"></a><span class="co"># take a set of patterns for 2 classes</span></span>
+<span id="cb40-2"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb40-2"></a><span class="co"># create a dendrogram, plot, and get the optimal cluster based on ARI index</span></span>
+<span id="cb40-3"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb40-3"></a>clusters &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_dendro</span>(cerrado_2classes, </span>
+<span id="cb40-4"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb40-4"></a>                                         <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;evi&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; calculating dendrogram...</code></pre>
+<pre><code>#&gt; finding the best cut...</code></pre>
+<pre><code>#&gt; best number of clusters = 6</code></pre>
+<pre><code>#&gt; best height for cutting the dendrogram = 20.3965461960775</code></pre>
+<pre><code>#&gt; cutting the tree...</code></pre>
+<pre><code>#&gt; Plotting dendrogram...</code></pre>
+<pre><code>#&gt; result is a tibble with cluster indexes...</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb48-1"></a><span class="co"># show clusters samples frequency</span></span>
+<span id="cb48-2"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb48-2"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters)</span></code></pre></div>
+<pre><code>#&gt;          
+#&gt;             1   2   3   4   5   6 Total
+#&gt;   Cerrado 203  13  23  80   1  80   400
+#&gt;   Pasture   2 176  28   0 140   0   346
+#&gt;   Total   205 189  51  80 141  80   746</code></pre>
+<p><img src="sitsbook_files/figure-html/dendrogram-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Note in this example that almost all clusters has a predominance of either “Cerrado” or “Pasture” classes with the exception of cluster <span class="math inline">\(3\)</span>. The contingency table plotted by <code>sits_cluster_frequency()</code> shows how the samples are distributed across the clusters and helps to identify two kinds of confusions. The first is relative to those small amount of samples in clusters dominated by another class (<em>e.g.</em> clusters <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(4\)</span>, <span class="math inline">\(5\)</span>, and <span class="math inline">\(6\)</span>), while the second is relative to those samples in non-dominated clusters (<em>e.g.</em> cluster <span class="math inline">\(3\)</span>). These confusions can be an indication of samples with poor quality, an inadequacy of selected parameters for cluster analysis, or even a natural confusion due to the inherent variability of the land classes.</p>
+<p>The result of the <code>sits_cluster</code> operation is a <code>sits_tibble</code> with one additional column, called “cluster”. Thus, it is possible to remove clusters with mixed classes using standard <code>R</code> such as those in the <code>dplyr</code> package. In the example above, removing cluster <span class="math inline">\(3\)</span> can be done using the <code>dplyr::filter</code> function.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb50-1"></a><span class="co"># remove cluster 3 from the samples</span></span>
+<span id="cb50-2"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb50-2"></a>clusters_new &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(clusters, cluster <span class="op">!=</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb50-3"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb50-3"></a></span>
+<span id="cb50-4"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb50-4"></a><span class="co"># show new clusters samples frequency</span></span>
+<span id="cb50-5"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb50-5"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters_new)</span></code></pre></div>
+<pre><code>#&gt;          
+#&gt;             1   2   4   5   6 Total
+#&gt;   Cerrado 203  13  80   1  80   377
+#&gt;   Pasture   2 176   0 140   0   318
+#&gt;   Total   205 189  80 141  80   695</code></pre>
+<p>The resulting clusters still contained mixed labels, possibly resulting from outliers. In this case, users may want to remove the outliers and leave only the most frequent class. To do this, one can use <code>sits_cluster_clean()</code>, which removes all minority samples, as shown below.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb52-1"></a><span class="co"># clear clusters, leaving only the majority class in each cluster</span></span>
+<span id="cb52-2"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb52-2"></a>clean &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_clean</span>(clusters)</span>
+<span id="cb52-3"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb52-3"></a><span class="co"># show clusters samples frequency</span></span>
+<span id="cb52-4"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#cb52-4"></a><span class="kw">sits_cluster_frequency</span>(clean)</span></code></pre></div>
+<pre><code>#&gt;          
+#&gt;             1   2   3   4   5   6 Total
+#&gt;   Cerrado 203   0   0  80   0  80   363
+#&gt;   Pasture   0 176  28   0 140   0   344
+#&gt;   Total   203 176  28  80 140  80   707</code></pre>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-1-clustering-for-sample-quality-control.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-3-using-self-organizing-maps-for-sample-quality.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.2 Common interface to SITS filter functions | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+<meta property="og:type" content="book" />
+
+<meta property="og:image" content="images/cover.png" />
+<meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The output format for this example is bookdown::gitbook.</p>" />
+
+
+
+<meta name="date" content="2021-03-30" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The output format for this example is bookdown::gitbook.</p>">
+
+<title>3.2 Common interface to SITS filter functions | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#preface">Preface</a></li>
+<li class="has-sub"><a href="1-introduction.html#introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-workflow.html#workflow"><span class="toc-section-number">1.1</span> Workflow</a></li>
+<li class="has-sub"><a href="1-2-handling-data-cubes-in-sits.html#handling-data-cubes-in-sits"><span class="toc-section-number">1.2</span> Handling Data Cubes in <strong>sits</strong></a><ul>
+<li><a href="1-2-handling-data-cubes-in-sits.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><span class="toc-section-number">1.2.1</span> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li><a href="1-2-handling-data-cubes-in-sits.html#using-stac-to-access-image-data-cubes"><span class="toc-section-number">1.2.2</span> Using STAC to Access Image Data Cubes</a></li>
+<li><a href="1-2-handling-data-cubes-in-sits.html#defining-a-data-cube-using-files"><span class="toc-section-number">1.2.3</span> Defining a data cube using files</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-3-handling-satellite-image-time-series-in-sits.html#handling-satellite-image-time-series-in-sits"><span class="toc-section-number">1.3</span> Handling satellite image time series in <strong>sits</strong></a><ul>
+<li><a href="1-3-handling-satellite-image-time-series-in-sits.html#data-structure"><span class="toc-section-number">1.3.1</span> Data structure</a></li>
+<li><a href="1-3-handling-satellite-image-time-series-in-sits.html#obtaining-time-series-data"><span class="toc-section-number">1.3.2</span> Obtaining time series data</a></li>
+</ul></li>
+<li><a href="1-4-filtering-techniques.html#filtering-techniques"><span class="toc-section-number">1.4</span> Filtering techniques</a></li>
+<li><a href="1-5-clustering-for-sample-quality-control-using-self-organizing-maps.html#clustering-for-sample-quality-control-using-self-organizing-maps"><span class="toc-section-number">1.5</span> Clustering for sample quality control using self-organizing maps</a></li>
+<li><a href="1-6-classification-using-machine-learning.html#classification-using-machine-learning"><span class="toc-section-number">1.6</span> Classification using machine learning</a></li>
+<li><a href="1-7-validation-techniques.html#validation-techniques"><span class="toc-section-number">1.7</span> Validation techniques</a></li>
+<li class="has-sub"><a href="1-8-cube-classification.html#cube-classification"><span class="toc-section-number">1.8</span> Cube classification</a><ul>
+<li><a href="1-8-cube-classification.html#steps-for-cube-classification"><span class="toc-section-number">1.8.1</span> Steps for cube classification</a></li>
+<li><a href="1-8-cube-classification.html#adjustments-for-improved-performance"><span class="toc-section-number">1.8.2</span> Adjustments for improved performance</a></li>
+</ul></li>
+<li><a href="1-9-smoothing-and-labelling-of-raster-data-after-classification.html#smoothing-and-labelling-of-raster-data-after-classification"><span class="toc-section-number">1.9</span> Smoothing and Labelling of raster data after classification</a></li>
+<li><a href="1-10-final-remarks.html#final-remarks"><span class="toc-section-number">1.10</span> Final remarks</a></li>
+<li><a href="1-11-acknowledgements.html#acknowledgements"><span class="toc-section-number">1.11</span> Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-acessing-time-series-information-in-sits.html#acessing-time-series-information-in-sits"><span class="toc-section-number">2</span> Acessing time series information in SITS</a><ul>
+<li><a href="2-1-data-structures-for-satellite-time-series.html#data-structures-for-satellite-time-series"><span class="toc-section-number">2.1</span> Data structures for satellite time series</a></li>
+<li><a href="2-2-utilities-for-handling-time-series.html#utilities-for-handling-time-series"><span class="toc-section-number">2.2</span> Utilities for handling time series</a></li>
+<li><a href="2-3-time-series-visualisation.html#time-series-visualisation"><span class="toc-section-number">2.3</span> Time series visualisation</a></li>
+<li><a href="2-4-obtaining-time-series-data-from-data-cubes.html#obtaining-time-series-data-from-data-cubes"><span class="toc-section-number">2.4</span> Obtaining time series data from data cubes</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-satellite-image-time-series-filtering-with-sits.html#satellite-image-time-series-filtering-with-sits"><span class="toc-section-number">3</span> Satellite Image Time Series Filtering with SITS</a><ul>
+<li><a href="3-1-filtering-techniques-in-sits.html#filtering-techniques-in-sits"><span class="toc-section-number">3.1</span> Filtering techniques in SITS</a></li>
+<li class="has-sub"><a href="3-2-common-interface-to-sits-filter-functions.html#common-interface-to-sits-filter-functions"><span class="toc-section-number">3.2</span> Common interface to SITS filter functions</a><ul>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#savitzkygolay-filter"><span class="toc-section-number">3.2.1</span> Savitzky–Golay filter</a></li>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#whittaker-filter"><span class="toc-section-number">3.2.2</span> Whittaker filter</a></li>
+<li><a href="3-2-common-interface-to-sits-filter-functions.html#envelope-filter"><span class="toc-section-number">3.2.3</span> Envelope filter</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-time-series-clustering-to-improve-the-quality-of-training-samples.html#time-series-clustering-to-improve-the-quality-of-training-samples"><span class="toc-section-number">4</span> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
+<li><a href="4-1-clustering-for-sample-quality-control.html#clustering-for-sample-quality-control"><span class="toc-section-number">4.1</span> Clustering for sample quality control</a></li>
+<li class="has-sub"><a href="4-2-hierachical-clustering-for-sample-quality-control.html#hierachical-clustering-for-sample-quality-control"><span class="toc-section-number">4.2</span> Hierachical clustering for Sample Quality Control</a><ul>
+<li><a href="4-2-hierachical-clustering-for-sample-quality-control.html#creating-a-dendogram"><span class="toc-section-number">4.2.1</span> Creating a dendogram</a></li>
+<li><a href="4-2-hierachical-clustering-for-sample-quality-control.html#using-a-dendrogram-to-evaluate-sample-quality"><span class="toc-section-number">4.2.2</span> Using a dendrogram to evaluate sample quality</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-using-self-organizing-maps-for-sample-quality.html#using-self-organizing-maps-for-sample-quality"><span class="toc-section-number">4.3</span> Using Self-organizing Maps for Sample Quality</a><ul>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#introduction-to-self-organizing-maps"><span class="toc-section-number">4.3.1</span> Introduction to Self-organizing Maps</a></li>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#using-som-for-removing-class-noise"><span class="toc-section-number">4.3.2</span> Using SOM for removing class noise</a></li>
+<li><a href="4-3-using-self-organizing-maps-for-sample-quality.html#comparing-global-accuracy-of-original-and-clean-samples"><span class="toc-section-number">4.3.3</span> Comparing Global Accuracy of Original and Clean Samples</a></li>
+</ul></li>
+<li><a href="4-4-conclusion.html#conclusion"><span class="toc-section-number">4.4</span> Conclusion</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-for-data-cubes-using-the-sits-package"><span class="toc-section-number">5</span> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li><a href="5-1-machine-learning-classification.html#machine-learning-classification"><span class="toc-section-number">5.1</span> Machine learning classification</a></li>
+<li><a href="5-2-data-used-in-the-machine-learning-examples.html#data-used-in-the-machine-learning-examples"><span class="toc-section-number">5.2</span> Data used in the machine learning examples</a></li>
+<li><a href="5-3-visualizing-samples.html#visualizing-samples"><span class="toc-section-number">5.3</span> Visualizing Samples</a></li>
+<li><a href="5-4-common-interface-to-machine-learning-and-deeplearning-models.html#common-interface-to-machine-learning-and-deeplearning-models"><span class="toc-section-number">5.4</span> Common interface to machine learning and deeplearning models</a></li>
+<li><a href="5-5-random-forests.html#random-forests"><span class="toc-section-number">5.5</span> Random forests</a></li>
+<li><a href="5-6-support-vector-machines.html#support-vector-machines"><span class="toc-section-number">5.6</span> Support Vector Machines</a></li>
+<li><a href="5-7-extreme-gradient-boosting.html#extreme-gradient-boosting"><span class="toc-section-number">5.7</span> Extreme Gradient Boosting</a></li>
+<li><a href="5-8-deep-learning-using-multi-layer-perceptrons.html#deep-learning-using-multi-layer-perceptrons"><span class="toc-section-number">5.8</span> Deep learning using multi-layer perceptrons</a></li>
+<li><a href="5-9-d-convolutional-neural-networks.html#d-convolutional-neural-networks"><span class="toc-section-number">5.9</span> 1D Convolutional Neural Networks</a></li>
+<li><a href="5-10-residual-1d-cnn-networks-resnet.html#residual-1d-cnn-networks-resnet"><span class="toc-section-number">5.10</span> Residual 1D CNN Networks (ResNet)</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-classification-of-images-in-data-cubes-using-satellite-image-time-series.html#classification-of-images-in-data-cubes-using-satellite-image-time-series"><span class="toc-section-number">6</span> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li><a href="6-1-image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><span class="toc-section-number">6.1</span> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li><a href="6-2-defining-a-data-cube-using-files-organised-as-raster-bricks.html#defining-a-data-cube-using-files-organised-as-raster-bricks"><span class="toc-section-number">6.2</span> Defining a data cube using files organised as raster bricks</a></li>
+<li><a href="6-3-classification-using-machine-learning-1.html#classification-using-machine-learning-1"><span class="toc-section-number">6.3</span> Classification using machine learning</a></li>
+<li class="has-sub"><a href="6-4-cube-classification-1.html#cube-classification-1"><span class="toc-section-number">6.4</span> Cube classification</a><ul>
+<li><a href="6-4-cube-classification-1.html#steps-for-cube-classification-1"><span class="toc-section-number">6.4.1</span> Steps for cube classification</a></li>
+<li><a href="6-4-cube-classification-1.html#adjustments-for-improved-performance-1"><span class="toc-section-number">6.4.2</span> Adjustments for improved performance</a></li>
+</ul></li>
+<li><a href="6-5-final-remarks-1.html#final-remarks-1"><span class="toc-section-number">6.5</span> Final remarks</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-post-classification-smoothing-using-bayesian-techniques-in-sits.html#post-classification-smoothing-using-bayesian-techniques-in-sits"><span class="toc-section-number">7</span> Post classification smoothing using Bayesian techniques in SITS</a><ul>
+<li><a href="7-1-introduction-1.html#introduction-1"><span class="toc-section-number">7.1</span> Introduction</a></li>
+<li class="has-sub"><a href="7-2-overview-of-bayesian-estimattion.html#overview-of-bayesian-estimattion"><span class="toc-section-number">7.2</span> Overview of Bayesian estimattion</a><ul>
+<li><a href="7-2-overview-of-bayesian-estimattion.html#smmothing-using-bayes-rule"><span class="toc-section-number">7.2.1</span> Smmothing using Bayes’ rule</a></li>
+</ul></li>
+<li><a href="7-3-use-of-bayesian-smoothing-in-sits.html#use-of-bayesian-smoothing-in-sits"><span class="toc-section-number">7.3</span> Use of Bayesian smoothing in SITS</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-validation-and-accuracy-measurements-in-sits.html#validation-and-accuracy-measurements-in-sits"><span class="toc-section-number">8</span> Validation and accuracy measurements in SITS</a><ul>
+<li><a href="8-1-validation-techniques-1.html#validation-techniques-1"><span class="toc-section-number">8.1</span> Validation techniques</a></li>
+<li><a href="8-2-comparing-different-validation-methods.html#comparing-different-validation-methods"><span class="toc-section-number">8.2</span> Comparing different validation methods</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="common-interface-to-sits-filter-functions" class="section level2">
+<h2><span class="header-section-number">3.2</span> Common interface to SITS filter functions</h2>
+<p>The SITS package uses a common interface to all filter functions with the <code>sits_filter</code>. The function has two parameters: <code>data</code> for the dataset to be filtered and <code>filter</code> for the filter to be applied. To aid on data visualisation, all bands which are filtered have a suffix which is appended, as shown in the examples below. The following filters are available and described in what follows:</p>
+<ul>
+<li>Savitzky–Golay filter (<code>sits_sgolay</code>)</li>
+<li>Whittaker filter (<code>sits_whittaker</code>)</li>
+<li>Envelope filter (<code>sits_envelope</code>)</li>
+<li>ARIMA filter for cloud removal in NDVI band (<code>sits_ndvi_arima_filter</code>)</li>
+<li>Cloud filter (<code>sits_cloud_filter</code>)</li>
+<li>Kalman filter (<code>sits_kalman</code>)</li>
+</ul>
+<div id="savitzkygolay-filter" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Savitzky–Golay filter</h3>
+<p>The Savitzky-Golay filter works by fitting a successive array of <span class="math inline">\(2n+1\)</span> adjacent data points with a <span class="math inline">\(d\)</span>-degree polynomial through linear least squares. The central point <span class="math inline">\(i\)</span> of the window array assumes the value of the interpolated polynomial. An equivalent and much faster solution than this convolution procedure is given by the closed expression
+<span class="math display">\[
+  {\hat{x}_{i}=\sum _{j=-n}^{n}C_{j}\,x_{i+j}},
+\]</span>
+where <span class="math inline">\(\hat{x}\)</span> is the the filtered time series, <span class="math inline">\(C_{j}\)</span> are the Savitzky-Golay smoothing coefficients, and <span class="math inline">\(x\)</span> is the original time series.</p>
+<p>The coefficients <span class="math inline">\(C_{j}\)</span> depend uniquely on the polynomial degree (<span class="math inline">\(d\)</span>) and the length of the window data points (given by parameter <span class="math inline">\(n\)</span>). If <span class="math inline">\({d=0}\)</span>, the coefficients are constants <span class="math inline">\({C_{j}=1/(2n+1)}\)</span> and the Savitzky-Golay filter will be equivalent to moving average filter. When the time series is equally spaced, the coefficients have analytical solution. According to <span class="citation">Madden (1978)</span>, for <span class="math inline">\({d\in{}[2,3]}\)</span> each <span class="math inline">\(C_{j}\)</span> smoothing coefficients can be obtained by
+<span class="math display">\[
+  C_{j}=\frac{3(3n^2+3n-1-5j^2)}{(2n+3)(2n+1)(2n-1)}.
+\]</span></p>
+<p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">(Chen et al. 2004)</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on the original time series.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
+<span id="cb37-2"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
+<span id="cb37-3"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-3"></a><span class="co"># apply Savitzky–Golay filter</span></span>
+<span id="cb37-4"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-4"></a>point_sg.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, <span class="dt">filter =</span> <span class="kw">sits_sgolay</span>())</span>
+<span id="cb37-5"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-5"></a><span class="co"># plot the series</span></span>
+<span id="cb37-6"><a href="3-2-common-interface-to-sits-filter-functions.html#cb37-6"></a><span class="kw">sits_merge</span>(point_sg.tb, point.tb) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-25-1.png" alt="Savitzky-Golay filter applied on a one-year NDVI time series." width="70%" />
+<p class="caption">
+Figure 3.1: Savitzky-Golay filter applied on a one-year NDVI time series.
+</p>
+</div>
+</div>
+<div id="whittaker-filter" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Whittaker filter</h3>
+<p>The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">(Atzberger and Eilers 2011)</span>. The Whittaker filter is a balancing between the residual to the original data and the “smoothness” of the fitted curve. The residual, as measured by the sum of squares of all <span class="math inline">\(n\)</span> time series points deviations, is given by
+<span class="math display">\[
+  RSS=\sum_{i}(x_{i} - \hat{x_{i}})^2,
+\]</span>
+where <span class="math inline">\(x\)</span> and <span class="math inline">\(\hat{x}\)</span> are the original and the filtered time series vectors, respectively. The smoothness is assumed to be the measure of the the sum of the squares of the third order differences of the time series <span class="citation">(Whittaker 1922)</span> which is given by
+<span class="math display">\[
+  \begin{split}
+S\!S\!D = (\hat{x}_4 - 3\hat{x}_3 + 3\hat{x}_2 - \hat{x}_1)^2 + (\hat{x}_5 - 3\hat{x}_4 + 3\hat{x}_3 - \hat{x}_2)^2 \\ + \ldots + (\hat{x}_n - 3\hat{x}_{n-1} + 3\hat{x}_{n-2} - \hat{x}_{n-3})^2.
+\end{split}
+\]</span></p>
+<p>The filter is obtained by finding a new time series <span class="math inline">\(\hat{x}\)</span> whose points minimize the expression
+<span class="math display">\[
+  RSS+\lambda{}S\!S\!D,
+\]</span>
+where <span class="math inline">\(\lambda{}\)</span>, a scalar, works as an “smoothing weight” parameter. The minimization can be obtained by differentiating the expression with respect to <span class="math inline">\(\hat{x}\)</span> and equating it to zero. The solution of the resulting linear system of equations gives the filtered time series which, in matrix form, can be expressed as
+<span class="math display">\[
+  \hat{x} = ({\rm I} + \lambda {D}^{\intercal} D)^{-1}x,
+\]</span>
+where <span class="math inline">\({\rm I}\)</span> is the identity matrix and
+<span class="math display">\[
+  D = \left[\begin{array}{ccccccc}
+             1 &amp; -3 &amp; 3 &amp; -1 &amp; 0 &amp; 0 &amp;\cdots \\
+             0 &amp; 1 &amp; -3 &amp; 3 &amp; -1 &amp; 0 &amp;\cdots \\
+             0 &amp; 0 &amp; 1 &amp; -3 &amp; 3 &amp; -1 &amp; \cdots \\
+             \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots
+             \end{array}
+             \right]
+\]</span>
+is the third order difference matrix. The Whitakker filter can be a large but sparse optimization problem, as we can note from <span class="math inline">\(D\)</span> matrix.</p>
+<p>Whittaker smoother has been used only recently in satellite image time series investigations. According to <span class="citation">Atzberger and Eilers (2011)</span>, the smoother has an advantage over other filtering techniques such as Fourier and wavelets as it does not assume signal periodicity. Moreover, the authors argue that is enables rapid processing of large amounts of data, and handles incomplete time series with missing values.</p>
+<p>In the <code>sits</code> package, the Whittaker smoother has two parameters: <code>lambda</code> controls the degree of smoothing and <code>differences</code> the order of the finite difference penalty. The default values are <code>lambda = 1</code> and <code>differences = 3</code>. Users should be aware that increasing <code>lambda</code> results in much smoother data. When dealing with land use/land cover classes that include both natural vegetation and agriculture, a strong smoothing can reduce the amount of noise in natural vegetation (e.g., forest) time series; however, higher values of <code>lambda</code> reduce the information present in agricultural time series, since they reduce the peak values of crop plantations.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-1"></a><span class="co"># filter NDVI band</span></span>
+<span id="cb38-2"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-2"></a>point_ndvi &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, <span class="dt">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb38-3"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-3"></a></span>
+<span id="cb38-4"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-4"></a><span class="co"># apply Whitaker filter to an NDVI time series from 2000 to 2016</span></span>
+<span id="cb38-5"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-5"></a><span class="co"># merge with the original data</span></span>
+<span id="cb38-6"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-6"></a><span class="co"># plot the original and the modified series</span></span>
+<span id="cb38-7"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-7"></a>point_whit &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point_ndvi, <span class="kw">sits_whittaker</span>(<span class="dt">lambda =</span> <span class="dv">3</span>))</span>
+<span id="cb38-8"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-8"></a>point_whit <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb38-9"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-9"></a><span class="st">  </span><span class="kw">sits_merge</span>(point_ndvi) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb38-10"><a href="3-2-common-interface-to-sits-filter-functions.html#cb38-10"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-26-1.png" alt="Whittaker smoother filter applied on 16-year NDVI time series" width="70%" />
+<p class="caption">
+Figure 3.2: Whittaker smoother filter applied on 16-year NDVI time series
+</p>
+</div>
+</div>
+<div id="envelope-filter" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Envelope filter</h3>
+<p>This filter can generate a time series corresponding to the superior (inferior) bounding of the input signal. This is accomplished through a convoluting window (odd length) that attributes to the point <span class="math inline">\(i\)</span>, in the resulting time series, the maximum (minimum) value of the points in the window. The <span class="math inline">\(i\)</span> point corresponds to the central point of the window. It can be defined as
+<span class="math display">\[
+  u_i=\max_{k}{(\{x_{k}:\left|i-k\right|\le{}1\})},
+\]</span>
+whereas an lower dilation is obtained by
+<span class="math display">\[
+  l_i=\min_{k}{(\{x_{k}:\left|i-k\right|\le{}1\})}.
+\]</span>
+Here, <span class="math inline">\(x\)</span> is the input time series and, <span class="math inline">\(k\)</span> and <span class="math inline">\(i\)</span> are vector indices.</p>
+<p>The <code>sits_envelope()</code> can combine both maximum and minimum window sequentially. The function can receive a string sequence with <code>"U"</code> (for maximization) and <code>"L"</code> (for minimization) characters passed to its parameter. A repeated sequence of the same character is equivalent to one operation with a larger window. The sequential operations on the input time series produces the final filtered result that is returned.</p>
+<p>The envelope filter can be viewed through mathematical morphology lenses, a very common field in digital image processing <span class="citation">(Haralick, Sternberg, and Zhuang 1987)</span>. Here the operations of <code>"U"</code> and <code>"L"</code> corresponds to the <em>dilation</em> and <em>erosion</em> morphological operators applied to univariate arrays <span class="citation">(Vávra et al. 2004)</span>. Furthermore, the compounds operation of <em>opening</em> and <em>closing</em> can be obtained by <code>"UL"</code> and <code>"LU"</code>, respectively. This technique has been applied on time series analysis in other fields <span class="citation">(Accardo et al. 1997)</span> but, for our knowledge, there is no application in satellite image time series literature.</p>
+<p>In the following example we can see an application of <code>sits_envelope()</code> function. There, we performs the <em>opening filtration</em> and <em>closing filtration</em> introduced by <span class="citation">Vávra et al. (2004)</span>. The correspondent operations sequence are <code>"ULLULUUL"</code> and <code>"LUULULLU"</code>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-1"></a><span class="co"># Take the NDVI band of the first sample data set</span></span>
+<span id="cb39-2"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
+<span id="cb39-3"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-3"></a><span class="co"># apply envelope filter (remove downward and upward noises)</span></span>
+<span id="cb39-4"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-4"></a>point_env1.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
+<span id="cb39-5"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-5"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;ULLULUUL&quot;</span>, </span>
+<span id="cb39-6"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-6"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;OF&quot;</span>))</span>
+<span id="cb39-7"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-7"></a>point_env2.tb &lt;-<span class="st"> </span><span class="kw">sits_filter</span>(point.tb, </span>
+<span id="cb39-8"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-8"></a>                             <span class="kw">sits_envelope</span>(<span class="dt">operations =</span> <span class="st">&quot;LUULULLU&quot;</span>, </span>
+<span id="cb39-9"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-9"></a>                                           <span class="dt">bands_suffix =</span> <span class="st">&quot;CF&quot;</span>))</span>
+<span id="cb39-10"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-10"></a></span>
+<span id="cb39-11"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-11"></a><span class="co"># plot the series</span></span>
+<span id="cb39-12"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-12"></a><span class="kw">sits_merge</span>(point_env1.tb, point_env2.tb) <span class="op">%&gt;%</span></span>
+<span id="cb39-13"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-13"></a><span class="st">  </span><span class="kw">sits_merge</span>(point.tb) <span class="op">%&gt;%</span></span>
+<span id="cb39-14"><a href="3-2-common-interface-to-sits-filter-functions.html#cb39-14"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-27"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-27-1.png" alt="Envelope filter applied on one-year NDVI time series. The examples uses two morfological filters: opening filtration (~.OF) and closing filtration (~.CF)." width="70%" />
+<p class="caption">
+Figure 3.3: Envelope filter applied on one-year NDVI time series. The examples uses two morfological filters: opening filtration (~.OF) and closing filtration (~.CF).
+</p>
+</div>
+
+</div>
+</div>
+<!-- </div> -->
+<p style="text-align: center;">
+<a href="3-1-filtering-techniques-in-sits.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-time-series-clustering-to-improve-the-quality-of-training-samples.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

@@ -24,6 +24,14 @@ The output format for this example is bookdown::gitbook.</p>" />
 The output format for this example is bookdown::gitbook.</p>" />
   <meta name="twitter:image" content="/images/cover.png" />
 
+<meta name="author" content="Rolf Simoes" />
+<meta name="author" content="Gilberto Camara" />
+<meta name="author" content="Felipe Souza" />
+<meta name="author" content="Lorena Santos" />
+<meta name="author" content="Pedro R. Andrade" />
+<meta name="author" content="Alexandre Carvalho" />
+<meta name="author" content="Karine Ferreira" />
+<meta name="author" content="Gilberto Queiroz" />
 
 
 <meta name="date" content="2021-03-30" />
@@ -251,10 +259,10 @@ filter for cloud removal.</p>
 <hr />
 <div id="filtering-techniques-in-sits" class="section level2">
 <h2><span class="header-section-number">3.1</span> Filtering techniques in SITS</h2>
-<p>Satellite image time series generally is contaminated by atmospheric influence, geolocation error, and directional effects <span class="citation">(Lambin and Linderman <a href="#ref-Lambin2006" role="doc-biblioref">2006</a>)</span>. Atmospheric noise, sun angle, interferences on observations or different equipment specifications, as well as the very nature of the climate-land dynamics can be sources of variability <span class="citation">(Atkinson et al. <a href="#ref-Atkinson2012" role="doc-biblioref">2012</a>)</span>. Inter-annual climate variability also changes the phenological cycles of the vegetation, resulting in time series whose periods and intensities do not match on an year to year basis. To make the best use of available satellite data archives, methods for satellite image time series analysis need to deal with <em>noisy</em> and <em>non-homogeneous</em> data sets. In this vignette, we discuss filtering techniques to improve time series data that present missing values or noise.</p>
+<p>Satellite image time series generally is contaminated by atmospheric influence, geolocation error, and directional effects <span class="citation">(Lambin and Linderman 2006)</span>. Atmospheric noise, sun angle, interferences on observations or different equipment specifications, as well as the very nature of the climate-land dynamics can be sources of variability <span class="citation">(Atkinson et al. 2012)</span>. Inter-annual climate variability also changes the phenological cycles of the vegetation, resulting in time series whose periods and intensities do not match on an year to year basis. To make the best use of available satellite data archives, methods for satellite image time series analysis need to deal with <em>noisy</em> and <em>non-homogeneous</em> data sets. In this vignette, we discuss filtering techniques to improve time series data that present missing values or noise.</p>
 <p>The literature on satellite image time series have several applications of filtering to correct or smooth vegetation index data. The <code>sits</code> have support for Savitzky–Golay (<code>sits_sgolay()</code>), Whitaker (<code>sits_whittaker()</code>), envelope (<code>sits_envelope()</code>) and, the “cloud filter” based on ARIMA methods (<code>sits_ndvi_arima_filter()</code>) filters. The first two filters are commonly used in the literature, while the remaining two have been developed by the authors.</p>
-<p>Various somewhat conflicting results have been expressed in relation to the time series filtering techniques for phenology applications. For example, in an investigation of phenological parameter estimation, <span class="citation">Atkinson et al. (<a href="#ref-Atkinson2012" role="doc-biblioref">2012</a>)</span> found that the Whittaker and Fourier transform approaches were preferable to the double logistic and asymmetric Gaussian models. They applied the filters to preprocess MERIS NDVI time series for estimating phenological parameters in India. Comparing the same filters as in the previous work, <span class="citation">Shao et al. (<a href="#ref-Shao2016" role="doc-biblioref">2016</a>)</span> found that only Fourier transform and Whittaker techniques improved interclass separability for crop classes and significantly improved overall classification accuracy. The authors used MODIS NDVI time series from the Great Lakes region in North America. <span class="citation">Zhou et al. (<a href="#ref-Zhou2016" role="doc-biblioref">2016</a>)</span> found that asymmetric Gaussian model outperforms other filters over high latitude boreal biomes, while the Savitzky-Golay model gives the best reconstruction performance in tropical evergreen broadleaf forests. In the remaining biomes, Whittaker gives superior results. The authors compare all previous mentioned filters plus Savitzky-Golay method for noise removal in MODIS NDVI data from sites spread worldwide in different climatological conditions. Many other techniques can be found in applications of satellite image time series such as curve fitting <span class="citation">(Bradley et al. <a href="#ref-Bradley2007" role="doc-biblioref">2007</a>)</span>, wavelet decomposition <span class="citation">(Sakamoto et al. <a href="#ref-Sakamoto2005" role="doc-biblioref">2005</a>)</span>, mean-value iteration, ARMD3-ARMA5, and 4253H <span class="citation">(Hird and McDermid <a href="#ref-Hird2009" role="doc-biblioref">2009</a>)</span>. Therefore, any comparative analysis of smoothing algorithms depends on the adopted performance measurement.</p>
-<p>One of the main uses of time series filtering is to reduce the noise and miss data produced by clouds in tropical areas. The following examples use data produced by the PRODES project <span class="citation">(INPE <a href="#ref-INPE2017" role="doc-biblioref">2017</a>)</span>, which detects deforestation in the Brazilian Amazon rain forest through visual interpretation. This data set is called <code>prodes_226_04</code> and is provided together with the <code>sits</code> package. It has <span class="math inline">\(617\)</span> samples from a region corresponding to the standard Landsat Path/Row 226/064. This is an area in the East of the Brazilian Pará state. It was chosen because of its huge cloud cover from November to March, which is a significant factor in degrading time series quality. Its NDVI and EVI time series were extracted from a combination of MOD13Q1 and Landsat8 images (to best visualize the effects of each filter, we selected only NDVI time series).</p>
+<p>Various somewhat conflicting results have been expressed in relation to the time series filtering techniques for phenology applications. For example, in an investigation of phenological parameter estimation, <span class="citation">Atkinson et al. (2012)</span> found that the Whittaker and Fourier transform approaches were preferable to the double logistic and asymmetric Gaussian models. They applied the filters to preprocess MERIS NDVI time series for estimating phenological parameters in India. Comparing the same filters as in the previous work, <span class="citation">Shao et al. (2016)</span> found that only Fourier transform and Whittaker techniques improved interclass separability for crop classes and significantly improved overall classification accuracy. The authors used MODIS NDVI time series from the Great Lakes region in North America. <span class="citation">Zhou et al. (2016)</span> found that asymmetric Gaussian model outperforms other filters over high latitude boreal biomes, while the Savitzky-Golay model gives the best reconstruction performance in tropical evergreen broadleaf forests. In the remaining biomes, Whittaker gives superior results. The authors compare all previous mentioned filters plus Savitzky-Golay method for noise removal in MODIS NDVI data from sites spread worldwide in different climatological conditions. Many other techniques can be found in applications of satellite image time series such as curve fitting <span class="citation">(Bradley et al. 2007)</span>, wavelet decomposition <span class="citation">(Sakamoto et al. 2005)</span>, mean-value iteration, ARMD3-ARMA5, and 4253H <span class="citation">(Hird and McDermid 2009)</span>. Therefore, any comparative analysis of smoothing algorithms depends on the adopted performance measurement.</p>
+<p>One of the main uses of time series filtering is to reduce the noise and miss data produced by clouds in tropical areas. The following examples use data produced by the PRODES project <span class="citation">(INPE 2017)</span>, which detects deforestation in the Brazilian Amazon rain forest through visual interpretation. This data set is called <code>prodes_226_04</code> and is provided together with the <code>sits</code> package. It has <span class="math inline">\(617\)</span> samples from a region corresponding to the standard Landsat Path/Row 226/064. This is an area in the East of the Brazilian Pará state. It was chosen because of its huge cloud cover from November to March, which is a significant factor in degrading time series quality. Its NDVI and EVI time series were extracted from a combination of MOD13Q1 and Landsat8 images (to best visualize the effects of each filter, we selected only NDVI time series).</p>
 </div>
 <div id="common-interface-to-sits-filter-functions" class="section level2">
 <h2><span class="header-section-number">3.2</span> Common interface to SITS filter functions</h2>
@@ -274,11 +282,11 @@ filter for cloud removal.</p>
   {\hat{x}_{i}=\sum _{j=-n}^{n}C_{j}\,x_{i+j}},
 \]</span>
 where <span class="math inline">\(\hat{x}\)</span> is the the filtered time series, <span class="math inline">\(C_{j}\)</span> are the Savitzky-Golay smoothing coefficients, and <span class="math inline">\(x\)</span> is the original time series.</p>
-<p>The coefficients <span class="math inline">\(C_{j}\)</span> depend uniquely on the polynomial degree (<span class="math inline">\(d\)</span>) and the length of the window data points (given by parameter <span class="math inline">\(n\)</span>). If <span class="math inline">\({d=0}\)</span>, the coefficients are constants <span class="math inline">\({C_{j}=1/(2n+1)}\)</span> and the Savitzky-Golay filter will be equivalent to moving average filter. When the time series is equally spaced, the coefficients have analytical solution. According to <span class="citation">Madden (<a href="#ref-Madden1978" role="doc-biblioref">1978</a>)</span>, for <span class="math inline">\({d\in{}[2,3]}\)</span> each <span class="math inline">\(C_{j}\)</span> smoothing coefficients can be obtained by
+<p>The coefficients <span class="math inline">\(C_{j}\)</span> depend uniquely on the polynomial degree (<span class="math inline">\(d\)</span>) and the length of the window data points (given by parameter <span class="math inline">\(n\)</span>). If <span class="math inline">\({d=0}\)</span>, the coefficients are constants <span class="math inline">\({C_{j}=1/(2n+1)}\)</span> and the Savitzky-Golay filter will be equivalent to moving average filter. When the time series is equally spaced, the coefficients have analytical solution. According to <span class="citation">Madden (1978)</span>, for <span class="math inline">\({d\in{}[2,3]}\)</span> each <span class="math inline">\(C_{j}\)</span> smoothing coefficients can be obtained by
 <span class="math display">\[
   C_{j}=\frac{3(3n^2+3n-1-5j^2)}{(2n+3)(2n+1)(2n-1)}.
 \]</span></p>
-<p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">(Chen et al. <a href="#ref-Chen2004" role="doc-biblioref">2004</a>)</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on the original time series.</p>
+<p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">(Chen et al. 2004)</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on the original time series.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
 <span id="cb37-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
 <span id="cb37-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb37-3"></a><span class="co"># apply Savitzky–Golay filter</span></span>
@@ -294,11 +302,11 @@ Figure 3.1: Savitzky-Golay filter applied on a one-year NDVI time series.
 </div>
 <div id="whittaker-filter" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Whittaker filter</h3>
-<p>The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">(Atzberger and Eilers <a href="#ref-Atzberger2011" role="doc-biblioref">2011</a>)</span>. The Whittaker filter is a balancing between the residual to the original data and the “smoothness” of the fitted curve. The residual, as measured by the sum of squares of all <span class="math inline">\(n\)</span> time series points deviations, is given by
+<p>The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">(Atzberger and Eilers 2011)</span>. The Whittaker filter is a balancing between the residual to the original data and the “smoothness” of the fitted curve. The residual, as measured by the sum of squares of all <span class="math inline">\(n\)</span> time series points deviations, is given by
 <span class="math display">\[
   RSS=\sum_{i}(x_{i} - \hat{x_{i}})^2,
 \]</span>
-where <span class="math inline">\(x\)</span> and <span class="math inline">\(\hat{x}\)</span> are the original and the filtered time series vectors, respectively. The smoothness is assumed to be the measure of the the sum of the squares of the third order differences of the time series <span class="citation">(Whittaker <a href="#ref-Whittaker1922" role="doc-biblioref">1922</a>)</span> which is given by
+where <span class="math inline">\(x\)</span> and <span class="math inline">\(\hat{x}\)</span> are the original and the filtered time series vectors, respectively. The smoothness is assumed to be the measure of the the sum of the squares of the third order differences of the time series <span class="citation">(Whittaker 1922)</span> which is given by
 <span class="math display">\[
   \begin{split}
 S\!S\!D = (\hat{x}_4 - 3\hat{x}_3 + 3\hat{x}_2 - \hat{x}_1)^2 + (\hat{x}_5 - 3\hat{x}_4 + 3\hat{x}_3 - \hat{x}_2)^2 \\ + \ldots + (\hat{x}_n - 3\hat{x}_{n-1} + 3\hat{x}_{n-2} - \hat{x}_{n-3})^2.
@@ -323,7 +331,7 @@ where <span class="math inline">\({\rm I}\)</span> is the identity matrix and
              \right]
 \]</span>
 is the third order difference matrix. The Whitakker filter can be a large but sparse optimization problem, as we can note from <span class="math inline">\(D\)</span> matrix.</p>
-<p>Whittaker smoother has been used only recently in satellite image time series investigations. According to <span class="citation">Atzberger and Eilers (<a href="#ref-Atzberger2011" role="doc-biblioref">2011</a>)</span>, the smoother has an advantage over other filtering techniques such as Fourier and wavelets as it does not assume signal periodicity. Moreover, the authors argue that is enables rapid processing of large amounts of data, and handles incomplete time series with missing values.</p>
+<p>Whittaker smoother has been used only recently in satellite image time series investigations. According to <span class="citation">Atzberger and Eilers (2011)</span>, the smoother has an advantage over other filtering techniques such as Fourier and wavelets as it does not assume signal periodicity. Moreover, the authors argue that is enables rapid processing of large amounts of data, and handles incomplete time series with missing values.</p>
 <p>In the <code>sits</code> package, the Whittaker smoother has two parameters: <code>lambda</code> controls the degree of smoothing and <code>differences</code> the order of the finite difference penalty. The default values are <code>lambda = 1</code> and <code>differences = 3</code>. Users should be aware that increasing <code>lambda</code> results in much smoother data. When dealing with land use/land cover classes that include both natural vegetation and agriculture, a strong smoothing can reduce the amount of noise in natural vegetation (e.g., forest) time series; however, higher values of <code>lambda</code> reduce the information present in agricultural time series, since they reduce the peak values of crop plantations.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-1"></a><span class="co"># filter NDVI band</span></span>
 <span id="cb38-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb38-2"></a>point_ndvi &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, <span class="dt">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
@@ -354,8 +362,8 @@ whereas an lower dilation is obtained by
 \]</span>
 Here, <span class="math inline">\(x\)</span> is the input time series and, <span class="math inline">\(k\)</span> and <span class="math inline">\(i\)</span> are vector indices.</p>
 <p>The <code>sits_envelope()</code> can combine both maximum and minimum window sequentially. The function can receive a string sequence with <code>"U"</code> (for maximization) and <code>"L"</code> (for minimization) characters passed to its parameter. A repeated sequence of the same character is equivalent to one operation with a larger window. The sequential operations on the input time series produces the final filtered result that is returned.</p>
-<p>The envelope filter can be viewed through mathematical morphology lenses, a very common field in digital image processing <span class="citation">(Haralick, Sternberg, and Zhuang <a href="#ref-Haralick1987" role="doc-biblioref">1987</a>)</span>. Here the operations of <code>"U"</code> and <code>"L"</code> corresponds to the <em>dilation</em> and <em>erosion</em> morphological operators applied to univariate arrays <span class="citation">(Vávra et al. <a href="#ref-Vavra2004" role="doc-biblioref">2004</a>)</span>. Furthermore, the compounds operation of <em>opening</em> and <em>closing</em> can be obtained by <code>"UL"</code> and <code>"LU"</code>, respectively. This technique has been applied on time series analysis in other fields <span class="citation">(Accardo et al. <a href="#ref-Accardo1997" role="doc-biblioref">1997</a>)</span> but, for our knowledge, there is no application in satellite image time series literature.</p>
-<p>In the following example we can see an application of <code>sits_envelope()</code> function. There, we performs the <em>opening filtration</em> and <em>closing filtration</em> introduced by <span class="citation">Vávra et al. (<a href="#ref-Vavra2004" role="doc-biblioref">2004</a>)</span>. The correspondent operations sequence are <code>"ULLULUUL"</code> and <code>"LUULULLU"</code>.</p>
+<p>The envelope filter can be viewed through mathematical morphology lenses, a very common field in digital image processing <span class="citation">(Haralick, Sternberg, and Zhuang 1987)</span>. Here the operations of <code>"U"</code> and <code>"L"</code> corresponds to the <em>dilation</em> and <em>erosion</em> morphological operators applied to univariate arrays <span class="citation">(Vávra et al. 2004)</span>. Furthermore, the compounds operation of <em>opening</em> and <em>closing</em> can be obtained by <code>"UL"</code> and <code>"LU"</code>, respectively. This technique has been applied on time series analysis in other fields <span class="citation">(Accardo et al. 1997)</span> but, for our knowledge, there is no application in satellite image time series literature.</p>
+<p>In the following example we can see an application of <code>sits_envelope()</code> function. There, we performs the <em>opening filtration</em> and <em>closing filtration</em> introduced by <span class="citation">Vávra et al. (2004)</span>. The correspondent operations sequence are <code>"ULLULUUL"</code> and <code>"LUULULLU"</code>.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-1"></a><span class="co"># Take the NDVI band of the first sample data set</span></span>
 <span id="cb39-2"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-2"></a>point.tb &lt;-<span class="st"> </span><span class="kw">sits_select</span>(prodes_<span class="dv">226</span>_<span class="dv">064</span>[<span class="dv">1</span>,], <span class="st">&quot;ndvi&quot;</span>)</span>
 <span id="cb39-3"><a href="satellite-image-time-series-filtering-with-sits.html#cb39-3"></a><span class="co"># apply envelope filter (remove downward and upward noises)</span></span>
@@ -378,54 +386,6 @@ Figure 3.3: Envelope filter applied on one-year NDVI time series. The examples u
 </div>
 
 </div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Accardo1997">
-<p>Accardo, Agostino, M Affinito, M Carrozzi, and F Bouquet. 1997. “Use of the Fractal Dimension for the Analysis of Electroencephalographic Time Series.” <em>Biological Cybernetics</em> 77 (5): 339–50.</p>
-</div>
-<div id="ref-Atkinson2012">
-<p>Atkinson, Peter M, C Jeganathan, Jadu Dash, and Clement Atzberger. 2012. “Inter-Comparison of Four Models for Smoothing Satellite Sensor Time-Series Data to Estimate Vegetation Phenology.” <em>Remote Sensing of Environment</em> 123: 400–417.</p>
-</div>
-<div id="ref-Atzberger2011">
-<p>Atzberger, Clement, and Paul HC Eilers. 2011. “Evaluating the Effectiveness of Smoothing Algorithms in the Absence of Ground Reference Measurements.” <em>International Journal of Remote Sensing</em> 32 (13): 3689–3709.</p>
-</div>
-<div id="ref-Bradley2007">
-<p>Bradley, Bethany A, Robert W Jacob, John F Hermance, and John F Mustard. 2007. “A Curve Fitting Procedure to Derive Inter-Annual Phenologies from Time Series of Noisy Satellite NDVI Data.” <em>Remote Sensing of Environment</em> 106 (2): 137–45.</p>
-</div>
-<div id="ref-Chen2004">
-<p>Chen, Jin, Per. Jönsson, Masayuki Tamura, Zhihui Gu andBunkei Matsushita, and Lars Eklundh. 2004. “A Simple Method for Reconstructing a High-Quality NDVI Time-Series Data Set Based on the Savitzky–Golay Filter.” <em>Remote Sensing of Environment</em> 91 (3-4): 332–44.</p>
-</div>
-<div id="ref-Haralick1987">
-<p>Haralick, Robert M, Stanley R Sternberg, and Xinhua Zhuang. 1987. “Image Analysis Using Mathematical Morphology.” <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, no. 4: 532–50.</p>
-</div>
-<div id="ref-Hird2009">
-<p>Hird, Jennifer N, and Gregory J McDermid. 2009. “Noise Reduction of NDVI Time Series: An Empirical Comparison of Selected Techniques.” <em>Remote Sensing of Environment</em> 113 (1): 248–58.</p>
-</div>
-<div id="ref-INPE2017">
-<p>INPE. 2017. “Amazon Deforestation Monitoring Project (PRODES).” (National Institute for Space Research, Brazil). <a href="www.obt.inpe.br/prodes">www.obt.inpe.br/prodes</a>.</p>
-</div>
-<div id="ref-Lambin2006">
-<p>Lambin, E. F., and M. Linderman. 2006. “Time Series of Remote Sensing Data for Land Change Science.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 44 (7): 1926–8.</p>
-</div>
-<div id="ref-Madden1978">
-<p>Madden, Hannibal H. 1978. “Comments on the Savitzky-Golay Convolution Method for Least-Squares-Fit Smoothing and Differentiation of Digital Data.” <em>Analytical Chemistry</em> 50 (9): 1383–6.</p>
-</div>
-<div id="ref-Sakamoto2005">
-<p>Sakamoto, Toshihiro, Masayuki Yokozawa, Hitoshi Toritani, Michio Shibayama, Naoki Ishitsuka, and Hiroyuki Ohno. 2005. “A Crop Phenology Detection Method Using Time-Series MODIS Data.” <em>Remote Sensing of Environment</em> 96 (3-4): 366–74.</p>
-</div>
-<div id="ref-Shao2016">
-<p>Shao, Yang, Ross S. Lunetta, Brandon Wheeler, John S. Iiames, and James B. Campbell. 2016. “An Evaluation of Time-Series Smoothing Algorithms for Land-Cover Classifications Using MODIS-NDVI Multi-Temporal Data.” <em>Remote Sensing of Environment</em> 174: 258–65.</p>
-</div>
-<div id="ref-Vavra2004">
-<p>Vávra, F., P. Nový, H. Mas̈ková, M. Kotlíková, and A. Netrvalová. 2004. “Morphological Filtration for Time Series.” In <em>Proceedings of the 3rd International Conference Aplimat</em>, 983–89. Bratislava, Slovakia: Slovak University of Technology in Bratislava.</p>
-</div>
-<div id="ref-Whittaker1922">
-<p>Whittaker, Edmund T. 1922. “On a New Method of Graduation.” <em>Proceedings of the Edinburgh Mathematical Society</em> 41: 63–75.</p>
-</div>
-<div id="ref-Zhou2016">
-<p>Zhou, Jie, Li Jia, Massimo Menenti, and Ben Gorte. 2016. “On the Performance of Remote Sensing Time Series Reconstruction Methods – a Spatial Comparison.” <em>Remote Sensing of Environment</em> 187: 367–84.</p>
 </div>
 </div>
             </section>
@@ -476,7 +436,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["sitsbook.pdf", "sitsbook.epub"],
+"download": ["sitsbook.pdf"],
 "toc": {
 "collapse": "subsection"
 }
