@@ -25,7 +25,6 @@ source("common.R")
 
 <a href="https://github.com/e-sensing/sitsbook"><img class="cover" src="images/cover.png" width="326" align="right" alt="Cover image" /></a>
 
-<!-- [![](images/cover.png){.cover width="326"}](https://github.com/e-sensing/sits-book) -->
 
 Abstract from Filters: This vignette describes the time series filtering techniques available in
 the SITS package. These include the Savitsky-Golay, Whittaker, and Kalman filters,
