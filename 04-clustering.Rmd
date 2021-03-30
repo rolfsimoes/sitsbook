@@ -51,7 +51,7 @@ $$
 
 Unlike other validity indexes such as Jaccard (${J=a/(a+b+c)}$), Fowlkes-Mallows (${FM=a/(a^2+a(b+c)+bc)^{1/2}}$), and Rand (the same as ARI without the $E$ adjustment) indices, ARI is more appropriate either when the number of clusters is outweighed by the number of labels (and *vice versa*) or when the amount of samples in labels and clusters is imbalanced [@Hubert1985], which is usually the case.
 
-```{r dendrogram, cache=TRUE, fig.align="center", fig.height=4.1, fig.width=5}
+```{r dendrogram, cache=TRUE, fig.align="center", fig.height=4.1, fig.width=5, message=FALSE}
 # take a set of patterns for 2 classes
 # create a dendrogram, plot, and get the optimal cluster based on ARI index
 clusters <- sits::sits_cluster_dendro(cerrado_2classes, 

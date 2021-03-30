@@ -112,8 +112,8 @@ A common situation is when users have samples available as shapefiles in point f
 
 ```{r, warning = FALSE, message = FALSE}
 # define the input shapefile (consisting of POLYGONS)
-shp_file <- system.file("extdata/shapefiles/agriculture/parcel_agriculture.shp", 
-                        package = "sits")
+shp_file <- system.file("extdata/shapes/agriculture/parcel_agriculture.shp", 
+                        package = "sitsdata")
 
 # set the start and end dates 
 start_date <- "2013-09-14"
