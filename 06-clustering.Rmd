@@ -94,8 +94,6 @@ The main steps of our proposed method for quality assessment of satellite image 
 
 ```{r, out.width = "90%", out.height = "90%", echo = FALSE, fig.align="center", fig.cap="Using SOM for class noise reduction"}
 
-library(sits.docs)
-
 knitr::include_graphics("images/methodology_bayes_som.png")
 ```
 

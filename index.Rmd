@@ -13,8 +13,7 @@ bibliography:
 - references-sits.bib
 biblio-style: apalike
 description: | 
-  This is a minimal example of using the bookdown package to write a book.
-  The output format for this example is bookdown::gitbook.
+  This book describes the sits package.
 ---
 
 
@@ -76,6 +75,3 @@ This section gathers the publications that have used SITS to generate the result
 - [6] Alber Sanchez, Michelle Picoli, Pedro R. Andrade, Rolf Simões, Lorena Santos, Michel Chaves, Rodrigo Begotti, Gilberto Camara. Land Cover Classifications of Clear-cut Deforestation Using Deep Learning. In: SIMPÓSIO BRASILEIRO DE GEOINFORMÁTICA (GEOINFO), 2019, São José dos Campos. Anais do 20º Simpósio Brasileiro de Geoinformática. São José dos Campos: INPE, 2019. On-line.
 
 - [7] Lorena Santos, Karine Reis Ferreira, Michelle Picoli, Gilberto Camara. Self-Organizing Maps in Earth Observation Data Cubes Analysis. 13th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM+ 2019), Barcelona, Spain, June 26-28, 2019.
-
-
-
