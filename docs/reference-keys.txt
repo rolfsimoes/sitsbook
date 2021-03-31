@@ -82,3 +82,9 @@ use-of-bayesian-smoothing-in-sits
 validation-and-accuracy-measurements-in-sits
 validation-techniques-1
 comparing-different-validation-methods
+fig:unnamed-chunk-7
+fig:unnamed-chunk-11
+fig:unnamed-chunk-14
+combined-1d-cnn-and-multi-layer-perceptron-networks
+lstm-convolutional-networks-for-time-series-classification
+fig:unnamed-chunk-4

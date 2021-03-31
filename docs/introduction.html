@@ -7,12 +7,12 @@
   <title>Chapter 1 Introduction | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The output format for this example is bookdown::gitbook.</p>" />
-  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:image" content="images/cover.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The output format for this example is bookdown::gitbook.</p>" />
   
@@ -22,7 +22,7 @@ The output format for this example is bookdown::gitbook.</p>" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The output format for this example is bookdown::gitbook.</p>" />
-  <meta name="twitter:image" content="/images/cover.png" />
+  <meta name="twitter:image" content="images/cover.png" />
 
 
 
@@ -35,6 +35,7 @@ The output format for this example is bookdown::gitbook.</p>" />
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="acessing-time-series-information-in-sits.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,22 +53,21 @@ The output format for this example is bookdown::gitbook.</p>" />
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,14 +137,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#workflow"><i class="fa fa-check"></i><b>1.1</b> Workflow</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in <strong>sits</strong></a><ul>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in <strong>sits</strong></a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>1.2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#using-stac-to-access-image-data-cubes"><i class="fa fa-check"></i><b>1.2.2</b> Using STAC to Access Image Data Cubes</a></li>
 <li class="chapter" data-level="1.2.3" data-path="introduction.html"><a href="introduction.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>1.2.3</b> Defining a data cube using files</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#handling-satellite-image-time-series-in-sits"><i class="fa fa-check"></i><b>1.3</b> Handling satellite image time series in <strong>sits</strong></a><ul>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#handling-satellite-image-time-series-in-sits"><i class="fa fa-check"></i><b>1.3</b> Handling satellite image time series in <strong>sits</strong></a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#data-structure"><i class="fa fa-check"></i><b>1.3.1</b> Data structure</a></li>
 <li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#obtaining-time-series-data"><i class="fa fa-check"></i><b>1.3.2</b> Obtaining time series data</a></li>
 </ul></li>
@@ -152,7 +155,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#clustering-for-sample-quality-control-using-self-organizing-maps"><i class="fa fa-check"></i><b>1.5</b> Clustering for sample quality control using self-organizing maps</a></li>
 <li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#classification-using-machine-learning"><i class="fa fa-check"></i><b>1.6</b> Classification using machine learning</a></li>
 <li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#validation-techniques"><i class="fa fa-check"></i><b>1.7</b> Validation techniques</a></li>
-<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.8</b> Cube classification</a><ul>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.8</b> Cube classification</a>
+<ul>
 <li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#steps-for-cube-classification"><i class="fa fa-check"></i><b>1.8.1</b> Steps for cube classification</a></li>
 <li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#adjustments-for-improved-performance"><i class="fa fa-check"></i><b>1.8.2</b> Adjustments for improved performance</a></li>
 </ul></li>
@@ -160,34 +164,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.10" data-path="introduction.html"><a href="introduction.html#final-remarks"><i class="fa fa-check"></i><b>1.10</b> Final remarks</a></li>
 <li class="chapter" data-level="1.11" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.11</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html"><i class="fa fa-check"></i><b>2</b> Acessing time series information in SITS</a><ul>
+<li class="chapter" data-level="2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html"><i class="fa fa-check"></i><b>2</b> Acessing time series information in SITS</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>2.1</b> Data structures for satellite time series</a></li>
 <li class="chapter" data-level="2.2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>2.2</b> Utilities for handling time series</a></li>
 <li class="chapter" data-level="2.3" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#time-series-visualisation"><i class="fa fa-check"></i><b>2.3</b> Time series visualisation</a></li>
 <li class="chapter" data-level="2.4" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Obtaining time series data from data cubes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html"><i class="fa fa-check"></i><b>3</b> Satellite Image Time Series Filtering with SITS</a><ul>
+<li class="chapter" data-level="3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html"><i class="fa fa-check"></i><b>3</b> Satellite Image Time Series Filtering with SITS</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#filtering-techniques-in-sits"><i class="fa fa-check"></i><b>3.1</b> Filtering techniques in SITS</a></li>
-<li class="chapter" data-level="3.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#common-interface-to-sits-filter-functions"><i class="fa fa-check"></i><b>3.2</b> Common interface to SITS filter functions</a><ul>
+<li class="chapter" data-level="3.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#common-interface-to-sits-filter-functions"><i class="fa fa-check"></i><b>3.2</b> Common interface to SITS filter functions</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.2.1</b> Savitzky–Golay filter</a></li>
 <li class="chapter" data-level="3.2.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#whittaker-filter"><i class="fa fa-check"></i><b>3.2.2</b> Whittaker filter</a></li>
 <li class="chapter" data-level="3.2.3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#envelope-filter"><i class="fa fa-check"></i><b>3.2.3</b> Envelope filter</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
+<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
-<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
+<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#creating-a-dendogram"><i class="fa fa-check"></i><b>4.2.1</b> Creating a dendogram</a></li>
 <li class="chapter" data-level="4.2.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-a-dendrogram-to-evaluate-sample-quality"><i class="fa fa-check"></i><b>4.2.2</b> Using a dendrogram to evaluate sample quality</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality"><i class="fa fa-check"></i><b>4.3</b> Using Self-organizing Maps for Sample Quality</a><ul>
+<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality"><i class="fa fa-check"></i><b>4.3</b> Using Self-organizing Maps for Sample Quality</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#introduction-to-self-organizing-maps"><i class="fa fa-check"></i><b>4.3.1</b> Introduction to Self-organizing Maps</a></li>
 <li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-som-for-removing-class-noise"><i class="fa fa-check"></i><b>4.3.2</b> Using SOM for removing class noise</a></li>
 <li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-global-accuracy-of-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.3</b> Comparing Global Accuracy of Original and Clean Samples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
 <li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#data-used-in-the-machine-learning-examples"><i class="fa fa-check"></i><b>5.2</b> Data used in the machine learning examples</a></li>
 <li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.3</b> Visualizing Samples</a></li>
@@ -198,25 +209,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.8</b> Deep learning using multi-layer perceptrons</a></li>
 <li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
 <li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.11</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.12" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.12</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#defining-a-data-cube-using-files-organised-as-raster-bricks"><i class="fa fa-check"></i><b>6.2</b> Defining a data cube using files organised as raster bricks</a></li>
 <li class="chapter" data-level="6.3" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#classification-using-machine-learning-1"><i class="fa fa-check"></i><b>6.3</b> Classification using machine learning</a></li>
-<li class="chapter" data-level="6.4" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cube-classification-1"><i class="fa fa-check"></i><b>6.4</b> Cube classification</a><ul>
+<li class="chapter" data-level="6.4" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cube-classification-1"><i class="fa fa-check"></i><b>6.4</b> Cube classification</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#steps-for-cube-classification-1"><i class="fa fa-check"></i><b>6.4.1</b> Steps for cube classification</a></li>
 <li class="chapter" data-level="6.4.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#adjustments-for-improved-performance-1"><i class="fa fa-check"></i><b>6.4.2</b> Adjustments for improved performance</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#smmothing-using-bayes-rule"><i class="fa fa-check"></i><b>7.2.1</b> Smmothing using Bayes’ rule</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
+<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques-1"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
 <li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-validation-methods"><i class="fa fa-check"></i><b>8.2</b> Comparing different validation methods</a></li>
 </ul></li>
@@ -241,17 +259,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1">
+<div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <hr />
 <p>Using time series derived from big Earth Observation data sets is one of the leading research trends in Land Use Science and Remote Sensing. One of the more promising uses of satellite time series is its application for classification of land use and land cover, since our growing demand for natural resources has caused major environmental impacts. Here, we present an open source <em>R</em> package for satellite image time series analysis called <strong>sits</strong>. The package support use of machine learning techniques for classification image time series obtained from data cubes. Methods available include linear and quadratic discrimination analysis, support vector machines, random forests, boosting, deep learning and convolution neural</p>
 <hr />
 <p>Earth observation satellites provide a regular and consistent set of information about the land and oceans of the planet. Recently, most space agencies have adopted open data policies, making unprecedented amounts of satellite data available for research and operational use. This data deluge has brought about a major challenge: <em>How to design and build technologies that allow the Earth observation community to analyse big data sets?</em></p>
 <p>The approach taken in the current work is to develop data analysis methods that work with satellite image time series, obtained by taking calibrated and comparable measures of the same location in Earth at different times. These measures can be obtained by a single sensor (e.g., MODIS) or by combining different sensors (e.g., Landsat 8 and Sentinel-2). If obtained by frequent revisits, the temporal resolution of these data sets can capture important land use changes.</p>
-<p>Time series of remote sensing data show that land cover can occur not only in a progressive and gradual way, but they may also show discontinuities with abrupt changes <span class="citation">(Lambin, Geist, and Lepers <a href="#ref-Lambin2003" role="doc-biblioref">2003</a>)</span>. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution leads to a broader view of land-cover change. Satellite image time series have already been used in applications such as mapping for detecting forest disturbance <span class="citation">(Kennedy, Yang, and Cohen <a href="#ref-Kennedy2010" role="doc-biblioref">2010</a>)</span>, ecology dynamics <span class="citation">(Pasquarella et al. <a href="#ref-Pasquarella2016" role="doc-biblioref">2016</a>)</span>, agricultural intensification <span class="citation">(Galford et al. <a href="#ref-Galford2008" role="doc-biblioref">2008</a>)</span>, and its impacts on deforestation <span class="citation">(Arvor et al. <a href="#ref-Arvor2012" role="doc-biblioref">2012</a>)</span>. Algorithms for processing image time series include BFAST for detecting breaks <span class="citation">(Verbesselt et al. <a href="#ref-Verbesselt2010" role="doc-biblioref">2010</a>)</span>, TIMESAT for modelling and measuring phenological attributes <span class="citation">(Jönsson and Eklundh <a href="#ref-Jonsson2004" role="doc-biblioref">2004</a>)</span> and methods based on Dynamic Time Warping (DTW) for land use and land cover classification <span class="citation">(Petitjean, Inglada, and Gancarski <a href="#ref-Petitjean2012" role="doc-biblioref">2012</a>)</span><span class="citation">(Maus et al. <a href="#ref-Maus2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Time series of remote sensing data show that land cover can occur not only in a progressive and gradual way, but they may also show discontinuities with abrupt changes <span class="citation">(<a href="references.html#ref-Lambin2003" role="doc-biblioref">Lambin, Geist, and Lepers 2003</a>)</span>. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution leads to a broader view of land-cover change. Satellite image time series have already been used in applications such as mapping for detecting forest disturbance <span class="citation">(<a href="references.html#ref-Kennedy2010" role="doc-biblioref">Kennedy, Yang, and Cohen 2010</a>)</span>, ecology dynamics <span class="citation">(<a href="references.html#ref-Pasquarella2016" role="doc-biblioref">Pasquarella et al. 2016</a>)</span>, agricultural intensification <span class="citation">(<a href="references.html#ref-Galford2008" role="doc-biblioref">Galford et al. 2008</a>)</span>, and its impacts on deforestation <span class="citation">(<a href="references.html#ref-Arvor2012" role="doc-biblioref">Arvor et al. 2012</a>)</span>. Algorithms for processing image time series include BFAST for detecting breaks <span class="citation">(<a href="references.html#ref-Verbesselt2010" role="doc-biblioref">Verbesselt et al. 2010</a>)</span>, TIMESAT for modelling and measuring phenological attributes <span class="citation">(<a href="references.html#ref-Jonsson2004" role="doc-biblioref">Jönsson and Eklundh 2004</a>)</span> and methods based on Dynamic Time Warping (DTW) for land use and land cover classification <span class="citation">(<a href="references.html#ref-Petitjean2012" role="doc-biblioref">Petitjean, Inglada, and Gancarski 2012</a>)</span><span class="citation">(<a href="references.html#ref-Maus2016" role="doc-biblioref">Maus et al. 2016</a>)</span>.</p>
 <p>In this work, we present <strong>sits</strong>, an open source R package for satellite image time series analysis. It provides support on how to use machine learning techniques with image time series. These methods include linear and quadratic discrimination analysis, support vector machines, random forests, and neural networks. One important contribution of the package is to support the complete cycle of data analysis for time series classification, including data acquisition, visualisation, filtering, clustering, classification, validation and post-classification adjustments.</p>
-<p>Most studies using satellite image time series for land cover classification use a  approach. For multiyear studies, researchers first derive best-fit yearly composites and then classify each composite image. For a review of these methods for land use and land cover classification using time series, see <span class="citation">(Gomez, White, and Wulder <a href="#ref-Gomez2016" role="doc-biblioref">2016</a>)</span>. As an alternative to  methods, the SITS package provides support for classification of time series, preserving the full temporal resolution of the input data, using a  approach. <strong>sits</strong> uses all data in the image time series to create larger dimensional spaces for machine learning. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. Each temporal instance of a time series is taken as an independent dimension in the feature space of the classifier. To the authors’ best knowledge, the classification techniques for image time series included in the package are not previously available in other R or python packages. Furthermore, the package includes methods for filtering, clustering and post-processing that also have not been published in the literature.</p>
-<div id="workflow" class="section level2">
+<p>Most studies using satellite image time series for land cover classification use a  approach. For multiyear studies, researchers first derive best-fit yearly composites and then classify each composite image. For a review of these methods for land use and land cover classification using time series, see <span class="citation">(<a href="references.html#ref-Gomez2016" role="doc-biblioref">Gomez, White, and Wulder 2016</a>)</span>. As an alternative to  methods, the SITS package provides support for classification of time series, preserving the full temporal resolution of the input data, using a  approach. <strong>sits</strong> uses all data in the image time series to create larger dimensional spaces for machine learning. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. Each temporal instance of a time series is taken as an independent dimension in the feature space of the classifier. To the authors’ best knowledge, the classification techniques for image time series included in the package are not previously available in other R or python packages. Furthermore, the package includes methods for filtering, clustering and post-processing that also have not been published in the literature.</p>
+<div id="workflow" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Workflow</h2>
 <p>The main aim of <strong>sits</strong> is to support land cover and land change classification
 of image data cubes using machine learning methods. The basic workflow is:</p>
@@ -265,14 +283,14 @@ machines.</li>
 <li>Post-process the classified images.</li>
 </ol>
 </div>
-<div id="handling-data-cubes-in-sits" class="section level2">
+<div id="handling-data-cubes-in-sits" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Handling Data Cubes in <strong>sits</strong></h2>
-<div id="image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis" class="section level3">
+<div id="image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Image data cubes as the basis for big Earth observation data analysis</h3>
 <p>In broad terms, the cloud computing model is one where large satellite-generated data sets are archived on cloud services, which also provide computing facilities to process them. By using cloud services, users can share big Earth observation databases and minimize the amount of data download. Investment in infrastructure is minimised and sharing of data and software increases. However, data available in the cloud is best organised for analysis by creating data cubes.</p>
-<p>Generalising <span class="citation">Appel and Pebesma (<a href="#ref-Appel2019" role="doc-biblioref">2019</a>)</span>, we consider that a data cube is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands. Its spatial dimensions refer to a single spatial reference system (SRS). Cells of a data cube have a constant spatial size (with regard to the cube’s SRS). The temporal dimension is specified by a set of intervals. For every combination of dimensions, a cell has a single value. Data cubes are particularly amenable for machine learning techniques; their data cane be transformed into arrays in memory, which can be fed to training and classification algorithms. Given the widespread availability of large data sets of Earth observation data, there is a growing interest in organising large sets of data into “data cubes”.</p>
+<p>Generalising <span class="citation"><a href="references.html#ref-Appel2019" role="doc-biblioref">Appel and Pebesma</a> (<a href="references.html#ref-Appel2019" role="doc-biblioref">2019</a>)</span>, we consider that a data cube is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands. Its spatial dimensions refer to a single spatial reference system (SRS). Cells of a data cube have a constant spatial size (with regard to the cube’s SRS). The temporal dimension is specified by a set of intervals. For every combination of dimensions, a cell has a single value. Data cubes are particularly amenable for machine learning techniques; their data cane be transformed into arrays in memory, which can be fed to training and classification algorithms. Given the widespread availability of large data sets of Earth observation data, there is a growing interest in organising large sets of data into “data cubes.”</p>
 </div>
-<div id="using-stac-to-access-image-data-cubes" class="section level3">
+<div id="using-stac-to-access-image-data-cubes" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Using STAC to Access Image Data Cubes</h3>
 <p>One of the distinguishing features of SITS is that it has been designed to work with big satellite image data sets which reside on the cloud and with data cubes. Many <em>R</em> packages that work with remote sensing images require data to be accessible in a local computer. However, with the coming of age of big Earth observation data, it is not always practical to transfer large data sets. Users have to rely on web services to provide access to these data sets. In this context, SITS is based on access to data cubes using information provided by STAC (Spatio-temporal Access Catalogue).</p>
 <p>Currently, SITS supports data cubes available in the following cloud services:</p>
@@ -286,79 +304,80 @@ machines.</li>
 <p>The user can define a data cube by selecting a collection in a cloud service and then defining
 a space-time extent. For example, the following code will define a data cube of Sentinel-2/2A images
 using AWS.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a>s2_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(</span>
-<span id="cb1-2"><a href="introduction.html#cb1-2"></a>    <span class="dt">type =</span> <span class="st">&quot;S2_L2A_AWS&quot;</span>,</span>
-<span id="cb1-3"><a href="introduction.html#cb1-3"></a>    <span class="dt">name =</span> <span class="st">&quot;T20LKP_2018_2019&quot;</span>,</span>
-<span id="cb1-4"><a href="introduction.html#cb1-4"></a>    <span class="dt">satellite =</span> <span class="st">&quot;SENTINEL-2&quot;</span>,</span>
-<span id="cb1-5"><a href="introduction.html#cb1-5"></a>    <span class="dt">sensor =</span> <span class="st">&quot;MSI&quot;</span>,</span>
-<span id="cb1-6"><a href="introduction.html#cb1-6"></a>    <span class="dt">tiles =</span> <span class="st">&quot;20LKP&quot;</span>,</span>
-<span id="cb1-7"><a href="introduction.html#cb1-7"></a>    <span class="dt">s2_aws_resolution =</span> <span class="st">&quot;20m&quot;</span>,</span>
-<span id="cb1-8"><a href="introduction.html#cb1-8"></a>    <span class="dt">start_date =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2018-08-01&quot;</span>),</span>
-<span id="cb1-9"><a href="introduction.html#cb1-9"></a>    <span class="dt">end_date =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2019-07-31&quot;</span>)</span>
-<span id="cb1-10"><a href="introduction.html#cb1-10"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" aria-hidden="true" tabindex="-1"></a>s2_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb1-2"><a href="introduction.html#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;S2_L2A_AWS&quot;</span>,</span>
+<span id="cb1-3"><a href="introduction.html#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;T20LKP_2018_2019&quot;</span>,</span>
+<span id="cb1-4"><a href="introduction.html#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">satellite =</span> <span class="st">&quot;SENTINEL-2&quot;</span>,</span>
+<span id="cb1-5"><a href="introduction.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensor =</span> <span class="st">&quot;MSI&quot;</span>,</span>
+<span id="cb1-6"><a href="introduction.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">tiles =</span> <span class="st">&quot;20LKP&quot;</span>,</span>
+<span id="cb1-7"><a href="introduction.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">s2_aws_resolution =</span> <span class="st">&quot;20m&quot;</span>,</span>
+<span id="cb1-8"><a href="introduction.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-08-01&quot;</span>),</span>
+<span id="cb1-9"><a href="introduction.html#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2019-07-31&quot;</span>)</span>
+<span id="cb1-10"><a href="introduction.html#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>In the above example, the user has selected the “Sentinel-2 Level 2” collection in
-the AWS cloud services. The geographical area of the data cube is defined by the tile “20LKP”, and the temporal extent by a start and end date. Access to other cloud services works in similar ways.</p>
+the AWS cloud services. The geographical area of the data cube is defined by the tile “20LKP,” and the temporal extent by a start and end date. Access to other cloud services works in similar ways.</p>
 <p>Users can derive data cubes from ARD data which have pre-defined temporal
 resolutions. For example, a user may want to define the best Sentinel-2 pixel in a
 one month period, as shown below. This can be done in SITS by the
 <code>sits_regularize</code> which calls the “gdalcubes” package.
 For details in gdalcubes, please see <a href="https://github.com/appelmar/gdalcubes">https://github.com/appelmar/gdalcubes</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1"></a>gc_cube &lt;-<span class="st"> </span><span class="kw">sits_regularize</span>(<span class="dt">cube        =</span> s2_cube,</span>
-<span id="cb2-2"><a href="introduction.html#cb2-2"></a>                           <span class="dt">name        =</span> <span class="st">&quot;T20LKP_2018_2019_1M&quot;</span>,</span>
-<span id="cb2-3"><a href="introduction.html#cb2-3"></a>                           <span class="dt">path_db     =</span> <span class="st">&quot;/my/path/cube.db&quot;</span>,</span>
-<span id="cb2-4"><a href="introduction.html#cb2-4"></a>                           <span class="dt">path_images =</span> <span class="st">&quot;/my/path/images/&quot;</span>,</span>
-<span id="cb2-5"><a href="introduction.html#cb2-5"></a>                           <span class="dt">period      =</span> <span class="st">&quot;P1M&quot;</span>,</span>
-<span id="cb2-6"><a href="introduction.html#cb2-6"></a>                           <span class="dt">agg_method  =</span> <span class="st">&quot;median&quot;</span>,</span>
-<span id="cb2-7"><a href="introduction.html#cb2-7"></a>                           <span class="dt">resampling  =</span> <span class="st">&quot;bilinear&quot;</span></span>
-<span id="cb2-8"><a href="introduction.html#cb2-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1" aria-hidden="true" tabindex="-1"></a>gc_cube <span class="ot">&lt;-</span> <span class="fu">sits_regularize</span>(<span class="at">cube        =</span> s2_cube,</span>
+<span id="cb2-2"><a href="introduction.html#cb2-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">name        =</span> <span class="st">&quot;T20LKP_2018_2019_1M&quot;</span>,</span>
+<span id="cb2-3"><a href="introduction.html#cb2-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">path_db     =</span> <span class="st">&quot;/my/path/cube.db&quot;</span>,</span>
+<span id="cb2-4"><a href="introduction.html#cb2-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">path_images =</span> <span class="st">&quot;/my/path/images/&quot;</span>,</span>
+<span id="cb2-5"><a href="introduction.html#cb2-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">period      =</span> <span class="st">&quot;P1M&quot;</span>,</span>
+<span id="cb2-6"><a href="introduction.html#cb2-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">agg_method  =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb2-7"><a href="introduction.html#cb2-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">resampling  =</span> <span class="st">&quot;bilinear&quot;</span></span>
+<span id="cb2-8"><a href="introduction.html#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="defining-a-data-cube-using-files" class="section level3">
+<div id="defining-a-data-cube-using-files" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Defining a data cube using files</h3>
-<p>To define a data cube using plain files (without STAC information), all image files should have the same spatial resolution and same projection. Each file contains a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and Jpeg2000) do not include time information, the name of each file needs to include date and band information. Timeline and bands are deduced from filenames. For example, “CBERS-4_AWFI_B13_2018-02-02.tif” is a valid name. The user has to provide parsing information to allow <strong>sits</strong> to extract the band and the date. In the example above, the parsing info is c(“X1”, “X2”, “band”, “date) and the delimiter is”_".</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a><span class="kw">library</span>(sits)</span>
-<span id="cb3-2"><a href="introduction.html#cb3-2"></a><span class="co"># Create a cube based on a stack of CBERS data</span></span>
-<span id="cb3-3"><a href="introduction.html#cb3-3"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/raster/cbers&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
-<span id="cb3-4"><a href="introduction.html#cb3-4"></a></span>
-<span id="cb3-5"><a href="introduction.html#cb3-5"></a><span class="co"># files are named using the convention </span></span>
-<span id="cb3-6"><a href="introduction.html#cb3-6"></a><span class="co"># &quot;CBERS-4_AWFI_B13_2018-02-02.tif&quot;</span></span>
-<span id="cb3-7"><a href="introduction.html#cb3-7"></a>cbers_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(</span>
-<span id="cb3-8"><a href="introduction.html#cb3-8"></a>      <span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb3-9"><a href="introduction.html#cb3-9"></a>      <span class="dt">name =</span> <span class="st">&quot;022024&quot;</span>,</span>
-<span id="cb3-10"><a href="introduction.html#cb3-10"></a>      <span class="dt">satellite =</span> <span class="st">&quot;CBERS-4&quot;</span>,</span>
-<span id="cb3-11"><a href="introduction.html#cb3-11"></a>      <span class="dt">sensor =</span> <span class="st">&quot;AWFI&quot;</span>,</span>
-<span id="cb3-12"><a href="introduction.html#cb3-12"></a>      <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb3-13"><a href="introduction.html#cb3-13"></a>      <span class="dt">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb3-14"><a href="introduction.html#cb3-14"></a>      <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb3-15"><a href="introduction.html#cb3-15"></a>)</span>
-<span id="cb3-16"><a href="introduction.html#cb3-16"></a><span class="co"># print the timeline of the cube</span></span>
-<span id="cb3-17"><a href="introduction.html#cb3-17"></a><span class="kw">sits_timeline</span>(cbers_cube)</span></code></pre></div>
+<p>To define a data cube using plain files (without STAC information), all image files should have the same spatial resolution and same projection. Each file contains a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and Jpeg2000) do not include time information, the name of each file needs to include date and band information. Timeline and bands are deduced from filenames. For example, “CBERS-4_AWFI_B13_2018-02-02.tif” is a valid name. The user has to provide parsing information to allow <strong>sits</strong> to extract the band and the date. In the example above, the parsing info is c(“X1,” “X2,” “band,” “date) and the delimiter is”_".</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sits)</span>
+<span id="cb3-2"><a href="introduction.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cube based on a stack of CBERS data</span></span>
+<span id="cb3-3"><a href="introduction.html#cb3-3" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/raster/cbers&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb3-4"><a href="introduction.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="introduction.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># files are named using the convention </span></span>
+<span id="cb3-6"><a href="introduction.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;CBERS-4_AWFI_B13_2018-02-02.tif&quot;</span></span>
+<span id="cb3-7"><a href="introduction.html#cb3-7" aria-hidden="true" tabindex="-1"></a>cbers_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb3-8"><a href="introduction.html#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb3-9"><a href="introduction.html#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">&quot;022024&quot;</span>,</span>
+<span id="cb3-10"><a href="introduction.html#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">satellite =</span> <span class="st">&quot;CBERS-4&quot;</span>,</span>
+<span id="cb3-11"><a href="introduction.html#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">sensor =</span> <span class="st">&quot;AWFI&quot;</span>,</span>
+<span id="cb3-12"><a href="introduction.html#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb3-13"><a href="introduction.html#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb3-14"><a href="introduction.html#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb3-15"><a href="introduction.html#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; Loading required namespace: terra</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the timeline of the cube</span></span>
+<span id="cb5-2"><a href="introduction.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_timeline</span>(cbers_cube)</span></code></pre></div>
 <pre><code>#&gt;  [1] &quot;2018-02-02&quot; &quot;2018-02-18&quot; &quot;2018-03-06&quot; &quot;2018-03-22&quot; &quot;2018-04-07&quot;
 #&gt;  [6] &quot;2018-04-23&quot; &quot;2018-05-09&quot; &quot;2018-05-25&quot; &quot;2018-06-10&quot; &quot;2018-06-26&quot;
 #&gt; [11] &quot;2018-07-12&quot; &quot;2018-07-28&quot; &quot;2018-08-13&quot; &quot;2018-08-29&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction.html#cb5-1"></a><span class="co"># print the bounding box of the cube</span></span>
-<span id="cb5-2"><a href="introduction.html#cb5-2"></a><span class="kw">sits_bbox</span>(cbers_cube)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the bounding box of the cube</span></span>
+<span id="cb7-2"><a href="introduction.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_bbox</span>(cbers_cube)</span></code></pre></div>
 <pre><code>#&gt;    xmin    xmax    ymin    ymax 
 #&gt; 5794837 5798037 9773148 9776348</code></pre>
 </div>
 </div>
-<div id="handling-satellite-image-time-series-in-sits" class="section level2">
+<div id="handling-satellite-image-time-series-in-sits" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Handling satellite image time series in <strong>sits</strong></h2>
-<div id="data-structure" class="section level3">
+<div id="data-structure" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Data structure</h3>
 <p>Training a machine learning model in <strong>sits</strong> requires a set of time series, describing properties in spatio-temporal locations of interest. For land use classification, this set consists of samples provided by experts that take <em>in-situ</em> field observations or recognize land classes using high resolution images. The package can also be used for any type of classification, provided that the timeline and bands of the time series (used for training) match that of the data cubes.</p>
-<p>For handling time series, the package uses a <code>sits tibble</code> to organize time series data with associated spatial information. A <code>tibble</code> is a generalization of a <code>data.frame</code>, the usual way in <em>R</em> to organise data in tables. Tibbles are part of the <code>tidyverse</code>, a collection of R packages designed to work together in data manipulation <span class="citation">(Wickham and Grolemund <a href="#ref-Wickham2017" role="doc-biblioref">2017</a>)</span>. As a example of how the <code>sits</code> tibble works, the following code shows the first three lines of a tibble containing <span class="math inline">\(1,218\)</span> labelled samples of land cover in Mato Grosso state of Brazil, with four classes: “Forest”, “Cerrado”, “Pasture”, “Soybean-Corn”.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction.html#cb7-1"></a><span class="co"># data set of samples</span></span>
-<span id="cb7-2"><a href="introduction.html#cb7-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_modis_4bands&quot;</span>)</span>
-<span id="cb7-3"><a href="introduction.html#cb7-3"></a>samples_modis_4bands[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<p>For handling time series, the package uses a <code>sits tibble</code> to organize time series data with associated spatial information. A <code>tibble</code> is a generalization of a <code>data.frame</code>, the usual way in <em>R</em> to organise data in tables. Tibbles are part of the <code>tidyverse</code>, a collection of R packages designed to work together in data manipulation <span class="citation">(<a href="references.html#ref-Wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. As a example of how the <code>sits</code> tibble works, the following code shows the first three lines of a tibble containing <span class="math inline">\(1,218\)</span> labelled samples of land cover in Mato Grosso state of Brazil, with four classes: “Forest,” “Cerrado,” “Pasture,” “Soybean-Corn.”</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data set of samples</span></span>
+<span id="cb9-2"><a href="introduction.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;samples_modis_4bands&quot;</span>)</span>
+<span id="cb9-3"><a href="introduction.html#cb9-3" aria-hidden="true" tabindex="-1"></a>samples_modis_4bands[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 7
 #&gt;   longitude latitude start_date end_date   label   cube    time_series      
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;list&gt;           
 #&gt; 1     -55.2   -10.8  2013-09-14 2014-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
 #&gt; 2     -57.8    -9.76 2006-09-14 2007-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
 #&gt; 3     -51.9   -13.4  2014-09-14 2015-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;</code></pre>
-<p>A <code>sits tibble</code> contains data and metadata. The first six columns contain the metadata: spatial and temporal information, label assigned to the sample, and the data cube from where the data has been extracted. The spatial location is given in longitude and latitude coordinates for the “WGS84” ellipsoid. For example, the first sample has been labelled “Pasture”, at location (<span class="math inline">\(-55.1852\)</span>, <span class="math inline">\(-10.8378\)</span>), and is valid for the period (2013-09-14, 2014-08-29).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction.html#cb9-1"></a><span class="co"># print the first time series records of the first sample</span></span>
-<span id="cb9-2"><a href="introduction.html#cb9-2"></a><span class="kw">sits_time_series</span>(samples_modis_4bands[<span class="dv">1</span>,])[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<p>A <code>sits tibble</code> contains data and metadata. The first six columns contain the metadata: spatial and temporal information, label assigned to the sample, and the data cube from where the data has been extracted. The spatial location is given in longitude and latitude coordinates for the “WGS84” ellipsoid. For example, the first sample has been labelled “Pasture,” at location (<span class="math inline">\(-55.1852\)</span>, <span class="math inline">\(-10.8378\)</span>), and is valid for the period (2013-09-14, 2014-08-29).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first time series records of the first sample</span></span>
+<span id="cb11-2"><a href="introduction.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_time_series</span>(samples_modis_4bands[<span class="dv">1</span>,])[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 5
 #&gt;   Index       NDVI   EVI   NIR   MIR
 #&gt;   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -366,39 +385,41 @@ For details in gdalcubes, please see <a href="https://github.com/appelmar/gdalcu
 #&gt; 2 2013-09-30 0.491 0.277 0.275 0.170
 #&gt; 3 2013-10-16 0.527 0.318 0.286 0.205</code></pre>
 </div>
-<div id="obtaining-time-series-data" class="section level3">
+<div id="obtaining-time-series-data" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Obtaining time series data</h3>
 <p>To get a time series in <strong>sits</strong>, one has to first create a data cube first. Users can request one or more time series points from a data cube by using <code>sits_get_data()</code>. This function provides a general means of access to image time series. Given data cue, the user provides the latitude and longitude of the desired location, the bands, and the start date and end date of the time series. If the start and end dates are not provided, it retrieves all the available period. The result is a tibble that can be visualized using <code>plot()</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction.html#cb11-1"></a><span class="kw">library</span>(sits)</span>
-<span id="cb11-2"><a href="introduction.html#cb11-2"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/raster/mod13q1&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
-<span id="cb11-3"><a href="introduction.html#cb11-3"></a>modis_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(</span>
-<span id="cb11-4"><a href="introduction.html#cb11-4"></a>    <span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb11-5"><a href="introduction.html#cb11-5"></a>    <span class="dt">name =</span> <span class="st">&quot;sinop-2014&quot;</span>,</span>
-<span id="cb11-6"><a href="introduction.html#cb11-6"></a>    <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb11-7"><a href="introduction.html#cb11-7"></a>    <span class="dt">sensor =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb11-8"><a href="introduction.html#cb11-8"></a>    <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb11-9"><a href="introduction.html#cb11-9"></a>    <span class="dt">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb11-10"><a href="introduction.html#cb11-10"></a>    <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb11-11"><a href="introduction.html#cb11-11"></a>)</span>
-<span id="cb11-12"><a href="introduction.html#cb11-12"></a></span>
-<span id="cb11-13"><a href="introduction.html#cb11-13"></a><span class="co"># obtain a set of locations defined by a CSV file</span></span>
-<span id="cb11-14"><a href="introduction.html#cb11-14"></a>csv_raster_file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/samples/samples_sinop_crop.csv&quot;</span>,</span>
-<span id="cb11-15"><a href="introduction.html#cb11-15"></a>                               <span class="dt">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
-<span id="cb11-16"><a href="introduction.html#cb11-16"></a></span>
-<span id="cb11-17"><a href="introduction.html#cb11-17"></a><span class="co"># retrieve the points from the data cube</span></span>
-<span id="cb11-18"><a href="introduction.html#cb11-18"></a>points &lt;-<span class="st"> </span><span class="kw">sits_get_data</span>(modis_cube, <span class="dt">file =</span> csv_raster_file)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sits)</span>
+<span id="cb13-2"><a href="introduction.html#cb13-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/raster/mod13q1&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb13-3"><a href="introduction.html#cb13-3" aria-hidden="true" tabindex="-1"></a>modis_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb13-4"><a href="introduction.html#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb13-5"><a href="introduction.html#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;sinop-2014&quot;</span>,</span>
+<span id="cb13-6"><a href="introduction.html#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb13-7"><a href="introduction.html#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensor =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb13-8"><a href="introduction.html#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb13-9"><a href="introduction.html#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb13-10"><a href="introduction.html#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb13-11"><a href="introduction.html#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-12"><a href="introduction.html#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="introduction.html#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain a set of locations defined by a CSV file</span></span>
+<span id="cb13-14"><a href="introduction.html#cb13-14" aria-hidden="true" tabindex="-1"></a>csv_raster_file <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/samples/samples_sinop_crop.csv&quot;</span>,</span>
+<span id="cb13-15"><a href="introduction.html#cb13-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb13-16"><a href="introduction.html#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="introduction.html#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve the points from the data cube</span></span>
+<span id="cb13-18"><a href="introduction.html#cb13-18" aria-hidden="true" tabindex="-1"></a>points <span class="ot">&lt;-</span> <span class="fu">sits_get_data</span>(modis_cube, <span class="at">file =</span> csv_raster_file)</span></code></pre></div>
+<pre><code>#&gt; Loading required namespace: terra
+#&gt; Loading required namespace: terra</code></pre>
 <pre><code>#&gt; All points have been retrieved</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction.html#cb13-1"></a><span class="co"># plot the first point</span></span>
-<span id="cb13-2"><a href="introduction.html#cb13-2"></a><span class="kw">plot</span>(points[<span class="dv">1</span>,])</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-8-1.png" alt="A one year time series of MOD13Q1 data for bands NDVI and EVI" width="70%" />
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introduction.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the first point</span></span>
+<span id="cb16-2"><a href="introduction.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(points[<span class="dv">1</span>,])</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-7-1.png" alt="A one year time series of MOD13Q1 data for bands NDVI and EVI" width="70%" />
 <p class="caption">
 Figure 1.1: A one year time series of MOD13Q1 data for bands NDVI and EVI
 </p>
 </div>
 </div>
 </div>
-<div id="filtering-techniques" class="section level2">
+<div id="filtering-techniques" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Filtering techniques</h2>
 <p>The literature on satellite image time series have several applications of filtering to correct or smooth vegetation index data. The following filters are available in SITS and are described in more detail in the vignette “Satellite Image Time Series Filtering with SITS”:</p>
 <ul>
@@ -406,46 +427,46 @@ Figure 1.1: A one year time series of MOD13Q1 data for bands NDVI and EVI
 <li>Whittaker filter (<code>sits_whittaker</code>)</li>
 <li>Envelope filter (<code>sits_envelope</code>)</li>
 </ul>
-<p>The SITS package uses a common interface to all filter functions with the <code>sits_filter</code>. The function has two parameters: the dataset to be filtered and <code>filter</code> for the filter to be applied. To aid on data visualisation, all bands which are filtered have a suffix which is appended, as shown in the examples below. Here we show an example using the Whittaker smoother, which has been proposed in literature <span class="citation">(Atzberger and Eilers <a href="#ref-Atzberger2011" role="doc-biblioref">2011</a>)</span> as arguably the most appropriate one to use for satellite image time series. The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">(Atzberger and Eilers <a href="#ref-Atzberger2011" role="doc-biblioref">2011</a>)</span>. As such, it balances between the residual to the original data and the “smoothness” of the fitted curve. It uses the parameter <code>lambda</code> to control the degree of smoothing.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introduction.html#cb14-1"></a><span class="co"># Take a NDVI time series, apply Whittaker filter and plot the series</span></span>
-<span id="cb14-2"><a href="introduction.html#cb14-2"></a>point_ndvi &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, <span class="dt">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
-<span id="cb14-3"><a href="introduction.html#cb14-3"></a>point_whit &lt;-<span class="st"> </span><span class="kw">sits_whittaker</span>(point_ndvi, <span class="dt">lambda =</span> <span class="fl">5.0</span>)</span>
-<span id="cb14-4"><a href="introduction.html#cb14-4"></a><span class="co"># merge with original data and plot the original and the filtered data</span></span>
-<span id="cb14-5"><a href="introduction.html#cb14-5"></a>point_whit <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb14-6"><a href="introduction.html#cb14-6"></a><span class="st">  </span><span class="kw">sits_merge</span>(point_ndvi) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb14-7"><a href="introduction.html#cb14-7"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-9-1.png" alt="Whittaker smoother filter applied on one-year NDVI time series. The example uses default $\lambda=3$ parameter." width="70%" />
+<p>The SITS package uses a common interface to all filter functions with the <code>sits_filter</code>. The function has two parameters: the dataset to be filtered and <code>filter</code> for the filter to be applied. To aid on data visualisation, all bands which are filtered have a suffix which is appended, as shown in the examples below. Here we show an example using the Whittaker smoother, which has been proposed in literature <span class="citation">(<a href="references.html#ref-Atzberger2011" role="doc-biblioref">Atzberger and Eilers 2011</a>)</span> as arguably the most appropriate one to use for satellite image time series. The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">(<a href="references.html#ref-Atzberger2011" role="doc-biblioref">Atzberger and Eilers 2011</a>)</span>. As such, it balances between the residual to the original data and the “smoothness” of the fitted curve. It uses the parameter <code>lambda</code> to control the degree of smoothing.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a NDVI time series, apply Whittaker filter and plot the series</span></span>
+<span id="cb17-2"><a href="introduction.html#cb17-2" aria-hidden="true" tabindex="-1"></a>point_ndvi <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(point_mt_6bands, <span class="at">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb17-3"><a href="introduction.html#cb17-3" aria-hidden="true" tabindex="-1"></a>point_whit <span class="ot">&lt;-</span> <span class="fu">sits_whittaker</span>(point_ndvi, <span class="at">lambda =</span> <span class="fl">5.0</span>)</span>
+<span id="cb17-4"><a href="introduction.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge with original data and plot the original and the filtered data</span></span>
+<span id="cb17-5"><a href="introduction.html#cb17-5" aria-hidden="true" tabindex="-1"></a>point_whit <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="introduction.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sits_merge</span>(point_ndvi) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="introduction.html#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-8-1.png" alt="Whittaker smoother filter applied on one-year NDVI time series. The example uses default $\lambda=3$ parameter." width="70%" />
 <p class="caption">
 Figure 1.2: Whittaker smoother filter applied on one-year NDVI time series. The example uses default <span class="math inline">\(\lambda=3\)</span> parameter.
 </p>
 </div>
 </div>
-<div id="clustering-for-sample-quality-control-using-self-organizing-maps" class="section level2">
+<div id="clustering-for-sample-quality-control-using-self-organizing-maps" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Clustering for sample quality control using self-organizing maps</h2>
 <p>One of the key challenges of machine learning classification models is assessing the quality of the training data sets. It is useful to apply pre-processing methods to improve the quality of the samples and to remove those that might have been wrongly labeled or that have low discriminatory power. Good samples lead to good classification maps. <code>sits</code> provides support for two clustering methods to test sample quality: (a) Agglomerative Hierarchical Clustering (AHC); (b) Self-organizing Maps (SOM). Full details of the cluster methods used in SITS are available in the vignette <a href="https://github.com/e-sensing/sits-docs/blob/master/doc/clustering.pdf">‘Clustering of Satellite Image Time Series with SITS’</a>.</p>
 </div>
-<div id="classification-using-machine-learning" class="section level2">
+<div id="classification-using-machine-learning" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Classification using machine learning</h2>
-<p>There has been much recent interest in using classifiers such as support vector machines <span class="citation">(Mountrakis, Im, and Ogole <a href="#ref-Mountrakis2011" role="doc-biblioref">2011</a>)</span> and random forests <span class="citation">(Belgiu and Dragut <a href="#ref-Belgiu2016" role="doc-biblioref">2016</a>)</span> for remote sensing images. Most often, researchers use a  approach, in which the dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes. To do this, researchers filter the raw data to get smoother time series <span class="citation">(Brown et al. <a href="#ref-Brown2013" role="doc-biblioref">2013</a>; Kastens et al. <a href="#ref-Kastens2017" role="doc-biblioref">2017</a>)</span>. Then, using software such as TIMESAT <span class="citation">(Jönsson and Eklundh <a href="#ref-Jonsson2004" role="doc-biblioref">2004</a>)</span>, they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season <span class="citation">(Estel et al. <a href="#ref-Estel2015" role="doc-biblioref">2015</a>; Pelletier et al. <a href="#ref-Pelletier2016" role="doc-biblioref">2016</a>)</span>.</p>
-<p>In a recent review of machine learning methods to classify remote sensing data <span class="citation">(Maxwell, Warner, and Fang <a href="#ref-Maxwell2018" role="doc-biblioref">2018</a>)</span>, the authors note that many factors influence the performance of these classifiers, including the size and quality of the training dataset, the dimension of the feature space, and the choice of the parameters. We support both  and  approaches. Therefore, the <strong>sits</strong> package provides functionality to explore the full depth of satellite image time series data.</p>
-<p>When used in  approach, <strong>sits</strong> treats time series as a feature vector. To be consistent, the procedure aligns all time series from different years by its time proximity considering an given cropping schedule. Once aligned, the feature vector is formed by all pixel “bands”. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. In this scenario, statistical learning models are the natural candidates to deal with high-dimensional data: learning to distinguish all land cover and land use classes from trusted samples exemplars (the training data) to infer classes of a larger data set.</p>
+<p>There has been much recent interest in using classifiers such as support vector machines <span class="citation">(<a href="references.html#ref-Mountrakis2011" role="doc-biblioref">Mountrakis, Im, and Ogole 2011</a>)</span> and random forests <span class="citation">(<a href="references.html#ref-Belgiu2016" role="doc-biblioref">Belgiu and Dragut 2016</a>)</span> for remote sensing images. Most often, researchers use a  approach, in which the dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes. To do this, researchers filter the raw data to get smoother time series <span class="citation">(<a href="references.html#ref-Brown2013" role="doc-biblioref">Brown et al. 2013</a>; <a href="references.html#ref-Kastens2017" role="doc-biblioref">Kastens et al. 2017</a>)</span>. Then, using software such as TIMESAT <span class="citation">(<a href="references.html#ref-Jonsson2004" role="doc-biblioref">Jönsson and Eklundh 2004</a>)</span>, they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season <span class="citation">(<a href="references.html#ref-Estel2015" role="doc-biblioref">Estel et al. 2015</a>; <a href="references.html#ref-Pelletier2016" role="doc-biblioref">Pelletier et al. 2016</a>)</span>.</p>
+<p>In a recent review of machine learning methods to classify remote sensing data <span class="citation">(<a href="references.html#ref-Maxwell2018" role="doc-biblioref">Maxwell, Warner, and Fang 2018</a>)</span>, the authors note that many factors influence the performance of these classifiers, including the size and quality of the training dataset, the dimension of the feature space, and the choice of the parameters. We support both  and  approaches. Therefore, the <strong>sits</strong> package provides functionality to explore the full depth of satellite image time series data.</p>
+<p>When used in  approach, <strong>sits</strong> treats time series as a feature vector. To be consistent, the procedure aligns all time series from different years by its time proximity considering an given cropping schedule. Once aligned, the feature vector is formed by all pixel “bands.” The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. In this scenario, statistical learning models are the natural candidates to deal with high-dimensional data: learning to distinguish all land cover and land use classes from trusted samples exemplars (the training data) to infer classes of a larger data set.</p>
 <p>The <strong>sits</strong> package provides a common interface to all machine learning models, using the <code>sits_train</code> function. this function takes two parameters: the input data samples and the ML method (<code>ml_method</code>), as shown below. After the model is estimated, it can be used to classify individual time series or full data cubes using the <code>sits_classify</code> function. In the examples that follow, we show how to apply each method for the classification of a single time series. Then, we disscuss how to classify full data cubes.</p>
 <p>When a dataset of time series organised as a tibble is taken as input to the classifier, the result is the same tibble with one additional column (“predicted”), which contains the information on what labels are have been assigned for each interval. The following example illustrate how to train a dataset and classify an individual time series. First we use the <code>sits_train</code> function with two parameters: the training dataset (described above) and the chosen machine learning model (in this case, a random forest classifier). The trained model is then used to classify a time series from Mato Grosso Brazilian state, using <code>sits_classify</code>. The results can be shown in text format using the function <code>sits_show_prediction</code> or graphically using <code>plot</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction.html#cb15-1"></a><span class="co">#select the data for classification</span></span>
-<span id="cb15-2"><a href="introduction.html#cb15-2"></a></span>
-<span id="cb15-3"><a href="introduction.html#cb15-3"></a><span class="co"># Train a machine learning model using Random Forest</span></span>
-<span id="cb15-4"><a href="introduction.html#cb15-4"></a>rfor_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(<span class="dt">data =</span> samples_modis_4bands, </span>
-<span id="cb15-5"><a href="introduction.html#cb15-5"></a>                    <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>(<span class="dt">num_trees =</span> <span class="dv">1000</span>))</span>
-<span id="cb15-6"><a href="introduction.html#cb15-6"></a></span>
-<span id="cb15-7"><a href="introduction.html#cb15-7"></a><span class="co"># get a point to be classified</span></span>
-<span id="cb15-8"><a href="introduction.html#cb15-8"></a>point_4bands &lt;-<span class="st"> </span><span class="kw">sits_select</span>(point_mt_6bands, </span>
-<span id="cb15-9"><a href="introduction.html#cb15-9"></a>                            <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>, <span class="st">&quot;NIR&quot;</span>, <span class="st">&quot;MIR&quot;</span>))</span>
-<span id="cb15-10"><a href="introduction.html#cb15-10"></a></span>
-<span id="cb15-11"><a href="introduction.html#cb15-11"></a><span class="co"># Classify using random forest model and plot the result</span></span>
-<span id="cb15-12"><a href="introduction.html#cb15-12"></a>class.tb &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(point_4bands, rfor_model)</span>
-<span id="cb15-13"><a href="introduction.html#cb15-13"></a><span class="co"># show the results of the prediction</span></span>
-<span id="cb15-14"><a href="introduction.html#cb15-14"></a><span class="kw">sits_show_prediction</span>(class.tb)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#select the data for classification</span></span>
+<span id="cb18-2"><a href="introduction.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="introduction.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a machine learning model using Random Forest</span></span>
+<span id="cb18-4"><a href="introduction.html#cb18-4" aria-hidden="true" tabindex="-1"></a>rfor_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(<span class="at">data =</span> samples_modis_4bands, </span>
+<span id="cb18-5"><a href="introduction.html#cb18-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>(<span class="at">num_trees =</span> <span class="dv">1000</span>))</span>
+<span id="cb18-6"><a href="introduction.html#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="introduction.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get a point to be classified</span></span>
+<span id="cb18-8"><a href="introduction.html#cb18-8" aria-hidden="true" tabindex="-1"></a>point_4bands <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(point_mt_6bands, </span>
+<span id="cb18-9"><a href="introduction.html#cb18-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>, <span class="st">&quot;NIR&quot;</span>, <span class="st">&quot;MIR&quot;</span>))</span>
+<span id="cb18-10"><a href="introduction.html#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="introduction.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify using random forest model and plot the result</span></span>
+<span id="cb18-12"><a href="introduction.html#cb18-12" aria-hidden="true" tabindex="-1"></a>class.tb <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(point_4bands, rfor_model)</span>
+<span id="cb18-13"><a href="introduction.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show the results of the prediction</span></span>
+<span id="cb18-14"><a href="introduction.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_show_prediction</span>(class.tb)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 17 x 3
 #&gt;    from       to         class   
 #&gt;    &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;   
@@ -466,10 +487,10 @@ Figure 1.2: Whittaker smoother filter applied on one-year NDVI time series. The 
 #&gt; 15 2014-09-14 2015-08-29 Soy_Corn
 #&gt; 16 2015-09-14 2016-08-28 Soy_Corn
 #&gt; 17 2016-09-13 2017-08-29 Soy_Corn</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction.html#cb17-1"></a><span class="co"># plot the results of the prediction</span></span>
-<span id="cb17-2"><a href="introduction.html#cb17-2"></a><span class="kw">plot</span>(class.tb)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-10-1.png" alt="Random forest classification of a $16$ years time series. The location (latitude, longitude) shown at the top of the graph is in geographic coordinate system (WGS84 {\it datum})." width="70%" />
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the results of the prediction</span></span>
+<span id="cb20-2"><a href="introduction.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(class.tb)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-9-1.png" alt="Random forest classification of a $16$ years time series. The location (latitude, longitude) shown at the top of the graph is in geographic coordinate system (WGS84 {\it datum})." width="70%" />
 <p class="caption">
 Figure 1.3: Random forest classification of a <span class="math inline">\(16\)</span> years time series. The location (latitude, longitude) shown at the top of the graph is in geographic coordinate system (WGS84 {}).
 </p>
@@ -490,40 +511,23 @@ Figure 1.3: Random forest classification of a <span class="math inline">\(16\)</
 </ul>
 <p>For more details on each method, please see the vignette <a href="">“Machine Learning for Data Cubes using the SITS package”</a></p>
 </div>
-<div id="validation-techniques" class="section level2">
+<div id="validation-techniques" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> Validation techniques</h2>
-<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">(Hastie, Tibshirani, and J. <a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">(<a href="references.html#ref-Hastie2009" role="doc-biblioref">Hastie, Tibshirani, and J. 2009</a>)</span>.</p>
 <p>To be sure, cross-validation estimates the expected prediction error. It uses part of the available samples to fit the classification model, and a different part to test it. The so-called <em>k-fold</em> validation, we split the data into <span class="math inline">\(k\)</span> partitions with approximately the same size and proceed by fitting the model and testing it <span class="math inline">\(k\)</span> times. At each step, we take one distinct partition for test and the remaining <span class="math inline">\({k-1}\)</span> for training the model, and calculate its prediction error for classifying the test partition. A simple average gives us an estimation of the expected prediction error.</p>
-<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation">Hastie, Tibshirani, and J. (<a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span> <span class="citation">(Hastie, Tibshirani, and J. <a href="#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>, which somewhat overestimates the true prediction error.</p>
+<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation"><a href="references.html#ref-Hastie2009" role="doc-biblioref">Hastie, Tibshirani, and J.</a> (<a href="references.html#ref-Hastie2009" role="doc-biblioref">2009</a>)</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span> <span class="citation">(<a href="references.html#ref-Hastie2009" role="doc-biblioref">Hastie, Tibshirani, and J. 2009</a>)</span>, which somewhat overestimates the true prediction error.</p>
 <p><code>sits_kfold_validate()</code> gives support the k-fold validation in <code>sits</code>. The following code gives an example on how to proceed a k-fold cross-validation in the package. It perform a five-fold validation using SVM classification model as a default classifier. We can see in the output text the corresponding confusion matrix and the accuracy statistics (overall and by class).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction.html#cb18-1"></a><span class="co"># perform a five fold validation for the &quot;cerrado_2classes&quot; data set</span></span>
-<span id="cb18-2"><a href="introduction.html#cb18-2"></a><span class="co"># Random Forest machine learning method using default parameters</span></span>
-<span id="cb18-3"><a href="introduction.html#cb18-3"></a>acc &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(cerrado_2classes, </span>
-<span id="cb18-4"><a href="introduction.html#cb18-4"></a>                           <span class="dt">folds =</span> <span class="dv">5</span>, </span>
-<span id="cb18-5"><a href="introduction.html#cb18-5"></a>                           <span class="dt">ml_method =</span> <span class="kw">sits_rfor</span>(<span class="dt">num_trees =</span> <span class="dv">1000</span>))</span></code></pre></div>
-<pre><code>#&gt; Confusion Matrix and Statistics
-#&gt; 
-#&gt;           Reference
-#&gt; Prediction Cerrado Pasture
-#&gt;    Cerrado     396      14
-#&gt;    Pasture       4     332
-#&gt;                                      
-#&gt;           Accuracy : 0.9759          
-#&gt;             95% CI : (0.9621, 0.9856)
-#&gt;                                      
-#&gt;              Kappa : 0.9514          
-#&gt;                                      
-#&gt;  Prod Acc  Cerrado : 0.9900          
-#&gt;  Prod Acc  Pasture : 0.9595          
-#&gt;  User Acc  Cerrado : 0.9659          
-#&gt;  User Acc  Pasture : 0.9881          
-#&gt; </code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform a five fold validation for the &quot;cerrado_2classes&quot; data set</span></span>
+<span id="cb21-2"><a href="introduction.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest machine learning method using default parameters</span></span>
+<span id="cb21-3"><a href="introduction.html#cb21-3" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(cerrado_2classes, </span>
+<span id="cb21-4"><a href="introduction.html#cb21-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">folds =</span> <span class="dv">5</span>, </span>
+<span id="cb21-5"><a href="introduction.html#cb21-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>(<span class="at">num_trees =</span> <span class="dv">1000</span>))</span></code></pre></div>
 </div>
-<div id="cube-classification" class="section level2">
+<div id="cube-classification" class="section level2" number="1.8">
 <h2><span class="header-section-number">1.8</span> Cube classification</h2>
-<p>The continuous observation of the Earth surface provided by orbital sensors is unprecedented in history. Just for the sake of illustration, a unique tile from MOD13Q1 product, a square of <span class="math inline">\(4800\)</span> pixels provided every 16 days since February 2000 takes around <span class="math inline">\(18\)</span>GB of uncompressed data to store only one band or vegetation index. This data deluge puts the field into a big data era and imposes challenges to design and build technologies that allow the Earth observation community to analyse those data sets <span class="citation">(Câmara et al. <a href="#ref-Camara2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The continuous observation of the Earth surface provided by orbital sensors is unprecedented in history. Just for the sake of illustration, a unique tile from MOD13Q1 product, a square of <span class="math inline">\(4800\)</span> pixels provided every 16 days since February 2000 takes around <span class="math inline">\(18\)</span>GB of uncompressed data to store only one band or vegetation index. This data deluge puts the field into a big data era and imposes challenges to design and build technologies that allow the Earth observation community to analyse those data sets <span class="citation">(<a href="references.html#ref-Camara2017" role="doc-biblioref">Câmara et al. 2017</a>)</span>.</p>
 <p>To classify a data cube, use the function <code>sits_classify()</code> as described below. This function works with data cubes built with the The classification algorithms allows users to choose how many process will run the task in parallel, and also the size of each data chunk to be consumed at each iteration. This strategy enables <code>sits</code> to work on average desktop computers without depleting all computational resources. The code bellow illustrates how to classify a small raster brick image that accompany the package.</p>
-<div id="steps-for-cube-classification" class="section level3">
+<div id="steps-for-cube-classification" class="section level3" number="1.8.1">
 <h3><span class="header-section-number">1.8.1</span> Steps for cube classification</h3>
 <p>Once a data cube which has associated files is defined, the steps for classification are:</p>
 <ol style="list-style-type: decimal">
@@ -533,153 +537,78 @@ Figure 1.3: Random forest classification of a <span class="math inline">\(16\)</
 <li>Label the cube with probabilities, including data smoothing if desired.</li>
 </ol>
 </div>
-<div id="adjustments-for-improved-performance" class="section level3">
+<div id="adjustments-for-improved-performance" class="section level3" number="1.8.2">
 <h3><span class="header-section-number">1.8.2</span> Adjustments for improved performance</h3>
 <p>To reduce processing time, it is necessary to adjust <code>sits_classify()</code> according to the capabilities of the server. The package tries to keep memory use to a minimum, performing garbage collection to free memory as often as possible. Nevertheless, there is an inevitable trade-off between computing time, memory use, and I/O operations. The best trade-off has to be determined by the user, considering issues such disk read speed, number of cores in the server, and CPU performance.</p>
 <p>The first parameter is <code>memsize</code>. It controls the size of the main memory (in GBytes) to be used for classification. The user must specify how much free memory will be available. The second factor controlling performance of raster classification is <code>multicores</code>. Once a block of data is read from disk into main memory, it is split into different cores, as specified by the user. In general, the more cores are assigned to classification, the faster the result will be. However, there are overheads in switching time, especially when the server has other processes running.</p>
 <p>Based on current experience, the classification of a Sentinel-2 tile at 20 meter resolution (5490*5490 pixels), with six bands and 66 time instances covering one year of data, using SVM with a training data set of about 10,000 samples, takes about 3 hours using 20 cores and a memory size of 60 GB, in a server with 2.4GHz Xeon CPU and 96 GB of memory to produce the yearly classification maps.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction.html#cb20-1"></a><span class="co"># Retrieve the set of samples for the Mato Grosso region </span></span>
-<span id="cb20-2"><a href="introduction.html#cb20-2"></a><span class="co"># Select the data for classification</span></span>
-<span id="cb20-3"><a href="introduction.html#cb20-3"></a>samples_2bands  &lt;-<span class="st"> </span><span class="kw">sits_select</span>(samples_modis_4bands, </span>
-<span id="cb20-4"><a href="introduction.html#cb20-4"></a>                               <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
-<span id="cb20-5"><a href="introduction.html#cb20-5"></a></span>
-<span id="cb20-6"><a href="introduction.html#cb20-6"></a><span class="co"># build a machine learning model for this area</span></span>
-<span id="cb20-7"><a href="introduction.html#cb20-7"></a>svm_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(samples_2bands, <span class="kw">sits_svm</span>())</span>
-<span id="cb20-8"><a href="introduction.html#cb20-8"></a></span>
-<span id="cb20-9"><a href="introduction.html#cb20-9"></a><span class="co"># create a data cube to be classified</span></span>
-<span id="cb20-10"><a href="introduction.html#cb20-10"></a><span class="co"># Cube is composed of MOD13Q1 images from the Sinop region in Mato Grosso (Brazil)</span></span>
-<span id="cb20-11"><a href="introduction.html#cb20-11"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/raster/mod13q1&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
-<span id="cb20-12"><a href="introduction.html#cb20-12"></a>sinop &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(</span>
-<span id="cb20-13"><a href="introduction.html#cb20-13"></a>    <span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb20-14"><a href="introduction.html#cb20-14"></a>    <span class="dt">name =</span> <span class="st">&quot;sinop-2014&quot;</span>,</span>
-<span id="cb20-15"><a href="introduction.html#cb20-15"></a>    <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb20-16"><a href="introduction.html#cb20-16"></a>    <span class="dt">sensor =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb20-17"><a href="introduction.html#cb20-17"></a>    <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb20-18"><a href="introduction.html#cb20-18"></a>    <span class="dt">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
-<span id="cb20-19"><a href="introduction.html#cb20-19"></a>    <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb20-20"><a href="introduction.html#cb20-20"></a>)</span>
-<span id="cb20-21"><a href="introduction.html#cb20-21"></a><span class="co"># Classify the raster cube, generating a probability file</span></span>
-<span id="cb20-22"><a href="introduction.html#cb20-22"></a>probs_cube &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(sinop, </span>
-<span id="cb20-23"><a href="introduction.html#cb20-23"></a>                            <span class="dt">ml_model =</span> svm_model, </span>
-<span id="cb20-24"><a href="introduction.html#cb20-24"></a>                            <span class="dt">output_dir =</span> <span class="kw">tempdir</span>(),</span>
-<span id="cb20-25"><a href="introduction.html#cb20-25"></a>                            <span class="dt">memsize =</span> <span class="dv">16</span>,</span>
-<span id="cb20-26"><a href="introduction.html#cb20-26"></a>                            <span class="dt">multicores =</span> <span class="dv">4</span>,</span>
-<span id="cb20-27"><a href="introduction.html#cb20-27"></a>                            <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb20-28"><a href="introduction.html#cb20-28"></a></span>
-<span id="cb20-29"><a href="introduction.html#cb20-29"></a><span class="co"># plot the probabilities cubes</span></span>
-<span id="cb20-30"><a href="introduction.html#cb20-30"></a><span class="kw">plot</span>(probs_cube)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-12-1.png" alt="Class probabilities for each pixel" width="70%" />
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the set of samples for the Mato Grosso region </span></span>
+<span id="cb22-2"><a href="introduction.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the data for classification</span></span>
+<span id="cb22-3"><a href="introduction.html#cb22-3" aria-hidden="true" tabindex="-1"></a>samples_2bands  <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(samples_modis_4bands, </span>
+<span id="cb22-4"><a href="introduction.html#cb22-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb22-5"><a href="introduction.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="introduction.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># build a machine learning model for this area</span></span>
+<span id="cb22-7"><a href="introduction.html#cb22-7" aria-hidden="true" tabindex="-1"></a>svm_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(samples_2bands, <span class="fu">sits_svm</span>())</span>
+<span id="cb22-8"><a href="introduction.html#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="introduction.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data cube to be classified</span></span>
+<span id="cb22-10"><a href="introduction.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Cube is composed of MOD13Q1 images from the Sinop region in Mato Grosso (Brazil)</span></span>
+<span id="cb22-11"><a href="introduction.html#cb22-11" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/raster/mod13q1&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb22-12"><a href="introduction.html#cb22-12" aria-hidden="true" tabindex="-1"></a>sinop <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb22-13"><a href="introduction.html#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb22-14"><a href="introduction.html#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;sinop-2014&quot;</span>,</span>
+<span id="cb22-15"><a href="introduction.html#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb22-16"><a href="introduction.html#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensor =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb22-17"><a href="introduction.html#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb22-18"><a href="introduction.html#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb22-19"><a href="introduction.html#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb22-20"><a href="introduction.html#cb22-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-21"><a href="introduction.html#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify the raster cube, generating a probability file</span></span>
+<span id="cb22-22"><a href="introduction.html#cb22-22" aria-hidden="true" tabindex="-1"></a>probs_cube <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(sinop, </span>
+<span id="cb22-23"><a href="introduction.html#cb22-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">ml_model =</span> svm_model, </span>
+<span id="cb22-24"><a href="introduction.html#cb22-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">output_dir =</span> <span class="fu">tempdir</span>(),</span>
+<span id="cb22-25"><a href="introduction.html#cb22-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">memsize =</span> <span class="dv">16</span>,</span>
+<span id="cb22-26"><a href="introduction.html#cb22-26" aria-hidden="true" tabindex="-1"></a>                            <span class="at">multicores =</span> <span class="dv">4</span>,</span>
+<span id="cb22-27"><a href="introduction.html#cb22-27" aria-hidden="true" tabindex="-1"></a>                            <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>#&gt; Loading required namespace: terra</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introduction.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the probabilities cubes</span></span>
+<span id="cb24-2"><a href="introduction.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(probs_cube)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-11-1.png" alt="Class probabilities for each pixel" width="70%" />
 <p class="caption">
 Figure 1.4: Class probabilities for each pixel
 </p>
 </div>
 </div>
 </div>
-<div id="smoothing-and-labelling-of-raster-data-after-classification" class="section level2">
+<div id="smoothing-and-labelling-of-raster-data-after-classification" class="section level2" number="1.9">
 <h2><span class="header-section-number">1.9</span> Smoothing and Labelling of raster data after classification</h2>
-<p>Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from “pure” pixels, that have been selected by users as representative of the desired output classes. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. These effects lead to outliers whose chance of misclassification is significant. To offset these problems, most post-processing methods use the “smoothness assumption” <span class="citation">(Schindler <a href="#ref-Schindler2012" role="doc-biblioref">2012</a>)</span>: nearby pixels tend to have the same label. To put this assumption in practice, smoothing methods use the neighbourhood information to remove outliers and enhance consistency in the resulting product.</p>
-<p>Smoothing methods are an important complement to machine learning algorithms for image classification. Since these methods are mostly pixel-based, it is useful to complement them with post-processing smoothing to include spatial information in the result. For each pixel, machine learning and other statistical algorithms provide the probabilities of that pixel belonging to each of the classes. As a first step in obtaining a result, each pixel is assigned to the class whose probability is higher. After this step, smoothing methods use class probabilities to detect and correct outliers or misclassified pixels. SITS uses a Bayesian smoothing method, which provides the means to incorporate prior knowledge in data analysis. For more details on the smoothing procedure, please see the vignette “Post classification smoothing using Bayesian techniques in SITS”.</p>
+<p>Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from “pure” pixels, that have been selected by users as representative of the desired output classes. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. These effects lead to outliers whose chance of misclassification is significant. To offset these problems, most post-processing methods use the “smoothness assumption” <span class="citation">(<a href="references.html#ref-Schindler2012" role="doc-biblioref">Schindler 2012</a>)</span>: nearby pixels tend to have the same label. To put this assumption in practice, smoothing methods use the neighbourhood information to remove outliers and enhance consistency in the resulting product.</p>
+<p>Smoothing methods are an important complement to machine learning algorithms for image classification. Since these methods are mostly pixel-based, it is useful to complement them with post-processing smoothing to include spatial information in the result. For each pixel, machine learning and other statistical algorithms provide the probabilities of that pixel belonging to each of the classes. As a first step in obtaining a result, each pixel is assigned to the class whose probability is higher. After this step, smoothing methods use class probabilities to detect and correct outliers or misclassified pixels. SITS uses a Bayesian smoothing method, which provides the means to incorporate prior knowledge in data analysis. For more details on the smoothing procedure, please see the vignette “Post classification smoothing using Bayesian techniques in SITS.”</p>
 <p>Doing post-processing using Bayesian smoothing in SITS is straightforward. The result of the <code>sits_classify</code> function applied to a data cube is set of more probability images, one per requested clasification interval. The next step is to apply the <code>sits_smooth</code> function. By default, this function selects the most likely class for each pixel considering a Bayesian estimator that takes into account the neighbours. The following example takes the previously produced classification output and applies a Bayesian smoothing.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction.html#cb21-1"></a><span class="co"># smooth the result with a bayesian filter</span></span>
-<span id="cb21-2"><a href="introduction.html#cb21-2"></a>sinop_bayes &lt;-<span class="st"> </span><span class="kw">sits_smooth</span>(probs_cube, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb21-3"><a href="introduction.html#cb21-3"></a><span class="co"># label the resulting image</span></span>
-<span id="cb21-4"><a href="introduction.html#cb21-4"></a>label_bayes &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(sinop_bayes, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction.html#cb22-1"></a><span class="co"># plot the image</span></span>
-<span id="cb22-2"><a href="introduction.html#cb22-2"></a><span class="kw">plot</span>(label_bayes)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the result with a bayesian filter</span></span>
+<span id="cb25-2"><a href="introduction.html#cb25-2" aria-hidden="true" tabindex="-1"></a>sinop_bayes <span class="ot">&lt;-</span> <span class="fu">sits_smooth</span>(probs_cube, <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb25-3"><a href="introduction.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># label the resulting image</span></span>
+<span id="cb25-4"><a href="introduction.html#cb25-4" aria-hidden="true" tabindex="-1"></a>label_bayes <span class="ot">&lt;-</span> <span class="fu">sits_label_classification</span>(sinop_bayes, <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the image</span></span>
+<span id="cb26-2"><a href="introduction.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(label_bayes)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
 <img src="images/plot_image_classification.png" alt="Classified image post-processed with Bayesian smoothing" width="90%" height="90%" />
 <p class="caption">
 Figure 1.5: Classified image post-processed with Bayesian smoothing
 </p>
 </div>
 </div>
-<div id="final-remarks" class="section level2">
+<div id="final-remarks" class="section level2" number="1.10">
 <h2><span class="header-section-number">1.10</span> Final remarks</h2>
-<p>Current approaches to image time series analysis still use limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like beginning, peak, and length of growing season <span class="citation">(Brown et al. <a href="#ref-Brown2013" role="doc-biblioref">2013</a>)</span>, <span class="citation">(Kastens et al. <a href="#ref-Kastens2017" role="doc-biblioref">2017</a>)</span>, <span class="citation">(Estel et al. <a href="#ref-Estel2015" role="doc-biblioref">2015</a>)</span>, <span class="citation">(Pelletier et al. <a href="#ref-Pelletier2016" role="doc-biblioref">2016</a>)</span>. These phenological parameters are then fed in specialized classifiers such as TIMESAT <span class="citation">(Jönsson and Eklundh <a href="#ref-Jonsson2004" role="doc-biblioref">2004</a>)</span>. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets <span class="citation">(James et al. <a href="#ref-James2013" role="doc-biblioref">2013</a>)</span>.</p>
-<p>Package <code>sits</code> can use the full depth of satellite image time series to create larger dimensional spaces. We tested different methods of extracting attributes from time series data, including those reported by <span class="citation">Pelletier et al. (<a href="#ref-Pelletier2016" role="doc-biblioref">2016</a>)</span> and <span class="citation">Kastens et al. (<a href="#ref-Kastens2017" role="doc-biblioref">2017</a>)</span>. Our conclusion is that part of the information in raw time series is lost after filtering. Thus, the method we developed uses all the data available in the time series samples. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. Our experiments found out that modern statistical models such as support vector machines, and random forests perform better in high-dimensional spaces than in lower dimensional ones.</p>
+<p>Current approaches to image time series analysis still use limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like beginning, peak, and length of growing season <span class="citation">(<a href="references.html#ref-Brown2013" role="doc-biblioref">Brown et al. 2013</a>)</span>, <span class="citation">(<a href="references.html#ref-Kastens2017" role="doc-biblioref">Kastens et al. 2017</a>)</span>, <span class="citation">(<a href="references.html#ref-Estel2015" role="doc-biblioref">Estel et al. 2015</a>)</span>, <span class="citation">(<a href="references.html#ref-Pelletier2016" role="doc-biblioref">Pelletier et al. 2016</a>)</span>. These phenological parameters are then fed in specialized classifiers such as TIMESAT <span class="citation">(<a href="references.html#ref-Jonsson2004" role="doc-biblioref">Jönsson and Eklundh 2004</a>)</span>. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets <span class="citation">(<a href="references.html#ref-James2013" role="doc-biblioref">James et al. 2013</a>)</span>.</p>
+<p>Package <code>sits</code> can use the full depth of satellite image time series to create larger dimensional spaces. We tested different methods of extracting attributes from time series data, including those reported by <span class="citation"><a href="references.html#ref-Pelletier2016" role="doc-biblioref">Pelletier et al.</a> (<a href="references.html#ref-Pelletier2016" role="doc-biblioref">2016</a>)</span> and <span class="citation"><a href="references.html#ref-Kastens2017" role="doc-biblioref">Kastens et al.</a> (<a href="references.html#ref-Kastens2017" role="doc-biblioref">2017</a>)</span>. Our conclusion is that part of the information in raw time series is lost after filtering. Thus, the method we developed uses all the data available in the time series samples. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. Our experiments found out that modern statistical models such as support vector machines, and random forests perform better in high-dimensional spaces than in lower dimensional ones.</p>
 </div>
-<div id="acknowledgements" class="section level2">
+<div id="acknowledgements" class="section level2" number="1.11">
 <h2><span class="header-section-number">1.11</span> Acknowledgements</h2>
-<p>The authors would like to thank all the researchers that provided data samples used in the examples: Alexandre Coutinho, Julio Esquerdo and Joao Antunes (Brazilian Agricultural Research Agency, Brazil) who provided ground samples for “soybean-fallow”, “fallow-cotton”, “soybean-cotton”, “soybean-corn”, “soybean-millet”, “soybean-sunflower”, and “pasture” classes; Rodrigo Bergotti (National Institute for Space Research, Brazil) who provided samples for “cerrado” and “forest” classes; and Damien Arvor (Rennes University, France) who provided ground samples for “soybean-fallow” class.</p>
+<p>The authors would like to thank all the researchers that provided data samples used in the examples: Alexandre Coutinho, Julio Esquerdo and Joao Antunes (Brazilian Agricultural Research Agency, Brazil) who provided ground samples for “soybean-fallow,” “fallow-cotton,” “soybean-cotton,” “soybean-corn,” “soybean-millet,” “soybean-sunflower,” and “pasture” classes; Rodrigo Bergotti (National Institute for Space Research, Brazil) who provided samples for “cerrado” and “forest” classes; and Damien Arvor (Rennes University, France) who provided ground samples for “soybean-fallow” class.</p>
 <p>This work was partially funded by the São Paulo Research Foundation (FAPESP) through eScience Program grant 2014/08398-6. We thank the Coordination for the Improvement of Higher Education Personnel (CAPES) and National Council for Scientific and Technological Development (CNPq) grants 312151/2014-4 (GC) and 140684/2016-6 (RS). We thank Ricardo Cartaxo and Lúbia Vinhas who provided insight and expertise to support this paper.</p>
 <p>This work has also been supported by the International Climate Initiative of the Germany Federal Ministry for the Environment, Nature Conservation, Building and Nuclear Safety under Grant Agreement 17-III-084-Global-A-RESTORE+ (``RESTORE+: Addressing Landscape Restoration on Degraded Land in Indonesia and Brazil’’).</p>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Appel2019">
-<p>Appel, Marius, and Edzer Pebesma. 2019. “On-Demand Processing of Data Cubes from Satellite Image Collections with the Gdalcubes Library.” <em>Data</em> 4 (92).</p>
-</div>
-<div id="ref-Arvor2012">
-<p>Arvor, D., M. Meirelles, V. Dubreuil, A. Bégué, and Y. E. Shimabukuro. 2012. “Analyzing the Agricultural Transition in Mato Grosso, Brazil, Using Satellite-Derived Indices.” <em>Applied Geography</em> 32 (2): 702–13.</p>
-</div>
-<div id="ref-Atzberger2011">
-<p>Atzberger, Clement, and Paul HC Eilers. 2011. “Evaluating the Effectiveness of Smoothing Algorithms in the Absence of Ground Reference Measurements.” <em>International Journal of Remote Sensing</em> 32 (13): 3689–3709.</p>
-</div>
-<div id="ref-Belgiu2016">
-<p>Belgiu, Mariana, and Lucian Dragut. 2016. “Random Forest in Remote Sensing: A Review of Applications and Future Directions.” <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 114: 24–31.</p>
-</div>
-<div id="ref-Brown2013">
-<p>Brown, J. Christopher, Jude H. Kastens, Alexandre Camargo Coutinho, Daniel de Castro Victoria, and Christopher R. Bishop. 2013. “Classifying Multiyear Agricultural Land Use Data from Mato Grosso Using Time-Series MODIS Vegetation Index Data.” <em>Remote Sensing of Environment</em> 130: 39–50.</p>
-</div>
-<div id="ref-Camara2017">
-<p>Câmara, Gilberto, Gilberto Queiroz, Lubia Vinhas, Karine Ferreira, Ricardo Cartaxo, Rolf Simoes, Eduardo Llapa, Luiz Assis, and Alber Sanchez. 2017. “The E-Sensing Architecture for Big Earth Observation Data Analysis.” In <em>Big Data from Space (Bids’17)</em>, 48–51.</p>
-</div>
-<div id="ref-Estel2015">
-<p>Estel, Stephan, Tobias Kuemmerle, Camilo Alcantara, Christian Levers, Alexander Prishchepov, and Patrick Hostert. 2015. “Mapping Farmland Abandonment and Recultivation Across Europe Using MODIS NDVI Time Series.” <em>Remote Sensing of Environment</em> 163: 312–25.</p>
-</div>
-<div id="ref-Galford2008">
-<p>Galford, Gillian L, John F Mustard, Jerry Melillo, Aline Gendrin, Carlos C Cerri, and Carlos E Cerri. 2008. “Wavelet Analysis of MODIS Time Series to Detect Expansion and Intensification of Row-Crop Agriculture in Brazil.” <em>Remote Sensing of Environment</em> 112 (2): 576–87.</p>
-</div>
-<div id="ref-Gomez2016">
-<p>Gomez, Cristina, Joanne C. White, and Michael A. Wulder. 2016. “Optical Remotely Sensed Time Series Data for Land Cover Classification: A Review.” <em>{ISPRS} Journal of Photogrammetry and Remote Sensing</em> 116: 55–72.</p>
-</div>
-<div id="ref-Hastie2009">
-<p>Hastie, T., R. Tibshirani, and Friedman J. 2009. <em>The Elements of Statistical Learning. Data Mining, Inference, and Prediction</em>. New York: Springer.</p>
-</div>
-<div id="ref-James2013">
-<p>James, G., D. Witten, T. Hastie, and R. Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in R</em>. New York, EUA: Springer.</p>
-</div>
-<div id="ref-Jonsson2004">
-<p>Jönsson, Per, and Lars Eklundh. 2004. “TIMESAT—a Program for Analyzing Time-Series of Satellite Sensor Data.” <em>Computers &amp; Geosciences</em> 30 (8): 833–45.</p>
-</div>
-<div id="ref-Kastens2017">
-<p>Kastens, J., J. Brown, A. Coutinho, C. Bishop, and J. Esquerdo. 2017. “Soy Moratorium Impacts on Soybean and Deforestation Dynamics in Mato Grosso, Brazil.” <em>PLOS ONE</em> 12 (4): e0176168.</p>
-</div>
-<div id="ref-Kennedy2010">
-<p>Kennedy, Robert E., Zhiqiang Yang, and Warren B. Cohen. 2010. “Detecting Trends in Forest Disturbance and Recovery Using Yearly Landsat Time Series.” <em>Remote Sensing of Environment</em> 114 (12): 2897–2910.</p>
-</div>
-<div id="ref-Lambin2003">
-<p>Lambin, Eric F, Helmut J Geist, and Erika Lepers. 2003. “Dynamics of Land-Use and Land-Cover Change in Tropical Regions.” <em>Annual Review of Environment and Resources</em> 28 (1): 205–41.</p>
-</div>
-<div id="ref-Maus2016">
-<p>Maus, Victor, Gilberto Camara, Ricardo Cartaxo, Alber Sanchez, Fernando M Ramos, and Gilberto R de Queiroz. 2016. “A Time-Weighted Dynamic Time Warping Method for Land-Use and Land-Cover Mapping.” <em>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</em> 9 (8): 3729–39.</p>
-</div>
-<div id="ref-Maxwell2018">
-<p>Maxwell, Aaron E., Timothy A. Warner, and Fang Fang. 2018. “Implementation of Machine-Learning Classification in Remote Sensing: An Applied Review.” <em>International Journal of Remote Sensing</em> 39 (9): 2784–2817. <a href="https://doi.org/10.1080/01431161.2018.1433343">https://doi.org/10.1080/01431161.2018.1433343</a>.</p>
-</div>
-<div id="ref-Mountrakis2011">
-<p>Mountrakis, G., J. Im, and C. Ogole. 2011. “Support Vector Machines in Remote Sensing: A Review.” <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 66 (3): 247–59.</p>
-</div>
-<div id="ref-Pasquarella2016">
-<p>Pasquarella, Valerie J., Christopher E. Holden, Les Kaufman, and Curtis E. Woodcock. 2016. “From Imagery to Ecology: Leveraging Time Series of All Available LANDSAT Observations to Map and Monitor Ecosystem State and Dynamics.” <em>Remote Sensing in Ecology and Conservation</em> 2 (3): 152–70. <a href="https://doi.org/10.1002/rse2.24">https://doi.org/10.1002/rse2.24</a>.</p>
-</div>
-<div id="ref-Pelletier2016">
-<p>Pelletier, Charlotte, Silvia Valero, Jordi Inglada, Nicolas Champion, and Gerard Dedieu. 2016. “Assessing the Robustness of Random Forests to Map Land Cover with High Resolution Satellite Image Time Series over Large Areas.” <em>Remote Sensing of Environment</em> 187: 156–68.</p>
-</div>
-<div id="ref-Petitjean2012">
-<p>Petitjean, F., J. Inglada, and P. Gancarski. 2012. “Satellite Image Time Series Analysis Under Time Warping.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 50 (8): 3081–95. <a href="https://doi.org/10.1109/TGRS.2011.2179050">https://doi.org/10.1109/TGRS.2011.2179050</a>.</p>
-</div>
-<div id="ref-Schindler2012">
-<p>Schindler, Konrad. 2012. “An Overview and Comparison of Smooth Labeling Methods for Land-Cover Classification.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 50 (11): 4534–45.</p>
-</div>
-<div id="ref-Verbesselt2010">
-<p>Verbesselt, Jan, Rob Hyndman, Glenn Newnham, and Darius Culvenor. 2010. “Detecting Trend and Seasonal Changes in Satellite Image Time Series.” <em>Remote Sensing of Environment</em> 114 (1): 106–15.</p>
-</div>
-<div id="ref-Wickham2017">
-<p>Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media, Inc.</p>
 </div>
 </div>
             </section>

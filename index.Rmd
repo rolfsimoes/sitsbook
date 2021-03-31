@@ -29,8 +29,7 @@ bibliography:
 biblio-style: apalike
 link-citations: yes
 description: | 
-  This is a minimal example of using the bookdown package to write a book.
-  The output format for this example is bookdown::gitbook.
+  This book describes the sits package.
 ---
 
 ```{r, include = FALSE}
@@ -43,11 +42,4 @@ source("common.R")
 
 <!-- [![](images/cover.png){.cover width="326"}](https://github.com/e-sensing/sits-book) -->
 
-Abstract from Filters: This vignette describes the time series filtering techniques available in
-the SITS package. These include the Savitsky-Golay, Whittaker, and Kalman filters,
-as well as specialised filters for satellite images, which are the envelope filter
-and the ARIMA filter for cloud removal.
-
-Abstract from clustering: One of the key challenges when using samples to train machine learning classification models is assessing their quality. Noisy and imperfect training samples can have a negative effect on classification performance.  Therefore, it is useful to apply pre-processing methods to improve the quality of the samples and to remove those that might have been wrongly labeled or that have low discriminatory power. Representative samples lead to good classification maps. `sits` provides support for two clustering methods to test sample quality, which are agglomerative hierarchical clustering (AHC) and self-organizing maps (SOM).
-  
-Abstract from clustering: One of the key challenges when using samples to train machine learning classification models is assessing their quality. Noisy and imperfect training samples can have a negative effect on classification performance.  Therefore, it is useful to apply pre-processing methods to improve the quality of the samples and to remove those that might have been wrongly labeled or that have low discriminatory power. Representative samples lead to good classification maps. `sits` provides support for two clustering methods to test sample quality, which are agglomerative hierarchical clustering (AHC) and self-organizing maps (SOM).
+Using time series derived from big Earth Observation data sets is one of the leading research trends in Land Use Science and Remote Sensing. One of the more promising uses of satellite time series is its application for classification of land use and land cover, since our growing demand for natural resources has caused major environmental impacts. Here, we present an open source *R* package for satellite image time series analysis called **sits**. The package support use of machine learning and deep learning techniques for classification of image time series obtained from data cubes.
