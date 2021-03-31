@@ -6,7 +6,7 @@ source("common.R")
 
 ---
 
-This vignette shows the use of the SITS package for classification of satellite images that are associated to Earth observation data cubes.
+This chapter shows the use of the SITS package for classification of satellite images that are associated to Earth observation data cubes.
 
 ---
 
@@ -124,7 +124,7 @@ sinop_probs <- sits_classify(sinop, ml_model = xgb_model,
 # label the probability file 
 # (by default selecting the class with higher probability)
 sinop_label <- sits_label_classification(sinop_probs, output_dir = tempdir())
-#plot(sinop_label, title = "Sinop-label")
+plot(sinop_label, title = "Sinop-label")
 ```
 
 ## Final remarks
