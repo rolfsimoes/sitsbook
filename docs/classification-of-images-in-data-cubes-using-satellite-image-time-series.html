@@ -5,23 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::gitbook.</p>" />
+  <meta name="description" content="This book describes the sits package." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::gitbook.</p>" />
+  <meta property="og:description" content="This book describes the sits package." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::gitbook.</p>" />
+  <meta name="twitter:description" content="This book describes the sits package." />
   <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="Rolf Simoes" />
@@ -307,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="classification-using-machine-learning-1" class="section level2">
 <h2><span class="header-section-number">6.3</span> Classification using machine learning</h2>
-<p>There has been much recent interest in using classifiers such as support vector machines <span class="citation">(Mountrakis, Im, and Ogole 2011)</span> and random forests <span class="citation">(Belgiu and Dragut 2016)</span> for remote sensing images. Most often, researchers use a  approach, in which the dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes. To do this, researchers filter the raw data to get smoother time series <span class="citation">(Brown et al. 2013; Kastens et al. 2017)</span>. Then, using software such as TIMESAT <span class="citation">(Jönsson and Eklundh 2004)</span>, they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season <span class="citation">(Estel et al. 2015; Pelletier et al. 2016)</span>.</p>
+<p>There has been much recent interest in using classifiers such as support vector machines <span class="citation">(Mountrakis, Im, and Ogole 2011)</span> and random forests <span class="citation">(Belgiu and Dragut 2016)</span> for remote sensing images. Most often, researchers use a  approach, in which the dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes. To do this, researchers filter the raw data to get smoother time series <span class="citation">(Brown et al. 2013; Kastens et al. 2017)</span>. Then, using software such as TIMESAT <span class="citation">(Jonsson and Eklundh 2004)</span>, they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season <span class="citation">(Estel et al. 2015; Pelletier et al. 2016)</span>.</p>
 <p>In a recent review of machine learning methods to classify remote sensing data <span class="citation">(Maxwell, Warner, and Fang 2018)</span>, the authors note that many factors influence the performance of these classifiers, including the size and quality of the training dataset, the dimension of the feature space, and the choice of the parameters. We support both  and  approaches. Therefore, the <code>sits</code> package provides functionality to explore the full depth of satellite image time series data.</p>
 <p>When used in  approache, <code>sits</code> treats time series as a feature vector. To be consistent, the procedure aligns all time series from different years by its time proximity considering an given cropping schedule. Once aligned, the feature vector is formed by all pixel “bands”. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. In this scenario, statistical learning models are the natural candidates to deal with high-dimensional data: learning to distinguish all land cover and land use classes from trusted samples exemplars (the training data) to infer classes of a larger data set.</p>
 <p>The SITS package provides a common interface to all machine learning models, using the <code>sits_train</code> function. this function takes two parameters: the input data samples and the ML method (<code>ml_method</code>), as shown below. After the model is estimated, it can be used to classify individual time series or full data cubes using the <code>sits_classify</code> function. In the examples that follow, we show how to apply each method for the classification of a single time series. Then, we disscuss how to classify full data cubes.</p>
@@ -329,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="cube-classification-1" class="section level2">
 <h2><span class="header-section-number">6.4</span> Cube classification</h2>
-<p>The continuous observation of the Earth surface provided by orbital sensors is unprecedented in history. Just for the sake of illustration, a unique tile from MOD13Q1 product, a square of <span class="math inline">\(4800\)</span> pixels provided every 16 days since February 2000 takes around <span class="math inline">\(18\)</span>GB of uncompressed data to store only one band or vegetation index. This data deluge puts the field into a big data era and imposes challenges to design and build technologies that allow the Earth observation community to analyse those data sets <span class="citation">(Câmara et al. 2017)</span>.</p>
+<p>The continuous observation of the Earth surface provided by orbital sensors is unprecedented in history. Just for the sake of illustration, a unique tile from MOD13Q1 product, a square of <span class="math inline">\(4800\)</span> pixels provided every 16 days since February 2000 takes around <span class="math inline">\(18\)</span>GB of uncompressed data to store only one band or vegetation index. This data deluge puts the field into a big data era and imposes challenges to design and build technologies that allow the Earth observation community to analyse those data sets <span class="citation">(Camara et al. 2017)</span>.</p>
 <p>To classify a data cube, use the function <code>sits_classify()</code> as described below. This function works with cubes built from raster bricks. The classification algorithms allows users to choose how many process will run the task in parallel, and also the size of each data chunk to be consumed at each iteration. This strategy enables <code>sits</code> to work on average desktop computers without depleting all computational resources. The code bellow illustrates how to classify a small raster brick image that accompany the package.</p>
 <div id="steps-for-cube-classification-1" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Steps for cube classification</h3>
@@ -389,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="final-remarks-1" class="section level2">
 <h2><span class="header-section-number">6.5</span> Final remarks</h2>
-<p>Current approaches to image time series analysis still use limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like beginning, peak, and length of growing season <span class="citation">(Brown et al. 2013)</span>, <span class="citation">(Kastens et al. 2017)</span>, <span class="citation">(Estel et al. 2015)</span>, <span class="citation">(Pelletier et al. 2016)</span>. These phenological parameters are then fed in specialized classifiers such as TIMESAT <span class="citation">(Jönsson and Eklundh 2004)</span>. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets <span class="citation">(James et al. 2013)</span>.</p>
+<p>Current approaches to image time series analysis still use limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like beginning, peak, and length of growing season <span class="citation">(Brown et al. 2013)</span>, <span class="citation">(Kastens et al. 2017)</span>, <span class="citation">(Estel et al. 2015)</span>, <span class="citation">(Pelletier et al. 2016)</span>. These phenological parameters are then fed in specialized classifiers such as TIMESAT <span class="citation">(Jonsson and Eklundh 2004)</span>. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets <span class="citation">(James et al. 2013)</span>.</p>
 <p>Package <code>sits</code> can use the full depth of satellite image time series to create larger dimensional spaces. We tested different methods of extracting attributes from time series data, including those reported by <span class="citation">Pelletier et al. (2016)</span> and <span class="citation">Kastens et al. (2017)</span>. Our conclusion is that part of the information in raw time series is lost after filtering. Thus, the method we developed uses all the data available in the time series samples. The idea is to have as many temporal attributes as possible, increasing the dimension of the classification space. Our experiments found out that modern statistical models such as support vector machines, and random forests perform better in high-dimensional spaces than in lower dimensional ones.</p>
 
 </div>
