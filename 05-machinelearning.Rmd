@@ -80,12 +80,12 @@ The Random forest uses the idea of *decision trees* as its base model. It combin
 
 Random forest training process is essentially nondeterministic. It starts by growing trees through repeatedly random sampling-with-replacement the observations set. At each growing tree, the random forest considers only a fraction of the original attributes to decide where to split a node, according to a *purity criterion*. This criterion is used to identify relevant features and to perform variable selection. This decreases the correlation among trees and improves the prediction performance. Two often-used impurity criteria are the *Gini* index and the *permutation* measure. The Gini index considers the contribution of each variable which improves the spliting criteria for building tress. Permutation increases the importance of variables that have a positive effect on the prediction accuracy. The splitting process continues until the tree reaches some given minimum nodes size or a minimum impurity index value.
 
-One of the advantages of the random forest model is that the classification performance is mostly dependent on the number of decision trees to grow and of the "importance" parameter, which controls the purity variable importance measures. SITS provides a `sits_rfor` function which is a front-end to the `ranger` package[@Wright2017]; its two main parameters are: `num_trees` (number of trees to grow) and `importance`, the variable importance criterion. Possible values for `importance` are: `none`, `impurity` (Gini index), and `permutation`, the default being `impurity`. 
+One of the advantages of the random forest model is that the classification performance is mostly dependent on the number of decision trees to grow and of the "importance" parameter, which controls the purity variable importance measures. SITS provides a `sits_rfor` function which is a front-end to the `randomForest` package[@Wright2017]; its main parameters is `num_trees` (number of trees to grow).  
 
 ```{r, eval}
 # Retrieve the set of samples (provided by EMBRAPA) from the 
 # Mato Grosso region for train the Random Forest model.
-rfor_model <- sits_train(samples_matogrosso_mod13q1, sits_rfor())
+rfor_model <- sits_train(samples_matogrosso_mod13q1, sits_rfor(num_trees = 500))
 # Classify using Random Forest model and plot the result
 point_mt_4bands <- sits_select(point_mt_6bands, bands = c("NDVI", "EVI", "NIR", "MIR"))
 class.tb <- point_mt_4bands %>% 

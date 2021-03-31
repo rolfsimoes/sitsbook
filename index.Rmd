@@ -24,5 +24,4 @@ source("common.R")
 
 <a href="https://github.com/e-sensing/sitsbook"><img class="cover" src="images/cover.png" width="326" align="right" alt="Cover image" /></a>
 
-
 Using time series derived from big Earth Observation data sets is one of the leading research trends in Land Use Science and Remote Sensing. One of the more promising uses of satellite time series is its application for classification of land use and land cover, since our growing demand for natural resources has caused major environmental impacts. Here, we present an open source *R* package for satellite image time series analysis called **sits**. The package support use of machine learning and deep learning techniques for classification of image time series obtained from data cubes.
