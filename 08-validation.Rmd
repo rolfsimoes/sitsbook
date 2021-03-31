@@ -6,6 +6,9 @@ This chapter presents the validation and accuracy measures available in the SITS
 
 ---
 
+```{r, include = FALSE}
+source("common.R")
+```
 
 ## Validation techniques
 
