@@ -34,7 +34,7 @@ The output format for this example is bookdown::gitbook.</p>" />
 <meta name="author" content="Gilberto Queiroz" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -359,17 +359,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb79-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-6"></a>                   <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
 <span id="cb79-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-7"></a>                   <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
 <span id="cb79-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-8"></a>                   <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb79-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-9"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb79-10"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-10"></a></span>
-<span id="cb79-11"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-11"></a><span class="co"># classify the raster image</span></span>
-<span id="cb79-12"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-12"></a>sinop_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(sinop, <span class="dt">ml_model =</span> xgb_model, </span>
-<span id="cb79-13"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-13"></a>                             <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">1</span>, </span>
-<span id="cb79-14"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-14"></a>                             <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb79-15"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-15"></a></span>
-<span id="cb79-16"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-16"></a><span class="co"># label the probability file </span></span>
-<span id="cb79-17"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-17"></a><span class="co"># (by default selecting the class with higher probability)</span></span>
-<span id="cb79-18"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-18"></a>sinop_label &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(sinop_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb79-19"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-19"></a><span class="co">#plot(sinop_label, title = &quot;Sinop-label&quot;)</span></span></code></pre></div>
+<span id="cb79-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb79-9"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Loading required namespace: terra</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-1"></a><span class="co"># classify the raster image</span></span>
+<span id="cb81-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-2"></a>sinop_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(sinop, <span class="dt">ml_model =</span> xgb_model, </span>
+<span id="cb81-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-3"></a>                             <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">1</span>, </span>
+<span id="cb81-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-4"></a>                             <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb81-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-5"></a></span>
+<span id="cb81-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-6"></a><span class="co"># label the probability file </span></span>
+<span id="cb81-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-7"></a><span class="co"># (by default selecting the class with higher probability)</span></span>
+<span id="cb81-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-8"></a>sinop_label &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(sinop_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb81-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb81-9"></a><span class="kw">plot</span>(sinop_label, <span class="dt">title =</span> <span class="st">&quot;Sinop-label&quot;</span>)</span></code></pre></div>
+<p><img src="sitsbook_files/figure-html/unnamed-chunk-59-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="final-remarks-1" class="section level2">
