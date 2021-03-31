@@ -2,7 +2,7 @@
 
 ---
 
-This vignette describes a Bayesian smoothing method to reclassify the pixels,
+This chapter describes a Bayesian smoothing method to reclassify the pixels,
 based on the machine learning probabilities. We consider that the output of the
 machine learning algorithm provides, for each pixel, the information on the probability
 of such pixel belonging to each of the target classes. Usually, we label a pixel
@@ -124,6 +124,7 @@ library(sitsdata)
 
 ```{r}
 # Retrieve the data for the Mato Grosso state
+data("samples_matogrosso_mod13q1")
 
 # select the bands "ndvi", "evi"
 samples_2bands <- sits_select(samples_matogrosso_mod13q1, bands = c("NDVI", "EVI"))
@@ -154,15 +155,8 @@ raster_probs_bayes <- sits_smooth(raster_probs, output_dir = tempdir())
 raster_class <- sits_label_classification(raster_probs_bayes, output_dir = tempdir())
 ```
 
-
-```{r, eval = FALSE}
-# plot the smoothened image
-plot(raster_class)
-```
-
 The result is shown below.
 ```{r, out.width = "90%", echo = FALSE, fig.align="center", fig.cap="Classified image post-processed with Bayesian smoothing. The image coordinates ({\\it meters}) shown at vertical and horizontal axis are in MODIS sinusoidal projection."}
-
-knitr::include_graphics("images/sinop_bayes.png")
-
+# plot the smoothened image
+plot(raster_class)
 ```
