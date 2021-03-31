@@ -1,3 +1,5 @@
+# (PART) Post classification {-}
+
 # Post classification smoothing using Bayesian techniques in SITS
 
 ---

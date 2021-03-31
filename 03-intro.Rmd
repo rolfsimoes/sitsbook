@@ -1,3 +1,5 @@
+# (PART) Overview {-}
+
 # Introduction
 
 ```{r, include = FALSE}
@@ -334,12 +336,3 @@ plot(label_bayes)
 Current approaches to image time series analysis still use a limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like the beginning, peak, and length of growing season [@Brown2013], [@Kastens2017], [@Estel2015], [@Pelletier2016]. These phenological parameters are then fed in specialized classifiers such as TIMESAT [@Jonsson2004]. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets [@James2013].
 
 Package **sits** can use the full depth of satellite image time series to create larger dimensional spaces. We tested different methods of extracting attributes from time series data, including those reported by @Pelletier2016 and @Kastens2017. We conclude that part of the information in the raw time series is lost after filtering. Thus, the method we developed uses all the data available in the time series samples. The idea is to have as many temporal attributes as possible, increasing the classification space's dimension. Our experiments found that modern statistical models such as support vector machines and random forests perform better in high-dimensional spaces than in lower-dimensional ones. 
-
-## Acknowledgements
-
-The authors would like to thank all the researchers that provided data samples used in the examples: Alexandre Coutinho, Julio Esquerdo, and Joao Antunes (Brazilian Agricultural Research Agency, Brazil) who provided ground samples for "soybean-fallow", "fallow-cotton", "soybean-cotton", "soybean-corn", "soybean-millet", "soybean-sunflower", and "pasture" classes; Rodrigo Bergotti (National Institute for Space Research, Brazil) who provided samples for "cerrado" and "forest" classes; and Damien Arvor (Rennes University, France) who provided ground samples for "soybean-fallow" class. 
-
-This work was partially funded by the São Paulo Research Foundation (FAPESP) through the eScience Program grant 2014/08398-6. We thank the Coordination for the Improvement of Higher Education Personnel (CAPES) and National Council for Scientific and Technological Development (CNPq) grants 312151/2014-4 (GC) and 140684/2016-6 (RS). We thank Ricardo Cartaxo and Lúbia Vinhas, who provided insight and expertise to support this paper.
-
-This work has also been supported by the International Climate Initiative of the Germany Federal Ministry for the Environment, Nature Conservation, Building and Nuclear Safety under Grant Agreement 17-III-084-Global-A-RESTORE+ (``RESTORE+: Addressing Landscape Restoration on Degraded Land in Indonesia and Brazil''). 
-

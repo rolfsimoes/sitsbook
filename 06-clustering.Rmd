@@ -1,3 +1,5 @@
+# (PART) Clustering {-}
+
 # Time Series Clustering to Improve the Quality of Training Samples
 
 ```{r, include = FALSE}
@@ -91,8 +93,6 @@ As an alternative for hierarchical clustering for quality control of training sa
 The main steps of our proposed method for quality assessment of satellite image time series are shown in the figure below. The method uses self-organizing maps (SOM) to perform dimensionality reduction while preserving the topology of original datasets. Since SOM preserves the topological structure of neighborhoods in multiple dimensions, the resulting 2D map can be used as a set of clusters. Training samples that belong to the same class will usually be neighbors in 2D space. The neighbors of each neuron of a SOM map are also expected to be similar.  
 
 ```{r, out.width = "90%", out.height = "90%", echo = FALSE, fig.align="center", fig.cap="Using SOM for class noise reduction"}
-
-library(sits.docs)
 
 knitr::include_graphics("images/methodology_bayes_som.png")
 ```

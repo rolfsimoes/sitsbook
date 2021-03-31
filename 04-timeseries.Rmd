@@ -1,3 +1,5 @@
+# (PART) Time series {-}
+
 # Acessing time series information in SITS
 
 ```{r, include = FALSE}

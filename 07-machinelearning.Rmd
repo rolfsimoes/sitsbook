@@ -1,3 +1,5 @@
+# (PART) Classification {-}
+
 # Machine Learning for Data Cubes using the SITS package
 
 ```{r, include = FALSE}
