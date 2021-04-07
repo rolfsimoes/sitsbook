@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
+  <title>Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
   <meta name="description" content="This book describes the sits package." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+  <meta property="og:title" content="Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+  <meta name="twitter:title" content="Chapter 4 Time Series Clustering to Improve the Quality of Training Samples | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   
   <meta name="twitter:description" content="This book describes the sits package." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -31,14 +31,14 @@
 <meta name="author" content="Gilberto Queiroz" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="satellite-image-time-series-filtering-with-sits.html"/>
+<link rel="prev" href="working-with-time-series.html"/>
 <link rel="next" href="machine-learning-for-data-cubes-using-the-sits-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
-<li><a href="index.html#publications-using-sits">Publications using <strong>sits</strong></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
@@ -152,43 +152,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#workflow"><i class="fa fa-check"></i><b>1.1</b> Workflow</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in <strong>sits</strong></a><ul>
-<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>1.2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
-<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#using-stac-to-access-image-data-cubes"><i class="fa fa-check"></i><b>1.2.2</b> Using STAC to Access Image Data Cubes</a></li>
-<li class="chapter" data-level="1.2.3" data-path="introduction.html"><a href="introduction.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>1.2.3</b> Defining a data cube using files</a></li>
-</ul></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#workflow-and-api"><i class="fa fa-check"></i><b>1.1</b> Workflow and API</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in sits</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#handling-satellite-image-time-series-in-sits"><i class="fa fa-check"></i><b>1.3</b> Handling satellite image time series in <strong>sits</strong></a><ul>
 <li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#data-structure"><i class="fa fa-check"></i><b>1.3.1</b> Data structure</a></li>
 <li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#obtaining-time-series-data"><i class="fa fa-check"></i><b>1.3.2</b> Obtaining time series data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#filtering-techniques"><i class="fa fa-check"></i><b>1.4</b> Filtering techniques</a></li>
-<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#clustering-for-sample-quality-control-using-self-organizing-maps"><i class="fa fa-check"></i><b>1.5</b> Clustering for sample quality control using self-organizing maps</a></li>
-<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#classification-using-machine-learning"><i class="fa fa-check"></i><b>1.6</b> Classification using machine learning</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#validation-techniques"><i class="fa fa-check"></i><b>1.7</b> Validation techniques</a></li>
-<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.8</b> Cube classification</a><ul>
-<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#steps-for-cube-classification"><i class="fa fa-check"></i><b>1.8.1</b> Steps for cube classification</a></li>
-<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#adjustments-for-improved-performance"><i class="fa fa-check"></i><b>1.8.2</b> Adjustments for improved performance</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sample-quality-control-using-clustering"><i class="fa fa-check"></i><b>1.4</b> Sample quality control using clustering</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#classification-using-machine-learning"><i class="fa fa-check"></i><b>1.5</b> Classification using machine learning</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.6</b> Cube classification</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#smoothing-and-labelling-of-raster-data-after-classification"><i class="fa fa-check"></i><b>1.7</b> Smoothing and Labelling of raster data after classification</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#validation-techniques"><i class="fa fa-check"></i><b>1.8</b> Validation techniques</a></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#final-remarks"><i class="fa fa-check"></i><b>1.9</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#smoothing-and-labelling-of-raster-data-after-classification"><i class="fa fa-check"></i><b>1.9</b> Smoothing and Labelling of raster data after classification</a></li>
-<li class="chapter" data-level="1.10" data-path="introduction.html"><a href="introduction.html#final-remarks"><i class="fa fa-check"></i><b>1.10</b> Final remarks</a></li>
+<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a><ul>
+<li class="chapter" data-level="2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#using-stac-to-access-image-collection"><i class="fa fa-check"></i><b>2.2</b> Using STAC to Access Image Collection</a></li>
+<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-in-amazon-web-services"><i class="fa fa-check"></i><b>2.3</b> Accessing data cubes in Amazon Web Services</a></li>
+<li class="chapter" data-level="2.4" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-the-brazil-data-cube"><i class="fa fa-check"></i><b>2.4</b> Accessing the Brazil Data Cube</a></li>
+<li class="chapter" data-level="2.5" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>2.5</b> Defining a data cube using files</a></li>
+<li class="chapter" data-level="2.6" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#regularizing-data-cubes"><i class="fa fa-check"></i><b>2.6</b> Regularizing data cubes</a></li>
 </ul></li>
-<li class="part"><span><b>II Time series</b></span></li>
-<li class="chapter" data-level="2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html"><i class="fa fa-check"></i><b>2</b> Acessing time series information in SITS</a><ul>
-<li class="chapter" data-level="2.1" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>2.1</b> Data structures for satellite time series</a></li>
-<li class="chapter" data-level="2.2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>2.2</b> Utilities for handling time series</a></li>
-<li class="chapter" data-level="2.3" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#time-series-visualisation"><i class="fa fa-check"></i><b>2.3</b> Time series visualisation</a></li>
-<li class="chapter" data-level="2.4" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Obtaining time series data from data cubes</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html"><i class="fa fa-check"></i><b>3</b> Satellite Image Time Series Filtering with <strong>sits</strong></a><ul>
-<li class="chapter" data-level="3.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#filtering-techniques-in-sits"><i class="fa fa-check"></i><b>3.1</b> Filtering techniques in <strong>sits</strong></a></li>
-<li class="chapter" data-level="3.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#common-interface-to-sits-filter-functions"><i class="fa fa-check"></i><b>3.2</b> Common interface to <strong>sits</strong> filter functions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.2.1</b> Savitzky–Golay filter</a></li>
-<li class="chapter" data-level="3.2.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#whittaker-filter"><i class="fa fa-check"></i><b>3.2.2</b> Whittaker filter</a></li>
-<li class="chapter" data-level="3.2.3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#envelope-filter"><i class="fa fa-check"></i><b>3.2.3</b> Envelope filter</a></li>
+<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a><ul>
+<li class="chapter" data-level="3.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>3.1</b> Data structures for satellite time series</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>3.2</b> Utilities for handling time series</a></li>
+<li class="chapter" data-level="3.3" data-path="working-with-time-series.html"><a href="working-with-time-series.html#time-series-visualisation"><i class="fa fa-check"></i><b>3.3</b> Time series visualisation</a></li>
+<li class="chapter" data-level="3.4" data-path="working-with-time-series.html"><a href="working-with-time-series.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>3.4</b> Obtaining time series data from data cubes</a></li>
+<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.5.1</b> Savitzky–Golay filter</a></li>
+<li class="chapter" data-level="3.5.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#whittaker-filter"><i class="fa fa-check"></i><b>3.5.2</b> Whittaker filter</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Clustering</b></span></li>
+<li class="part"><span><b>II Clustering</b></span></li>
 <li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
 <li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
 <li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
@@ -202,32 +197,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
-<li class="part"><span><b>IV Classification</b></span></li>
+<li class="part"><span><b>III Classification</b></span></li>
 <li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
-<li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#data-used-in-the-machine-learning-examples"><i class="fa fa-check"></i><b>5.2</b> Data used in the machine learning examples</a></li>
-<li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.3</b> Visualizing Samples</a></li>
-<li class="chapter" data-level="5.4" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.4</b> Common interface to machine learning and deeplearning models</a></li>
-<li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#random-forests"><i class="fa fa-check"></i><b>5.5</b> Random forests</a></li>
-<li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.6</b> Support Vector Machines</a></li>
-<li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.7</b> Extreme Gradient Boosting</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.8</b> Deep learning using multi-layer perceptrons</a></li>
-<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
-<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
-<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.11</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.12" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.12</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.2</b> Visualizing Samples</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.3</b> Common interface to machine learning and deeplearning models</a></li>
+<li class="chapter" data-level="5.4" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#random-forests"><i class="fa fa-check"></i><b>5.4</b> Random forests</a></li>
+<li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
+<li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.8</b> 1D Convolutional Neural Networks</a></li>
+<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.9</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.10</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#defining-a-data-cube-using-files-organised-as-raster-bricks"><i class="fa fa-check"></i><b>6.2</b> Defining a data cube using files organised as raster bricks</a></li>
 <li class="chapter" data-level="6.3" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#classification-using-machine-learning-1"><i class="fa fa-check"></i><b>6.3</b> Classification using machine learning</a></li>
 <li class="chapter" data-level="6.4" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cube-classification-1"><i class="fa fa-check"></i><b>6.4</b> Cube classification</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#steps-for-cube-classification-1"><i class="fa fa-check"></i><b>6.4.1</b> Steps for cube classification</a></li>
-<li class="chapter" data-level="6.4.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#adjustments-for-improved-performance-1"><i class="fa fa-check"></i><b>6.4.2</b> Adjustments for improved performance</a></li>
+<li class="chapter" data-level="6.4.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#steps-for-cube-classification"><i class="fa fa-check"></i><b>6.4.1</b> Steps for cube classification</a></li>
+<li class="chapter" data-level="6.4.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#adjustments-for-improved-performance"><i class="fa fa-check"></i><b>6.4.2</b> Adjustments for improved performance</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
 </ul></li>
-<li class="part"><span><b>V Post classification</b></span></li>
+<li class="part"><span><b>IV Post classification</b></span></li>
 <li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
 <li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
@@ -252,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>sits</strong>: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>sits</strong>: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</a>
           </h1>
         </div>
 
@@ -269,14 +262,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Clustering for sample quality control</h2>
 <p>Recent results show that it is feasible to apply machine learning methods to SITS analysis in large areas of 100 million ha or more <span class="citation">(Picoli et al. 2018; Simoes et al. 2020; Parente et al. 2019; Griffiths et al. 2019)</span>. Experience with machine learning methods has established that the limiting factor in obtaining good results is the number and quality of training samples. Large and accurate data sets are better, no matter the algorithm used <span class="citation">(Maxwell, Warner, and Fang 2018)</span>; increasing the training sample size results in better classification accuracy <span class="citation">(Thanh Noi and Kappas 2018)</span>. Therefore, using machine learning for SITS analysis requires large and good quality training sets.</p>
 <p>One of the key challenges when using samples to train machine learning classification models is assessing their quality. Noisy and imperfect training samples can have a negative effect on classification performance <span class="citation">(Frenay and Verleysen 2014)</span>. There are two main sources of noise and errors in satellite image time series. One effect is , caused by clouds and inconsistencies in data calibration. The second effect is , when the label assigned to the sample is wrongly attributed. Class noise effects are common on large data sets. In particular, interpreters tend to group samples with different properties in the same category. For this reason, one needs good methods for quality control of large training data sets associated with satellite image time series. Our work thus addresses the question: </p>
-<p>Many factors lead to  in SITS. One of the main problems is the inherent variability of class signatures in space and time. When training data is collected over a large geographic region, natural variability of vegetation phenology can result in different patterns being assigned to the same label. Phenological patterns can vary spatially across a region and are strongly correlated with climate variations. A related issue is the limitation of crisp boundaries to describe the natural world. Class definition use idealised descriptions (e.g., “a savanna woodland has tree cover of 50% to 90% ranging from 8 to 15 meters in height”). However, in practice, the boundaries between classes are fuzzy and sometimes overlap, making it hard to distinguish between them. Class noise can also result from labeling errors. Even trained analysts can make errors in class attributions. Despite the fact that machine learning techniques are robust to errors and inconsistencies in the training data, quality control of training data can make a significant difference in the resulting maps.</p>
-<p>Therefore, it is useful to apply pre-processing methods to improve the quality of the samples and to remove those that might have been wrongly labeled or that have low discriminatory power. Representative samples lead to good classification maps. <code>sits</code> provides support for two clustering methods to test sample quality: (a) Agglomerative Hierarchical Clustering (AHC); (b) Self-organizing Maps (SOM).</p>
+<p>Many factors lead to  in <em>sits</em>. One of the main problems is the inherent variability of class signatures in space and time. When training data is collected over a large geographic region, natural variability of vegetation phenology can result in different patterns being assigned to the same label. Phenological patterns can vary spatially across a region and are strongly correlated with climate variations. A related issue is the limitation of crisp boundaries to describe the natural world. Class definition use idealised descriptions (e.g., “a savanna woodland has tree cover of 50% to 90% ranging from 8 to 15 meters in height”). However, in practice, the boundaries between classes are fuzzy and sometimes overlap, making it hard to distinguish between them. Class noise can also result from labeling errors. Even trained analysts can make errors in class attributions. Despite the fact that machine learning techniques are robust to errors and inconsistencies in the training data, quality control of training data can make a significant difference in the resulting maps.</p>
+<p>Therefore, it is useful to apply pre-processing methods to improve the quality of the samples and to remove those that might have been wrongly labeled or that have low discriminatory power. Representative samples lead to good classification maps. The package provides support for two clustering methods to test sample quality: (a) Agglomerative Hierarchical Clustering (AHC); (b) Self-organizing Maps (SOM).</p>
 </div>
 <div id="hierachical-clustering-for-sample-quality-control" class="section level2">
 <h2><span class="header-section-number">4.2</span> Hierachical clustering for Sample Quality Control</h2>
 <div id="creating-a-dendogram" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Creating a dendogram</h3>
-<p>Cluster analysis has been used for many purposes in satellite image time series literature ranging from unsupervised classification and pattern detection <span class="citation">(Petitjean et al. 2011)</span>. Here, we are interested in the second use of clustering, using it as a way to improve training data to feed machine learning classification models. In this regard, cluster analysis can assist the identification of structural <em>time series patterns</em> and anomalous samples <span class="citation">(Frenay and Verleysen 2014)</span>.</p>
+<p>Cluster analysis has been used for many purposes in satellite image time series literature ranging from unsupervised classification and pattern detection <span class="citation">(Petitjean et al. 2011)</span>. Here, we are interested in the second use of clustering, using it as a way to improve training data to feed machine learning classification models. In this regard, cluster analysis can assist the identification of structural time series patterns and anomalous samples <span class="citation">(Frenay and Verleysen 2014)</span>.</p>
 <p>Agglomerative hierarchical clustering (AHC) is a family of methods that groups elements using a distance function to associate a real value to a pair of elements. From this distance measure, we can compute the dissimilarity between any two elements from a data set. Depending on the distance functions and linkage criteria, the algorithm decides which two clusters are merged at each iteration. AHC approach is suitable for the purposes of samples data exploration due to its visualization power and ease of use <span class="citation">(Keogh, Lin, and Truppel 2003)</span>. Moreover, AHC does not require a predefined number of clusters as an initial parameter. This is an important feature in satellite image time series clustering since defining the number of clusters present in a set of multi-attribute time series is not straightforward <span class="citation">(Aghabozorgi, Shirkhorshidi, and Wah 2015)</span>.</p>
 <p>The main result of the AHC method is a <em>dendrogram</em>. It is the ultrametric relation formed by the successive merges in the hierarchical process that can be represented by a tree. Dendrograms are quite useful to decide the number of clusters to partition the data. It shows the height where each merging happens, which corresponds to the minimum distance between two clusters defined by a <em>linkage criterion</em>. The most common linkage criteria are: <em>single-linkage</em>, <em>complete-linkage</em>, <em>average-linkage</em>, and <em>Ward-linkage</em>. Complete-linkage prioritizes the within-cluster dissimilarities, producing clusters with shorter distance samples. Complete-linkage clustering can be sensitive to outliers, which can increase the resulting intracluster data variance. As an alternative, Ward proposes criteria to minimize the data variance by means of either <em>sum-of-squares</em> or <em>sum-of-squares-error</em> <span class="citation">(Ward 1963)</span>. Ward’s intuition is that clusters of multivariate observations, such as time series, should be approximately elliptical in shape <span class="citation">(Hennig 2015)</span>. In <code>sits</code>, a dendrogram can be generated by <code>sits_dendrogram()</code>. The following codes illustrate how to create, visualize, and cut a dendrogram (for details, see <code>?sits_dendrogram()</code>).</p>
 </div>
@@ -297,14 +290,14 @@ where <span class="math inline">\(E\)</span> is the expected agreement, a random
 E=(a+b)(b+c)+(c+d)(b+d).
 \]</span></p>
 <p>Unlike other validity indexes such as Jaccard (<span class="math inline">\({J=a/(a+b+c)}\)</span>), Fowlkes-Mallows (<span class="math inline">\({FM=a/(a^2+a(b+c)+bc)^{1/2}}\)</span>), and Rand (the same as ARI without the <span class="math inline">\(E\)</span> adjustment) indices, ARI is more appropriate either when the number of clusters is outweighed by the number of labels (and <em>vice versa</em>) or when the number of samples in labels and clusters are imbalanced <span class="citation">(Hubert and Arabie 1985)</span>, which is usually the case.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-1"></a><span class="co"># take a set of patterns for 2 classes</span></span>
-<span id="cb38-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-2"></a><span class="co"># create a dendrogram, plot, and get the optimal cluster based on ARI index</span></span>
-<span id="cb38-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-3"></a>clusters &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_dendro</span>(cerrado_2classes, </span>
-<span id="cb38-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-4"></a>                                         <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;evi&quot;</span>))</span>
-<span id="cb38-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-5"></a></span>
-<span id="cb38-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-6"></a><span class="co"># show clusters samples frequency</span></span>
-<span id="cb38-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb38-7"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters)</span></code></pre></div>
-<pre><code>#&gt;          
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-1"></a><span class="co"># take a set of patterns for 2 classes</span></span>
+<span id="cb40-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-2"></a><span class="co"># create a dendrogram, plot, and get the optimal cluster based on ARI index</span></span>
+<span id="cb40-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-3"></a>clusters &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_dendro</span>(cerrado_2classes, </span>
+<span id="cb40-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-4"></a>                                         <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;evi&quot;</span>))</span>
+<span id="cb40-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-5"></a></span>
+<span id="cb40-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-6"></a><span class="co"># show clusters samples frequency</span></span>
+<span id="cb40-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-7"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt;          
 #&gt;             1   2   3   4   5   6 Total
 #&gt;   Cerrado 203  13  23  80   1  80   400
 #&gt;   Pasture   2 176  28   0 140   0   346
@@ -312,22 +305,22 @@ E=(a+b)(b+c)+(c+d)(b+d).
 <p><img src="sitsbook_files/figure-html/dendrogram-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Note in this example that almost all clusters have a predominance of either “Cerrado” or “Pasture” classes with the exception of cluster <span class="math inline">\(3\)</span>. The contingency table plotted by <code>sits_cluster_frequency()</code> shows how the samples are distributed across the clusters and help to identify two kinds of confusion. The first is relative to those small amounts of samples in clusters dominated by another class (<em>e.g.</em> clusters <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(4\)</span>, <span class="math inline">\(5\)</span>, and <span class="math inline">\(6\)</span>), while the second is relative to those samples in non-dominated clusters (<em>e.g.</em> cluster <span class="math inline">\(3\)</span>). These confusions can be an indication of samples with poor quality, and inadequacy of selected parameters for cluster analysis, or even a natural confusion due to the inherent variability of the land classes.</p>
 <p>The result of the <code>sits_cluster</code> operation is a <code>sits_tibble</code> with one additional column, called “cluster”. Thus, it is possible to remove clusters with mixed classes using standard <code>R</code> such as those in the <code>dplyr</code> package. In the example above, removing cluster <span class="math inline">\(3\)</span> can be done using the <code>dplyr::filter</code> function.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-1"></a><span class="co"># remove cluster 3 from the samples</span></span>
-<span id="cb40-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-2"></a>clusters_new &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(clusters, cluster <span class="op">!=</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb40-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-3"></a></span>
-<span id="cb40-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-4"></a><span class="co"># show new clusters samples frequency</span></span>
-<span id="cb40-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb40-5"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters_new)</span></code></pre></div>
-<pre><code>#&gt;          
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-1"></a><span class="co"># remove cluster 3 from the samples</span></span>
+<span id="cb42-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-2"></a>clusters_new &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(clusters, cluster <span class="op">!=</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb42-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-3"></a></span>
+<span id="cb42-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-4"></a><span class="co"># show new clusters samples frequency</span></span>
+<span id="cb42-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-5"></a>sits<span class="op">::</span><span class="kw">sits_cluster_frequency</span>(clusters_new)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt;          
 #&gt;             1   2   4   5   6 Total
 #&gt;   Cerrado 203  13  80   1  80   377
 #&gt;   Pasture   2 176   0 140   0   318
 #&gt;   Total   205 189  80 141  80   695</code></pre>
 <p>The resulting clusters still contained mixed labels, possibly resulting from outliers. In this case, users may want to remove the outliers and leave only the most frequent class. To do this, one can use <code>sits_cluster_clean()</code>, which removes all minority samples, as shown below.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-1"></a><span class="co"># clear clusters, leaving only the majority class in each cluster</span></span>
-<span id="cb42-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-2"></a>clean &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_clean</span>(clusters)</span>
-<span id="cb42-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-3"></a><span class="co"># show clusters samples frequency</span></span>
-<span id="cb42-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb42-4"></a><span class="kw">sits_cluster_frequency</span>(clean)</span></code></pre></div>
-<pre><code>#&gt;          
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-1"></a><span class="co"># clear clusters, leaving only the majority class in each cluster</span></span>
+<span id="cb44-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-2"></a>clean &lt;-<span class="st"> </span>sits<span class="op">::</span><span class="kw">sits_cluster_clean</span>(clusters)</span>
+<span id="cb44-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-3"></a><span class="co"># show clusters samples frequency</span></span>
+<span id="cb44-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-4"></a><span class="kw">sits_cluster_frequency</span>(clean)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt;          
 #&gt;             1   2   3   4   5   6 Total
 #&gt;   Cerrado 203   0   0  80   0  80   363
 #&gt;   Pasture   0 176  28   0 140   0   344
@@ -340,13 +333,13 @@ E=(a+b)(b+c)+(c+d)(b+d).
 <h3><span class="header-section-number">4.3.1</span> Introduction to Self-organizing Maps</h3>
 <p>As an alternative for hierarchical clustering for quality control of training samples, SITS provides a clustering technique based on self-organizing maps (SOM). SOM is a dimensionality reduction technique <span class="citation">(Kohonen 1990)</span>, where high-dimensional data is mapped into two dimensions, keeping the topological relations between data patterns. The input data is a set of training samples that are typical of a high dimension. For example, a time series of 25 instances of 4 spectral bands is a 100-dimensional data set. The general idea of SOM-based clustering is that, by projecting the high-dimensional data set of training samples into a 2D map, the units of the map (called “neurons”) compete for each sample. It is expected that good quality samples of each class should be close together in the resulting map. The neighbors of each neuron of a SOM map provide information on intra-class and inter-class variability.</p>
 <p>The main steps of our proposed method for quality assessment of satellite image time series are shown in the figure below. The method uses self-organizing maps (SOM) to perform dimensionality reduction while preserving the topology of original datasets. Since SOM preserves the topological structure of neighborhoods in multiple dimensions, the resulting 2D map can be used as a set of clusters. Training samples that belong to the same class will usually be neighbors in 2D space. The neighbors of each neuron of a SOM map are also expected to be similar.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-32"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
 <img src="images/methodology_bayes_som.png" alt="Using SOM for class noise reduction" width="90%" height="90%" />
 <p class="caption">
 Figure 4.1: Using SOM for class noise reduction
 </p>
 </div>
-<p>As the figure shows, a SOM grid is composed of units called . The algorithm computes the distances of each member of the training set to all neurons and finds the neuron closest to the input, called the best matching unit (BMU). The weights of the BMU and its neighbors are updated so as to preserve their similarity [Kohonen2013]. This mapping and adjustment procedure is done in several iterations. At each step, the extent of the change in the neurons diminishes until a convergence threshold is reached. The result is a 2D mapping of the training set, where similar elements of the input are mapped to the same neuron or to nearby ones. The resulting SOM grid combines dimensionality reduction with topological preservation.</p>
+<p>As the figure shows, a SOM grid is composed of units called . The algorithm computes the distances of each member of the training set to all neurons and finds the neuron closest to the input, called the best matching unit (BMU). The weights of the BMU and its neighbors are updated so as to preserve their similarity <span class="citation">(Kohonen 2013)</span>. This mapping and adjustment procedure is done in several iterations. At each step, the extent of the change in the neurons diminishes until a convergence threshold is reached. The result is a 2D mapping of the training set, where similar elements of the input are mapped to the same neuron or to nearby ones. The resulting SOM grid combines dimensionality reduction with topological preservation.</p>
 </div>
 <div id="using-som-for-removing-class-noise" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Using SOM for removing class noise</h3>
@@ -359,18 +352,18 @@ Figure 4.1: Using SOM for class noise reduction
 <p>As an example of the use of SOM clustering for quality control of samples, we take a dataset containing a tibble with time series samples for the Cerrado region of Brazil, the second largest biome in South America with an area of more than 2 million km2. The training samples were collected by ground surveys and high-resolution image interpretation by experts from the Brazilian National Institute for Space Research (INPE) team and partners. This set ranges from 2000 to 2017 and includes 61,073 land use and cover samples divided into 14 classes: Natural Non-vegetated, Fallow-Cotton, Millet-Cotton, Soy-Corn, Soy-Cotton, Soy-Fallow, Pasture, Shrublands (in Portuguese ), Savanna (in Portuguese , Dense Tree Savanna (in Portuguese ), Open Savanna (in Portuguese ), Planted Forest, and (14) Wetlands. In the example below, we take only 10% of the samples
 for faster processing. Users are encouraged to run the example with the full
 set of samples.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-1"></a><span class="co"># take only 10% of the samples</span></span>
-<span id="cb44-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-2"></a>samples_cerrado_mod13q1_reduced &lt;-<span class="st"> </span><span class="kw">sits_sample</span>(samples_cerrado_mod13q1, <span class="dt">frac =</span> <span class="fl">0.1</span>)</span>
-<span id="cb44-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-3"></a><span class="co"># clustering time series using SOM</span></span>
-<span id="cb44-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-4"></a>som_cluster &lt;-</span>
-<span id="cb44-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-5"></a><span class="st">    </span><span class="kw">sits_som_map</span>(</span>
-<span id="cb44-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-6"></a>        samples_cerrado_mod13q1_reduced,</span>
-<span id="cb44-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-7"></a>        <span class="dt">grid_xdim =</span> <span class="dv">15</span>,</span>
-<span id="cb44-8"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-8"></a>        <span class="dt">grid_ydim =</span> <span class="dv">15</span>,</span>
-<span id="cb44-9"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-9"></a>        <span class="dt">alpha =</span> <span class="fl">1.0</span>,</span>
-<span id="cb44-10"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-10"></a>        <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>,</span>
-<span id="cb44-11"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-11"></a>        <span class="dt">rlen =</span> <span class="dv">100</span></span>
-<span id="cb44-12"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb44-12"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-1"></a><span class="co"># take only 10% of the samples</span></span>
+<span id="cb46-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-2"></a>samples_cerrado_mod13q1_reduced &lt;-<span class="st"> </span><span class="kw">sits_sample</span>(samples_cerrado_mod13q1, <span class="dt">frac =</span> <span class="fl">0.1</span>)</span>
+<span id="cb46-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-3"></a><span class="co"># clustering time series using SOM</span></span>
+<span id="cb46-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-4"></a>som_cluster &lt;-</span>
+<span id="cb46-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-5"></a><span class="st">    </span><span class="kw">sits_som_map</span>(</span>
+<span id="cb46-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-6"></a>        samples_cerrado_mod13q1_reduced,</span>
+<span id="cb46-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-7"></a>        <span class="dt">grid_xdim =</span> <span class="dv">15</span>,</span>
+<span id="cb46-8"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-8"></a>        <span class="dt">grid_ydim =</span> <span class="dv">15</span>,</span>
+<span id="cb46-9"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-9"></a>        <span class="dt">alpha =</span> <span class="fl">1.0</span>,</span>
+<span id="cb46-10"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-10"></a>        <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>,</span>
+<span id="cb46-11"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-11"></a>        <span class="dt">rlen =</span> <span class="dv">100</span></span>
+<span id="cb46-12"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-12"></a>    )</span></code></pre></div>
 <p>The output of the <code>sits_som_map</code> is a list with 4 tibbles:</p>
 <ul>
 <li><p>the original set of time series with two additional columns for each time series: <code>id_sample</code> (the original id of each sample) and <code>id_neuron</code> (the id of the neuron to which it belongs).</p></li>
@@ -378,8 +371,8 @@ set of samples.</p>
 <li><p>the SOM grid
 To plot the SOM grid, use <code>plot()</code>. The neurons are labelled using the majority voting.</p></li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb45-1"></a><span class="kw">plot</span>(som_cluster)</span></code></pre></div>
-<p><img src="sitsbook_files/figure-html/unnamed-chunk-34-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb47-1"></a><span class="kw">plot</span>(som_cluster)</span></code></pre></div>
+<p><img src="sitsbook_files/figure-html/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Looking at the SOM grid, one can see that most of the neurons of a class are located close to each other. There are outliers, e.g., some “Open Savanna” neurons are located amidst “Shrublands” neurons. This mixture is a consequence of the continuous nature of natural vegetation cover in the Brazilian Cerrado. The transition between areas of open savanna and shrublands is not always well defined; moreover, it is dependent on factors such as climate and latitude.</p>
 <p>To identifies noisy samples, we take the result of the <code>sits_som_map</code> function as the first argument to the function <code>sits_som_clean_samples</code>. This function finds out which samples are noisy, those that are clean, and some that need to be further examined by the user. It uses the <code>prior_threshold</code> and <code>posterior_threshold</code> parameters according to the following rules:</p>
 <ul>
@@ -389,15 +382,15 @@ To plot the SOM grid, use <code>plot()</code>. The neurons are labelled using th
 such samples to find out whether they are in fact noisy or not.</li>
 </ul>
 <p>The default value for both <code>prior_threshold</code> and <code>posterior_threshold</code> is 60%. The <code>sits_som_clean_samples</code> has an additional parameter (<code>keep</code>) which indicates which samples should be kept in the set based on their prior and posterior probabilities of being noisy and the assigned label. The default value for <code>keep</code> is <code>c("clean", "analyze")</code>. As a result of the cleaning, about 900 samples have been considered to be noisy and thus removed.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-1"></a>new_samples &lt;-<span class="st"> </span><span class="kw">sits_som_clean_samples</span>(som_cluster, </span>
-<span id="cb46-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-2"></a>                                      <span class="dt">prior_threshold =</span> <span class="fl">0.6</span>,</span>
-<span id="cb46-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-3"></a>                                      <span class="dt">posterior_threshold =</span> <span class="fl">0.6</span>,</span>
-<span id="cb46-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-4"></a>                                      <span class="dt">keep =</span> <span class="kw">c</span>(<span class="st">&quot;clean&quot;</span>, <span class="st">&quot;analyze&quot;</span>))</span>
-<span id="cb46-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-5"></a><span class="co"># find out how many samples are evaluated as &quot;clean&quot; or &quot;analyze&quot;</span></span>
-<span id="cb46-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-6"></a>new_samples <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb46-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(eval) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb46-8"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb46-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">count =</span> dplyr<span class="op">::</span><span class="kw">n</span>(), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
-<pre><code>#&gt; # A tibble: 2 x 2
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-1"></a>new_samples &lt;-<span class="st"> </span><span class="kw">sits_som_clean_samples</span>(som_cluster, </span>
+<span id="cb48-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-2"></a>                                      <span class="dt">prior_threshold =</span> <span class="fl">0.6</span>,</span>
+<span id="cb48-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-3"></a>                                      <span class="dt">posterior_threshold =</span> <span class="fl">0.6</span>,</span>
+<span id="cb48-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-4"></a>                                      <span class="dt">keep =</span> <span class="kw">c</span>(<span class="st">&quot;clean&quot;</span>, <span class="st">&quot;analyze&quot;</span>))</span>
+<span id="cb48-5"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-5"></a><span class="co"># find out how many samples are evaluated as &quot;clean&quot; or &quot;analyze&quot;</span></span>
+<span id="cb48-6"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-6"></a>new_samples <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-7"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(eval) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-8"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">count =</span> dplyr<span class="op">::</span><span class="kw">n</span>(), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 2 x 2
 #&gt;   eval    count
 #&gt;   &lt;chr&gt;   &lt;int&gt;
 #&gt; 1 analyze   652
@@ -409,20 +402,20 @@ such samples to find out whether they are in fact noisy or not.</li>
 a 5-fold validation on the original and on the cleaned sample. We use the function
 <code>sits_kfold_validate</code>. As the results show, the SOM procedure is useful, since
 the global accuracy improves from 91% to 95%.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-1"></a>assess_orig &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(samples_cerrado_mod13q1_reduced, </span>
-<span id="cb48-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb48-2"></a>                                   <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>())</span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb49-1"></a>assess_new &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(new_samples, </span>
-<span id="cb49-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb49-2"></a>                                   <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-1"></a>assess_orig &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(samples_cerrado_mod13q1_reduced, </span>
+<span id="cb50-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-2"></a>                                   <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb51-1"></a>assess_new &lt;-<span class="st"> </span><span class="kw">sits_kfold_validate</span>(new_samples, </span>
+<span id="cb51-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb51-2"></a>                                   <span class="dt">ml_method =</span> <span class="kw">sits_svm</span>())</span></code></pre></div>
 <p>An additional way of evaluating the quality of samples is to examine the internal
 mixture inside neurons with the same label. We call a group of neurons sharing
 the same label as a “cluster”. Given a SOM map, the function <code>sits_som_evaluate_cluster</code>
 examines all clusters to find out the percentage of samples contained in it which do not share its label. This information is saved as a tibble and can also
 be visualized.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-1"></a><span class="co"># evaluate the misture in the SOM clusters</span></span>
-<span id="cb50-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-2"></a>cluster_mixture &lt;-<span class="st"> </span><span class="kw">sits_som_evaluate_cluster</span>(som_cluster)</span>
-<span id="cb50-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-3"></a><span class="co"># plot the mixture information.</span></span>
-<span id="cb50-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb50-4"></a><span class="kw">plot</span>(cluster_mixture)</span></code></pre></div>
-<p><img src="sitsbook_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb52-1"></a><span class="co"># evaluate the misture in the SOM clusters</span></span>
+<span id="cb52-2"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb52-2"></a>cluster_mixture &lt;-<span class="st"> </span><span class="kw">sits_som_evaluate_cluster</span>(som_cluster)</span>
+<span id="cb52-3"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb52-3"></a><span class="co"># plot the mixture information.</span></span>
+<span id="cb52-4"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#cb52-4"></a><span class="kw">plot</span>(cluster_mixture)</span></code></pre></div>
+<p><img src="sitsbook_files/figure-html/unnamed-chunk-44-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="conclusion" class="section level2">
@@ -439,7 +432,7 @@ be visualized.</p>
           </div>
         </div>
       </div>
-<a href="satellite-image-time-series-filtering-with-sits.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-time-series.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="machine-learning-for-data-cubes-using-the-sits-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
