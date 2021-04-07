@@ -21,9 +21,9 @@ Generalizing [@Appel2019], we consider the following definition:
 3. A set of intervals specifies the temporal dimension.
 4. For every combination of dimensions, a cell has a single value.
 
-Data cubes are particularly amenable for machine learning; their data can be transformed into arrays in memory, fed to training and classification algorithms. Conceptually, a data cube defines a compact space. For all positions inside its spatial temporal extent, it is possible to obtain a valid set of values from every band of the images which are included in it (see Figure \@ref(fig:dc_concept)). 
+Data cubes are particularly amenable for machine learning; their data can be transformed into arrays in memory, fed to training and classification algorithms. Conceptually, a data cube defines a compact space. For all positions inside its spatial temporal extent, it is possible to obtain a valid set of values from every band of the images which are included in it (see Figure \@ref(fig:dcconcept)). 
 
-```{r dc_concept, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Conceptual view of data cubes (source: Kopp et al., 2019)"}
+```{r dcconcept, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Conceptual view of data cubes (source: Kopp et al., 2019)"}
 knitr::include_graphics("images/data_cubes_conception.png")
 ```
 
@@ -33,15 +33,15 @@ This idealized vision of data cubes does not correspond to the reality. Data ava
 2. All images are reprojected to a cartographical projection following well-established standards.
 3. Image collections are usually cropped into a tiling system, where each tile is associated to a different timeline than the other tiles. 
 
-The use of tiling systems for ARD data has been adopted by space agencies for many land satellites. For example, the Sentinel-2 tiling system uses the Military Grid Reference System (MGRS) and its naming convention derived from the UTM (Universal Transverse Mercator). Use of tiling system enables users to more easily choose an area of interest. Figure \@ref(fig:tiles_ro) with the location of two Sentinel-2 tiles (20LLP and 20LKP) covering part of the state of Rondonia, Brazil. 
+The use of tiling systems for ARD data has been adopted by space agencies for many land satellites. For example, the Sentinel-2 tiling system uses the Military Grid Reference System (MGRS) and its naming convention derived from the UTM (Universal Transverse Mercator). Use of tiling system enables users to more easily choose an area of interest. Figure \@ref(fig:tilesro) with the location of two Sentinel-2 tiles (20LLP and 20LKP) covering part of the state of Rondonia, Brazil. 
 
-```{r tiles_ro, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Illustration of Sentinel-2 tiling system (source: www.remotepixel.ca)."}
+```{r tilesro, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Illustration of Sentinel-2 tiling system (source: www.remotepixel.ca)."}
 knitr::include_graphics("images/sentinel-2_tiles_rondonia.png")
 ```
 
-There are important distinctions between ARD image collections and data cubes. Image collections do not guarantee that every pixel of an image has a valid value, since ARD still contains cloudy pixels. Also, each tile of an image collection has a unique timeline. Using the Sentinel-2 level 2A image collection as an example, consider neighboring tiles "20LLP" and "20LKP". Figure \@ref(fig:images_ro) shows images of tile "20LKP" for different dates. Some of images have a significant number of clouds. Ideally, these clouds should be replaced by a valid value before being ingested into a data cube. 
+There are important distinctions between ARD image collections and data cubes. Image collections do not guarantee that every pixel of an image has a valid value, since ARD still contains cloudy pixels. Also, each tile of an image collection has a unique timeline. Using the Sentinel-2 level 2A image collection as an example, consider neighboring tiles "20LLP" and "20LKP". Figure \@ref(fig:imagesro) shows images of tile "20LKP" for different dates. Some of images have a significant number of clouds. Ideally, these clouds should be replaced by a valid value before being ingested into a data cube. 
 
-```{r images_ro, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Sentinel-2 for tile 20LKP in different dates (source: authors)."}
+```{r imagesro, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Sentinel-2 for tile 20LKP in different dates (source: authors)."}
 knitr::include_graphics("images/sentinel-2_20lkp_images.png")
 ```
 
@@ -79,7 +79,7 @@ The AWS bands in 10m resolution are "B02", "B03", "B04", and "B08".
 The  20m bands are "B02", "B03", "B04", "B05", "B06", "BO7", B08", "B8A", "B11", and "B12". 
 All 12 bands are available at 60m resolution. Thus, to create data cubes in AWS using  Sentinel-2/2A, users need to specify the `s2_resolution` parameter. In the example below, the user selects two Sentinel-2A tiles following the S2A tiling system. Each S2A tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.
 
-```{r}
+```{r, eval = FALSE}
 # creating a data cube in AWS
 s2_cube <- sits_cube(source = "AWS",
                      name = "T20LKP_2018_2019",
@@ -118,7 +118,7 @@ Sys.setenv(
 Creating a data cube using the BDC is similar to what is required for AWS. The user 
 needs to specific an image collection, a spatio-temporal extent, bands, and optionally a bounding box.  In the example, we have selected the  "CB4_64_16D_STK-1" collection (CBERS AWFI images at 16 days) that complies with the BDC large tile specification. Other collections include "LC8_30_16D_STK-1" (Landsat OLI images at 16 days) and "S2_10_16D_STK-1" (Sentinel-2 MSI images at 16 days).
 
-```{r}
+```{r, eval = FALSE}
 cbers_tile <- sits_cube(
     source = "BDC",
     collection = "CB4_64_16D_STK-1",
@@ -134,7 +134,7 @@ cbers_tile <- sits_cube(
 
 To define a data cube using plain files (without STAC information), users should organise files in a single directory. All files should have the same spatial resolution and same projection. Each file should contain a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and JPEG 2000) do not include time information, each filename needs to include date and band information. For example, `CBERS-4_AWFI_B13_2018-02-02.tif` is a valid name. The user should provide parsing information to allow *sits* to extract the band and the date. In the example above, the parsing info is `c("X1", "X2", "band", "date")` and the delimiter is `"_"`.
 
-```{r}
+```{r, eval = FALSE}
 library(sits)
 # Create a cube based on a stack of CBERS data
 data_dir <- system.file("extdata/raster/cbers", package = "sits")
