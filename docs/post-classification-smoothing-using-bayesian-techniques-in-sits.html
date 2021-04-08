@@ -29,9 +29,10 @@
 <meta name="author" content="Alexandre Carvalho" />
 <meta name="author" content="Karine Ferreira" />
 <meta name="author" content="Gilberto Queiroz" />
+<meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,9 +207,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.8</b> 1D Convolutional Neural Networks</a></li>
-<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.9</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.10</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.9</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
@@ -341,15 +341,15 @@ x_{i,k} +
 <div id="use-of-bayesian-smoothing-in-sits" class="section level2">
 <h2><span class="header-section-number">7.3</span> Use of Bayesian smoothing in SITS</h2>
 <p>Doing post-processing using Bayesian smoothing in SITS is straightforward. The result of the <code>sits_classify</code> function applied to a data cube is set of more probability images, one per requested clasification interval. The next step is to apply the <code>sits_label_classification</code> function. By default, this function selects the most likely class for each pixel considering only the probabilities of each class for each pixel. To allow for Bayesian smooting, it suffices to include the <code>smoothing = bayesian</code> parameter. If desired, the <code>variance</code> parameter (associated to the hyperparameter <span class="math inline">\(\sigma^2_k\)</span> described above) can control the degree of smoothness.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-1"></a><span class="co"># Retrieve the data for the Mato Grosso state</span></span>
-<span id="cb75-2"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
-<span id="cb75-3"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-3"></a></span>
-<span id="cb75-4"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-4"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
-<span id="cb75-5"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-5"></a>samples_2bands &lt;-<span class="st"> </span><span class="kw">sits_select</span>(samples_matogrosso_mod13q1, <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
-<span id="cb75-6"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-6"></a></span>
-<span id="cb75-7"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-7"></a><span class="co">#select a rfor model</span></span>
-<span id="cb75-8"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-8"></a>xgb_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(samples_2bands, <span class="dt">ml_method =</span> <span class="kw">sits_xgboost</span>())</span></code></pre></div>
-<pre class="sourceCode"><code>#&gt; [1]  train-mlogloss:2.009944+0.000891    test-mlogloss:2.022906+0.001490 
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-1"></a><span class="co"># Retrieve the data for the Mato Grosso state</span></span>
+<span id="cb73-2"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
+<span id="cb73-3"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-3"></a></span>
+<span id="cb73-4"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-4"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
+<span id="cb73-5"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-5"></a>samples_2bands &lt;-<span class="st"> </span><span class="kw">sits_select</span>(samples_matogrosso_mod13q1, <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb73-6"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-6"></a></span>
+<span id="cb73-7"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-7"></a><span class="co">#select a rfor model</span></span>
+<span id="cb73-8"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb73-8"></a>xgb_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(samples_2bands, <span class="dt">ml_method =</span> <span class="kw">sits_xgboost</span>())</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; [1]  train-mlogloss:2.009944+0.000891    test-mlogloss:2.022905+0.001490 
 #&gt; Multiple eval metrics are present. Will use test_mlogloss for early stopping.
 #&gt; Will train until test_mlogloss hasn&#39;t improved in 20 rounds.
 #&gt; 
@@ -363,30 +363,30 @@ x_{i,k} +
 #&gt; [81] train-mlogloss:0.043003+0.000582    test-mlogloss:0.191353+0.011066 
 #&gt; [91] train-mlogloss:0.042301+0.000387    test-mlogloss:0.190409+0.011007 
 #&gt; [100]    train-mlogloss:0.042005+0.000349    test-mlogloss:0.189919+0.011470</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-1"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
-<span id="cb77-2"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-2"></a></span>
-<span id="cb77-3"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-3"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
-<span id="cb77-4"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-4"></a>raster_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb77-5"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-5"></a>                   <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb77-6"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-6"></a>                   <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb77-7"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-7"></a>                   <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
-<span id="cb77-8"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-8"></a>                   <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb77-9"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-9"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>),</span>
-<span id="cb77-10"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-10"></a>)</span>
-<span id="cb77-11"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-11"></a></span>
-<span id="cb77-12"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-12"></a><span class="co"># classify the raster image and generate a probability file</span></span>
-<span id="cb77-13"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-13"></a>raster_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(raster_cube, <span class="dt">ml_model =</span> xgb_model, </span>
-<span id="cb77-14"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-14"></a>                              <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">2</span>, </span>
-<span id="cb77-15"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-15"></a>                              <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb77-16"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-16"></a></span>
-<span id="cb77-17"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-17"></a><span class="co"># smooth the result with a bayesian filter</span></span>
-<span id="cb77-18"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-18"></a>raster_probs_bayes &lt;-<span class="st"> </span><span class="kw">sits_smooth</span>(raster_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb77-19"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-19"></a></span>
-<span id="cb77-20"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-20"></a><span class="co"># label the smoothed probability images</span></span>
-<span id="cb77-21"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb77-21"></a>raster_class &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(raster_probs_bayes, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-1"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb75-2"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-2"></a></span>
+<span id="cb75-3"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-3"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
+<span id="cb75-4"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-4"></a>raster_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb75-5"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-5"></a>                   <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb75-6"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-6"></a>                   <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb75-7"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-7"></a>                   <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
+<span id="cb75-8"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-8"></a>                   <span class="dt">data_dir =</span> data_dir,</span>
+<span id="cb75-9"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-9"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>),</span>
+<span id="cb75-10"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-10"></a>)</span>
+<span id="cb75-11"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-11"></a></span>
+<span id="cb75-12"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-12"></a><span class="co"># classify the raster image and generate a probability file</span></span>
+<span id="cb75-13"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-13"></a>raster_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(raster_cube, <span class="dt">ml_model =</span> xgb_model, </span>
+<span id="cb75-14"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-14"></a>                              <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">2</span>, </span>
+<span id="cb75-15"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-15"></a>                              <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb75-16"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-16"></a></span>
+<span id="cb75-17"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-17"></a><span class="co"># smooth the result with a bayesian filter</span></span>
+<span id="cb75-18"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-18"></a>raster_probs_bayes &lt;-<span class="st"> </span><span class="kw">sits_smooth</span>(raster_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb75-19"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-19"></a></span>
+<span id="cb75-20"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-20"></a><span class="co"># label the smoothed probability images</span></span>
+<span id="cb75-21"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#cb75-21"></a>raster_class &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(raster_probs_bayes, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span></code></pre></div>
 The result is shown below.
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-68-1.png" alt="Classified image post-processed with Bayesian smoothing. The image coordinates ({\it meters}) shown at vertical and horizontal axis are in MODIS sinusoidal projection." width="90%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-65"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-65-1.png" alt="Classified image post-processed with Bayesian smoothing. The image coordinates ({\it meters}) shown at vertical and horizontal axis are in MODIS sinusoidal projection." width="90%" />
 <p class="caption">
 Figure 7.1: Classified image post-processed with Bayesian smoothing. The image coordinates ({}) shown at vertical and horizontal axis are in MODIS sinusoidal projection.
 </p>
