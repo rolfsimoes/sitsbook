@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # (PART) Classification {-}
 
 # Machine Learning for Data Cubes using the SITS package
@@ -219,9 +224,9 @@ tCNN_model <- sits_train(samples_filtered,
                           cnn_kernels          = c(3, 3, 3),
                           cnn_activation       = 'relu',
                           cnn_L2_rate          = 1e-06,
-                          cnn_dropout_rates    = c(0.30, 0.30, 0.30),
+                          cnn_dropout_rates    = c(0.20, 0.20, 0.20),
                           mlp_layers           = c(512, 512, 512),
-                          mlp_activation       = 'elu',
+                          mlp_activation       = 'relu',
                           mlp_dropout_rates    = c(0.10, 0.20, 0.30),
                           epochs               = 100,
                           batch_size           = 64,

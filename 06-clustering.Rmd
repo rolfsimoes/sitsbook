@@ -101,7 +101,7 @@ As the figure shows, a SOM grid is composed of units called \emph{neurons}. The 
 
 ### Using SOM for removing class noise
 
-The process of clustering with SOM is done by `sits_som_map()`, which creates a self-organizing map and assesses the quality of the samples. The function has two parts. First, it computes a SOM grid, as discussed previously, where each sample is assigned to a neuron, and neurons are placed in the grid based on similarity. The second step is the quality assessment. Each neuron will be associated with a discrete probability distribution. Homogeneous neurons (those with a single class) are assumed to be composed of good quality samples. Heterogeneous neurons (those with two or more classes with significant probability) are likely to contain noisy samples. 
+The process of clustering with SOM is done by `sits_som_map()`, which creates a self-organizing map and assesses the quality of the samples. This function uses the "kohonen" R package [@Wehrens2108] to compute a SOM grid. Each sample is assigned to a neuron, and neurons are placed in the grid based on similarity. The second step is the quality assessment. Each neuron will be associated with a discrete probability distribution. Homogeneous neurons (those with a single class) are assumed to be composed of good quality samples. Heterogeneous neurons (those with two or more classes with significant probability) are likely to contain noisy samples. 
 
 Considering that each sample of the training set is assigned to a neuron, the algorithm computes two values for each sample:
 
