@@ -215,14 +215,14 @@ The function `sits_tempCNN` implements the model. The code has been derived from
 # train a machine learning model using tempCNN
 tCNN_model <- sits_train(samples_filtered, 
                        sits_TempCNN(
-                          cnn_layers           = c(64, 64, 64),
+                          cnn_layers           = c(96, 96, 96),
                           cnn_kernels          = c(3, 3, 3),
                           cnn_activation       = 'relu',
                           cnn_L2_rate          = 1e-06,
-                          cnn_dropout_rates    = c(0.50, 0.50, 0.50),
+                          cnn_dropout_rates    = c(0.30, 0.30, 0.30),
                           mlp_layers           = c(512, 512, 512),
-                          mlp_activation       = 'relu',
-                          mlp_dropout_rates    = c(0.50, 0.50, 0.50),
+                          mlp_activation       = 'elu',
+                          mlp_dropout_rates    = c(0.10, 0.20, 0.30),
                           epochs               = 100,
                           batch_size           = 64,
                           validation_split     = 0.2,
