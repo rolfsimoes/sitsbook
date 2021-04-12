@@ -32,7 +32,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-08" />
+<meta name="date" content="2021-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -329,6 +329,7 @@ E=(a+b)(b+c)+(c+d)(b+d).
 </div>
 <div id="using-self-organizing-maps-for-sample-quality" class="section level2">
 <h2><span class="header-section-number">4.3</span> Using Self-organizing Maps for Sample Quality</h2>
+<p><a href="https://www.kaggle.com/brazildatacube/sits-clustering-r" target="_blank"><img src="https://img.shields.io/badge/example-available-green"/></a></p>
 <div id="introduction-to-self-organizing-maps" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Introduction to Self-organizing Maps</h3>
 <p>As an alternative for hierarchical clustering for quality control of training samples, SITS provides a clustering technique based on self-organizing maps (SOM). SOM is a dimensionality reduction technique <span class="citation">(Kohonen 1990)</span>, where high-dimensional data is mapped into two dimensions, keeping the topological relations between data patterns. The input data is a set of training samples that are typical of a high dimension. For example, a time series of 25 instances of 4 spectral bands is a 100-dimensional data set. The general idea of SOM-based clustering is that, by projecting the high-dimensional data set of training samples into a 2D map, the units of the map (called “neurons”) compete for each sample. It is expected that good quality samples of each class should be close together in the resulting map. The neighbors of each neuron of a SOM map provide information on intra-class and inter-class variability.</p>

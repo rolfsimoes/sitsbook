@@ -32,7 +32,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-08" />
+<meta name="date" content="2021-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -255,11 +255,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="machine-learning-for-data-cubes-using-the-sits-package" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Machine Learning for Data Cubes using the SITS package</h1>
+<!-- [![Example Available](https://img.shields.io/badge/example-available-green)](https://www.kaggle.com/brazildatacube/sits-classification-r) -->
 <hr />
 <p>This chapter presents the machine learning techniques available in SITS. The main use for machine learning in SITS is for classification of land use and land cover. These machine learning methods available in SITS include linear and quadratic discrimination analysis, support vector machines, random forests, deep learning and neural networks.</p>
 <hr />
 <div id="machine-learning-classification" class="section level2">
 <h2><span class="header-section-number">5.1</span> Machine learning classification</h2>
+<p><a href="https://www.kaggle.com/brazildatacube/sits-classification-r" target="_blank"><img src="https://img.shields.io/badge/example-available-green"/></a></p>
 <p>There has been much recent interest in using classifiers such as support vector machines <span class="citation">(Mountrakis, Im, and Ogole 2011)</span> and random forests <span class="citation">(Belgiu and Dragut 2016)</span> for remote sensing images. Most often, researchers use a  approach. The dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes. To do this, researchers filter the raw data to get smoother time series <span class="citation">(Brown et al. 2013; Kastens et al. 2017)</span>. Using software such as TIMESAT <span class="citation">(Jonsson and Eklundh 2004)</span>, they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season <span class="citation">(Estel et al. 2015; Pelletier et al. 2016)</span>.</p>
 <p>Most studies using satellite image time series for land cover classification use a  approach. For multiyear studies, most researchers first derive best-fit yearly composites and then classify each composite image <span class="citation">(Gomez, White, and Wulder 2016)</span>. As an alternative, the <em>sits</em> package provides support for the classification of time series, preserving the full temporal resolution of the input data, using a  approach. The idea is to have as many temporal attributes as possible, increasing the classification space’s dimension. Each temporal instance of a time series is taken as an independent dimension in the classifier’s feature space. To the authors’ best knowledge, the classification techniques for image time series included in the package are not previously available in other R or python packages. Furthermore, the package provides filtering, clustering, and post-processing methods that have not been published in the literature.</p>
 <p>Current approaches to image time series analysis still use a limited number of attributes. A common approach is deriving a small set of phenological parameters from vegetation indices, like the beginning, peak, and length of growing season <span class="citation">(Brown et al. 2013)</span>, <span class="citation">(Kastens et al. 2017)</span>, <span class="citation">(Estel et al. 2015)</span>, <span class="citation">(Pelletier et al. 2016)</span>. These phenological parameters are then fed in specialized classifiers such as TIMESAT <span class="citation">(Jonsson and Eklundh 2004)</span>. These approaches do not use the power of advanced statistical learning techniques to work on high-dimensional spaces with big training data sets <span class="citation">(James et al. 2013)</span>. Package *sits** uses the full depth of satellite image time series to create larger dimensional spaces, an approach we consider to be more appropriate to use with machine learning.</p>
