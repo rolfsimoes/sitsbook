@@ -7,6 +7,8 @@ output:
 
 # Machine Learning for Data Cubes using the SITS package
 
+<!-- [![Example Available](https://img.shields.io/badge/example-available-green)](https://www.kaggle.com/brazildatacube/sits-classification-r) -->
+
 ```{r, include = FALSE, echo = FALSE}
 source("common.R")
 ```
@@ -18,6 +20,8 @@ This chapter presents the machine learning techniques available in SITS. The mai
 ---
 
 ## Machine learning classification 
+
+<a href="https://www.kaggle.com/brazildatacube/sits-classification-r" target="_blank"><img src="https://img.shields.io/badge/example-available-green"/></a>
 
 There has been much recent interest in using classifiers such as support vector machines [@Mountrakis2011] and random forests [@Belgiu2016] for remote sensing images. Most often, researchers use a \emph{space-first, time-later} approach. The dimension of the decision space is limited to the number of spectral bands or their transformations. Sometimes, the decision space is extended with temporal attributes.  To do this, researchers filter the raw data to get smoother time series [@Brown2013; @Kastens2017]. Using software such as TIMESAT [@Jonsson2004], they derive a small set of phenological parameters from vegetation indexes, like the beginning, peak, and length of the growing season [@Estel2015; @Pelletier2016]. 
 
