@@ -22,7 +22,7 @@ Satellite image time series are obtained by taking calibrated and comparable mea
 knitr::include_graphics("images/time_series_general_view.png")
 ```
 
-Time series of remote sensing data show that land cover can occur not only progressively and gradually, but they may also show discontinuities with abrupt changes [@Lambin2003]. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution lead to a broader view of land-cover change. Satellite image time series have already been used in applications such as mapping for detecting forest disturbance [@Kennedy2010], land disturbance [@Zhu2020], ecological dynamics [@Pasquarella2016], agricultural intensification [@Galford2008], and deforestation monitoring [@Arvor2012]. Algorithms for processing image time series include BFAST for detecting breaks [@Verbesselt2010], TIMESAT for extraction phenological attributes [@Jonsson2004], CCDC for continuous change detection [@Arevalo2020], and methods based on Dynamic Time Warping (DTW) for land use and land cover classification [@Petitjean2012, @Maus2019].
+Time series of remote sensing data show that land cover can occur not only progressively and gradually, but they may also show discontinuities with abrupt changes [@Lambin2003]. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution lead to a broader view of land-cover change. Satellite image time series have  been used in applications such as mapping for detecting forest disturbance [@Kennedy2010], land disturbance [@Zhu2020], ecological dynamics [@Pasquarella2016], agricultural intensification [@Galford2008], and deforestation monitoring [@Arvor2012]. Algorithms for processing image time series include BFAST for detecting breaks [@Verbesselt2010], TIMESAT for extraction phenological attributes [@Jonsson2004], CCDC for continuous change detection [@Arevalo2020], and methods based on Dynamic Time Warping (DTW) for land use and land cover classification [@Petitjean2012, @Maus2019].
 
 Compared with existing tools, sits has distinctive features:
 
@@ -118,7 +118,7 @@ sits_timeline(cbers_cube)
 
 ### Data structure
 
-Training a machine learning model in **sits** requires a set of time series describing properties in spatio-temporal locations of interest. This set consists of samples provided by experts that take in-situ field observations or recognize land classes using high-resolution images for land use classification. 
+Training a machine learning model in **sits** requires a set of time series describing properties in spatiotemporal locations of interest. This set consists of samples provided by experts that take in situ field observations or recognize land classes using high-resolution images for land use classification. 
 
 The package uses a `sits tibble` to organize time series data with associated spatial information for handling time series. As an example of how the sits tibble works, the following code shows the first three lines of a tibble containing $1,218$ labeled samples of land cover in the Mato Grosso state of Brazil, with four classes: "Forest", "Cerrado", "Pasture", "Soybean-Corn". Training samples organized as a tibble can be used to training a machine learning model with `sits_train`.  
 
@@ -186,7 +186,7 @@ The following machine learning methods are available:
 * Random forests (`sits_rfor`)
 * Extreme gradient boosting (`sits_xgboost`)
 * Deep learning (DL) using multi-layer perceptrons (`sits_deeplearning`)
-* DL with 1D convolutional neural networks (`sits_CNN`), 
+* DL with 1D convolutional neural networks (`sits_FCN`), 
 * DL combining 1D CNN and multi-layer perceptron networks (`sits_tempCNN`)
 * DL using 1D version of ResNet (`sits_ResNet`).
 * DL using a combination of long-short term memory (LSTM) and 1D CNN (`sits_LSTM_FCN`)
@@ -232,7 +232,7 @@ When applied to a data cube, `sits_classify` produces one probability image for 
 
 ## Smoothing and Labelling of raster data after classification
 
-Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from single pixels. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. Smoothing methods available in `sits_smooth` use the neighborhood information to remove outliers and enhance consistency in the resulting product. By default, this function selects the most likely class for each pixel using a Bayesian estimator that considers the neighbors. Alternatives are gaussian and bilinear smoothing. The resulting cube can be labeled using `sits_label_classification`. This function select the most likely class in each pixel and assigns it to the final classified image. 
+Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from single pixels. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. Smoothing methods available in `sits_smooth` use the neighborhood information to remove outliers and enhance consistency in the resulting product. By default, this function selects the most likely class for each pixel using a Bayesian estimator that considers the neighbors. Alternatives are gaussian and bilateral smoothing. The resulting cube can be labeled using `sits_label_classification`. This function selects the most likely class in each pixel and assigns it to the final classified image. 
 
 ```{r, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Classified image post-processed with Bayesian smoothing"}
 # smooth the result with a bayesian filter

@@ -144,8 +144,7 @@ To identifies noisy samples, we take the result of the `sits_som_map` function a
 
 - If the prior probability of a sample is less than `prior_threshold`, the sample is assumed to be noisy and tagged as "remove";
 - If the prior probability is greater or equal to `prior_threshold` and the posterior probability is greater or equal to `posterior_threshold`, the sample is assumed not to be noisy and thus is tagged as "clean"; 
-- If the prior probability is greater or equal to `prior_threshold`  and the posterior probability is less than `posterior_threshold`, we have a situation the sample is part of the majority level of those assigned to its neuron, but its label is not consistent with most of its neighbors. This is an anomalous condition and  is tagged as "analyze". Users are encouraged to inspect
-such samples to find out whether they are in fact noisy or not. 
+- If the prior probability is greater or equal to `prior_threshold`  and the posterior probability is less than `posterior_threshold`, we have a situation the sample is part of the majority level of those assigned to its neuron, but its label is not consistent with most of its neighbors. This is an anomalous condition and  is tagged as "analyze". Users are encouraged to inspect such samples to find out whether they are in fact noisy or not. 
 
 The default value for both `prior_threshold` and `posterior_threshold` is 60%. The `sits_som_clean_samples` has an additional parameter (`keep`) which indicates which samples should be kept in the set based on their prior and posterior probabilities of being noisy and the assigned label. The default value for `keep` is `c("clean", "analyze")`. As a result of the cleaning, about 900 samples have been considered to be noisy and thus removed.
 
