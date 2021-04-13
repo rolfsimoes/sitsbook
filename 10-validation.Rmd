@@ -34,7 +34,7 @@ val_rfor
 
 One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set. We take five models: random forests(`sits_rfor`), support vector machines (`sits_svm`), extreme gradient boosting (`sits_xgboost`), multi-layer perceptron (`sits_deeplearning`) and temporal convolutional neural network (`sits_TempCNN`). For simplicity, we use the default parameters provided by sits. After computing the confusion matrix and the statistics for each model, we store the result in a list. When the calculation is finished, the function `sits_to_xlsx` writes all of the results in an Excel-compatible spreadsheet.
 
-```{r}
+```{r, eval=FALSE}
 # Retrieve the set of samples for the Mato Grosso region (provided by EMBRAPA)
 data("samples_matogrosso_mod13q1")
 
@@ -132,7 +132,7 @@ The detailed accuracy measures can be obtained by printing the accuracy object.
 ```{r}
 # print the accuracy statistics
 acc_ts 
-````
+```
 
 ### Classified images 
 
@@ -174,7 +174,7 @@ cube <- sits_cube(
 # classify the data cube with xgb model
 probs_cube <- sits_classify(cube, xgb_model)
 # label the classification
-label_cube <- sits_label_classification(probs_cube)
+label_cube <- sits_label_classification(probs_cube, output_dir = tempdir())
 # get ground truth points
 ground_truth <- system.file("extdata/samples/samples_sinop_crop.csv",
                             package = "sits")
