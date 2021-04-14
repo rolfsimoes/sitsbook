@@ -176,7 +176,6 @@ plot(raster_probs_bayes)
 
 The bayesian smoothing has removed some of local variability associated to misclassified pixels which are different from their neighbors. The impact of smoothing is best appreciated comparing the labelled map produced without smoothing to the one that follows the procedure, as shown below.
 
-The result is shown below.
 ```{r, out.width = "90%", echo = FALSE, fig.align="center", fig.cap="Classified image without smoothing"}
 # label the smoothed probability images
 raster_class <- sits_label_classification(raster_probs,
@@ -200,9 +199,9 @@ Comparing the two plots, it is apparent that the smoothing procedure has reduced
 
 ## Bilateral smoothing 
 
-Bilateral smoothing is a popular methods that has been proposed by @Tomasi98, who describes the idea as follows: *"The idea underlying bilateral filtering is to do in the range of an image what traditional filters do in its domain. Two pixels can be close to one another, that is, occupy nearby spatial location, or they can be similar to one another, that is, have nearby values, possibly in a perceptually meaningful fashion. Closeness refers to vicinity in the domain, similarity to vicinity in the range. Traditional filtering is domain filtering, and enforces closeness by weighing pixel values with coefficients that fall off with distance. Similarly, we define range filtering, which averages image values with weights that decay with dissimilarity"*.
+One of the problems with post-classification smoothing is that we would like to remove noisy pixels (e.g., a pixel with high probability of being labeled "Forest" in the midst of pixels likely to be labeled "Cerrado"), but would like to preserve the edges between areas. Because of its design, bilateral filter has proven to be a useful method for post-classification processing since it preserves edges while removing noisy pixels [@Schindler2012].
 
-Bilateral smoothing combines proximity (combining pixels which are close) and similarity (comparing the values of the pixels). One of the problems with post-classification smoothing is that we would like to remove noisy pixels (e.g., a pixel with high probability of being labelled "Forest" in the midst of pixels likely to be labeled "Cerrado"), but would like to preserve the edges between areas. Because of its design, bilateral filter has provien to be a useful method for post-classification processing since it preserves edges [@Schindler2012].
+Bilateral smoothing combines proximity (combining pixels which are close) and similarity (comparing the values of the pixels) [@Tomasi1998]. If most of the pixels in a neighborhood have similar values, it is easy to identify outliers and noisy pixels. In contrast, there is a strong difference between the values of pixels in a if neighborhood, it is possible that the pixel is located in a class boundary. Bilateral filtering combines domain filtering with range filtering. In domain filtering, the weights used to combine pixels decrease with distance. In range filtering, the weights are computed considering value similarity. 
 
 The combination of domain and range filtering is mathematically expressed as: 
 
@@ -236,8 +235,8 @@ For every pixel, the method takes a considers two factors: the distance between 
 
 The following example shows the behavior of the bilateral smoother.
 
-```{r, fig.cap="Probability values for classified image smoothed by bilinear filter"}
-# smooth the result with a bayesian filter
+```{r, fig.cap="Probability values for classified image smoothed by bilateral filter"}
+# smooth the result with a bilateral filter
 raster_probs_bil <- sits_smooth(raster_probs, 
                                   type = "bilateral",
                                   sigma = 8,
