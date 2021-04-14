@@ -40,10 +40,8 @@ The package has support for a variety of machine learning techniques: linear dis
 * Random forests (`sits_rfor`)
 * Extreme gradient boosting (`sits_xgboost`)
 * Deep learning (DL) using multi-layer perceptrons (`sits_deeplearning`)
-* DL with 1D convolutional neural networks (`sits_FCN`) 
 * DL using Deep Residual Networks (`sits_ResNet`) 
-* DL combining 1D CNN and multi-layer perceptron networks (`sits_TempCNN`)
-* DL using a combination of long-short term memory (LSTM) and 1D CNN (`sits_LSTM-FCN`)
+* DL combining 1D convolutional neural networks and multi-layer perceptrons (`sits_TempCNN`)
 
 For the machine learning examples, we use the data set "samples_matogrosso_mod13q1", containing a sits tibble with time series samples from Brazilian Mato Grosso State (Amazon and Cerrado biomes), obtained from the MODIS MOD13Q1 product. The tibble with 1,892 samples and 9 classes ("Cerrado", "Fallow_Cotton", "Forest", "Millet_Cotton", "Pasture","Soy_Corn", "Soy_Cotton", "Soy_Fallow", "Soy_Millet"). Each time series comprehends 12 months (23 data points) with 6 bands ("NDVI", "EVI", "BLUE", "RED", "NIR", "MIR") . The dataset was used in the paper "Big Earth observation time series analysis for monitoring Brazilian agriculture" [@Picoli2018], and is available in the R package "sitsdata", which is downloadable from the website associated to the "e-sensing" project.
 
@@ -252,47 +250,9 @@ class <- point_mt_4bands %>%
 ```
 While the result of the TempCNN model using default parameters is similar to that of the MLP model, it has has the potential to better explore the time series data than the the MLP model. Given that it has more parameters, it requires more effort to calibrate them. Users interested in working with this models are encouraged to compare different settings to define what is the best configuration for their problems. 
 
-## 1D Convolutional Neural Networks
-
-Convolutional neural networks (CNN) are a variety of deep learning methods where a convolution filter (sliding window) is applied to the input data. In the case of time series, a 1D CNN works by applying a moving window to the series. Using convolution filters is a way to incorporate temporal autocorrelation information in the classification. The result of the convolution is another time series. @Russwurm2017 states that the use of 1D-CNN for time series classification improves on the use of multi-layer perceptrons, since the classifier is able to represent temporal relationships. Also, 1D-CNNs with a suitable convolution window make the classifier more robust to moderate noise, e.g. intermittent presence of clouds.
-
-SITS includes four different variations of 1D-CNN, described in what follows. The first one is a "full Convolutional Neural Network"[@Wang2017], implemented in the `sits_FCN` function. FullCNNs are cascading networks, where the size of the input data is kept constant during the convolution. After the nvolutions have been applied, the model includes a global average pooling layer which reduces the number of parameters, and highlights which parts of the input time series contribute the most to the classification [@Fawaz2019]. The fullCNN architecture proposed in @Wang2017 has three convolutional layers. Each layer performs a convolution in its input and uses batch normalization for avoiding premature convergence to a local minimum. Batch normalisation is an alternative to dropout [@Ioffe2015]. The result is to a ReLU activation function. The result of the third convolutional block is averaged over the whole time dimension which corresponds to a global average pooling layer. Finally, a traditional softmax classifier is used to get the classification results (see figure below).
-
-```{r, echo = FALSE, out.width = "80%", out.height = "80%", fig.align="center", fig.cap="Structure of fullCNN architecture (source: Wang et al.(2017))"}
-knitr::include_graphics("images/fullcnn.png")
-```
-
-The `sits_FCN` function uses the architecture proposed by Wang as its default, and allows the users to experiment with different settings. The `layers` parameter controls the number of layers and the number of filters in each layer. The `kernels` parameters controls the size of the convolution kernels for earh layer. In the example below, the first convolution uses 64 filters with a kernel size of 8, followed by a second convolution of 128 filters with a kernel size of 5, and a third and final convolutional layer with 64 filters, each one with a kernel size to 3.
-
-```{r, warning = FALSE, message = FALSE}
-# train a machine learning model using deep learning
-fcn_model <- sits_train(samples_filtered, 
-                        sits_FCN(
-                            layers           = c(64, 256, 64),
-                            kernels          = c(8, 5, 3),
-                            activation       = 'relu',
-                            L2_rate          = 1e-06,
-                            epochs           = 100,
-                            batch_size       = 128,
-                            verbose          = 0) )
-# show training evolution
-plot(fcn_model)
-```
-
-Then, we classify a 16-year time series using the FCN model
-```{r}
-# Classify using DL model and plot the result
-point_mt_4bands <- sits_select(point_mt_6bands, 
-                               bands = c("NDVI", "EVI", "NIR", "MIR"))
-class.tb <- point_mt_4bands %>% 
-  sits_whittaker(lambda = 0.5, bands_suffix = "") %>% 
-    sits_classify(fcn_model) %>% 
-    plot(bands = c("ndvi", "evi"))
-```
-
 ## Residual 1D CNN Networks (ResNet)
 
-The Residual Network (ResNet) is a variation of the fullCNN network proposed by @Wang2017. ResNet is composed of 11 layers (see figure below). ResNet is a deep network, by default divided in three blocks of three 1D CNN layers each. Each block corresponds to a fullCNN network archicture. The output of each block is combined with a shortcut that links its output to its input. The idea is avoid the so-called "vanishing gradient", which occurs when a deep learning network is trained based gradient optimization methods[@Hochreiter1998]. As the networks get deeper, otimising them becomes more difficult. Including the input layer of the block at its end is a heuristic that has shown to be effective. In a recent review of time series classification methods using deep learning, Fawaz et al. state the RestNet and fullCNN have the best performance on the UCR/UEA time series test archive [@Fawaz2019]. 
+The Residual Network (ResNet) is a 1D convolution neural network (CNN) proposed by @Wang2017. ResNet is composed of 11 layers (see figure below). By default, ResNet is divided in three blocks of three 1D CNN layers each. Each block corresponds to a  1D CNN architecture. The output of each block is combined with a shortcut that links its output to its input. The idea is avoid the so-called "vanishing gradient", which occurs when a deep learning network is trained based gradient optimization methods[@Hochreiter1998]. As the networks get deeper, optimizing them becomes more difficult. Including the input layer of the block at its end is a heuristic that has shown to be effective. 
 
 ```{r, echo = FALSE, out.width = "80%", out.height = "80%", fig.align="center", fig.cap="Structure of ResNet architecture (source: Wang et al.(2017))"}
 knitr::include_graphics("images/resnet.png")
@@ -327,47 +287,3 @@ class.tb <- point_mt_4bands %>%
 ```
 
 In a similar way as other deep learning models, ResNet finds an outlier in year 2004. As explained above, the time series for 2004 is likely to come from a situation where part of the natural forest had been removed, but not all of the area had been replaced by pasture. Since the training set does not include time series for degraded forests, the classifier assigns it to a crop class. Although incorrect, such labeling is useful to point out to missing classes in the training set. Also similarly to the MLP model, the RestNet model considers that the agricultural production in the area started in 2008. 
-
-
-## LSTM Convolutional Networks for Time Series Classification 
-
-Given the success of 1D-CNN networks for time series classification, there have been a number of variants proposed in the literature. One of these variants is the LSTM-CNN network [@Karim2018], where a fullCNN is combined with long short term memory (LSTM) recurrent neural network. LSTMs are an improved version of recurrent neural networks (RNN). An RNN is a neural network that includes a state vector, which is updated every time step. In this way, a RNN combines an input vector with information that is kept from all previous inputs. One can conceive of RNN as networks that have loops, allowing information to be passed from one step to to the next. In theory, a RNN would be able to handle long-term dependencies between elements of the input vectors. In practice, they are prone to the exhibit the "vanishing gradient" effect. As discussed above, in deep neural networks architectures with gradient descent optimization the gradient function can approach zero, thus impeding training to be done efficiently. LSTM improve on RNN architecture by including the additional feature of being able to regulate whether or not new information should be included on the cell state. LSTM unit also include a forget gate, which is able to discard the previous information stored in the cell state. Thus, a LSTM unit is able to remember values over arbitrary time intervals.    
-
-@Karim2019 consider that LSTM networks are "well-suited to classifying, processing and making predictions based on time series data, since there can be lags of unknown duration between important events in a time series". The authors proposed a mixed LSTM-CNN architecture, composed of two paralel data streams: a 3-step CNN such as the one implemented in `sits_FCN` (see above) combined with a data stream consisting of an LSTM unit, as shown in the figure below. In @Karim2018, the authors argue the LSTM-CNN model is capable of a better performance in the UCR/UEA time series test set than architectures such as ResNet and 1DCNN. 
-
-```{r, echo = FALSE, fig.align="center", out.width = "80%", out.height = "80%", fig.cap= "LSTM Fully Convolutional Networks for Time Series Classification (source: Karim et al.(2019))"}
-
-knitr::include_graphics("images/lstm-cnn.png")
-```
-
-In the SITS package, the combined LSTM-CNN architecture is implemented by the `sits_LSTM_CNN` function. The default values are similar those proposed by @Karim2019. The parameter `lstm_units` controls the number of units in the LSTM cell at every time step of the network. @Karim2019 proposes an LSTM with 8 units, each with a dropout rate of 80%, which are controlled by parameters `lstm_units` and `lstm_dropout`. In initial experiments, we got a better performance with an LSTM with 16 units. The CNN layers have filter sizes of {128, 256, 128} and kernel convolution sizes of {8, 5, 3}, controlled by the parameters `cnn_layers` and `cnn_kernels`. One should experiment with these parameters, and consider the simulations carried out by @Pelletier2019 (see above), where the authors found that an FCN network of sizes {64, 64, 64} with kernels sizes of {5, 5, 5} had best performance in their case study. In this example, the estimated accuracy of the model was 94.7%. 
-
-```{r, message = FALSE, warning = FALSE}
-
-lstm_fcn_model <- sits_train(samples_filtered, 
-                       sits_LSTM_FCN(
-                          lstm_units = 8,
-                          lstm_dropout = 0.80,
-                          cnn_layers = c(128, 256, 128),
-                          cnn_kernels = c(8, 5, 3),
-                          activation = "relu",
-                          optimizer = keras::optimizer_adam(lr = 0.001),
-                          epochs = 100,
-                          batch_size = 128,
-                          validation_split = 0.2,
-                          verbose     = 0))
-
-# show training evolution
-plot(lstm_fcn_model)
-```
-
-Then, we classify a 16-year time series using the DL model
-```{r}
-# Classify using DL model and plot the result
-point_mt_4bands <- sits_select(point_mt_6bands, 
-                               bands = c("NDVI", "EVI", "NIR", "MIR"))
-class <- point_mt_4bands %>% 
-    sits_whittaker(lambda = 0.5, bands_suffix = "") %>%
-    sits_classify(lstm_fcn_model) %>% 
-    plot(bands = c("ndvi", "evi"))
-```

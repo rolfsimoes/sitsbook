@@ -256,4 +256,4 @@ raster_class_bil <- sits_label_classification(raster_probs_bil,
 plot(raster_class_bil)
 ```
 
-Bayesian smoothing tends to produce more homogeneous labeled images than bilateral smoothing. However, some spatial details and some edges are better preserved by the bilateral method. Choosing between the methods depends on user needs and requirements. In any case, as stated by @Schneider2012, smoothing improves the quality of classified images and thus should be applied in most situations.
+Bayesian smoothing tends to produce more homogeneous labeled images than bilateral smoothing. However, some spatial details and some edges are better preserved by the bilateral method. Choosing between the methods depends on user needs and requirements. In any case, as stated by @Schindler2012, smoothing improves the quality of classified images and thus should be applied in most situations.

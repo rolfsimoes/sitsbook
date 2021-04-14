@@ -12,6 +12,7 @@ cover-image: images/cover.png
 bibliography:
 - references-sits.bib
 biblio-style: apalike
+csl: ieee.csl
 description: | 
   This book presents  **sits**, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes.
 ---
@@ -93,12 +94,10 @@ We thank the authors of these papers for making their code available to be used 
 
 - [1] Appel, Marius, and Edzer Pebesma, “On-Demand Processing of Data Cubes from Satellite Image Collections with the Gdalcubes Library.” Data 4 (3): 1–16, 2020.
 
-- [2] Karim, Fazle, Somshubra Majumdar, Houshang Darabi, and Shun Chen, “LSTM Fully Convolutional Networks for Time Series Classification.” IEEE Access 6: 1662–9, 2018.
+- [2] Hassan Fawaz, Germain Forestier, Jonathan Weber, Lhassane Idoumghar,  and Pierre-Alain Muller, "Deep learning for time series classification: a review". Data Mining and Knowledge Discovery, 33(4): 917--963, 2019.
 
-- [3] Hassan Fawaz, Germain Forestier, Jonathan Weber, Lhassane Idoumghar,  and Pierre-Alain Muller, "Deep learning for time series classification: a review". Data Mining and Knowledge Discovery, 33(4): 917--963, 2019.
+- [3] Pebesma, Edzer, "Simple Features for R: Standardized Support for Spatial Vector Data". R Journal, 10(1):2018.
 
-- [4] Pebesma, Edzer, "Simple Features for R: Standardized Support for Spatial Vector Data". R Journal, 10(1):2018.
+- [4] Pelletier, Charlotte, Geoffrey I. Webb, and Francois Petitjean. “Temporal Convolutional Neural Network for the Classification of Satellite Image Time Series.” Remote Sensing 11 (5), 2019. 
 
-- [5] Pelletier, Charlotte, Geoffrey I. Webb, and Francois Petitjean. “Temporal Convolutional Neural Network for the Classification of Satellite Image Time Series.” Remote Sensing 11 (5), 2019. 
-
-- [6] Wehrens, Ron and Kruisselbrink, Johannes. "Flexible Self-Organising Maps in kohonen 3.0". Journal of Statistical Software, 87, 7 (2018).
+- [5] Wehrens, Ron and Kruisselbrink, Johannes. "Flexible Self-Organising Maps in kohonen 3.0". Journal of Statistical Software, 87, 7 (2018).
