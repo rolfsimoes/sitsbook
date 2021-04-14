@@ -34,36 +34,30 @@ val_rfor
 
 One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set. We take five models: random forests(`sits_rfor`), support vector machines (`sits_svm`), extreme gradient boosting (`sits_xgboost`), multi-layer perceptron (`sits_deeplearning`) and temporal convolutional neural network (`sits_TempCNN`). For simplicity, we use the default parameters provided by sits. After computing the confusion matrix and the statistics for each model, we store the result in a list. When the calculation is finished, the function `sits_to_xlsx` writes all of the results in an Excel-compatible spreadsheet.
 
+
 ```{r, eval = FALSE}
 # Retrieve the set of samples for the Mato Grosso region (provided by EMBRAPA)
 data("samples_matogrosso_mod13q1")
-
 # create a list to store the results
 results <- list()
 
-# adjust the multicores parameters to suit your machine
-
-## SVM model
+# SVM model
 conf_svm <- sits_kfold_validate(
     samples_matogrosso_mod13q1,
     ml_method = sits_svm())
-
 # Give a name to the SVM model
 conf_svm$name <- "svm"
-
 # store the result
 results[[length(results) + 1]] <- conf_svm
 
-## Random Forest
+# Random Forest
 conf_rfor <- sits_kfold_validate(
     samples_matogrosso_mod13q1,
     folds = 5,
     multicores = 2,
     ml_method = sits_rfor())
-
 # Give a name to the results 
 conf_rfor$name <- "rfor"
-
 # store the results in a list
 results[[length(results) + 1]] <- conf_rfor
 
@@ -77,7 +71,7 @@ conf_xgb$name <- "xgboost"
 # store the results in a list
 results[[length(results) + 1]] <- conf_xgb
 
-## Multi-layer perceptron
+# Multi-layer perceptron
 conf_mlp <- sits_kfold_validate(
     samples_matogrosso_mod13q1,
     ml_method = sits_deeplearning())
@@ -87,7 +81,7 @@ conf_mlp$name <- "MLP"
 # store the results in a list
 results[[length(results) + 1]] <- conf_mlp
 
-## Temporal CNN
+# Temporal CNN
 conf_tcnn <- sits_kfold_validate(
     samples_matogrosso_mod13q1,
     ml_method = sits_TempCNN())
@@ -132,7 +126,7 @@ The detailed accuracy measures can be obtained by printing the accuracy object.
 ```{r}
 # print the accuracy statistics
 acc_ts 
-````
+```
 
 ### Classified images 
 
@@ -174,7 +168,7 @@ cube <- sits_cube(
 # classify the data cube with xgb model
 probs_cube <- sits_classify(cube, xgb_model)
 # label the classification
-label_cube <- sits_label_classification(probs_cube)
+label_cube <- sits_label_classification(probs_cube, output_dir = tempdir())
 # get ground truth points
 ground_truth <- system.file("extdata/samples/samples_sinop_crop.csv",
                             package = "sits")

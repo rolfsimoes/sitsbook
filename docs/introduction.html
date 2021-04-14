@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
-  <meta name="description" content="This book describes the sits package." />
+  <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="This book describes the sits package." />
+  <meta property="og:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 Introduction | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   
-  <meta name="twitter:description" content="This book describes the sits package." />
+  <meta name="twitter:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="Rolf Simoes" />
@@ -32,7 +32,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-11" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
@@ -208,7 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
 <li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.9</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.11</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
@@ -221,16 +224,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
-<li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#smmothing-using-bayes-rule"><i class="fa fa-check"></i><b>7.2.1</b> Smmothing using Bayes’ rule</a></li>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques-1"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
-<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-validation-methods"><i class="fa fa-check"></i><b>8.2</b> Comparing different validation methods</a></li>
+<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
+<li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -267,7 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 1.1: Using time series for land classification (source: Tan et al., 2017)
 </p>
 </div>
-<p>Time series of remote sensing data show that land cover can occur not only progressively and gradually, but they may also show discontinuities with abrupt changes <span class="citation">(Lambin, Geist, and Lepers 2003)</span>. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution lead to a broader view of land-cover change. Satellite image time series have already been used in applications such as mapping for detecting forest disturbance <span class="citation">(Kennedy, Yang, and Cohen 2010)</span>, land disturbance <span class="citation">(Zhu et al. 2020)</span>, ecological dynamics <span class="citation">(Pasquarella et al. 2016)</span>, agricultural intensification <span class="citation">(Galford et al. 2008)</span>, and deforestation monitoring <span class="citation">(Arvor et al. 2012)</span>. Algorithms for processing image time series include BFAST for detecting breaks <span class="citation">(Verbesselt et al. 2010)</span>, TIMESAT for extraction phenological attributes <span class="citation">(Jonsson and Eklundh 2004)</span>, CCDC for continuous change detection <span class="citation">(Arévalo et al. 2020)</span>, and methods based on Dynamic Time Warping (DTW) for land use and land cover classification <span class="citation">(Petitjean, Inglada, and Gancarski 2012, @Maus2019)</span>.</p>
+<p>Time series of remote sensing data show that land cover can occur not only progressively and gradually, but they may also show discontinuities with abrupt changes <span class="citation">(Lambin, Geist, and Lepers 2003)</span>. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution lead to a broader view of land-cover change. Satellite image time series have been used in applications such as mapping for detecting forest disturbance <span class="citation">(Kennedy, Yang, and Cohen 2010)</span>, land disturbance <span class="citation">(Zhu et al. 2020)</span>, ecological dynamics <span class="citation">(Pasquarella et al. 2016)</span>, agricultural intensification <span class="citation">(Galford et al. 2008)</span>, and deforestation monitoring <span class="citation">(Arvor et al. 2012)</span>. Algorithms for processing image time series include BFAST for detecting breaks <span class="citation">(Verbesselt et al. 2010)</span>, TIMESAT for extraction phenological attributes <span class="citation">(Jonsson and Eklundh 2004)</span>, CCDC for continuous change detection <span class="citation">(Arévalo et al. 2020)</span>, and methods based on Dynamic Time Warping (DTW) for land use and land cover classification <span class="citation">(Petitjean, Inglada, and Gancarski 2012, @Maus2019)</span>.</p>
 <p>Compared with existing tools, sits has distinctive features:</p>
 <ol style="list-style-type: decimal">
 <li>A consistent API that encapsulates the entire land classification workflow in a few commands.</li>
@@ -357,7 +365,7 @@ Figure 1.3: Main functions of the SITS API
 <h2><span class="header-section-number">1.3</span> Handling satellite image time series in <strong>sits</strong></h2>
 <div id="data-structure" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Data structure</h3>
-<p>Training a machine learning model in <strong>sits</strong> requires a set of time series describing properties in spatio-temporal locations of interest. This set consists of samples provided by experts that take in-situ field observations or recognize land classes using high-resolution images for land use classification.</p>
+<p>Training a machine learning model in <strong>sits</strong> requires a set of time series describing properties in spatiotemporal locations of interest. This set consists of samples provided by experts that take in situ field observations or recognize land classes using high-resolution images for land use classification.</p>
 <p>The package uses a <code>sits tibble</code> to organize time series data with associated spatial information for handling time series. As an example of how the sits tibble works, the following code shows the first three lines of a tibble containing <span class="math inline">\(1,218\)</span> labeled samples of land cover in the Mato Grosso state of Brazil, with four classes: “Forest”, “Cerrado”, “Pasture”, “Soybean-Corn”. Training samples organized as a tibble can be used to training a machine learning model with <code>sits_train</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction.html#cb6-1"></a><span class="co"># data set of samples</span></span>
 <span id="cb6-2"><a href="introduction.html#cb6-2"></a><span class="kw">data</span>(<span class="st">&quot;samples_modis_4bands&quot;</span>)</span>
@@ -433,7 +441,7 @@ Figure 1.5: Random forest classification of a <span class="math inline">\(16\)</
 <li>Random forests (<code>sits_rfor</code>)</li>
 <li>Extreme gradient boosting (<code>sits_xgboost</code>)</li>
 <li>Deep learning (DL) using multi-layer perceptrons (<code>sits_deeplearning</code>)</li>
-<li>DL with 1D convolutional neural networks (<code>sits_CNN</code>),</li>
+<li>DL with 1D convolutional neural networks (<code>sits_FCN</code>),</li>
 <li>DL combining 1D CNN and multi-layer perceptron networks (<code>sits_tempCNN</code>)</li>
 <li>DL using 1D version of ResNet (<code>sits_ResNet</code>).</li>
 <li>DL using a combination of long-short term memory (LSTM) and 1D CNN (<code>sits_LSTM_FCN</code>)</li>
@@ -481,7 +489,7 @@ Figure 1.6: Class probabilities for each pixel
 </div>
 <div id="smoothing-and-labelling-of-raster-data-after-classification" class="section level2">
 <h2><span class="header-section-number">1.7</span> Smoothing and Labelling of raster data after classification</h2>
-<p>Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from single pixels. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. Smoothing methods available in <code>sits_smooth</code> use the neighborhood information to remove outliers and enhance consistency in the resulting product. By default, this function selects the most likely class for each pixel using a Bayesian estimator that considers the neighbors. Alternatives are gaussian and bilinear smoothing. The resulting cube can be labeled using <code>sits_label_classification</code>. This function select the most likely class in each pixel and assigns it to the final classified image.</p>
+<p>Post-processing is a desirable step in any classification process. Most statistical classifiers use training samples derived from single pixels. However, images contain many mixed pixels irrespective of the resolution. Also, there is a considerable degree of data variability in each class. Smoothing methods available in <code>sits_smooth</code> use the neighborhood information to remove outliers and enhance consistency in the resulting product. By default, this function selects the most likely class for each pixel using a Bayesian estimator that considers the neighbors. Alternatives are gaussian and bilateral smoothing. The resulting cube can be labeled using <code>sits_label_classification</code>. This function selects the most likely class in each pixel and assigns it to the final classified image.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction.html#cb13-1"></a><span class="co"># smooth the result with a bayesian filter</span></span>
 <span id="cb13-2"><a href="introduction.html#cb13-2"></a>sinop_bayes &lt;-<span class="st"> </span><span class="kw">sits_smooth</span>(probs_cube, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
 <span id="cb13-3"><a href="introduction.html#cb13-3"></a><span class="co"># label the resulting image</span></span>

@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Earth observation data cubes | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
-  <meta name="description" content="This book describes the sits package." />
+  <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Earth observation data cubes | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="This book describes the sits package." />
+  <meta property="og:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Earth observation data cubes | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   
-  <meta name="twitter:description" content="This book describes the sits package." />
+  <meta name="twitter:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="Rolf Simoes" />
@@ -32,7 +32,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-11" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
@@ -208,7 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
 <li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.9</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.11</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
@@ -221,16 +224,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
-<li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#smmothing-using-bayes-rule"><i class="fa fa-check"></i><b>7.2.1</b> Smmothing using Bayes’ rule</a></li>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques-1"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
-<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-validation-methods"><i class="fa fa-check"></i><b>8.2</b> Comparing different validation methods</a></li>
+<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
+<li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -260,10 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis" class="section level2">
 <h2><span class="header-section-number">2.1</span> Image data cubes as the basis for big Earth observation data analysis</h2>
-<p>In broad terms, the cloud computing model is one where large satellite-generated data sets are archived on cloud services, providing computing facilities to process them. By using cloud services, users can share big Earth observation databases and minimize data download. Investment in infrastructure is minimized, and sharing of data and software increases. However, data available in the cloud is best organised for analysis by creating data cubes.</p>
-<p>Generalizing <span class="citation">(Appel and Pebesma 2019)</span>, we consider the following definition:</p>
+<p>Given the large sizes of the collections of Earth observation data available, there is a clear trend to users to perform their analsys using cloud computing. In this configuration, cloud services archive large satellite-generated data sets and provide computing facilities to process them. In this way, users can share big Earth observation databases and minimize data download. Investment in infrastructure is minimized, and sharing of data and software increases.</p>
+<p>To take full advantage of the cloud computing model, Earth observation data needs to be available to users as data cubes, whose aim is to organise satellite data for a given area in a consistent spatiotemporal arrangement. Generalizing <span class="citation">(Appel and Pebesma 2019)</span>, we consider the following definition:</p>
 <ol style="list-style-type: decimal">
-<li>A data cube is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands.</li>
+<li>A <em>data cube</em> is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands.</li>
 <li>Its spatial dimensions refer to a single spatial reference system (SRS). Cells of a data cube have a constant spatial size with respect to the cube’s SRS.</li>
 <li>A set of intervals specifies the temporal dimension.</li>
 <li>For every combination of dimensions, a cell has a single value.</li>
@@ -275,10 +283,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 2.1: Conceptual view of data cubes (source: Kopp et al., 2019)
 </p>
 </div>
-<p>This idealized vision of data cubes does not correspond to the reality. Data available in cloud services such as AWS, Microsoft and Digital Earth Africa is better described as collections of analysis-ready data (ARD). Such data is defined by the Committee on Earth Observation Satellites (CEOS) as “satellite data that have been processed to a minimum set of requirements and organized into a form that allows immediate analysis with a minimum of additional user effort and interoperability both through time and with other datasets” <span class="citation">(Potapov et al. 2020)</span>. In practice, ARD label is applied to images that have been processed by space agencies to improve multidate comparability. This processing includes conversion from radiance measures at the top of the athmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. These data sets are better characterized as “ARD image collections”, defined as:</p>
+<p>This idealized vision of data cubes does not correspond to the reality. Data available in cloud services such as AWS, Microsoft and Digital Earth Africa is better described as collections of analysis-ready data (ARD). Such data is defined by the Committee on Earth Observation Satellites (CEOS) as “satellite data that have been processed to a minimum set of requirements and organized into a form that allows immediate analysis with a minimum of additional user effort and interoperability both through time and with other datasets” <span class="citation">(Potapov et al. 2020)</span>. In practice, ARD label is applied to images that have been processed by space agencies to improve multidate comparability. This processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. These data sets are better characterized as “ARD image collections”, defined as:</p>
 <ol style="list-style-type: decimal">
 <li>An ARD image collection is set of files from a given sensor (or combined set of sensors) that has been corrected to ensure comparability of measurements between different dates.</li>
-<li>All images are reprojected to a cartographical projection following well-established standards.</li>
+<li>All images are reprojected to a cartographic projection following well-established standards.</li>
 <li>Image collections are usually cropped into a tiling system, where each tile is associated to a different timeline than the other tiles.</li>
 </ol>
 <p>The use of tiling systems for ARD data has been adopted by space agencies for many land satellites. For example, the Sentinel-2 tiling system uses the Military Grid Reference System (MGRS) and its naming convention derived from the UTM (Universal Transverse Mercator). Use of tiling system enables users to more easily choose an area of interest. Figure <a href="earth-observation-data-cubes.html#fig:tilesro">2.2</a> with the location of two Sentinel-2 tiles (20LLP and 20LKP) covering part of the state of Rondonia, Brazil.</p>
@@ -298,10 +306,10 @@ Figure 2.3: Sentinel-2 for tile 20LKP in different dates (source: authors).
 <p>A further point concerns the timeline of different tiles. For example, consider the Sentinel-2 tiles “20LLP” and “20LKP” for the period 2018-07-13 to 2019-07-28. Tile 20LKP has 71 temporal instances and tile 20 LLP has 144 instances. Users that want to process large areas cannot thus rely only on ARD image collections being compatible with data cube properties. There are three options available for users aiming to classify areas that span more than one tile:</p>
 <ol style="list-style-type: decimal">
 <li>Use cloud providers whose data fully adheres to a data cube definition. The Brazil Data Cube (BDC) is an example.</li>
-<li>Use tools that generate regularly spaced cubes in time from image collection, as does the <code>sits_regularize</code> funcion in <em>sits</em>.</li>
+<li>Use tools that generate regularly spaced cubes in time from image collection, as does the <code>sits_regularize</code> function in <em>sits</em>.</li>
 <li>Provide additional information to <em>sits</em> to allow the software to deal with multi-tile image collections.</li>
 </ol>
-<p>Since option (1) is not generally available to users other than those of the BDC, and option (2) requires the creation of additional files to compose a proper data, the developers of <em>sits</em> are working to provide full support to multi-tile data cubes, in a user-transparent way. This facility is not yet available in <em>sits</em> 0.11.0, but it is planned for version 1.00.00.</p>
+<p>Since option (1) is not generally available to users other than those of the BDC, and option (2) requires the creation of additional files to compose a proper data, the developers of <em>sits</em> are working to provide full support to multitile data cubes, in a user-transparent way. This facility is not yet available in <em>sits</em> 0.11.0, but it is planned for version 1.00.00.</p>
 </div>
 <div id="using-stac-to-access-image-collection" class="section level2">
 <h2><span class="header-section-number">2.2</span> Using STAC to Access Image Collection</h2>
@@ -334,7 +342,7 @@ All 12 bands are available at 60m resolution. Thus, to create data cubes in AWS 
 <span id="cb17-8"><a href="earth-observation-data-cubes.html#cb17-8"></a>                     <span class="dt">s2_resolution =</span> <span class="dv">20</span></span>
 <span id="cb17-9"><a href="earth-observation-data-cubes.html#cb17-9"></a>)</span></code></pre></div>
 <p>Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (<code>bbox</code>) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector (“xmin”, “ymin”, “xmax”, “ymax”) with lat/long values in WGS 84; (b) an <em>sfc</em> or <em>sf</em> object from the <strong>sf</strong> package; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a <code>bbox</code>, sits does does not crop them, and selects the images that intersect with it. When doing the classification using <code>sits_classify</code>, only the pixels inside the bounding box will be processed.</p>
-<p>In short, the output of the <code>sits_cube</code> function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatio-temporal extent, resolution, and area of interest). The <code>s2_cube</code> object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data.</p>
+<p>In short, the output of the <code>sits_cube</code> function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The <code>s2_cube</code> object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data.</p>
 </div>
 <div id="accessing-the-brazil-data-cube" class="section level2">
 <h2><span class="header-section-number">2.4</span> Accessing the Brazil Data Cube</h2>
@@ -352,7 +360,7 @@ Figure 2.4: Hierarchical BDC tiling system showing overlayed on Brazilian Biomes
 <span id="cb18-2"><a href="earth-observation-data-cubes.html#cb18-2"></a>    <span class="st">&quot;BDC_ACCESS_KEY&quot;</span> =<span class="st"> </span><span class="er">&lt;</span>your_bdc_access_key<span class="op">&gt;</span></span>
 <span id="cb18-3"><a href="earth-observation-data-cubes.html#cb18-3"></a>)</span></code></pre></div>
 <p>Creating a data cube using the BDC is similar to what is required for AWS. The user
-needs to specific an image collection, a spatio-temporal extent, bands, and optionally a bounding box. In the example, we have selected the “CB4_64_16D_STK-1” collection (CBERS AWFI images at 16 days) that complies with the BDC large tile specification. Other collections include “LC8_30_16D_STK-1” (Landsat OLI images at 16 days) and “S2_10_16D_STK-1” (Sentinel-2 MSI images at 16 days).</p>
+needs to specific an image collection, a spatiotemporal extent, bands, and optionally a bounding box. In the example, we have selected the “CB4_64_16D_STK-1” collection (CBERS AWFI images at 16 days) that complies with the BDC large tile specification. Other collections include “LC8_30_16D_STK-1” (Landsat OLI images at 16 days) and “S2_10_16D_STK-1” (Sentinel-2 MSI images at 16 days).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="earth-observation-data-cubes.html#cb19-1"></a>cbers_tile &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(</span>
 <span id="cb19-2"><a href="earth-observation-data-cubes.html#cb19-2"></a>    <span class="dt">source =</span> <span class="st">&quot;BDC&quot;</span>,</span>
 <span id="cb19-3"><a href="earth-observation-data-cubes.html#cb19-3"></a>    <span class="dt">collection =</span> <span class="st">&quot;CB4_64_16D_STK-1&quot;</span>,</span>

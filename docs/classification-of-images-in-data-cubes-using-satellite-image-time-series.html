@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
-  <meta name="description" content="This book describes the sits package." />
+  <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="This book describes the sits package." />
+  <meta property="og:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Classification of Images in Data Cubes using Satellite Image Time Series | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   
-  <meta name="twitter:description" content="This book describes the sits package." />
+  <meta name="twitter:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="Rolf Simoes" />
@@ -32,7 +32,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-04-11" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,7 +40,7 @@
   
   
 <link rel="prev" href="machine-learning-for-data-cubes-using-the-sits-package.html"/>
-<link rel="next" href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"/>
+<link rel="next" href="post-classification-smoothing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
@@ -208,7 +209,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
 <li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.9</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.11</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
@@ -221,16 +224,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
-<li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#smmothing-using-bayes-rule"><i class="fa fa-check"></i><b>7.2.1</b> Smmothing using Bayes’ rule</a></li>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques-1"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
-<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-validation-methods"><i class="fa fa-check"></i><b>8.2</b> Comparing different validation methods</a></li>
+<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
+<li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -268,27 +276,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.2</span> Defining a data cube using files organised as raster bricks</h2>
 <p>The SITS package enables uses to create data cube based on files. In this case, these files should be organized as <code>raster bricks</code>. A RasterBrick is a multi-layer raster object used by the  <code>raster</code> package. Each brick is a multi-layer file, containing different time instances of one spectral band. To allow users to create data cubes based on files, SITS needs to know what is the timeline of the data sets and what are the names of the files that contain the RasterBricks. The example below shows one bricks containing 392 time instances of the “ndvi” band for the years 2000 to 2016. The timeline is available as part of the SITS package. In this example, as in most cases using raster bricks, images are stored as GeoTiff files.</p>
 <p>Since GeoTiff files do not contain information about satellites and sensors, it is best practice to provide information on satellite and sensor.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-1"></a><span class="co"># Obtain a raster cube with 23 instances for one year</span></span>
-<span id="cb66-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-2"></a><span class="co"># Select the band &quot;ndvi&quot;, &quot;evi&quot; from images available in the &quot;sitsdata&quot; package</span></span>
-<span id="cb66-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-3"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
-<span id="cb66-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-4"></a></span>
-<span id="cb66-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-5"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
-<span id="cb66-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-6"></a>raster_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb66-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-7"></a>                         <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb66-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-8"></a>                         <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb66-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-9"></a>                         <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
-<span id="cb66-10"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-10"></a>                         <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb66-11"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-11"></a>                         <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>),</span>
-<span id="cb66-12"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-12"></a>)</span>
-<span id="cb66-13"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-13"></a></span>
-<span id="cb66-14"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-14"></a><span class="co"># get information on the data cube </span></span>
-<span id="cb66-15"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb66-15"></a>raster_cube <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(source, satellite, sensor)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-1"></a><span class="co"># Obtain a raster cube with 23 instances for one year</span></span>
+<span id="cb70-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-2"></a><span class="co"># Select the band &quot;ndvi&quot;, &quot;evi&quot; from images available in the &quot;sitsdata&quot; package</span></span>
+<span id="cb70-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-3"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb70-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-4"></a></span>
+<span id="cb70-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-5"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
+<span id="cb70-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-6"></a>raster_cube &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb70-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-7"></a>                         <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb70-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-8"></a>                         <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb70-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-9"></a>                         <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
+<span id="cb70-10"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-10"></a>                         <span class="dt">data_dir =</span> data_dir,</span>
+<span id="cb70-11"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-11"></a>                         <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>),</span>
+<span id="cb70-12"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-12"></a>)</span>
+<span id="cb70-13"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-13"></a></span>
+<span id="cb70-14"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-14"></a><span class="co"># get information on the data cube </span></span>
+<span id="cb70-15"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-15"></a>raster_cube <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(source, satellite, sensor)</span></code></pre></div>
 <pre class="sourceCode"><code>#&gt; # A tibble: 1 x 3
 #&gt;   source satellite sensor
 #&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; 
 #&gt; 1 LOCAL  TERRA     MODIS</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb68-1"></a><span class="co"># get information on the coverage</span></span>
-<span id="cb68-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb68-2"></a>raster_cube <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(xmin, xmax, ymin, ymax)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-1"></a><span class="co"># get information on the coverage</span></span>
+<span id="cb72-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-2"></a>raster_cube <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(xmin, xmax, ymin, ymax)</span></code></pre></div>
 <pre class="sourceCode"><code>#&gt; # A tibble: 1 x 4
 #&gt;        xmin      xmax      ymin      ymax
 #&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -334,45 +342,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To reduce processing time, it is necessary to adjust <code>sits_classify()</code> according to the capabilities of the server. The package tries to keep memory use to a minimum, performing garbage collection to free memory as often as possible. Nevertheless, there is an inevitable trade-off between computing time, memory use, and I/O operations. The best trade-off has to be determined by the user, considering issues such disk read speed, number of cores in the server, and CPU performance.</p>
 <p>The first parameter is <code>memsize</code>. It controls the size of the main memory (in GBytes) to be used for classification. The user must specify how much free memory will be available. The second factor controlling performance of raster classification is <code>multicores</code>. Once a block of data is read from disk into main memory, it is split into different cores, as specified by the user. In general, the more cores are assigned to classification, the faster the result will be. However, there are overheads in switching time, especially when the server has other processes running.</p>
 <p>Based on current experience, the classification of a MODIS tile (4800 x 4800) with four bands and 400 time instances, covering 15 years of data, using SVM with a training data set of about 10,000 samples, takes about 24 hours using 20 cores and a memory size of 60 GB, in a server with 2.4GHz Xeon CPU and 96 GB of memory to produce the yearly classification maps.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-1"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
-<span id="cb70-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-2"></a>samples_2bands &lt;-<span class="st"> </span><span class="kw">sits_select</span>(samples_matogrosso_mod13q1, <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
-<span id="cb70-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-3"></a></span>
-<span id="cb70-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-4"></a><span class="co">#select a rfor model</span></span>
-<span id="cb70-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb70-5"></a>xgb_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(samples_2bands, <span class="dt">ml_method =</span> <span class="kw">sits_xgboost</span>())</span></code></pre></div>
-<pre class="sourceCode"><code>#&gt; [1]  train-mlogloss:2.009944+0.000891    test-mlogloss:2.022905+0.001490 
-#&gt; Multiple eval metrics are present. Will use test_mlogloss for early stopping.
-#&gt; Will train until test_mlogloss hasn&#39;t improved in 20 rounds.
-#&gt; 
-#&gt; [11] train-mlogloss:0.620737+0.002764    test-mlogloss:0.755200+0.005152 
-#&gt; [21] train-mlogloss:0.207436+0.001456    test-mlogloss:0.364395+0.009251 
-#&gt; [31] train-mlogloss:0.094411+0.000752    test-mlogloss:0.251361+0.008440 
-#&gt; [41] train-mlogloss:0.059334+0.000473    test-mlogloss:0.211024+0.009399 
-#&gt; [51] train-mlogloss:0.048914+0.000651    test-mlogloss:0.197786+0.009918 
-#&gt; [61] train-mlogloss:0.045721+0.000552    test-mlogloss:0.194586+0.010300 
-#&gt; [71] train-mlogloss:0.044009+0.000838    test-mlogloss:0.192748+0.010751 
-#&gt; [81] train-mlogloss:0.043003+0.000582    test-mlogloss:0.191353+0.011066 
-#&gt; [91] train-mlogloss:0.042301+0.000387    test-mlogloss:0.190409+0.011007 
-#&gt; [100]    train-mlogloss:0.042005+0.000349    test-mlogloss:0.189919+0.011470</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-1"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
-<span id="cb72-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-2"></a></span>
-<span id="cb72-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-3"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
-<span id="cb72-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-4"></a>sinop &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb72-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-5"></a>                   <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb72-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-6"></a>                   <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb72-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-7"></a>                   <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
-<span id="cb72-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-8"></a>                   <span class="dt">data_dir =</span> data_dir,</span>
-<span id="cb72-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-9"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb72-10"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-10"></a></span>
-<span id="cb72-11"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-11"></a><span class="co"># classify the raster image</span></span>
-<span id="cb72-12"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-12"></a>sinop_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(sinop, <span class="dt">ml_model =</span> xgb_model, </span>
-<span id="cb72-13"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-13"></a>                             <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">1</span>, </span>
-<span id="cb72-14"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-14"></a>                             <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb72-15"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-15"></a></span>
-<span id="cb72-16"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-16"></a><span class="co"># label the probability file </span></span>
-<span id="cb72-17"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-17"></a><span class="co"># (by default selecting the class with higher probability)</span></span>
-<span id="cb72-18"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-18"></a>sinop_label &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(sinop_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
-<span id="cb72-19"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb72-19"></a><span class="kw">plot</span>(sinop_label, <span class="dt">title =</span> <span class="st">&quot;Sinop-label&quot;</span>)</span></code></pre></div>
-<p><img src="sitsbook_files/figure-html/unnamed-chunk-61-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-1"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
+<span id="cb74-2"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-2"></a>samples_2bands &lt;-<span class="st"> </span><span class="kw">sits_select</span>(samples_matogrosso_mod13q1, <span class="dt">bands =</span> <span class="kw">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb74-3"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-3"></a></span>
+<span id="cb74-4"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-4"></a><span class="co">#select a rfor model</span></span>
+<span id="cb74-5"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-5"></a>xgb_model &lt;-<span class="st"> </span><span class="kw">sits_train</span>(samples_2bands, <span class="dt">ml_method =</span> <span class="kw">sits_xgboost</span>())</span>
+<span id="cb74-6"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-6"></a></span>
+<span id="cb74-7"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-7"></a>data_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb74-8"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-8"></a></span>
+<span id="cb74-9"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-9"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
+<span id="cb74-10"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-10"></a>sinop &lt;-<span class="st"> </span><span class="kw">sits_cube</span>(<span class="dt">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb74-11"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-11"></a>                   <span class="dt">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb74-12"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-12"></a>                   <span class="dt">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb74-13"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-13"></a>                   <span class="dt">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
+<span id="cb74-14"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-14"></a>                   <span class="dt">data_dir =</span> data_dir,</span>
+<span id="cb74-15"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-15"></a>                   <span class="dt">parse_info =</span> <span class="kw">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
+<span id="cb74-16"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-16"></a></span>
+<span id="cb74-17"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-17"></a><span class="co"># classify the raster image</span></span>
+<span id="cb74-18"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-18"></a>sinop_probs &lt;-<span class="st"> </span><span class="kw">sits_classify</span>(sinop, <span class="dt">ml_model =</span> xgb_model, </span>
+<span id="cb74-19"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-19"></a>                             <span class="dt">memsize =</span> <span class="dv">4</span>, <span class="dt">multicores =</span> <span class="dv">1</span>, </span>
+<span id="cb74-20"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-20"></a>                             <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb74-21"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-21"></a></span>
+<span id="cb74-22"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-22"></a><span class="co"># label the probability file </span></span>
+<span id="cb74-23"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-23"></a><span class="co"># (by default selecting the class with higher probability)</span></span>
+<span id="cb74-24"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-24"></a>sinop_label &lt;-<span class="st"> </span><span class="kw">sits_label_classification</span>(sinop_probs, <span class="dt">output_dir =</span> <span class="kw">tempdir</span>())</span>
+<span id="cb74-25"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cb74-25"></a><span class="kw">plot</span>(sinop_label, <span class="dt">title =</span> <span class="st">&quot;Sinop-label&quot;</span>)</span></code></pre></div>
+<p><img src="sitsbook_files/figure-html/unnamed-chunk-67-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="final-remarks-1" class="section level2">
@@ -391,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="machine-learning-for-data-cubes-using-the-sits-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="post-classification-smoothing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
