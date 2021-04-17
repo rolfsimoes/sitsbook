@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</title>
-  <meta name="description" content="This book describes the sits package." />
+  <title>References | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
+  <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+  <meta property="og:title" content="References | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
-  <meta property="og:description" content="This book describes the sits package." />
+  <meta property="og:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | sits: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series" />
+  <meta name="twitter:title" content="References | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   
-  <meta name="twitter:description" content="This book describes the sits package." />
+  <meta name="twitter:description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
   <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="Rolf Simoes" />
@@ -29,9 +29,10 @@
 <meta name="author" content="Alexandre Carvalho" />
 <meta name="author" content="Karine Ferreira" />
 <meta name="author" content="Gilberto Queiroz" />
+<meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +145,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
-<li><a href="index.html#publications-using-sits">Publications using <strong>sits</strong></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
@@ -152,43 +154,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#workflow"><i class="fa fa-check"></i><b>1.1</b> Workflow</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in <strong>sits</strong></a><ul>
-<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>1.2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
-<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#using-stac-to-access-image-data-cubes"><i class="fa fa-check"></i><b>1.2.2</b> Using STAC to Access Image Data Cubes</a></li>
-<li class="chapter" data-level="1.2.3" data-path="introduction.html"><a href="introduction.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>1.2.3</b> Defining a data cube using files</a></li>
-</ul></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#workflow-and-api"><i class="fa fa-check"></i><b>1.1</b> Workflow and API</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#handling-data-cubes-in-sits"><i class="fa fa-check"></i><b>1.2</b> Handling Data Cubes in sits</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#handling-satellite-image-time-series-in-sits"><i class="fa fa-check"></i><b>1.3</b> Handling satellite image time series in <strong>sits</strong></a><ul>
 <li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#data-structure"><i class="fa fa-check"></i><b>1.3.1</b> Data structure</a></li>
 <li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#obtaining-time-series-data"><i class="fa fa-check"></i><b>1.3.2</b> Obtaining time series data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#filtering-techniques"><i class="fa fa-check"></i><b>1.4</b> Filtering techniques</a></li>
-<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#clustering-for-sample-quality-control-using-self-organizing-maps"><i class="fa fa-check"></i><b>1.5</b> Clustering for sample quality control using self-organizing maps</a></li>
-<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#classification-using-machine-learning"><i class="fa fa-check"></i><b>1.6</b> Classification using machine learning</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#validation-techniques"><i class="fa fa-check"></i><b>1.7</b> Validation techniques</a></li>
-<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.8</b> Cube classification</a><ul>
-<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#steps-for-cube-classification"><i class="fa fa-check"></i><b>1.8.1</b> Steps for cube classification</a></li>
-<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#adjustments-for-improved-performance"><i class="fa fa-check"></i><b>1.8.2</b> Adjustments for improved performance</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sample-quality-control-using-clustering"><i class="fa fa-check"></i><b>1.4</b> Sample quality control using clustering</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#classification-using-machine-learning"><i class="fa fa-check"></i><b>1.5</b> Classification using machine learning</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#cube-classification"><i class="fa fa-check"></i><b>1.6</b> Cube classification</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#smoothing-and-labelling-of-raster-data-after-classification"><i class="fa fa-check"></i><b>1.7</b> Smoothing and Labelling of raster data after classification</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#validation-techniques"><i class="fa fa-check"></i><b>1.8</b> Validation techniques</a></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#final-remarks"><i class="fa fa-check"></i><b>1.9</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#smoothing-and-labelling-of-raster-data-after-classification"><i class="fa fa-check"></i><b>1.9</b> Smoothing and Labelling of raster data after classification</a></li>
-<li class="chapter" data-level="1.10" data-path="introduction.html"><a href="introduction.html#final-remarks"><i class="fa fa-check"></i><b>1.10</b> Final remarks</a></li>
+<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a><ul>
+<li class="chapter" data-level="2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.2</b> Accessing Data Cubes and Image Collections in SITS</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-in-amazon-web-services"><i class="fa fa-check"></i><b>2.2.1</b> Accessing data cubes in Amazon Web Services</a></li>
+<li class="chapter" data-level="2.2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-the-brazil-data-cube"><i class="fa fa-check"></i><b>2.2.2</b> Accessing the Brazil Data Cube</a></li>
+<li class="chapter" data-level="2.2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>2.2.3</b> Defining a data cube using files</a></li>
 </ul></li>
-<li class="part"><span><b>II Time series</b></span></li>
-<li class="chapter" data-level="2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html"><i class="fa fa-check"></i><b>2</b> Acessing time series information in SITS</a><ul>
-<li class="chapter" data-level="2.1" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>2.1</b> Data structures for satellite time series</a></li>
-<li class="chapter" data-level="2.2" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>2.2</b> Utilities for handling time series</a></li>
-<li class="chapter" data-level="2.3" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#time-series-visualisation"><i class="fa fa-check"></i><b>2.3</b> Time series visualisation</a></li>
-<li class="chapter" data-level="2.4" data-path="acessing-time-series-information-in-sits.html"><a href="acessing-time-series-information-in-sits.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Obtaining time series data from data cubes</a></li>
+<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#regularizing-data-cubes"><i class="fa fa-check"></i><b>2.3</b> Regularizing data cubes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html"><i class="fa fa-check"></i><b>3</b> Satellite Image Time Series Filtering with <strong>sits</strong></a><ul>
-<li class="chapter" data-level="3.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#filtering-techniques-in-sits"><i class="fa fa-check"></i><b>3.1</b> Filtering techniques in <strong>sits</strong></a></li>
-<li class="chapter" data-level="3.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#common-interface-to-sits-filter-functions"><i class="fa fa-check"></i><b>3.2</b> Common interface to <strong>sits</strong> filter functions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.2.1</b> Savitzky–Golay filter</a></li>
-<li class="chapter" data-level="3.2.2" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#whittaker-filter"><i class="fa fa-check"></i><b>3.2.2</b> Whittaker filter</a></li>
-<li class="chapter" data-level="3.2.3" data-path="satellite-image-time-series-filtering-with-sits.html"><a href="satellite-image-time-series-filtering-with-sits.html#envelope-filter"><i class="fa fa-check"></i><b>3.2.3</b> Envelope filter</a></li>
+<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a><ul>
+<li class="chapter" data-level="3.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>3.1</b> Data structures for satellite time series</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>3.2</b> Utilities for handling time series</a></li>
+<li class="chapter" data-level="3.3" data-path="working-with-time-series.html"><a href="working-with-time-series.html#time-series-visualisation"><i class="fa fa-check"></i><b>3.3</b> Time series visualisation</a></li>
+<li class="chapter" data-level="3.4" data-path="working-with-time-series.html"><a href="working-with-time-series.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>3.4</b> Obtaining time series data from data cubes</a></li>
+<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.5.1</b> Savitzky–Golay filter</a></li>
+<li class="chapter" data-level="3.5.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#whittaker-filter"><i class="fa fa-check"></i><b>3.5.2</b> Whittaker filter</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Clustering</b></span></li>
+<li class="part"><span><b>II Clustering</b></span></li>
 <li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
 <li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
 <li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
@@ -202,42 +200,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
-<li class="part"><span><b>IV Classification</b></span></li>
+<li class="part"><span><b>III Classification</b></span></li>
 <li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
-<li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#data-used-in-the-machine-learning-examples"><i class="fa fa-check"></i><b>5.2</b> Data used in the machine learning examples</a></li>
-<li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.3</b> Visualizing Samples</a></li>
-<li class="chapter" data-level="5.4" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.4</b> Common interface to machine learning and deeplearning models</a></li>
-<li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#random-forests"><i class="fa fa-check"></i><b>5.5</b> Random forests</a></li>
-<li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.6</b> Support Vector Machines</a></li>
-<li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.7</b> Extreme Gradient Boosting</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.8</b> Deep learning using multi-layer perceptrons</a></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.2</b> Visualizing Samples</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.3</b> Common interface to machine learning and deeplearning models</a></li>
+<li class="chapter" data-level="5.4" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#random-forests"><i class="fa fa-check"></i><b>5.4</b> Random forests</a></li>
+<li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
+<li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
 <li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#d-convolutional-neural-networks"><i class="fa fa-check"></i><b>5.9</b> 1D Convolutional Neural Networks</a></li>
 <li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.10</b> Residual 1D CNN Networks (ResNet)</a></li>
-<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.11</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
-<li class="chapter" data-level="5.12" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.12</b> LSTM Convolutional Networks for Time Series Classification</a></li>
+<li class="chapter" data-level="5.11" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#lstm-convolutional-networks-for-time-series-classification"><i class="fa fa-check"></i><b>5.11</b> LSTM Convolutional Networks for Time Series Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
-<li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis-1"><i class="fa fa-check"></i><b>6.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
-<li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#defining-a-data-cube-using-files-organised-as-raster-bricks"><i class="fa fa-check"></i><b>6.2</b> Defining a data cube using files organised as raster bricks</a></li>
-<li class="chapter" data-level="6.3" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#classification-using-machine-learning-1"><i class="fa fa-check"></i><b>6.3</b> Classification using machine learning</a></li>
-<li class="chapter" data-level="6.4" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#cube-classification-1"><i class="fa fa-check"></i><b>6.4</b> Cube classification</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#steps-for-cube-classification-1"><i class="fa fa-check"></i><b>6.4.1</b> Steps for cube classification</a></li>
-<li class="chapter" data-level="6.4.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#adjustments-for-improved-performance-1"><i class="fa fa-check"></i><b>6.4.2</b> Adjustments for improved performance</a></li>
+<li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#data-cube-classification"><i class="fa fa-check"></i><b>6.1</b> Data cube classification</a></li>
+<li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#adjustments-for-improved-performance"><i class="fa fa-check"></i><b>6.2</b> Adjustments for improved performance</a></li>
+<li class="chapter" data-level="6.3" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.3</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#final-remarks-1"><i class="fa fa-check"></i><b>6.5</b> Final remarks</a></li>
+<li class="part"><span><b>IV Post classification</b></span></li>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
-<li class="part"><span><b>V Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing using Bayesian techniques in SITS</a><ul>
-<li class="chapter" data-level="7.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#overview-of-bayesian-estimattion"><i class="fa fa-check"></i><b>7.2</b> Overview of Bayesian estimattion</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#smmothing-using-bayes-rule"><i class="fa fa-check"></i><b>7.2.1</b> Smmothing using Bayes’ rule</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="post-classification-smoothing-using-bayesian-techniques-in-sits.html"><a href="post-classification-smoothing-using-bayesian-techniques-in-sits.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
+<li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques-1"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
-<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-validation-methods"><i class="fa fa-check"></i><b>8.2</b> Comparing different validation methods</a></li>
+<li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
+<li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -252,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>sits</strong>: Data Analysis and Machine Learning for Data Cubes using Satellite Image Time Series</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>sits</strong>: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</a>
           </h1>
         </div>
 
@@ -269,6 +266,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div>
 <p>Appel, Marius, and Edzer Pebesma. 2019. “On-Demand Processing of Data Cubes from Satellite Image Collections with the Gdalcubes Library.” <em>Data</em> 4 (3): 1–16. <a href="https://doi.org/10.3390/data4030092">https://doi.org/10.3390/data4030092</a>.</p>
+</div>
+<div>
+<p>Arévalo, Paulo, Eric L. Bullock, Curtis E. Woodcock, and Pontus Olofsson. 2020. “A Suite of Tools for Continuous Land Change Monitoring in Google Earth Engine.” <em>Frontiers in Climate</em> 2. <a href="https://doi.org/10.3389/fclim.2020.576740">https://doi.org/10.3389/fclim.2020.576740</a>.</p>
 </div>
 <div>
 <p>Arvor, D., M. Meirelles, V. Dubreuil, and Y. E. Shimabukuro. 2012. “Analyzing the Agricultural Transition in Mato Grosso, Brazil, Using Satellite-Derived Indices.” <em>Applied Geography</em> 32 (2): 702–13.</p>
@@ -298,7 +298,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chen, Jin, Per. Jönsson, Masayuki Tamura, Zhihui Gu, Bunkei Matsushita, and Lars Eklundh. 2004. “A Simple Method for Reconstructing a High-Quality NDVI Time-Series Data Set Based on the Savitzky–Golay Filter.” <em>Remote Sensing of Environment</em> 91 (3): 332–44. <a href="https://doi.org/10.1016/j.rse.2004.03.014">https://doi.org/10.1016/j.rse.2004.03.014</a>.</p>
 </div>
 <div>
-<p>Chen, Tianqi, and Carlos Guestrin. 2016. “Xgboost: A Scalable Tree Boosting System.” In <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 785–94.</p>
+<p>Chen, Tianqi, and Carlos Guestrin. 2016. “XGBoost: A Scalable Tree Boosting System.” In <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 785–94. KDD ’16. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>.</p>
+</div>
+<div>
+<p>Chollet, François, and J. J Allaire. 2018. <em>Deep Learning with R</em>. Manning Publications Co. <a href="https://www.safaribooksonline.com/library/view//9781617295546/?ar">https://www.safaribooksonline.com/library/view//9781617295546/?ar</a>.</p>
 </div>
 <div>
 <p>Cortes, Corinna, and Vladimir Vapnik. 1995. “Support-Vector Networks.” <em>Machine Learning</em> 20 (3): 273–97.</p>
@@ -308,6 +311,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div>
 <p>Fawaz, Hassan Ismail, Germain Forestier, Jonathan Weber, Lhassane Idoumghar, and Pierre-Alain Muller. 2019. “Deep Learning for Time Series Classification: A Review.” <em>Data Mining and Knowledge Discovery</em> 33 (4): 917–63.</p>
+</div>
+<div>
+<p>Ferreira, Karine R., Gilberto R. Queiroz, Lubia Vinhas, Rennan F. B. Marujo, Rolf E. O. Simoes, Michelle C. A. Picoli, Gilberto Camara, et al. 2020. “Earth Observation Data Cubes for Brazil: Requirements, Methodology and Products.” <em>Remote Sensing</em> 12 (24, 24): 4033. <a href="https://doi.org/10.3390/rs12244033">https://doi.org/10.3390/rs12244033</a>.</p>
 </div>
 <div>
 <p>Frenay, B., and M. Verleysen. 2014. “Classification in the Presence of Label Noise: A Survey.” <em>IEEE Transactions on Neural Networks and Learning Systems</em> 25 (5): 845–69. <a href="https://doi.org/10.1109/TNNLS.2013.2292894">https://doi.org/10.1109/TNNLS.2013.2292894</a>.</p>
@@ -322,6 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Goodfellow, Ian, Yoshua Bengio, and Aaron Courville. 2016. <em>Deep Learning</em>. MIT Press.</p>
 </div>
 <div>
+<p>Gorelick, Noel, Matt Hancher, Mike Dixon, Simon Ilyushchenko, David Thau, and Rebecca Moore. 2017. “Google Earth Engine: Planetary-Scale Geospatial Analysis for Everyone.” <em>Remote Sensing of Environment</em> 202: 18–27.</p>
+</div>
+<div>
 <p>Griffiths, Patrick, Claas Nendel, Jürgen Pickert, and Patrick Hostert. 2019. “Towards National-Scale Characterization of Grassland Use Intensity from Integrated Sentinel-2 and Landsat Time Series.” <em>Remote Sensing of Environment</em>, April, 111124. <a href="https://doi.org/10.1016/j.rse.2019.03.017">https://doi.org/10.1016/j.rse.2019.03.017</a>.</p>
 </div>
 <div>
@@ -334,10 +343,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Hird, Jennifer N, and Gregory J McDermid. 2009. “Noise Reduction of NDVI Time Series: An Empirical Comparison of Selected Techniques.” <em>Remote Sensing of Environment</em> 113 (1): 248–58.</p>
 </div>
 <div>
+<p>Hochreiter, Sepp. 1998. “The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions.” <em>International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</em> 6 (2): 107–16. <a href="https://doi.org/10.1142/S0218488598000094">https://doi.org/10.1142/S0218488598000094</a>.</p>
+</div>
+<div>
 <p>Huang, Xin, Qikai Lu, Liangpei Zhang, and Antonio Plaza. 2014. “New Postprocessing Methods for Remote Sensing Image Classification: A Systematic Study.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 52 (11): 7140–59.</p>
 </div>
 <div>
 <p>Hubert, Lawrence, and Phipps Arabie. 1985. “Comparing Partitions.” <em>Journal of Classification</em> 2 (1): 193–218.</p>
+</div>
+<div>
+<p>INPE. 2019. “Amazon Deforestation Monitoring Project (PRODES).” National Institute for Space Research, Brazil. <a href="www.obt.inpe.br/prodes">www.obt.inpe.br/prodes</a>.</p>
+</div>
+<div>
+<p>Ioffe, Sergey, and Christian Szegedy. 2015. “Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.” In <em>International Conference on Machine Learning</em>, 448–56. PMLR. <a href="http://proceedings.mlr.press/v37/ioffe15.html">http://proceedings.mlr.press/v37/ioffe15.html</a>.</p>
 </div>
 <div>
 <p>James, G., D. Witten, T. Hastie, and R. Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in R</em>. New York, EUA: Springer.</p>
@@ -347,6 +365,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div>
 <p>Karim, Fazle, Somshubra Majumdar, Houshang Darabi, and Shun Chen. 2018. “LSTM Fully Convolutional Networks for Time Series Classification.” <em>IEEE Access</em> 6: 1662–9.</p>
+</div>
+<div>
+<p>Karim, Fazle, Somshubra Majumdar, Houshang Darabi, and Samuel Harford. 2019. “Multivariate LSTM-FCNS for Time Series Classification.” <em>Neural Networks</em> 116: 237–45.</p>
 </div>
 <div>
 <p>Kastens, J., J. Brown, A. Coutinho, C. Bishop, and J. Esquerdo. 2017. “Soy Moratorium Impacts on Soybean and Deforestation Dynamics in Mato Grosso, Brazil.” <em>PLOS ONE</em> 12 (4): e0176168.</p>
@@ -361,10 +382,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Kohonen, T. 1990. “The Self-Organizing Map.” <em>Proceedings of the IEEE</em> 78 (9): 1464–80. <a href="https://doi.org/10.1109/5.58325">https://doi.org/10.1109/5.58325</a>.</p>
 </div>
 <div>
+<p>Kohonen, Teuvo. 2013. “Essentials of the Self-Organizing Map.” <em>Neural Networks</em>, Twenty-fifth Anniversay Commemorative Issue, 37 (January): 52–65. <a href="https://doi.org/10.1016/j.neunet.2012.09.018">https://doi.org/10.1016/j.neunet.2012.09.018</a>.</p>
+</div>
+<div>
+<p>Kopp, Steve, Peter Becker, Abhijit Doshi, Dawn J. Wright, Kaixi Zhang, and Hong Xu. 2019. “Achieving the Full Vision of Earth Observation Data Cubes.” <em>Data</em> 4 (3, 3): 94. <a href="https://doi.org/10.3390/data4030094">https://doi.org/10.3390/data4030094</a>.</p>
+</div>
+<div>
 <p>Lambin, E. F., and M. Linderman. 2006. “Time Series of Remote Sensing Data for Land Change Science.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 44 (7): 1926–8.</p>
 </div>
 <div>
 <p>Lambin, Eric F, Helmut J Geist, and Erika Lepers. 2003. “Dynamics of Land-Use and Land-Cover Change in Tropical Regions.” <em>Annual Review of Environment and Resources</em> 28 (1): 205–41.</p>
+</div>
+<div>
+<p>Lewis, Adam, Simon Oliver, Leo Lymburner, Ben Evans, Lesley Wyborn, Norman Mueller, Gregory Raevksi, et al. 2017. “The Australian Geoscience Data Cube — Foundations and Lessons Learned.” <em>Remote Sensing of Environment</em> 202 (December): 276–92. <a href="https://doi.org/10.1016/j.rse.2017.03.015">https://doi.org/10.1016/j.rse.2017.03.015</a>.</p>
 </div>
 <div>
 <p>Madden, Hannibal H. 1978. “Comments on the Savitzky-Golay Convolution Method for Least-Squares-Fit Smoothing and Differentiation of Digital Data.” <em>Analytical Chemistry</em> 50 (9): 1383–6.</p>
@@ -382,7 +412,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mountrakis, G., J. Im, and C. Ogole. 2011. “Support Vector Machines in Remote Sensing: A Review.” <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 66 (3): 247–59.</p>
 </div>
 <div>
+<p>Olofsson, Pontus, Giles M. Foody, Martin Herold, Stephen V. Stehman, Curtis E. Woodcock, and Michael A. Wulder. 2014. “Good Practices for Estimating Area and Assessing Accuracy of Land Change.” <em>Remote Sensing of Environment</em> 148: 42–57.</p>
+</div>
+<div>
+<p>Olofsson, Pontus, Giles M. Foody, Stephen V. Stehman, and Curtis E. Woodcock. 2013. “Making Better Use of Accuracy Data in Land Change Studies: Estimating Accuracy and Area and Quantifying Uncertainty Using Stratified Estimation.” <em>Remote Sensing of Environment</em> 129 (February): 122–31. <a href="https://doi.org/10.1016/j.rse.2012.10.031">https://doi.org/10.1016/j.rse.2012.10.031</a>.</p>
+</div>
+<div>
 <p>Parente, Leandro, Evandro Taquary, Ana Paula Silva, Carlos Souza, and Laerte Ferreira. 2019. “Next Generation Mapping: Combining Deep Learning, Cloud Computing, and Big Remote Sensing Data.” <em>Remote Sensing</em> 11 (23, 23): 2881. <a href="https://doi.org/10.3390/rs11232881">https://doi.org/10.3390/rs11232881</a>.</p>
+</div>
+<div>
+<p>Paris, Sylvain, Pierre Kornprobst, Jack Tumblin, and Frédo Durand. 2007. “A Gentle Introduction to Bilateral Filtering and Its Applications.” In <em>ACM SIGGRAPH 2007 Courses</em>, 1–es. SIGGRAPH ’07. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/1281500.1281602">https://doi.org/10.1145/1281500.1281602</a>.</p>
 </div>
 <div>
 <p>Pasquarella, Valerie J., Christopher E. Holden, Les Kaufman, and Curtis E. Woodcock. 2016. “From Imagery to Ecology: Leveraging Time Series of All Available LANDSAT Observations to Map and Monitor Ecosystem State and Dynamics.” <em>Remote Sensing in Ecology and Conservation</em> 2 (3): 152–70. <a href="https://doi.org/10.1002/rse2.24">https://doi.org/10.1002/rse2.24</a>.</p>
@@ -397,10 +436,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Petitjean, F., J. Inglada, and P. Gancarski. 2012. “Satellite Image Time Series Analysis Under Time Warping.” <em>IEEE Transactions on Geoscience and Remote Sensing</em> 50 (8): 3081–95. <a href="https://doi.org/10.1109/TGRS.2011.2179050">https://doi.org/10.1109/TGRS.2011.2179050</a>.</p>
 </div>
 <div>
-<p>Petitjean, François, Florent Masseglia, Pierre Gançarski, and Germain Forestier. 2011. “Discovering Significant Evolution Patterns from Satellite Image Time Series.” <em>International Journal of Neural Systems</em> 21 (06): 475–89. <a href="https://doi.org/10.1142/S0129065711003024">https://doi.org/10.1142/S0129065711003024</a>.</p>
+<p>Picoli, Michelle, Gilberto Camara, Ieda Sanches, Rolf Simoes, Alexandre Carvalho, Adeline Maciel, Alexandre Coutinho, et al. 2018. “Big Earth Observation Time Series Analysis for Monitoring Brazilian Agriculture.” <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 145: 328–39. <a href="https://doi.org/10.1016/j.isprsjprs.2018.08.007">https://doi.org/10.1016/j.isprsjprs.2018.08.007</a>.</p>
 </div>
 <div>
-<p>Picoli, Michelle, Gilberto Camara, Ieda Sanches, Rolf Simoes, Alexandre Carvalho, Adeline Maciel, Alexandre Coutinho, et al. 2018. “Big Earth Observation Time Series Analysis for Monitoring Brazilian Agriculture.” <em>ISPRS Journal of Photogrammetry and Remote Sensing</em> 145: 328–39. <a href="https://doi.org/10.1016/j.isprsjprs.2018.08.007">https://doi.org/10.1016/j.isprsjprs.2018.08.007</a>.</p>
+<p>Potapov, Peter, Matthew C. Hansen, Indrani Kommareddy, Anil Kommareddy, Svetlana Turubanova, Amy Pickens, Bernard Adusei, Alexandra Tyukavina, and Qing Ying. 2020. “Landsat Analysis Ready Data for Global Land Cover and Land Cover Change Mapping.” <em>Remote Sensing</em> 12 (3, 3): 426. <a href="https://doi.org/10.3390/rs12030426">https://doi.org/10.3390/rs12030426</a>.</p>
 </div>
 <div>
 <p>Ruder, Sebastian. 2016. “An Overview of Gradient Descent Optimization Algorithms.” <em>CoRR</em> abs/1609.04747. <a href="http://arxiv.org/abs/1609.04747">http://arxiv.org/abs/1609.04747</a>.</p>
@@ -427,16 +466,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Srivastava, Nitish, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov. 2014. “Dropout: A Simple Way to Prevent Neural Networks from Overfitting.” <em>The Journal of Machine Learning Research</em> 15 (1): 1929–58.</p>
 </div>
 <div>
+<p>Tan, Chang Wei, Geoffrey I. Webb, and François Petitjean. 2017. “Indexing and Classifying Gigabytes of Time Series Under Time Warping.” In <em>Proceedings of the 2017 SIAM International Conference on Data Mining (SDM)</em>, 282–90. Proceedings. Society for Industrial and Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611974973.32">https://doi.org/10.1137/1.9781611974973.32</a>.</p>
+</div>
+<div>
 <p>Thanh Noi, Phan, and Martin Kappas. 2018. “Comparison of Random Forest, K-Nearest Neighbor, and Support Vector Machine Classifiers for Land Cover Classification Using Sentinel-2 Imagery.” <em>Sensors</em> 18 (1, 1): 18. <a href="https://doi.org/10.3390/s18010018">https://doi.org/10.3390/s18010018</a>.</p>
 </div>
 <div>
-<p>Vávra, F., P. Nový, H. Masková, M. Kotlíková, and A. Netrvalová. 2004. “Morphological Filtration for Time Series.” In <em>Proceedings of the 3rd International Conference Aplimat</em>, 983–89. Bratislava, Slovakia: Slovak University of Technology in Bratislava.</p>
+<p>Tomasi, C., and R. Manduchi. 1998. “Bilateral Filtering for Gray and Color Images.” In <em>Sixth International Conference on Computer Vision (IEEE Cat. No.98CH36271)</em>, 839–46. Bombay, India: Narosa Publishing House. <a href="https://doi.org/10.1109/ICCV.1998.710815">https://doi.org/10.1109/ICCV.1998.710815</a>.</p>
 </div>
 <div>
 <p>Verbesselt, Jan, Rob Hyndman, Glenn Newnham, and Darius Culvenor. 2010. “Detecting Trend and Seasonal Changes in Satellite Image Time Series.” <em>Remote Sensing of Environment</em> 114 (1): 106–15. <a href="https://doi.org/10.1016/j.rse.2009.08.014">https://doi.org/10.1016/j.rse.2009.08.014</a>.</p>
 </div>
 <div>
-<p>Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. “Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline.” In <em>2017 International Joint Conference on Neural Networks (Ijcnn)</em>, 1578–85. IEEE.</p>
+<p>Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. “Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline.” In <em>2017 International Joint Conference on Neural Networks (IJCNN)</em>.</p>
 </div>
 <div>
 <p>Ward, Joe H. 1963. “Hierarchical Grouping to Optimize an Objective Function.” <em>Journal of the American Statistical Association</em> 58 (301): 236–44.</p>
@@ -448,10 +490,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media, Inc.</p>
 </div>
 <div>
+<p>Woodcock, Curtis E., Thomas R. Loveland, Martin Herold, and Marvin E. Bauer. 2020. “Transitioning from Change Detection to Monitoring with Remote Sensing: A Paradigm Shift.” <em>Remote Sensing of Environment</em> 238 (March): 111558. <a href="https://doi.org/10.1016/j.rse.2019.111558">https://doi.org/10.1016/j.rse.2019.111558</a>.</p>
+</div>
+<div>
 <p>Wright, Jonathon S., Rong Fu, John R. Worden, Sudip Chakraborty, Nicholas E. Clinton, Camille Risi, Ying Sun, and Lei Yin. 2017. “Rainforest-Initiated Wet Season Onset over the Southern Amazon.” <em>Proceedings of the National Academy of Sciences</em>, July. <a href="https://doi.org/10.1073/pnas.1621516114">https://doi.org/10.1073/pnas.1621516114</a>.</p>
 </div>
 <div>
 <p>Zhou, Jie, Li Jia, Massimo Menenti, and Ben Gorte. 2016. “On the Performance of Remote Sensing Time Series Reconstruction Methods: A Spatial Comparison.” <em>Remote Sensing of Environment</em> 187: 367–84.</p>
+</div>
+<div>
+<p>Zhu, Zhe, Junxue Zhang, Zhiqiang Yang, Amal H Aljaddani, Warren B Cohen, Shi Qiu, and Congliang Zhou. 2020. “Continuous Monitoring of Land Disturbance Based on Landsat Time Series.” <em>Remote Sensing of Environment</em> 238: 111116.</p>
 </div>
 </div>
 </div>
