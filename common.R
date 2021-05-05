@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 )
 
 # load essentials packages
+library(tibble)
 library(sits)
 library(sitsdata)
 library(sitsdocs)

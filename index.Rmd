@@ -32,7 +32,7 @@ source("common.R")
 
 Using time series derived from big Earth Observation data sets is one of the leading research trends in Land Use Science and Remote Sensing. One of the more promising uses of satellite time series is its application to classify land use and land cover since our growing demand for natural resources has caused significant environmental impacts. 
 
-This book presents  **sits**, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes. Methods available include linear and quadratic discrimination analysis, support vector machines, random forests, boosting, deep learning, and convolution neural. The package also provides functions to post-classification and sample quality assessment.
+This book presents  **sits**, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes. Methods available include linear and quadratic discrimination analysis, support vector machines, random forests, boosting, deep learning, and convolutional neural netwoeks. The package also provides functions for post-processing and sample quality assessment.
 
 ## Who this book is for {-}
 
@@ -42,10 +42,12 @@ This book is recommended for researchers and experts that want to use the full p
 
 - James, G.; Witten, D.; Hastie, T.; Tibshirani, R. ["An Introduction to Statistical Learning with Applications in R"](https://www.statlearning.com/). Springer, 2013.
 
+- Goodfellow, I; Bengio, Y.; Courville, A. ["Deep Learning"](http://www.deeplearningbook.org). MIT Press, 2016.
+
 
 ## How to use this book {-}
 
-This book describes sits version 0.11.0. Download and install sits as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested with. 
+This book describes sits version 0.11.0. Download and install sits as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested in. 
 
 
 | **Chapter**   | **Description**                                                                                            |

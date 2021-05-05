@@ -47,7 +47,7 @@ $$
 
 For each pixel $i$, we take the odds of the classification for class $k$, expressed as
 $$
-	O_{i,t,k} = p_{i,t,,k} / (1-p_{i,t,k})
+	O_{i,t,k} = p_{i,t,k} / (1-p_{i,t,k})
 $$
 where $p_{i,t,k}$ is the probability of class $k$ at time $t$. We have more confidence in pixels with higher odds since their class assignment is stronger. There are situations, such as border pixels or mixed ones, where the odds of different classes are similar in magnitude. We take them as cases of low confidence in the classification result. To assess and correct these cases,  Bayesian smoothing methods borrow strength from the neighbors and reduces the variance of the estimated class for each pixel.
 

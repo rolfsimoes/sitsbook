@@ -24,33 +24,7 @@ To reduce processing time, it is necessary to adjust `sits_classify()` according
 
 When using the `sits_rfor` and `sits_svm` model, users can also specify the number of cores to be used for parallel processing by setting the parameter `multicores`. In this case, the classification task it is split into different cores. In general, the more cores are assigned to classification, the faster the result will be. The `multicores` parameter has no effect when working with deep learning models (`sits_deeplearning`, `sits_ResNet`, `sits_TempCNN`) and extreme gradient boosting (`sits_xgboost`). The underlying algorithms available in these models already have parallel processing facilities.
 
-```{r}
-# select the bands "ndvi", "evi"
-samples_2bands <- sits_select(samples_matogrosso_mod13q1, bands = c("NDVI", "EVI"))
 
-#select a rfor model
-xgb_model <- sits_train(samples_2bands, ml_method = sits_xgboost())
-
-data_dir <- system.file("extdata/sinop", package = "sitsdata")
-
-# create a raster metadata file based on the information about the files
-sinop <- sits_cube(source = "LOCAL",
-                   satellite = "TERRA",
-                   sensor  = "MODIS",
-                   name = "Sinop",
-                   data_dir = data_dir,
-                   parse_info = c("X1", "X2", "band", "date"))
-
-# classify the raster image
-sinop_probs <- sits_classify(sinop, ml_model = xgb_model, 
-                             memsize = 4, multicores = 1, 
-                             output_dir = tempdir())
-
-# label the probability file 
-# (by default selecting the class with higher probability)
-sinop_label <- sits_label_classification(sinop_probs, output_dir = tempdir())
-plot(sinop_label, title = "Sinop-label")
-```
 
 ## Processing time estimates 
 

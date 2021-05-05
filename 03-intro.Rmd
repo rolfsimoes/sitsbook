@@ -1,6 +1,6 @@
 # (PART) Overview {-}
 
-# Introduction
+# Introduction: A taste of sits
 
 ```{r, include = FALSE}
 source("common.R")
@@ -8,57 +8,64 @@ source("common.R")
 
 ---
 
-This chapter present an overview of sits. For detailed description of the functions, please see the following chapters. 
+This chapter present an overview of sits by showing an application example. For detailed description of the functions, please see the following chapters. 
 
 ---
 
 Earth observation (EO) satellites provide a common and consistent set of information about the planet's land and oceans. Recently, most space agencies have adopted open data policies, making unprecedented amounts of satellite data available for research and operational use. This data deluge has brought about a significant challenge: *How to design and build technologies that allow the Earth observation community to analyze big data sets?* 
 
-In this book, we present **sits**, an open-source R package for satellite image time series analysis. It provides support on how to use machine learning techniques with image time series. The package supports the complete cycle of data analysis for time series classification, including data acquisition, visualization, filtering, clustering, classification, validation, and post-classification.
+In this book, we present **sits**, an open-source R package for satellite image time series analysis. It provides support on how to use machine learning techniques with image time series. The package supports the complete cycle of data analysis for time series classification, including data acquisition, visualization, filtering, clustering, classification, validation, and post-processing.
 
-Satellite image time series are obtained by taking calibrated and comparable measures of the same location in Earth at different times[@Tan2017]. These measures can come from a single sensor (e.g., MODIS) or by combining various sensors (e.g., Landsat 8 and Sentinel-2). If acquired by frequent revisits, these data set can capture significant land use changes. As argued by [@Woodcock2020], *"dense time series analysis is providing new information on the timing of landscape changes, as well as improving the quality and accuracy of information being derived from remote sensing. The result is a paradigm shift away from change detection, typically using two points in time, to monitoring, or an attempt to track change continuously in time."*
+The traditional approach for change detection in remote sensing is to compare two classified images of the same place in different times and derive a transition matrix. Camara et al. [@Camara2016] call this a *space-first, time-later* approach. The *sits* package adopts a *time-first, space-later* method; all the values of time series are inputs for analysis.  In the *time-first, space-later* approach, each spatial location is associated to a time series. Each time series is classified separately and spatial smoothing is later applied. The resulting maps of land use and land cover capture the full information provided by big EO data sets.
 
-```{r, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Using time series for land classification (source: Tan et al., 2017)"}
-knitr::include_graphics("images/time_series_general_view.png")
+```{r, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Using time series for land classification (source: authors)"}
+knitr::include_graphics("images/sits_general_view.png")
 ```
 
-Time series of remote sensing data show that land cover can occur not only progressively and gradually, but they may also show discontinuities with abrupt changes [@Lambin2003]. Analyses of multiyear time series of land surface attributes, their fine-scale spatial pattern, and their seasonal evolution lead to a broader view of land-cover change. Satellite image time series have  been used in applications such as mapping for detecting forest disturbance [@Kennedy2010], land disturbance [@Zhu2020], ecological dynamics [@Pasquarella2016], agricultural intensification [@Galford2008], and deforestation monitoring [@Arvor2012]. Algorithms for processing image time series include BFAST for detecting breaks [@Verbesselt2010], TIMESAT for extraction phenological attributes [@Jonsson2004], CCDC for continuous change detection [@Arevalo2020], and methods based on Dynamic Time Warping (DTW) for land use and land cover classification [@Petitjean2012, @Maus2019].
+## A working example 
 
-Compared with existing tools, sits has distinctive features:
+In what follows, we introduce sits to the novice user by showing a simple example fo land use and land cover classification. The data is a set of analysis-ready MODIS MOD13Q1 images for the Sinop region of the State of Mato Grosso, Brazil, in the bands "NDVI" and "EVI", covering a one-year period from 2013-09-14 ^[In this book, we follow the convention "year-month-day" for dates]. Each band has 23 instances, each covering a 16-day period, which is the standard for the MOD13Q1 product[@Didan2015].  
 
-1. A consistent API that encapsulates the entire land classification workflow in a few commands.
-2. Integration with data cubes and Earth observation image collections available in cloud services such as AWS and Microsoft.
-3. A single interface for different machine learning and deep learning algorithms.
-4. Internal support for parallel processing, without requiring users to learn how to improve the performance of their scripts.
-5. Support for efficient processing of large areas in a user-transparent way.
-6. Innovative methods for sample quality control and post-processing.
-7. Capacity to run on virtual machines in cloud environments.
 
-Designing software to do big Earth observation data analysis requires balancing between flexibility, interoperability, efficiency, and ease of use. The approach taken in *sits* is different from software such as Google Earth Engine (GEE) [@Gorelick2017] and  Open Data Cube (ODC) [@Lewis2017]. Similar to GEE, *sits* provides a compact API. However, GEE is restricted to the Google environment and does not provide direct support for deep learning using image time series. Since *sits* runs in different cloud providers, users are flexible to choose the working environment that better fits their needs and resources. 
+```{r}
+data_dir <- system.file("extdata/sinop", package = "sitsdata")
 
-As for the ODC, the approach taken by its designers is that of maximum flexibility. ODC provides users with data organized into a python *xarray* structure. Since ODC does not provide an API to work with xarrays, specialists have to develop their applications by themselves. This choice by ODC designers aims at allowing experts to develop many different types of applications. Such flexibility comes a cost for studies involving large areas that require parallel processing. In these cases, experts have to learn how to parallelize their scripts. By contrast, the *sits* API focus on providing a simple and powerful environment for land classification. Parellel processing is done internally and is user-transparent.  We consider that the combination of user-centered design and interoperability is *sits* is well suited for experts that want to use satellite data to land-related data analysis.
-
-## Workflow and API
-
-The main aim of sits is to support land cover and land change classification of image data cubes using machine learning methods. As such, the basic workflow and API is:
-
-1. Create a data cube based on analysis-ready data image collections available in the cloud or local machines using `sits_cube`.
-2. Provide a description of the training data as a CSV or SHP file.
-3. Obtain the time series for the training samples using `sits_get_data`.
-4. Validate the samples using `sits_kfold_validate`.
-5. Improve the quality of the samples using `sits_som_map` and `sits_som_clean_samples`.
-6. Train a machine learning model with `sits_train`.
-7. Classify the data cubes with `sits_classify`, producing a cube with class probabilities.
-8. Smoothen the probability data to reduce classification noise with `sits_smooth`.
-9. Label the probability cube with `sits_label_classification`. 
-10. Assess the quality of the classification with `sits_accuracy`.
-
-Figure \@ref(fig:workflow) shows a generic vision of the workflow for land classification.
-```{r workflow, echo = FALSE, out.width = "80%", out.height = "80%", fig.align="center", fig.cap="Workflow of using satellite image time series for classification"}
-
-knitr::include_graphics("images/sits_workflow.png")
+# create a raster metadata file based on the information about the files
+sinop <- sits_cube(source = "LOCAL",
+                   satellite = "TERRA",
+                   sensor  = "MODIS",
+                   name = "Sinop",
+                   data_dir = data_dir
+)
 ```
 
+The training samples comprise 1,218 time series, also obtained from MODIS MOD13Q1 images. 
+```{r}
+# select the bands "ndvi", "evi"
+samples_2bands <- sits_select(samples_matogrosso_mod13q1, bands = c("NDVI", "EVI"))
+
+#select a tempCNN model
+tcnn_model <- sits_train(data = samples_2bands, 
+                        ml_method = sits_TempCNN())
+
+# classify the raster image
+sinop_probs <- sits_classify(data = sinop, 
+                             ml_model = tcnn_model)
+
+plot(sinop_probs)
+```
+
+```{r}
+
+# label the probability file 
+# (by default selecting the class with higher probability)
+sinop_label <- sits_label_classification(sinop_probs, output_dir = tempdir())
+plot(sinop_label, title = "Sinop-label")
+```
+
+
+
+## How the sits API works 
 Figure \@ref(fig:api) shows how the *sits* API is used to perform the main steps of the workflow. These functions are: (a) `sits_cube` which creates a cube; (b) `sits_get_data` which extracts training data from the cube; (c) `sits_train` that trains a machine learning model; (d) `sits_classify` which classifies the cube; (e) `sits_label_classication` that produces the final labelled image. These five functions encapsulate the core of the *sits* package.  
 
 ```{r api, echo = FALSE, out.width = "80%", out.height = "80%", fig.align="center", fig.cap="Main functions of the SITS API"}
@@ -66,15 +73,7 @@ Figure \@ref(fig:api) shows how the *sits* API is used to perform the main steps
 knitr::include_graphics("images/sits_api.png")
 ```
 
-## Handling Data Cubes in sits
 
-Currently, *sits* supports data cubes available in the following cloud services:
-
-1. Sentinel-2/2A level 2A images in Amazon Web Services (AWS);
-2. Collections of Sentinel, Landsat, and CBERS images in the Brazil Data Cube (BDC);
-3. Collections available in Digital Earth Africa;
-4. Data cubes produced by the [gdalcubes package](https://github.com/appelmar/gdalcubes);
-5. Local image collections.
 
 The user defines a data cube by selecting a cloud service collection and determining a space-time extent. The code below shows the definition of a data cube using AWS Sentinel-2/2A images to exemplify how it is used. In the example, the user selects the "Sentinel-2 Level 2" collection in the AWS cloud services. The data cube's geographical area is defined by the tile "20LKP" and the temporal extent by a start and end date. Access to other cloud services works in similar ways (See [Chapter 2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html) for more details).
 
@@ -195,36 +194,6 @@ For more details, please see [Chapter 5](https://e-sensing.github.io/sitsbook/ma
 
 Given a data cube and a trained ML model, the function `sits_classify()` assigns class probability to each time series. To optimize processing time, users can adjust the function according to the server's capabilities, configuring the available memory (`memsize`) and the number of cores to be used (`multicores`). 
 
-```{r, fig.align="center", fig.cap="Class probabilities for each pixel"}
-# create a data cube to be classified
-# composed of MOD13Q1 images from the Sinop region in Mato Grosso (Brazil)
-data_dir <- system.file("extdata/raster/mod13q1", package = "sits")
-sinop <- sits_cube(
-    source = "LOCAL",
-    name = "sinop-2014",
-    satellite = "TERRA",
-    sensor = "MODIS",
-    data_dir = data_dir,
-    parse_info = c("X1", "X2", "band", "date")
-)
-
-# Retrieve the set of samples for the Mato Grosso region 
-# these samples have already been quality controlled 
-samples_2bands  <- sits_select(samples_modis_4bands, 
-                               bands = c("NDVI", "EVI"))
-# build a machine learning model for this area
-svm_model <- sits_train(data = samples_2bands, ml_method = sits_svm())
-
-# Classify the raster cube, generating a probability file
-probs_cube <- sits_classify(sinop, 
-                            ml_model = svm_model, 
-                            output_dir = tempdir(),
-                            memsize = 16,
-                            multicores = 4,
-                            verbose = FALSE)
-# plot the probabilities cube
-plot(probs_cube)
-```
 
 When applied to a data cube, `sits_classify` produces one probability image for each land class. These images are grouped in a probability cube. The value of each pixel of each class is proportional to the class probability estimated by the machine learning classifier, as shown in the Figure above. 
 

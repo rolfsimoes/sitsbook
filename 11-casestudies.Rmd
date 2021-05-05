@@ -1,0 +1,13 @@
+# Case studies
+
+---
+
+This chapter presents case studies using sits
+
+---
+
+```{r, include = FALSE}
+source("common.R")
+```
+
+
