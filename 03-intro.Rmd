@@ -74,6 +74,13 @@ knitr::include_graphics("images/sits_api.png")
 ```
 
 
+Currently, *sits* supports data cubes available in the following cloud services:
+
+1. Sentinel-2/2A level 2A images in Amazon Web Services (AWS);
+2. Collections of Sentinel, Landsat, and CBERS images in the Brazil Data Cube (BDC);
+3. Collections available in Digital Earth Africa;
+4. Data cubes produced by the [gdalcubes package](https://github.com/appelmar/gdalcubes).
+
 
 The user defines a data cube by selecting a cloud service collection and determining a space-time extent. The code below shows the definition of a data cube using AWS Sentinel-2/2A images to exemplify how it is used. In the example, the user selects the "Sentinel-2 Level 2" collection in the AWS cloud services. The data cube's geographical area is defined by the tile "20LKP" and the temporal extent by a start and end date. Access to other cloud services works in similar ways (See [Chapter 2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html) for more details).
 

@@ -17,7 +17,6 @@ knitr::opts_chunk$set(
 library(tibble)
 library(sits)
 library(sitsdata)
-library(sitsdocs)
 library(dtwclust)
 library(magrittr)
 library(distill)
