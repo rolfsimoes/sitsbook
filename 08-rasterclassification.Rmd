@@ -22,7 +22,7 @@ To classify a data cube, use the function `sits_classify()`.  This function work
 
 To reduce processing time, it is necessary to adjust `sits_classify()` according to the capabilities of the host environment. There is a trade-off between computing time, memory use, and I/O operations. The best trade-off has to be determined by the user, considering issues such disk read speed, number of cores in the server, and CPU performance.  The `memsize` parameter controls the size of the main memory (in GBytes) to be used for classification. A practical approach is to set `memsize` to about 30% of the total memory available. 
 
-When using the `sits_rfor` and `sits_svm` model, users can also specify the number of cores to be used for parallel processing by setting the parameter `multicores`. In this case, the classification task it is split into different cores. In general, the more cores are assigned to classification, the faster the result will be. The `multicores` parameter has no effect when working with deep learning models (`sits_deeplearning`, `sits_ResNet`, `sits_TempCNN`) and extreme gradient boosting (`sits_xgboost`). The underlying algorithms available in these models already have parallel processing facilities.
+When using the `sits_rfor` and `sits_svm` model, users can also specify the number of cores to be used for parallel processing by setting the parameter `multicores`. In this case, the classification task it is split into different cores. 
 
 
 

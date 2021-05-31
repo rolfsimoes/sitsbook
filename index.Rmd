@@ -1,7 +1,7 @@
 --- 
 knit: "bookdown::render_book"
 title: '**sits**: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series'
-author: ["Rolf Simoes", "Gilberto Camara", "Felipe Souza", "Lorena Santos", "Pedro R. Andrade", "Alexandre Carvalho", "Karine Ferreira", "Gilberto Queiroz", "Victor Maus"]
+author: ["Rolf Simoes", "Gilberto Camara", "Felipe Souza", "Lorena Santos", "Pedro R. Andrade", "Charlotte Peletier",  "Alexandre Carvalho", "Karine Ferreira", "Gilberto Queiroz", "Victor Maus"]
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -32,11 +32,11 @@ source("common.R")
 
 Using time series derived from big Earth Observation data sets is one of the leading research trends in Land Use Science and Remote Sensing. One of the more promising uses of satellite time series is its application to classify land use and land cover since our growing demand for natural resources has caused significant environmental impacts. 
 
-This book presents  **sits**, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes. Methods available include linear and quadratic discrimination analysis, support vector machines, random forests, boosting, deep learning, and convolutional neural netwoeks. The package also provides functions for post-processing and sample quality assessment.
+This book presents  **sits**, an open-source R package for land use and land cover change mapping using satellite image time series. The package uses machine learning techniques to classify image time series obtained from data cubes. Methods available include linear and quadratic discrimination analysis, support vector machines, random forests, boosting, deep learning, and convolutional neural networks. The package also provides functions for post-processing and sample quality assessment.
 
 ## Who this book is for {-}
 
-This book is recommended for researchers and experts that want to use the full potential of Earth observation data cubes for time series analysis and classification. Ideally, users should have basic knowledge of data science methods using R. The examples of the book are largely self-explanatory. Background information for the data science methods used in the book is available in the following references:
+The target audience for **sits is the new generation of specialists who understand the principles of remote sensing and can write scripts in \R. Ideally, users should have basic knowledge of data science methods using R. If you are new to R, we highly recommend  the excellent self-learning book ["Hands-On Programming with R"](https://rstudio-education.github.io/hopr/) by Garrett Golemund from RStudio. If you want more information on the data science methods used in the book, please look at the following references:
 
 - Wickham, H.; Golemund, G., ["R for Data Science"](https://r4ds.had.co.nz/). O'Reilly, 2017.
 
@@ -47,24 +47,26 @@ This book is recommended for researchers and experts that want to use the full p
 
 ## How to use this book {-}
 
-This book describes sits version 0.11.0. Download and install sits as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested in. 
+This book describes **sits** version 0.11.2. Download and install the package as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested in. 
 
 
 | **Chapter**   | **Description**                                                                                            |
 |---------------|------------------------------------------------------------------------------------------------------------|
-| [Chr 1](https://e-sensing.github.io/sitsbook/introduction.html) | Provides an overview of  **sits** package.                                                   |
-| [Chr 2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html) | Describes how to work with Earth observation data cubes  in sits.                                          |
-| [Chr 3](https://e-sensing.github.io/sitsbook/acessing-time-series-information-in-sits.html) | Describes how to access information from time series in sits.                          |
+| [Chr 1](https://e-sensing.github.io/sitsbook/introduction.html) | Provides an overview of  **sits**.                                                   |
+| [Chr 2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html) | Describes how to work with Earth observation data cubes.                                          |
+| [Chr 3](https://e-sensing.github.io/sitsbook/acessing-time-series-information-in-sits.html) | Describes how to access information from time series.                          |
 | [Chr 4](https://e-sensing.github.io/sitsbook/time-series-clustering-to-improve-the-quality-of-training-samples.html) | Improving the quality of the samples used in training models |
 | [Chr 5](https://e-sensing.github.io/sitsbook/machine-learning-for-data-cubes-using-the-sits-package.html) | Presents the machine learning techniques available in sits.                   |
 | [Chr 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html) | Describes how to classify satellite images associated with Earth observation data cubes.   |
 | [Chr 7](https://e-sensing.github.io/sitsbook/post-classification-smoothing-using-bayesian-techniques-in-sits.html) | Describes smoothing method to reclassify the pixels based on the machine learning probabilities |
-| [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html) | Presents the validation and accuracy measures available in sits.    |
+| [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html) | Presents the validation and accuracy measures.    |
+| [Chr 9](https://e-sensing.github.io/sitsbook/case-studies.html) | Presents case studies of LUCC classification.    |
+| [Chr 10](https://e-sensing.github.io/sitsbook/extensibility-guide.html) | How to develop extensions to **sits**.    |
 
 
 ## Publications using sits {-}
 
-This section gathers the publications that have used sits to generate the results.
+This section gathers the publications that have used **sits** to generate the results.
 
 
 **2021**

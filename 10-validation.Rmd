@@ -32,7 +32,7 @@ val_rfor
 
 ## Comparing different machine learning methods using k-fold validation
 
-One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set. We take five models: random forests(`sits_rfor`), support vector machines (`sits_svm`), extreme gradient boosting (`sits_xgboost`), multi-layer perceptron (`sits_deeplearning`) and temporal convolutional neural network (`sits_TempCNN`). For simplicity, we use the default parameters provided by sits. After computing the confusion matrix and the statistics for each model, we store the result in a list. When the calculation is finished, the function `sits_to_xlsx` writes all of the results in an Excel-compatible spreadsheet.
+One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set. We take five models: random forests(`sits_rfor`), support vector machines (`sits_svm`), extreme gradient boosting (`sits_xgboost`), multi-layer perceptron (`sits_mlp`) and temporal convolutional neural network (`sits_TempCNN`). For simplicity, we use the default parameters provided by sits. After computing the confusion matrix and the statistics for each model, we store the result in a list. When the calculation is finished, the function `sits_to_xlsx` writes all of the results in an Excel-compatible spreadsheet.
 
 
 ```{r, eval = FALSE}
@@ -74,7 +74,7 @@ results[[length(results) + 1]] <- conf_xgb
 # Multi-layer perceptron
 conf_mlp <- sits_kfold_validate(
     samples_matogrosso_mod13q1,
-    ml_method = sits_deeplearning())
+    ml_method = sits_mlp())
 
 # Give a name to the SVM model
 conf_mlp$name <- "MLP"

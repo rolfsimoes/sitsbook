@@ -39,7 +39,7 @@ The package has support for a variety of machine learning techniques: linear dis
 * Support vector machines (`sits_svm`)
 * Random forests (`sits_rfor`)
 * Extreme gradient boosting (`sits_xgboost`)
-* Deep learning (DL) using multi-layer perceptrons (`sits_deeplearning`)
+* Deep learning (DL) using multi-layer perceptrons (`sits_mlp`)
 * DL using Deep Residual Networks (`sits_ResNet`) 
 * DL combining 1D convolutional neural networks and multi-layer perceptrons (`sits_TempCNN`)
 
@@ -177,7 +177,7 @@ In this and in the following examples of using deep learning classifiers, both t
 # train a machine learning model for the Mato Grosso data using an MLP model
 
 mlp_model <- sits_train(samples_filtered, 
-                        sits_deeplearning(
+                        sits_mlp(
                         layers           = c(512, 512, 512, 512, 512, 512),
                         activation       = "elu",
                         dropout_rates    = c(0.10, 0.20, 0.25, 0.30, 0.35, 0.40),

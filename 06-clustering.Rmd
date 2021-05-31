@@ -57,6 +57,9 @@ Unlike other validity indexes such as Jaccard (${J=a/(a+b+c)}$), Fowlkes-Mallows
 # create a dendrogram, plot, and get the optimal cluster based on ARI index
 clusters <- sits::sits_cluster_dendro(cerrado_2classes, 
                                          bands = c("ndvi", "evi"))
+```
+
+```{r}
 
 # show clusters samples frequency
 sits::sits_cluster_frequency(clusters)
