@@ -43,7 +43,7 @@ The `sits_cube()` function defines a *data cube*, which is an organized collecti
 
 ## The time series table
 
-To classify all of the time series associated to a data cube, **sits** uses machine learning models. FTo train the models, **sits** uses a tabular data structure that stores individual time series. The example below shows a table with 1,218 time series obtained from MODIS MOD13Q1 images.  Each series has four attributes: two bands ("NIR" and "MIR") and two indexes ("NDVI" and "EVI"). This data set is available in package "sitsdata". 
+To classify all of the time series associated to a data cube, **sits** uses machine learning models. To train the models, **sits** uses a tabular data structure that stores individual time series. The example below shows a table with 1,218 time series obtained from MODIS MOD13Q1 images.  Each series has four attributes: two bands ("NIR" and "MIR") and two indexes ("NDVI" and "EVI"). This data set is available in package "sitsdata". 
 
 ```{r}
 # load the MODIS samples for Mato Grosso from the "sitsdata" package

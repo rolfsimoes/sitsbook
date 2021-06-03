@@ -142,7 +142,7 @@ data("samples_modis_4bands")
 samples_2bands <- sits_select(samples_modis_4bands, bands = c("NDVI", "EVI"))
 
 #select a rfor model
-xgb_model <- sits_train(samples_2bands, ml_method = sits_xgboost(verbose = 0))
+rfor_model <- sits_train(samples_2bands, ml_method = sits_rfor(verbose = 0))
 
 data_dir <- system.file("extdata/sinop", package = "sitsdata")
 
@@ -156,8 +156,8 @@ raster_cube <- sits_cube(source = "LOCAL",
 )
 
 # classify the raster image and generate a probability file
-raster_probs <- sits_classify(raster_cube, ml_model = xgb_model, 
-                              memsize = 4, multicores = 2, 
+raster_probs <- sits_classify(raster_cube, ml_model = rfor_model, 
+                              memsize = 1, multicores = 1, 
                               output_dir = tempdir())
 
 plot(raster_probs)

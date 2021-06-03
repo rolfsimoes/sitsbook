@@ -36,7 +36,7 @@ This book presents  **sits**, an open-source R package for land use and land cov
 
 ## Who this book is for {-}
 
-The target audience for **sits is the new generation of specialists who understand the principles of remote sensing and can write scripts in \R. Ideally, users should have basic knowledge of data science methods using R. If you are new to R, we highly recommend  the excellent self-learning book ["Hands-On Programming with R"](https://rstudio-education.github.io/hopr/) by Garrett Golemund from RStudio. If you want more information on the data science methods used in the book, please look at the following references:
+The target audience for **sits** is the new generation of specialists who understand the principles of remote sensing and can write scripts in **R**. Ideally, users should have basic knowledge of data science methods using R. If you are new to R, we highly recommend  the excellent self-learning book ["Hands-On Programming with R"](https://rstudio-education.github.io/hopr/) by Garrett Golemund from RStudio. If you want more information on the data science methods used in the book, please look at the following references:
 
 - Wickham, H.; Golemund, G., ["R for Data Science"](https://r4ds.had.co.nz/). O'Reilly, 2017.
 
