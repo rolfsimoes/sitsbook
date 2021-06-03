@@ -1,0 +1,138 @@
+# (PART) Overview {-}
+
+# A taste of sits
+
+
+
+---
+
+This chapter present an overview of **sits** by showing an application example. For detailed description of the functions, please see the following chapters. 
+
+---
+
+Earth observation (EO) satellites provide a common and consistent set of information about the planet's land and oceans. Recently, most space agencies have adopted open data policies, making unprecedented amounts of satellite data available for research and operational use. This data deluge has brought about a significant challenge: *How to design and build technologies that allow the Earth observation community to analyze big data sets?* 
+
+In this book, we present **sits**, an open-source R package for satellite image time series analysis. It provides support on how to use machine learning techniques with image time series. The package supports the complete cycle of data analysis for time series classification, including data acquisition, visualization, filtering, clustering, classification, validation, and post-processing.
+
+The *sits* package adopts a *time-first, space-later* approach, where each spatial location is associated to a time series. A set of locations with known labels is used to train a machine learning classifiers. The resulting model is applied to the data cube and each time series is classified separately. After the classification, spatial smoothing methods capture information from neighbors. This approach is illustrated in Figure \@ref(fig:sits-overview).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth,height=0.7\textheight]{images/sits_general_view} 
+
+}
+
+\caption{Using time series for land classification (source: authors)}(\#fig:sits-overview)
+\end{figure}
+
+## Creating a Data Cube 
+
+In what follows, we introduce **sits** by showing a simple example fo land use and land cover classification. The first step is creating a data cube. The data cube is a set of analysis-ready MODIS MOD13Q1 images for the Sinop region of the State of Mato Grosso, Brazil, in the bands "NDVI" and "EVI", covering a one-year period from 2013-09-14 ^[In this book, we follow the convention "year-month-day" for dates]. Each band has 23 instances, each covering a 16-day period, which is the standard for the MOD13Q1 product[@Didan2015].  The data is available in the R package "sitsdata", which contains data for the examples in this book. The code below shows how to create data cubes from local files. To work with data cubes in repositories such as AWS, MS/AZURE and the Brazil Data Cube, please see [Chapter  2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html)
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/unnamed-chunk-2-1} 
+
+}
+
+\caption{EVI band for 2013-09-14}(\#fig:unnamed-chunk-2)
+\end{figure}
+The `sits_cube()` function defines a *data cube*, which is an organized collection of images covering a geographical area in a given time interval. Data cubes can be conceived as a 3D array of pixels, where each pixel is associated to a time series. All pixels share the same timeline and the same set of attributes (usually spectral bands).  When a data cube is defined, the values of the images are not loaded in memory.  The output of `sits_cube` is a object-relational data table, which contains the metadata that describes the actual image data. For more details on how to define and work with data cubes, please see  
+
+## The time series table
+
+To classify all of the time series associated to a data cube, **sits** uses machine learning models. FTo train the models, **sits** uses a tabular data structure that stores individual time series. The example below shows a table with 1,218 time series obtained from MODIS MOD13Q1 images.  Each series has four attributes: two bands ("NIR" and "MIR") and two indexes ("NDVI" and "EVI"). This data set is available in package "sitsdata". 
+
+
+```
+#> # A tibble: 3 x 7
+#>   longitude latitude start_date end_date   label   cube    time_series      
+#>       <dbl>    <dbl> <date>     <date>     <chr>   <chr>   <list>           
+#> 1     -55.2   -10.8  2013-09-14 2014-08-29 Pasture MOD13Q1 <tibble [23 x 5]>
+#> 2     -57.8    -9.76 2006-09-14 2007-08-29 Pasture MOD13Q1 <tibble [23 x 5]>
+#> 3     -51.9   -13.4  2014-09-14 2015-08-29 Pasture MOD13Q1 <tibble [23 x 5]>
+```
+The data structure associated to the time series is a table that contains data and metadata. The first six columns contain the metadata: spatial and temporal information, the label assigned to the sample, and the data cube from where the data has been extracted. The `time_series` column contains the time series data for each spatiotemporal location. This data is also organized as a table, with a column with the dates and the other columns with the values for each spectral band. For more details on how to handle time series data, please see [Chapter 3](https://e-sensing.github.io/sitsbook/acessing-time-series-information-in-sits.html). 
+
+It is useful to visualise the disperson of the time series. In what follows, for brevity we will select only one label ("Forest") and one index ("EVI") to show. The resulting plot shows all of the time series associated to the label and attribute, highlighting the median and the first and third quartiles. 
+
+\begin{center}\includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+## Training a machine learning model
+
+After obtaining the time series, the next step is to select a suitable subset to use as training samples for a machine learning model. In this case, the time series data has four attributes ("EVI", "NDVI", "NIR", "MIR") and the data cube is composed only with data from the "NDVI" and "EVI" indexes.  We extract the "NDVI" and "EVI" indexes from the time series data set and use the resulting data for training a model. To build the classification model, we have chosen `sits_TempCNN()` from the methods available. This method implements a 1D convolution neural network [@Pelletier2019]. After training the model, we plot the result to how well it has converged to match the input data. For more details on the machine learning methods please see [Chapter 5](https://e-sensing.github.io/sitsbook/machine-learning-for-data-cubes-using-the-sits-package.html). 
+
+
+```
+#> `geom_smooth()` using formula 'y ~ x'
+```
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/unnamed-chunk-5-1} 
+
+}
+
+\caption{Validation of TempCNN model}(\#fig:unnamed-chunk-5)
+\end{figure}
+## Data cube classification
+
+The next step is to classify the data cube. This is achived by using the `sits_classify()` function. The classification produces a set of probability maps, one for each class. For each map, the value of a pixel is proportional to the the probability that it belongs to the class. To visualise the result, we plot the probability maps. In the example below, for clarity's sake, we show the maps of two classes ("Forest" and "Pasture"). Details of the classification process are available in [Chapter 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html). 
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/unnamed-chunk-6-1} 
+
+}
+
+\caption{Probability map for classes of each pixel}(\#fig:unnamed-chunk-6)
+\end{figure}
+
+## Spatial smoothing
+
+When working with big EO data sets, there is a considerable degree of data variability in each class. As a result, some pixels will be misclassified. These errors are more likely to occur in transition areas between classes or when dealing with mixed pixels. To offset these problems, **sits** includes a post-processing smoothing method based on Bayesian probability. The `sits_smooth()` function uses information from a pixel's neighborhood to reduce uncertainty about its label, which is illustrated below. After smoothing, we plot the probability maps for classes "Forest" and "Pasture" to compare with the previous plot. For more discussion on post-processing and smoothing methods, please see [Chapter 7 7](https://e-sensing.github.io/sitsbook/post-classification-smoothing-using-bayesian-techniques-in-sits.html).
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/Smoothed probability maps-1} \end{center}
+## Labelling a probability data cube
+
+After removal of outliers using local smoothing, one can obtain the labeled classification map using the `sits_label_classification()` function which assigns each pixel to the class with highest probability. 
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{03-intro_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{Labeled classification map}(\#fig:unnamed-chunk-7)
+\end{figure}
+
+The resulting classification files can be read by QGIS. Links to the  associated files are available in the `sinop_label` table in the column `file_info`. 
+
+
+```
+#> # A tibble: 1 x 4
+#>   band             start_date end_date   path                                   
+#>   <chr>            <date>     <date>     <chr>                                  
+#> 1 Sinop_probs_cla~ 2013-09-14 2014-08-29 /tmp/RtmpDnMVI6/Sinop_class_PROBS_baye~
+```
+
+
+## How the sits API works 
+
+The core functions of the **sits** API are presented in Figure \@ref(fig:api). Each function carries out one task of the land classification workflow.  These functions are: (a) `sits_cube()` which creates a cube; (b) `sits_get_data()` which extracts training data from the cube; (c) `sits_train()` that trains a machine learning model; (d) `sits_classify()` which classifies the cube; (e) `sits_smooth()` that does the spatial smoothing; and (f) `sits_label_classication()` that produces the final labelled image. These six functions encapsulate the core of the package.  Each of these core functions is described in a chapter in this book. 
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,height=0.8\textheight]{images/sits_api} 
+
+}
+
+\caption{Main functions of the SITS API}(\#fig:api)
+\end{figure}
+
+
+
+## Final remarks
+
+The **sits** package provides an API to build EO data cubes from image collections available in cloud services, and to perform land classification of data cubes using machine learning. The classification models are built based on  satellite image time series extracted from the cubes. The package provides additional function for sample quality control, post-processing and validation. The design of the API tries to reduce complexity for users and hide details such as how to do parallel processing, and to handle data cubes composed by tiles of different timelines.
