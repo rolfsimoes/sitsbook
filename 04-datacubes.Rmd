@@ -35,6 +35,7 @@ knitr::include_graphics("images/datacube_conception.png")
 
 Data available in cloud services such as Amazon Web Service (AWS), Microsoft's Planetary Computer, and Digital Earth Africa (DE Africa) does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define an *ARD image collections* as:
 
+
 1. An ARD image collection is a set of files from a given sensor (or a combined set of sensors) that has been corrected to ensure comparability of measurements between different dates.
 2. All images are reprojected to a cartographic projection following well-established standards.
 3. Image collections are cropped into a tiling system.  
@@ -53,7 +54,8 @@ A further point concerns the timeline of different tiles. Consider the neighbori
 
 To obtain information on cloud image collection, *sits* uses information provided by implementations of the STAC (SpatioTemporal Asset Catalogue) protocol. [STAC] (https://stacspec.org/) is a specification of geospatial information which has been adopted by many large image collection providers (e.g., AWS, Microsoft, USGS). A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. To access STAC endpoints, *sits* uses the [rstac](http://github.com/brazil-data-cube/rstac) R package.
 
-All access to data cubes is done using `sits_cube()`. For cloud services such as AWS, DE Africa, Planetary Computer and the Brazil Data Cube (BDC), the user must provide similar parameters, as shown in the examples below.
+All access to data cubes is done using `sits_cube()`. For cloud services such as AWS, DE Africa, Planetary Computer and the Brazil Data Cube (BDC), the user must provide similar parameters, as shown in the examples below. Please note that most of the examples in this chapter require access keys to cloud repositories and as such are not executable directly. Users need to provide the appropriate access keys to run the examples.
+
 
 ### Accessing data cubes in Amazon Web Services
 
@@ -83,6 +85,7 @@ s2_cube <- sits_cube(source = "AWS",
                      tiles = c("20LKP"),
                      start_date = as.Date("2018-07-18"),
                      end_date = as.Date("2018-07-23"),
+                     bands = c("B02", "B03", "B04", "B08", "B11"),
                      s2_resolution = 20
 )
 ```
@@ -91,7 +94,7 @@ The output of the `sits_cube()` function is composed of metadata about the image
 
 Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (`bbox`) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector ("xmin", "ymin", "xmax", "ymax") with lat/long values in WGS 84; (b) an *sf* object from the *sf* package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a `bbox`, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by `sits_classify()`, when only the pixels inside the bounding box will be processed.
 
-In SITS version 0.12.0, users who do not want to use the `sits_regularize()` function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. This limitation will be remove in future versions of the package. 
+In SITS version 0.13.1, users who do not want to use the `sits_regularize()` function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. This limitation will be removed in future versions of the package. 
 
 
 ### Accessing the Brazil Data Cube
@@ -177,7 +180,7 @@ Analysis-ready data (ARD) collections available in AWS and DE Africa do not have
 s2_cube <- sits_cube(source = "AWS",
                      name = "T20LKP_2018_2019",
                      collection = "sentinel-s2-l2a",
-                     tiles = c("20LKP"),
+                     tiles = c("20LKP", "20LLP"),
                      start_date = as.Date("2018-07-01"),
                      end_date = as.Date("2018-08-31"),
                      bands = c("B11", "CLOUD"),
@@ -188,7 +191,7 @@ sits_timeline(s2_cube)
 # regularize the cube to one month intervals
 reg_cube <- sits_regularize(
           cube       = s2_cube,
-          name       = "T20LKP_20LLP_15D",
+          name       = "T20LKP_20LKP_2OLLP_15D",
           dir_images = tempdir(),
           period     = "P15D",
           agg_method = "median",
@@ -197,10 +200,8 @@ reg_cube <- sits_regularize(
 )
 ```
 
+
 In the above example, the user has selected the `s2_cube` object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles "20LLP" and "20LKP" associated with this cube are different. The `sits_regularize()` function builds a new data cube, with the same temporal extent as the `s2_cube` but with the same timeline. In this function, the `period` parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as "P[n]Y[n]M[n]D", where Y stands for "years", "M" for months and "D" for days. Thus, "P1M" stands for a one-month period, "P15D" for a fifteen-day period. 
 
 When joining different images to get the best image for a period, `sits_regularize()` uses an aggregation method, defined by the parameter `agg_method`. It specifies how individual values of different pixels should be combined. The default is `median`, which select the most frequent value for the pixel during the desired interval. For more details, see `?sits_regularize`.
-
-The result of the `sits_regularize()` function is a data cube that supports the definition of data cube, as discussed in the Introduction. 
-
 

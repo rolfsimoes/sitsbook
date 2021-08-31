@@ -40,7 +40,7 @@ sinop_cube <- sits_cube(source = "LOCAL",
 # plot the EVI band for the first date (2013-09-14)
 plot(sinop_cube, band = "EVI", time = 1)
 ```
-The `sits_cube()` function defines a *data cube*, which is an organized collection of images covering a geographical area in a given time interval. Data cubes can be conceived as a 3D array of pixels, where each pixel is associated to a time series. All pixels share the same timeline and the same set of attributes (usually spectral bands).  When a data cube is defined, the values of the images are not loaded in memory.  The output of `sits_cube` is a object-relational data table, which contains the metadata that describes the actual image data. For more details on how to define and work with data cubes, please see  
+The `sits_cube()` function defines a *data cube*, which is an organized collection of images covering a geographical area in a given time interval. Data cubes can be conceived as a 3D array of pixels, where each pixel is associated to a time series. All pixels share the same timeline and the same set of attributes (usually spectral bands).  When a data cube is defined, the values of the images are not loaded in memory.  The output of `sits_cube` is a object-relational data table, which contains the metadata that describes the actual image data. For more details on how to define and work with data cubes, please see  [Chapter  2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html). 
 
 ## The time series table
 
@@ -76,7 +76,7 @@ plot(tcnn_model)
 ```
 ## Data cube classification
 
-The next step is to classify the data cube. This is achived by using the `sits_classify()` function. The classification produces a set of probability maps, one for each class. For each map, the value of a pixel is proportional to the the probability that it belongs to the class. To visualise the result, we plot the probability maps. In the example below, for clarity's sake, we show the maps of two classes ("Forest" and "Pasture"). Details of the classification process are available in [Chapter 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html). 
+The next step is to classify the data cube. This is achived by using the `sits_classify()` function. The classification produces a set of probability maps, one for each class. For each map, the value of a pixel is proportional to the the probability that it belongs to the class. To visualise the result, we plot the probability maps. In the example below, we show the maps of two classes ("Forest" and "Pasture"). Details of the classification process are available in [Chapter 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html). 
 
 ```{r, fig.cap = "Probability map for classes of each pixel"}
 
@@ -91,16 +91,16 @@ plot(sinop_probs, labels = c("Forest", "Pasture"))
 
 When working with big EO data sets, there is a considerable degree of data variability in each class. As a result, some pixels will be misclassified. These errors are more likely to occur in transition areas between classes or when dealing with mixed pixels. To offset these problems, **sits** includes a post-processing smoothing method based on Bayesian probability. The `sits_smooth()` function uses information from a pixel's neighborhood to reduce uncertainty about its label, which is illustrated below. After smoothing, we plot the probability maps for classes "Forest" and "Pasture" to compare with the previous plot. For more discussion on post-processing and smoothing methods, please see [Chapter 7 7](https://e-sensing.github.io/sitsbook/post-classification-smoothing-using-bayesian-techniques-in-sits.html).
 
-```{r, "Smoothed probability maps"}
+```{r, fig.cap = "Smoothed probability maps"}
 # perform spatial smoothing
 sinop_smooth <- sits_smooth(sinop_probs)
 plot(sinop_smooth, labels = c("Forest", "Pasture"))
 ```
 ## Labelling a probability data cube
 
-After removal of outliers using local smoothing, one can obtain the labeled classification map using the `sits_label_classification()` function which assigns each pixel to the class with highest probability. 
+After removing outliers using local smoothing, one can obtain the labeled classification map using the function `sits_label_classification()`. This function assigns each pixel to the class with highest probability. 
 
-```{r, fig.cap= "Labeled classification map"}
+```{r, fig.cap = "Labeled classification map"}
 
 # label the probability file 
 # (by default selecting the class with higher probability)
