@@ -24,7 +24,7 @@ knitr::include_graphics("images/sits_general_view.png")
 
 ## Creating a Data Cube 
 
-In what follows, we introduce **sits** by showing a simple example fo land use and land cover classification. The first step is creating a data cube. The data cube is a set of analysis-ready MODIS MOD13Q1 images for the Sinop region of the State of Mato Grosso, Brazil, in the bands "NDVI" and "EVI", covering a one-year period from 2013-09-14 ^[In this book, we follow the convention "year-month-day" for dates]. Each band has 23 instances, each covering a 16-day period, which is the standard for the MOD13Q1 product[@Didan2015].  The data is available in the R package "sitsdata", which contains data for the examples in this book. The code below shows how to create data cubes from local files. To work with data cubes in repositories such as AWS, MS/AZURE and the Brazil Data Cube, please see [Chapter  2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html)
+In what follows, we introduce **sits** by showing a simple example fo land use and land cover classification. The first step is creating a data cube. The data cube is a set of analysis-ready MODIS MOD13Q1 images for the Sinop region of the State of Mato Grosso, Brazil, in the bands "NDVI" and "EVI", covering a one-year period from 2013-09-14. (We use the convention "year-month-day" for dates). Each band has 23 instances, each covering a 16-day period, which is the standard for the MOD13Q1 product[@Didan2015].  The data is available in the R package "sitsdata", which contains data for the examples in this book. The code below shows how to create data cubes from local files. To work with data cubes in repositories such as AWS, MS/AZURE and the Brazil Data Cube, please see [Chapter  2](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html)
 
 ```{r, fig.align="center", fig.cap="EVI band for 2013-09-14"}
 data_dir <- system.file("extdata/sinop", package = "sitsdata")
@@ -34,7 +34,8 @@ sinop_cube <- sits_cube(source = "LOCAL",
                    satellite = "TERRA",
                    sensor  = "MODIS",
                    name = "Sinop",
-                   data_dir = data_dir
+                   data_dir = data_dir,
+                   parse_info = c("X1", "X2", "tile", "band", "date")
 )
 # plot the EVI band for the first date (2013-09-14)
 plot(sinop_cube, band = "EVI", time = 1)

@@ -47,7 +47,7 @@ The target audience for **sits** is the new generation of specialists who unders
 
 ## How to use this book {-}
 
-This book describes **sits** version 0.11.2. Download and install the package as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested in. 
+This book describes **sits** version 0.13.1. Download and install the package as explained in the Setup. Start at Chapter 1 to get an overview of the package. Then feel free to browse the chapter for more information on topics you are interested in. 
 
 
 | **Chapter**   | **Description**                                                                                            |
@@ -58,11 +58,16 @@ This book describes **sits** version 0.11.2. Download and install the package as
 | [Chr 4](https://e-sensing.github.io/sitsbook/time-series-clustering-to-improve-the-quality-of-training-samples.html) | Improving the quality of the samples used in training models |
 | [Chr 5](https://e-sensing.github.io/sitsbook/machine-learning-for-data-cubes-using-the-sits-package.html) | Presents the machine learning techniques available in sits.                   |
 | [Chr 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html) | Describes how to classify satellite images associated with Earth observation data cubes.   |
-| [Chr 7](https://e-sensing.github.io/sitsbook/post-classification-smoothing-using-bayesian-techniques-in-sits.html) | Describes smoothing method to reclassify the pixels based on the machine learning probabilities |
+| [Chr 7](https://e-sensing.github.io/sitsbook/post-classification-smoothing-using-bayesian-techniques-in-sits.html) | Describes smoothing methods to reclassify the pixels based on the machine learning probabilities |
 | [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html) | Presents the validation and accuracy measures.    |
 | [Chr 9](https://e-sensing.github.io/sitsbook/case-studies.html) | Presents case studies of LUCC classification.    |
 | [Chr 10](https://e-sensing.github.io/sitsbook/extensibility-guide.html) | How to develop extensions to **sits**.    |
 
+## Main reference for sits {-}
+
+if you use sits, please cite the following paper: 
+
+Rolf Simoes, Gilberto Camara, Gilberto Queiroz, Felipe Souza, Pedro R. Andrade,  Lorena Santos, Alexandre Carvalho, and Karine Ferreira. “Satellite Image Time Series Analysis for Big Earth Observation Data”. Remote Sensing, 13, p. 2428, 2021. https://doi.org/10.3390/rs13132428. 
 
 ## Publications using sits {-}
 
@@ -71,26 +76,30 @@ This section gathers the publications that have used **sits** to generate the re
 
 **2021**
 
-- [1] Lorena Santos, Karine Ferreira at el., "Identifying Spatiotemporal Patterns in Land Use and Cover Samples from Satellite Image Time Series". Remote Sens. 2021, 13, 974. 
+- Lorena Santos, Karine R. Ferreira, Gilberto Camara, Michelle Picoli, Rolf Simoes, “Quality control and class noise reduction of satellite image time series”. ISPRS Journal of Photogrammetry and Remote Sensing, vol. 177, pp 75-88, 2021. https://doi.org/10.1016/j.isprsjprs.2021.04.014.
+
+- Lorena Santos, Karine Ferreira, Michelle Picoli, Gilberto Camara, Raul Zurita-Milla and Ellen-Wien Augustijn, “Identifying Spatiotemporal Patterns in Land Use and Cover Samples from Satellite Image Time Series”. Remote Sensing, 2021, 13(5), 974; https://doi.org/10.3390/rs13050974. 
 
 
 **2020**
 
-- [2] Rolf Simoes, Michelle Picoli, et al.,  "Land use and cover maps for Mato Grosso State in Brazil from 2001 to 2017".  Sci Data 7, 34 (2020).
+- Rolf Simoes, Michelle Picoli, Gilberto Camara, Adeline Maciel, Lorena Santos, Pedro Andrade, Alber Sánchez, Karine Ferreira & Alexandre Carvalho. “Land use and cover maps for Mato Grosso State in Brazil from 2001 to 2017”. Nature Scientific Data 7, article 34 (2020). DOI: 10.1038/s41597-020-0371-4.
 
-- [4] Michelle Picoli, Ana Rorato, et al., "Impacts of Public and Private Sector Policies on Soybean and Pasture Expansion in Mato Grosso – Brazil from 2001 to 2017". Land 2020, 9, 20.
+- Michelle Picoli, Ana Rorato, Pedro Leitão, Gilberto Camara, Adeline Maciel, Patrick Hostert, Ieda Sanches, “Impacts of Public and Private Sector Policies on Soybean and Pasture Expansion in Mato Grosso—Brazil from 2001 to 2017”. Land, 9(1), 2020. DOI: 10.3390/land9010020. 
 
-- [5] Ferreira, K.R.; Queiroz, G.R. "Earth Observation Data Cubes for Brazil: Requirements, Methodology and Products". Remote Sens. 2020, 12, 4033.
+- Karine Ferreira, Gilberto Queiroz et al., “Earth Observation Data Cubes for Brazil: Requirements, Methodology and Products”. Remote Sensing, 12, 4033, 2020.
+
+- Adeline Maciel, Lubia Vinhas, Michelle Picoli and Gilberto Camara, “Identifying Land Use Change Trajectories in Brazil’s Agricultural Frontier”. Land, 9, 506, 2020. DOI: 10.3390/land9120506. DOI: 10.3390/rs12244033.
 
 **2019**
 
-- [6] Alber Sanchez, Michelle Picoli, et al., "Land Cover Classifications of Clear-cut Deforestation Using Deep Learning". In: SIMPÓSIO BRASILEIRO DE GEOINFORMÁTICA (GEOINFO), 2019, São José dos Campos. São José dos Campos: INPE, 2019. On-line.
+- Alber Sanchez, Michelle Picoli, et al., "Land Cover Classifications of Clear-cut Deforestation Using Deep Learning". In: SIMPÓSIO BRASILEIRO DE GEOINFORMÁTICA (GEOINFO), 2019, São José dos Campos. São José dos Campos: INPE, 2019. On-line.
 
-- [7] Lorena Santos, Karine Ferreira, et al., "Self-Organizing Maps in Earth Observation Data Cubes Analysis". 13th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM+ 2019), Barcelona, Spain, June 26-28, 2019.
+- Lorena Santos, Karine Ferreira, et al., "Self-Organizing Maps in Earth Observation Data Cubes Analysis". 13th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM+ 2019), Barcelona, Spain, June 26-28, 2019.
 
 **2018**
 
-- [8] Michelle Picoli, Gilberto Camara, et al.,  “Big Earth Observation Time Series Analysis for Monitoring Brazilian Agriculture”. ISPRS Journal of Photogrammetry and Remote Sensing, 2018.
+- Michelle Picoli, Gilberto Camara, et al.,  “Big Earth Observation Time Series Analysis for Monitoring Brazilian Agriculture”. ISPRS Journal of Photogrammetry and Remote Sensing, 2018.
 
 ## Reproducible papers used in building sits functions {-}
 

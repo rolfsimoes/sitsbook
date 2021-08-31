@@ -152,7 +152,7 @@ raster_cube <- sits_cube(source = "LOCAL",
                    sensor  = "MODIS",
                    name = "Sinop",
                    data_dir = data_dir,
-                   parse_info = c("X1", "X2", "band", "date"),
+                   parse_info = c("X1", "X2", "tile", "band", "date")
 )
 
 # classify the raster image and generate a probability file

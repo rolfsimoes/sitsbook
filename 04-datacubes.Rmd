@@ -14,30 +14,34 @@ This chapter describes how to use Earth observation data cubes in SITS.
 
 Given the large sizes of the collections of Earth observation data available, there is a clear trend to use cloud computing. In this configuration, cloud services archive large satellite-generated data sets and provide computing facilities to process them. Users can share big Earth observation databases and minimize data download. Investment in infrastructure is minimized, and sharing of data and software increases. 
 
-To take full advantage of the cloud computing model, Earth observation data needs to be available to users as *data cubes*, whose aim is to organize satellite data for a given area in a consistent spatiotemporal arrangement. Generalizing [@Appel2019], we consider the following definition:
+To take full advantage of the cloud computing model, Earth observation data needs to be available to users as *data cubes*, whose aim is to organize satellite data for a given area in a consistent spatiotemporal arrangement. Generalizing [@Appel2019], we consider that a *data cube* should meet the following definition:
 
 1. A data cube is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands.
 2. Its spatial dimensions refer to a single spatial reference system (SRS). Cells of a data cube have a constant spatial size with respect to the cube’s SRS.
-3. A set of intervals specifies the temporal dimension.
+3. The temporal dimension is composed of a set of continuous and equally-spaced intervals. 
 4. For every combination of dimensions, a cell has a single value.
 
-Conceptually, a data cube defines a compact space. For all positions inside its spatiotemporal extent, it is possible to obtain a valid set of measures. For each position in space, the data cube should provide a valid time series. For each time interval, the data cube should provide a valid 2D image (see Figure \@ref(fig:dcconcept)). Data cubes provide a useful abstraction for algorithms that extract information from big EO data sets. Machine learning and deep learning algorithms require the input data to be consistent. The dimensionality of the data used for training the model has to be the same as that of the data to be classified. There should be no gaps in the input data and no missing values are allowed. 
+A data cube defines a regular partition of space-time. All cells of a data cube have the same spatiotemporal extent. The spatial resolution of each cell is the same in X and Y dimensions. All temporal intervals are the same. Each cell contains a valid set of measures. For each position in space, the data cube should provide a valid time series. For each time interval, the data cube should provide a valid 2D image (see Figure \@ref(fig:dcconcept)). 
 
-Currently, few cloud providers adhere to the full definition of data cubes. One exception is the Brazil Data Cube (BDC) [@Ferreira2020a], which provides data cubes which are regular in both spatial and temporal dimension. 
+Data cubes provide a useful abstraction for algorithms that extract information from big EO data sets. Machine learning and deep learning algorithms require the input data to be consistent. The dimensionality of the data used for training the model has to be the same as that of the data to be classified. There should be no gaps in the input data and no missing values are allowed. 
+
+Currently, few cloud services support the above definition of data cubes. Cloud providers such as AWS and Microsoft organize their data as analysis-ready image collection. In the next section, we describe such collections and point out their differences to data cubes.
 
 ```{r dcconcept, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Conceptual view of data cubes (source: authors)"}
-knitr::include_graphics("images/datacubes_conception.png")
+knitr::include_graphics("images/datacube_conception.png")
 ```
 
 ## Analysis-ready data image collections 
 
-Data available in cloud services such as AWS, Microsoft Planetary Computer, and Digital Earth Africa does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define *ARD image collections* as:
+Data available in cloud services such as Amazon Web Service (AWS), Microsoft's Planetary Computer, and Digital Earth Africa (DE Africa) does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define an *ARD image collections* as:
 
 1. An ARD image collection is a set of files from a given sensor (or a combined set of sensors) that has been corrected to ensure comparability of measurements between different dates.
 2. All images are reprojected to a cartographic projection following well-established standards.
-3. Image collections are cropped into a tiling system. In general, the timeline of different tiles do not match. 
+3. Image collections are cropped into a tiling system.  
+4. In general, the timelines of the images that are part of one tile are not regular. Also, these timelines are not the same as those associated to a different tile. 
+5. ARD image collections do not guarantee that every pixel of an image has a valid value, since its images still contains cloudy or missing pixels. 
 
-ARD image collections do not guarantee that every pixel of an image has a valid value. Images still contains cloudy or missing pixels. Figure \@ref(fig:imagesro) shows images of tile "20LKP" of the Sentinel-2 Level 2A collection available in AWS for different dates. Some of images have a significant number of clouds. The values of cloudy pixels should be replaced by valid values before being ingested into a data cube. 
+Figure \@ref(fig:imagesro) shows images of tile "20LKP" of the Sentinel-2 Level 2A collection available in AWS for different dates. Some of images have a significant number of clouds. The values of cloudy pixels should be replaced by valid values before being ingested into a data cube. 
 
 ```{r imagesro, echo = FALSE, out.width = "90%", out.height = "90%", fig.align="center", fig.cap="Sentinel-2 for tile 20LKP in different dates (source: authors)."}
 knitr::include_graphics("images/sentinel-2_20lkp_images.png")
@@ -48,6 +52,8 @@ A further point concerns the timeline of different tiles. Consider the neighbori
 ## Accessing Data Cubes and Image Collections in SITS
 
 To obtain information on cloud image collection, *sits* uses information provided by implementations of the STAC (SpatioTemporal Asset Catalogue) protocol. [STAC] (https://stacspec.org/) is a specification of geospatial information which has been adopted by many large image collection providers (e.g., AWS, Microsoft, USGS). A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. To access STAC endpoints, *sits* uses the [rstac](http://github.com/brazil-data-cube/rstac) R package.
+
+All access to data cubes is done using `sits_cube()`. For cloud services such as AWS, DE Africa, Planetary Computer and the Brazil Data Cube (BDC), the user must provide similar parameters, as shown in the examples below.
 
 ### Accessing data cubes in Amazon Web Services
 
@@ -66,26 +72,26 @@ Sys.setenv(
 )
 ```
 
-Sentinel-2 level 2A files in AWS are organized by sensor resolution. 
-The AWS bands in 10m resolution are "B02", "B03", "B04", and "B08". 
-The  20m bands are "B02", "B03", "B04", "B05", "B06", "BO7", B08", "B8A", "B11", and "B12". 
-All 12 bands are available at 60m resolution. To create data cubes in AWS using  Sentinel-2 images, users need to specify the `s2_resolution` parameter. In the example below, the user selects two Sentinel-2 tiles. Each S2 tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.
+Sentinel-2 level 2A files in AWS collection "sentinel-s2-l2a" are organized by sensor resolution. Bands "B02", "B03", "B04", and "B08" AWS are available in 10m resolution. 
+Bands "B02", "B03", "B04", "B05", "B06", "BO7", B08", "B8A", "B11", and "B12" are available at 20m resolution. All 12 bands are available at 60m resolution. Because of the availability of some bands at different resolutions, users need to specify the `s2_resolution` parameter to create Sentinel-2 images data cubes in AWS using collection "sentinel-s2-l2a". In the example below, the user selects one Sentinel-2 tile. Each S2 tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.
 
 ```{r, eval = FALSE}
 # creating a data cube in AWS
 s2_cube <- sits_cube(source = "AWS",
                      name = "T20LKP_2018_2019",
                      collection = "sentinel-s2-l2a",
-                     tiles = c("20LKP","20LLP"),
+                     tiles = c("20LKP"),
                      start_date = as.Date("2018-07-18"),
                      end_date = as.Date("2018-07-23"),
                      s2_resolution = 20
 )
 ```
 
-The output of the `sits_cube` function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The `s2_cube` object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data. 
+The output of the `sits_cube()` function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The `s2_cube` object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data. 
 
 Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (`bbox`) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector ("xmin", "ymin", "xmax", "ymax") with lat/long values in WGS 84; (b) an *sf* object from the *sf* package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a `bbox`, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by `sits_classify()`, when only the pixels inside the bounding box will be processed.
+
+In SITS version 0.12.0, users who do not want to use the `sits_regularize()` function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. This limitation will be remove in future versions of the package. 
 
 
 ### Accessing the Brazil Data Cube
@@ -123,16 +129,27 @@ cbers_tile <- sits_cube(
 
 In some cases, users have downloaded files from image collections and have them available in their computer or in a local network. As *sits* does not have access to STAC information that describe the files, they should be organized and named to allow SITS to create a data cube. 
 
-All files should be in the same directory and have the same spatial resolution and projection. Each file should contain a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and JPEG 2000) do not include temporal and band information, each file name needs to include date and band. For example, `CBERS-4_AWFI_B13_2018-02-02.tif` and `SENTINEL-2_MSI_L_20_KP_ 20m_B08_2021_03_29.jp2` are 
-is a valid name. The user should provide parsing information to allow *sits* to extract the band and the date. In the example above, the parsing info is `c("X1", "X2", "band", "date")` and the delimiter is `"_"`.
+All files should be in the same directory and have the same spatial resolution and projection. Each file should contain a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and JPEG 2000) do not include temporal and band information, each file name needs to include date and band. Information on the tile reference system should be provided.
+
+When working with local cubes, the following parameters should be provided to the `sits_cube()` function:
+
+- `source` - value should be "LOCAL";
+- `name` - internal name for the data cube (free user choice);
+- `satellite` - name of the satellite (possible values are "LANDSAT-8", "LANDSAT-7", "LANDSAT-5", "TERRA", "AQUA", "SENTINEL-2", "CBERS-4");
+- `sensor` - name of the sensor associated with the image. This should be "OLI', "ETM" and "TM", respectively, for LANDSAT-8, LANDSAT-7, and LANDSAT-5. For SENTINEL-2, the only sensor is "MSI". For the TERRA and AQUA satellites, the "MODIS" sensor is supported. For the CBERS-4 satellite, choose either "AWFI" or "MUX", depending on the data;
+- `data_dir` - directory where the image data is located;
+- `parse_info` - information to parse the file names and extract the information on the tile, date and band associated with each individual file. It is assumed that file names contain image descriptors separated by a delimiter (usually "_"). For example, `CBERS-4_AWFI_022024_B13_2018-02-02.tif` and `SENTINEL-2_MSI_L20KP_20m_B08_2021_03_29.jp2` are valid file names for sits. The `parse_info` parameter is a list of strings indicating at which position the names of `tile`, `date` and `band` are to be found. In the two file names above, the parsing info is respectively `c("X1", "X2", "tile", band", "date")` and `c("X1", "X2", "tile", "X3", "band", "date")`;
+- `delim` - separator character between descriptions in the file name (default is "_").
+
+The following example shows how to define a data cube based on local files available as part of the *sits* package.
 
 ```{r, eval = FALSE}
 library(sits)
 # Create a cube based on a stack of CBERS data
-data_dir <- system.file("extdata/raster/cbers", package = "sits")
+data_dir <- system.file("extdata/CBERS", package = "sitsdata")
 
 # files are named using the convention 
-# "CBERS-4_AWFI_B13_2018-02-02.tif"
+# "CB4_64_16D_STK_022024_2018-08-29_2018-09-13_EVI.tif"
 cbers_cube <- sits_cube(
       source = "LOCAL",
       name = "022024",
@@ -140,29 +157,50 @@ cbers_cube <- sits_cube(
       sensor = "AWFI",
       data_dir = data_dir,
       delim = "_",
-      parse_info = c("X1", "X2", "band", "date")
+      parse_info = c("X1", "X2", "X3", "X4", "tile", "date", "X5", "band")
 )
+# show the timeline of the cube
+sits_timeline(cbers_cube)
+# show the bands of the cube
+sits_bands(cbers_cube)
+# plot the band B16 in the first time instance
+plot(cbers_cube, band = "NDVI", time = 1)
 ```
 
 
 ## Regularizing data cubes 
 
-Analysis-ready data (ARD) collections available in AWS and DE Africa do not have consistent timelines. In general, images in neighboring tiles have different timelines. This is a problem when classifying large areas, In this case, users may want to produce data cubes with regular time intervals.  For example, a user may want to define the best Sentinel-2 pixel in a one-month period. This can be done in *sits* by the `sits_regularize`, which calls the "gdalcubes" package[@Appel2019]. For details in gdalcubes, please see [https://github.com/appelmar/gdalcubes](https://github.com/appelmar/gdalcubes).
+Analysis-ready data (ARD) collections available in AWS and DE Africa do not have consistent timelines. In general, images in neighboring tiles have different timelines. This is a problem when classifying large areas. In this case, users may want to produce data cubes with regular time intervals.  For example, a user may want to define the best Sentinel-2 pixel in a one-month period. This can be done in *sits* by the function `sits_regularize()`, which uses the package *gdalcubes* [@Appel2019]. For details in gdalcubes, please see [https://github.com/appelmar/gdalcubes](https://github.com/appelmar/gdalcubes).
 
 ```{r, eval = FALSE, echo = TRUE}
-gc_cube <- sits_regularize(
+# creating a data cube in AWS
+s2_cube <- sits_cube(source = "AWS",
+                     name = "T20LKP_2018_2019",
+                     collection = "sentinel-s2-l2a",
+                     tiles = c("20LKP"),
+                     start_date = as.Date("2018-07-01"),
+                     end_date = as.Date("2018-08-31"),
+                     bands = c("B11", "CLOUD"),
+                     s2_resolution = 60
+)
+# list the timeline of the AWS S2 cube (there are 12 images)
+sits_timeline(s2_cube)
+# regularize the cube to one month intervals
+reg_cube <- sits_regularize(
           cube       = s2_cube,
-          name       = "T20LKP_20LLP_2018_2019_1M",
+          name       = "T20LKP_20LLP_15D",
           dir_images = tempdir(),
-          period     = "P1M",
+          period     = "P15D",
           agg_method = "median",
           resampling = "bilinear",
           cloud_mask = TRUE
 )
 ```
 
-In the above example, the user has selected the `s2_cube` object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles "20LLP" and "20LKP" associated with this cube are different. The `sits_regularize` function builds a new data cube, with the same temporal extent as the `s2_cube` but with the same timeline. In this function, the `period` parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as "P[n]Y[n]M[n]D", where Y stands for "years", "M" for months and "D" for days. Thus, "P1M" stands for a one-month period, "P15D" for a fifteen-day period. 
+In the above example, the user has selected the `s2_cube` object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles "20LLP" and "20LKP" associated with this cube are different. The `sits_regularize()` function builds a new data cube, with the same temporal extent as the `s2_cube` but with the same timeline. In this function, the `period` parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as "P[n]Y[n]M[n]D", where Y stands for "years", "M" for months and "D" for days. Thus, "P1M" stands for a one-month period, "P15D" for a fifteen-day period. 
 
-When joining different images to get the best image for a period, `sits_regularize` uses an aggregation method, defined by the parameter `agg_method`. It specifies how individual values of different pixels should be combined. The default is `median`, which select the most frequent value for the pixel during the desired interval. For more details, see `?sits_regularize`.
+When joining different images to get the best image for a period, `sits_regularize()` uses an aggregation method, defined by the parameter `agg_method`. It specifies how individual values of different pixels should be combined. The default is `median`, which select the most frequent value for the pixel during the desired interval. For more details, see `?sits_regularize`.
+
+The result of the `sits_regularize()` function is a data cube that supports the definition of data cube, as discussed in the Introduction. 
 
 
