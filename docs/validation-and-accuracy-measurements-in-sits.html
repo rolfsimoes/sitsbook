@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Validation and accuracy measurements in SITS | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
   <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
-  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Validation and accuracy measurements in SITS | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-08-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,7 +42,8 @@
   
 <link rel="prev" href="post-classification-smoothing.html"/>
 <link rel="next" href="case-studies.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,22 +60,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -94,7 +96,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,6 +129,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -143,62 +168,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">SITS Book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#main-reference-for-sits"><i class="fa fa-check"></i>Main reference for sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
-<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a><ul>
+<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#creating-a-data-cube"><i class="fa fa-check"></i><b>1.1</b> Creating a Data Cube</a></li>
 <li class="chapter" data-level="1.2" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#the-time-series-table"><i class="fa fa-check"></i><b>1.2</b> The time series table</a></li>
 <li class="chapter" data-level="1.3" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#training-a-machine-learning-model"><i class="fa fa-check"></i><b>1.3</b> Training a machine learning model</a></li>
 <li class="chapter" data-level="1.4" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#data-cube-classification"><i class="fa fa-check"></i><b>1.4</b> Data cube classification</a></li>
 <li class="chapter" data-level="1.5" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#spatial-smoothing"><i class="fa fa-check"></i><b>1.5</b> Spatial smoothing</a></li>
-<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.6</b> How the sits API works</a></li>
-<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.7</b> Final remarks</a></li>
+<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#labelling-a-probability-data-cube"><i class="fa fa-check"></i><b>1.6</b> Labelling a probability data cube</a></li>
+<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.7</b> How the sits API works</a></li>
+<li class="chapter" data-level="1.8" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.8</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a><ul>
+<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#analysis-ready-data-image-collections"><i class="fa fa-check"></i><b>2.2</b> Analysis-ready data image collections</a></li>
-<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a><ul>
+<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-in-amazon-web-services"><i class="fa fa-check"></i><b>2.3.1</b> Accessing data cubes in Amazon Web Services</a></li>
 <li class="chapter" data-level="2.3.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-the-brazil-data-cube"><i class="fa fa-check"></i><b>2.3.2</b> Accessing the Brazil Data Cube</a></li>
 <li class="chapter" data-level="2.3.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>2.3.3</b> Defining a data cube using files</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#regularizing-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Regularizing data cubes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a><ul>
+<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>3.1</b> Data structures for satellite time series</a></li>
 <li class="chapter" data-level="3.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>3.2</b> Utilities for handling time series</a></li>
 <li class="chapter" data-level="3.3" data-path="working-with-time-series.html"><a href="working-with-time-series.html#time-series-visualisation"><i class="fa fa-check"></i><b>3.3</b> Time series visualisation</a></li>
 <li class="chapter" data-level="3.4" data-path="working-with-time-series.html"><a href="working-with-time-series.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>3.4</b> Obtaining time series data from data cubes</a></li>
-<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a><ul>
+<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.5.1</b> Savitzky–Golay filter</a></li>
 <li class="chapter" data-level="3.5.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#whittaker-filter"><i class="fa fa-check"></i><b>3.5.2</b> Whittaker filter</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Clustering</b></span></li>
-<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
-<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
-<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#creating-a-dendogram"><i class="fa fa-check"></i><b>4.2.1</b> Creating a dendogram</a></li>
-<li class="chapter" data-level="4.2.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-a-dendrogram-to-evaluate-sample-quality"><i class="fa fa-check"></i><b>4.2.2</b> Using a dendrogram to evaluate sample quality</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality"><i class="fa fa-check"></i><b>4.3</b> Using Self-organizing Maps for Sample Quality</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#introduction-to-self-organizing-maps"><i class="fa fa-check"></i><b>4.3.1</b> Introduction to Self-organizing Maps</a></li>
-<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-som-for-removing-class-noise"><i class="fa fa-check"></i><b>4.3.2</b> Using SOM for removing class noise</a></li>
-<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-global-accuracy-of-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.3</b> Comparing Global Accuracy of Original and Clean Samples</a></li>
+<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control-overview"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control: overview</a></li>
+<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for sample quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality-control"><i class="fa fa-check"></i><b>4.3</b> Using self-organizing maps for sample quality control</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-1-creating-the-som-map"><i class="fa fa-check"></i><b>4.3.1</b> SOM-based quality assessment part 1: creating the SOM map</a></li>
+<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-2-assessing-confusion-between-labels"><i class="fa fa-check"></i><b>4.3.2</b> SOM-based quality assessment part 2: assessing confusion between labels</a></li>
+<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-3-using-probabilities-to-detect-noisy-samples"><i class="fa fa-check"></i><b>4.3.3</b> SOM-based quality assessment part 3: using probabilities to detect noisy samples</a></li>
+<li class="chapter" data-level="4.3.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.4</b> Comparing Original and Clean Samples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>III Classification</b></span></li>
-<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
 <li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.2</b> Visualizing Samples</a></li>
 <li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.3</b> Common interface to machine learning and deeplearning models</a></li>
@@ -206,32 +241,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#temporal-convolutional-neural-network-tempcnn"><i class="fa fa-check"></i><b>5.8</b> Temporal Convolutional Neural Network (TempCNN)</a></li>
 <li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.9</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#considerations-on-model-choice"><i class="fa fa-check"></i><b>5.10</b> Considerations on model choice</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#data-cube-classification-1"><i class="fa fa-check"></i><b>6.1</b> Data cube classification</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#processing-time-estimates"><i class="fa fa-check"></i><b>6.2</b> Processing time estimates</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
 <li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
+<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
 <li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
-<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
 <li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>9</b> Case studies</a></li>
-<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a><ul>
+<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html#design-decisions"><i class="fa fa-check"></i><b>10.1</b> Design decisions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -255,52 +297,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="validation-and-accuracy-measurements-in-sits" class="section level1">
+<div id="validation-and-accuracy-measurements-in-sits" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Validation and accuracy measurements in SITS</h1>
 <hr />
 <p>This chapter presents the validation and accuracy measures available in the SITS package.</p>
 <hr />
-<div id="validation-techniques" class="section level2">
+<div id="validation-techniques" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Validation techniques</h2>
-<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">[45]</span>.</p>
+<p>Validation is a process undertaken on models to estimate some error associated with them, and hence has been used widely in different scientific disciplines. Here, we are interested in estimating the prediction error associated to some model. For this purpose, we concentrate on the <em>cross-validation</em> approach, probably the most used validation technique <span class="citation">[36]</span>.</p>
 <p>Cross-validation estimates the expected prediction error. It uses part of the available samples to fit the classification model, and a different part to test it. The so-called <em>k-fold</em> validation, we split the data into <span class="math inline">\(k\)</span> partitions with approximately the same size and proceed by fitting the model and testing it <span class="math inline">\(k\)</span> times. At each step, we take one distinct partition for test and the remaining <span class="math inline">\({k-1}\)</span> for training the model, and calculate its prediction error for classifying the test partition. A simple average gives us an estimation of the expected prediction error.</p>
-<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation">45</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span>, which somewhat overestimates the true prediction error.</p>
+<p>A natural question that arises is: <em>how good is this estimation?</em> According to <span class="citation">[36]</span>, there is a bias-variance trade-off in choice of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k\)</span> is set to the number of samples, we obtain the so-called <em>leave-one-out</em> validation, the estimator gives a low bias for the true expected error, but produces a high variance expectation. This can be computational expensive as it requires the same number of fitting process as the number of samples. On the other hand, if we choose <span class="math inline">\({k=2}\)</span>, we get a high biased expected prediction error estimation that overestimates the true prediction error, but has a low variance. The recommended choices of <span class="math inline">\(k\)</span> are <span class="math inline">\(5\)</span> or <span class="math inline">\(10\)</span>, which somewhat overestimates the true prediction error.</p>
 <p><code>sits_kfold_validate()</code> gives support the k-fold validation in <code>sits</code>. The following code gives an example on how to proceed a k-fold cross-validation in the package. It perform a five-fold validation using SVM classification model as a default classifier. We can see in the output text the corresponding confusion matrix and the accuracy statistics (overall and by class).</p>
-<pre><code>#&gt; Confusion Matrix and Statistics
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform a five fold validation for the &quot;cerrado_2classes&quot; data set</span></span>
+<span id="cb86-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest machine learning method using default parameters</span></span>
+<span id="cb86-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-3" aria-hidden="true" tabindex="-1"></a>val_rfor <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(cerrado_2classes, </span>
+<span id="cb86-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">folds =</span> <span class="dv">5</span>, </span>
+<span id="cb86-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>())</span>
+<span id="cb86-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the validation statistics</span></span>
+<span id="cb86-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb86-7" aria-hidden="true" tabindex="-1"></a>val_rfor</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;           Reference
 #&gt; Prediction Cerrado Pasture
-#&gt;    Cerrado     394      15
-#&gt;    Pasture       6     331
+#&gt;    Cerrado     392      15
+#&gt;    Pasture       8     331
 #&gt;                                      
-#&gt;           Accuracy : 0.9718          
-#&gt;             95% CI : (0.9573, 0.9825)
+#&gt;           Accuracy : 0.9692          
+#&gt;             95% CI : (0.9541, 0.9804)
 #&gt;                                      
-#&gt;              Kappa : 0.9433          
+#&gt;              Kappa : 0.9379          
 #&gt;                                      
-#&gt;  Prod Acc  Cerrado : 0.9850          
+#&gt;  Prod Acc  Cerrado : 0.9800          
 #&gt;  Prod Acc  Pasture : 0.9566          
-#&gt;  User Acc  Cerrado : 0.9633          
-#&gt;  User Acc  Pasture : 0.9822          
+#&gt;  User Acc  Cerrado : 0.9631          
+#&gt;  User Acc  Pasture : 0.9764          
 #&gt; </code></pre>
 </div>
-<div id="comparing-different-machine-learning-methods-using-k-fold-validation" class="section level2">
+<div id="comparing-different-machine-learning-methods-using-k-fold-validation" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Comparing different machine learning methods using k-fold validation</h2>
 <p>One useful function in SITS is the capacity to compare different validation methods and store them in an XLS file for further analysis. The following example shows how to do this, using the Mato Grosso data set. We take five models: random forests(<code>sits_rfor</code>), support vector machines (<code>sits_svm</code>), extreme gradient boosting (<code>sits_xgboost</code>), multi-layer perceptron (<code>sits_mlp</code>) and temporal convolutional neural network (<code>sits_TempCNN</code>). For simplicity, we use the default parameters provided by sits. After computing the confusion matrix and the statistics for each model, we store the result in a list. When the calculation is finished, the function <code>sits_to_xlsx</code> writes all of the results in an Excel-compatible spreadsheet.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the set of samples for the Mato Grosso region (provided by EMBRAPA)</span></span>
+<span id="cb88-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
+<span id="cb88-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list to store the results</span></span>
+<span id="cb88-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb88-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co"># SVM model</span></span>
+<span id="cb88-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-7" aria-hidden="true" tabindex="-1"></a>conf_svm <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(</span>
+<span id="cb88-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-8" aria-hidden="true" tabindex="-1"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb88-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ml_method =</span> <span class="fu">sits_svm</span>())</span>
+<span id="cb88-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Give a name to the SVM model</span></span>
+<span id="cb88-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-11" aria-hidden="true" tabindex="-1"></a>conf_svm<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="st">&quot;svm&quot;</span></span>
+<span id="cb88-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="co"># store the result</span></span>
+<span id="cb88-13"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-13" aria-hidden="true" tabindex="-1"></a>results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> conf_svm</span>
+<span id="cb88-14"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-15"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest</span></span>
+<span id="cb88-16"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-16" aria-hidden="true" tabindex="-1"></a>conf_rfor <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(</span>
+<span id="cb88-17"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-17" aria-hidden="true" tabindex="-1"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb88-18"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">folds =</span> <span class="dv">5</span>,</span>
+<span id="cb88-19"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicores =</span> <span class="dv">2</span>,</span>
+<span id="cb88-20"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>())</span>
+<span id="cb88-21"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Give a name to the results </span></span>
+<span id="cb88-22"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-22" aria-hidden="true" tabindex="-1"></a>conf_rfor<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="st">&quot;rfor&quot;</span></span>
+<span id="cb88-23"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-23" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in a list</span></span>
+<span id="cb88-24"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-24" aria-hidden="true" tabindex="-1"></a>results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> conf_rfor</span>
+<span id="cb88-25"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-26"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Extreme Gradient Boosting</span></span>
+<span id="cb88-27"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-27" aria-hidden="true" tabindex="-1"></a>conf_xgb <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(</span>
+<span id="cb88-28"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-28" aria-hidden="true" tabindex="-1"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb88-29"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">ml_method =</span> <span class="fu">sits_xgboost</span>())</span>
+<span id="cb88-30"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-31"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Give a name to the SVM model</span></span>
+<span id="cb88-32"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-32" aria-hidden="true" tabindex="-1"></a>conf_xgb<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="st">&quot;xgboost&quot;</span></span>
+<span id="cb88-33"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-33" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in a list</span></span>
+<span id="cb88-34"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-34" aria-hidden="true" tabindex="-1"></a>results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> conf_xgb</span>
+<span id="cb88-35"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-36"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-layer perceptron</span></span>
+<span id="cb88-37"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-37" aria-hidden="true" tabindex="-1"></a>conf_mlp <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(</span>
+<span id="cb88-38"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-38" aria-hidden="true" tabindex="-1"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb88-39"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">ml_method =</span> <span class="fu">sits_mlp</span>())</span>
+<span id="cb88-40"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-41"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Give a name to the SVM model</span></span>
+<span id="cb88-42"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-42" aria-hidden="true" tabindex="-1"></a>conf_mlp<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="st">&quot;MLP&quot;</span></span>
+<span id="cb88-43"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-43" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in a list</span></span>
+<span id="cb88-44"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-44" aria-hidden="true" tabindex="-1"></a>results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> conf_mlp</span>
+<span id="cb88-45"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-46"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Temporal CNN</span></span>
+<span id="cb88-47"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-47" aria-hidden="true" tabindex="-1"></a>conf_tcnn <span class="ot">&lt;-</span> <span class="fu">sits_kfold_validate</span>(</span>
+<span id="cb88-48"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-48" aria-hidden="true" tabindex="-1"></a>    samples_matogrosso_mod13q1,</span>
+<span id="cb88-49"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">ml_method =</span> <span class="fu">sits_TempCNN</span>())</span>
+<span id="cb88-50"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-51"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Give a name to the SVM model</span></span>
+<span id="cb88-52"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-52" aria-hidden="true" tabindex="-1"></a>conf_tcnn<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="st">&quot;TempCNN&quot;</span></span>
+<span id="cb88-53"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-53" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in a list</span></span>
+<span id="cb88-54"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-54" aria-hidden="true" tabindex="-1"></a>results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> conf_tcnn</span>
+<span id="cb88-55"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-56"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-56" aria-hidden="true" tabindex="-1"></a>xlsx_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">&quot;/model_comparison.xlsx&quot;</span>)</span>
+<span id="cb88-57"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to an XLS file</span></span>
+<span id="cb88-58"><a href="validation-and-accuracy-measurements-in-sits.html#cb88-58" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_to_xlsx</span>(results, <span class="at">file =</span> xlsx_file)</span></code></pre></div>
 <p>The resulting Excel file can be opened with R or using spreadsheet programs. The figure below shows a printout of what is read by Excel. As shown below, each sheet corresponds to the output of one model. For simplicity, we show only the result of TempCNN, that has an overall accuracy of 97% and is the best-performing model.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
 <img src="images/k_fold_validation_xlsx.png" alt="Result of 5-fold cross validation of Mato Grosso dataset using TempCNN" width="90%" height="90%" />
 <p class="caption">
-Figure 2.3: Result of 5-fold cross validation of Mato Grosso dataset using TempCNN
+Figure 8.1: Result of 5-fold cross validation of Mato Grosso dataset using TempCNN
 </p>
 </div>
 </div>
-<div id="accuracy-assessment" class="section level2">
+<div id="accuracy-assessment" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Accuracy assessment</h2>
-<div id="time-series" class="section level3">
+<div id="time-series" class="section level3" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Time series</h3>
-<p>Users can perform accuracy assessment in <em>sits</em> both in time series datasets or in classified images using the <code>sits_accuracy</code> function. In the case of time series, the input is a sits tibble which has been classified by a sits model. The input tibble needs to contain valid labels in its “label” column. These labels are compared to the results of the prediction to the reference values. This function calculates the confusion matrix and then the resulting statistics using the R package “caret”.</p>
-<pre><code>#&gt; 
+<p>Users can perform accuracy assessment in <em>sits</em> both in time series datasets or in classified images using the <code>sits_accuracy</code> function. In the case of time series, the input is a sits tibble which has been classified by a sits model. The input tibble needs to contain valid labels in its “label” column. These labels are compared to the results of the prediction to the reference values. This function calculates the confusion matrix and then the resulting statistics using the R package “caret.”</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read a tibble with 400 time series of Cerrado and 346 of Pasture</span></span>
+<span id="cb89-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cerrado_2classes)</span>
+<span id="cb89-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a model for classification of time series</span></span>
+<span id="cb89-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-4" aria-hidden="true" tabindex="-1"></a>svm_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(cerrado_2classes, <span class="fu">sits_svm</span>())</span>
+<span id="cb89-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="co"># classify the time series</span></span>
+<span id="cb89-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-6" aria-hidden="true" tabindex="-1"></a>predicted <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(cerrado_2classes, svm_model)</span>
+<span id="cb89-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the classification accuracy</span></span>
+<span id="cb89-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-8" aria-hidden="true" tabindex="-1"></a>acc_ts <span class="ot">&lt;-</span> <span class="fu">sits_accuracy</span>(predicted)</span>
+<span id="cb89-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print the accuracy statistics summary</span></span>
+<span id="cb89-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_accuracy_summary</span>(acc_ts)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; 
 #&gt; Overall Statistics
 #&gt;                        
 #&gt;  Accuracy : 1          
@@ -308,7 +425,9 @@ Figure 2.3: Result of 5-fold cross validation of Mato Grosso dataset using TempC
 #&gt;                        
 #&gt;     Kappa : 1</code></pre>
 <p>The detailed accuracy measures can be obtained by printing the accuracy object.</p>
-<pre><code>#&gt; Confusion Matrix and Statistics
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the accuracy statistics</span></span>
+<span id="cb91-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb91-2" aria-hidden="true" tabindex="-1"></a>acc_ts </span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;           Reference
 #&gt; Prediction Cerrado Pasture
@@ -326,10 +445,10 @@ Figure 2.3: Result of 5-fold cross validation of Mato Grosso dataset using TempC
 #&gt;  User Acc  Pasture : 1          
 #&gt; </code></pre>
 </div>
-<div id="classified-images" class="section level3">
+<div id="classified-images" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Classified images</h3>
-<p>To measure the accuracy of classified images, the <code>sits_accuracy</code> function uses an area-weighted technique, following the best practices proposed by <span class="citation">62</span>. The need for area-weighted estimates arises from the fact the land use and land cover classes are not evenly distributed in space. In some applications (e.g., deforestation) where the interest lies in assessing how much of the image has changed, the area mapped as deforested is likely to be a small fraction of the total area. If users disregard the relative importance of small areas where change is taking place, the overall accuracy estimate will be inflated and unrealistic. For this reason, <span class="citation">62</span> argue that <em>“mapped areas should be adjusted to eliminate bias attributable to map classification error and these error-adjusted area estimates should be accompanied by confidence intervals to quantify the sampling variability of the estimated area”</em>.</p>
-<p>With this motivation, when measuring accuracy of classified images, the function <code>sits_accuracy</code> follows <span class="citation">62</span> and <span class="citation">63</span>. The following explanation is extracted from the paper of <span class="citation">62</span>, and users should refer to this paper for further explanation.</p>
+<p>To measure the accuracy of classified images, the <code>sits_accuracy</code> function uses an area-weighted technique, following the best practices proposed by <span class="citation">[51]</span>. The need for area-weighted estimates arises from the fact the land use and land cover classes are not evenly distributed in space. In some applications (e.g., deforestation) where the interest lies in assessing how much of the image has changed, the area mapped as deforested is likely to be a small fraction of the total area. If users disregard the relative importance of small areas where change is taking place, the overall accuracy estimate will be inflated and unrealistic. For this reason, <span class="citation">[51]</span> argue that <em>“mapped areas should be adjusted to eliminate bias attributable to map classification error and these error-adjusted area estimates should be accompanied by confidence intervals to quantify the sampling variability of the estimated area”</em>.</p>
+<p>With this motivation, when measuring accuracy of classified images, the function <code>sits_accuracy</code> follows <span class="citation">[51]</span> and <span class="citation">[52]</span>. The following explanation is extracted from the paper of <span class="citation">[51]</span>, and users should refer to this paper for further explanation.</p>
 <p>Given a classified image and a validation file, the first step is to calculate the confusion matrix in the traditional way, i.e., by identifying the commission and omission errors. Then we calculate the unbiased estimator of the proportion of area in cell <span class="math inline">\(i,j\)</span> of the error matrix</p>
 <p><span class="math display">\[
 \hat{p_{i,j}} = W_i\frac{n_{i,j}}{n_i}
@@ -338,13 +457,40 @@ where the total area of the map is <span class="math inline">\(A_{tot}\)</span>,
 <span class="math display">\[
 \hat{A_j} = A_{tot}\sum_{i=1}^KW_i\frac{n_{i,j}}{n_i}
 \]</span>
-This unbiased area estimator includes the effect of false negatives (omission error) while not considering the effect of false positives (commission error). The area estimates also allow producing an unbiased estimate of the user’s and producer’s accuracy for each class. Following <span class="citation">62</span>, we can also estimate the 95% confidence interval for <span class="math inline">\(\hat{A_j}\)</span>.</p>
+This unbiased area estimator includes the effect of false negatives (omission error) while not considering the effect of false positives (commission error). The area estimates also allow producing an unbiased estimate of the user’s and producer’s accuracy for each class. Following <span class="citation">[51]</span>, we can also estimate the 95% confidence interval for <span class="math inline">\(\hat{A_j}\)</span>.</p>
 <p>To use the <code>sits_accuracy</code> function to produce the adjusted area estimates, users have to provide the classified image together with a csv file containing a set of labeled points. The csv file should have the same format as the one used to obtain samples, as discussed earlier.</p>
 <p>In what follows, we show a simple example of using the accuracy function to estimate the quality of the classification</p>
-<pre><code>#&gt; Area Weigthed Statistics
-#&gt; Overall Accuracy = 0.764
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select a sample with 2 bands (NDVI and EVI)</span></span>
+<span id="cb93-2"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-2" aria-hidden="true" tabindex="-1"></a>samples_modis_2bands <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(samples_modis_4bands,</span>
+<span id="cb93-3"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb93-4"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co"># build an extreme gradient boosting model</span></span>
+<span id="cb93-5"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-5" aria-hidden="true" tabindex="-1"></a>xgb_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(samples_modis_2bands, <span class="at">ml_method =</span> <span class="fu">sits_xgboost</span>())</span>
+<span id="cb93-6"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data cube based on files</span></span>
+<span id="cb93-7"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-7" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/raster/mod13q1&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb93-8"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-8" aria-hidden="true" tabindex="-1"></a>cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb93-9"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb93-10"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;sinop-2014&quot;</span>,</span>
+<span id="cb93-11"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb93-12"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensor =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb93-13"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb93-14"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb93-15"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;tile&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb93-16"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb93-17"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-17" aria-hidden="true" tabindex="-1"></a><span class="co"># classify the data cube with xgb model</span></span>
+<span id="cb93-18"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-18" aria-hidden="true" tabindex="-1"></a>probs_cube <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(cube, xgb_model)</span>
+<span id="cb93-19"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-19" aria-hidden="true" tabindex="-1"></a><span class="co"># label the classification</span></span>
+<span id="cb93-20"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-20" aria-hidden="true" tabindex="-1"></a>label_cube <span class="ot">&lt;-</span> <span class="fu">sits_label_classification</span>(probs_cube, <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb93-21"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-21" aria-hidden="true" tabindex="-1"></a><span class="co"># get ground truth points</span></span>
+<span id="cb93-22"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-22" aria-hidden="true" tabindex="-1"></a>ground_truth <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/samples/samples_sinop_crop.csv&quot;</span>,</span>
+<span id="cb93-23"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb93-24"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-24" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate accuracy according to Olofsson&#39;s method</span></span>
+<span id="cb93-25"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-25" aria-hidden="true" tabindex="-1"></a>area_acc <span class="ot">&lt;-</span> <span class="fu">sits_accuracy</span>(label_cube, <span class="at">validation_csv =</span> ground_truth)</span>
+<span id="cb93-26"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-26" aria-hidden="true" tabindex="-1"></a><span class="co"># print the area estimated accuracy </span></span>
+<span id="cb93-27"><a href="validation-and-accuracy-measurements-in-sits.html#cb93-27" aria-hidden="true" tabindex="-1"></a>area_acc</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; Area Weigthed Statistics
+#&gt; Overall Accuracy = 0.765
 #&gt; 
-#&gt; Table: (\#tab:unnamed-chunk-7)Area-Weighted Users and Producers Accuracy
+#&gt; Table: (\#tab:unnamed-chunk-78)Area-Weighted Users and Producers Accuracy
 #&gt; 
 #&gt; |         | User| Producer|
 #&gt; |:--------|----:|--------:|
@@ -354,15 +500,15 @@ This unbiased area estimator includes the effect of false negatives (omission er
 #&gt; |Soy_Corn | 0.86|     0.72|
 #&gt; 
 #&gt; 
-#&gt; Table: (\#tab:unnamed-chunk-7)Mapped Area x Estimated Area (ha)
+#&gt; Table: (\#tab:unnamed-chunk-78)Mapped Area x Estimated Area (ha)
 #&gt; 
 #&gt; |         | Mapped Area (ha)| Error-Adjusted Area (ha)| Conf Interval (ha)|
 #&gt; |:--------|----------------:|------------------------:|------------------:|
-#&gt; |Cerrado  |          32821.2|                  49092.3|            31891.3|
-#&gt; |Forest   |          81355.4|                  48813.2|            39058.7|
-#&gt; |Pasture  |          18884.5|                  23195.1|            19974.8|
-#&gt; |Soy_Corn |          63222.2|                  75182.6|            37630.4|</code></pre>
-<p>This is an illustrative example to express the situation where there is a limited number of ground truth points. As a result of a limited validation sample, the estimated confidence interval in area estimation is large. This indicates a questionable result. We recommend that users follow the procedures recommended by <span class="citation">63</span> to estimate the number of ground truth measures per class that are required to get a reliable estimate.</p>
+#&gt; |Cerrado  |          32569.0|                  48736.0|            31687.3|
+#&gt; |Forest   |          80834.8|                  48500.9|            38808.8|
+#&gt; |Pasture  |          19029.4|                  23393.5|            20163.5|
+#&gt; |Soy_Corn |          63850.0|                  75652.9|            37558.6|</code></pre>
+<p>This is an illustrative example to express the situation where there is a limited number of ground truth points. As a result of a limited validation sample, the estimated confidence interval in area estimation is large. This indicates a questionable result. We recommend that users follow the procedures recommended by <span class="citation">[52]</span> to estimate the number of ground truth measures per class that are required to get a reliable estimate.</p>
 
 </div>
 </div>
@@ -396,6 +542,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -416,6 +563,10 @@ gitbook.start({
 "text": null
 },
 "download": ["sitsbook.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

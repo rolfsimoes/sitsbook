@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Working with time series | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
   <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
-  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Working with time series | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-08-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,7 +42,8 @@
   
 <link rel="prev" href="earth-observation-data-cubes.html"/>
 <link rel="next" href="time-series-clustering-to-improve-the-quality-of-training-samples.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,22 +60,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -94,7 +96,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,6 +129,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -143,62 +168,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">SITS Book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#main-reference-for-sits"><i class="fa fa-check"></i>Main reference for sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
-<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a><ul>
+<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#creating-a-data-cube"><i class="fa fa-check"></i><b>1.1</b> Creating a Data Cube</a></li>
 <li class="chapter" data-level="1.2" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#the-time-series-table"><i class="fa fa-check"></i><b>1.2</b> The time series table</a></li>
 <li class="chapter" data-level="1.3" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#training-a-machine-learning-model"><i class="fa fa-check"></i><b>1.3</b> Training a machine learning model</a></li>
 <li class="chapter" data-level="1.4" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#data-cube-classification"><i class="fa fa-check"></i><b>1.4</b> Data cube classification</a></li>
 <li class="chapter" data-level="1.5" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#spatial-smoothing"><i class="fa fa-check"></i><b>1.5</b> Spatial smoothing</a></li>
-<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.6</b> How the sits API works</a></li>
-<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.7</b> Final remarks</a></li>
+<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#labelling-a-probability-data-cube"><i class="fa fa-check"></i><b>1.6</b> Labelling a probability data cube</a></li>
+<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.7</b> How the sits API works</a></li>
+<li class="chapter" data-level="1.8" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.8</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a><ul>
+<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#analysis-ready-data-image-collections"><i class="fa fa-check"></i><b>2.2</b> Analysis-ready data image collections</a></li>
-<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a><ul>
+<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-in-amazon-web-services"><i class="fa fa-check"></i><b>2.3.1</b> Accessing data cubes in Amazon Web Services</a></li>
 <li class="chapter" data-level="2.3.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-the-brazil-data-cube"><i class="fa fa-check"></i><b>2.3.2</b> Accessing the Brazil Data Cube</a></li>
 <li class="chapter" data-level="2.3.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>2.3.3</b> Defining a data cube using files</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#regularizing-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Regularizing data cubes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a><ul>
+<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>3.1</b> Data structures for satellite time series</a></li>
 <li class="chapter" data-level="3.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>3.2</b> Utilities for handling time series</a></li>
 <li class="chapter" data-level="3.3" data-path="working-with-time-series.html"><a href="working-with-time-series.html#time-series-visualisation"><i class="fa fa-check"></i><b>3.3</b> Time series visualisation</a></li>
 <li class="chapter" data-level="3.4" data-path="working-with-time-series.html"><a href="working-with-time-series.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>3.4</b> Obtaining time series data from data cubes</a></li>
-<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a><ul>
+<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.5.1</b> Savitzky–Golay filter</a></li>
 <li class="chapter" data-level="3.5.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#whittaker-filter"><i class="fa fa-check"></i><b>3.5.2</b> Whittaker filter</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Clustering</b></span></li>
-<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
-<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
-<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#creating-a-dendogram"><i class="fa fa-check"></i><b>4.2.1</b> Creating a dendogram</a></li>
-<li class="chapter" data-level="4.2.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-a-dendrogram-to-evaluate-sample-quality"><i class="fa fa-check"></i><b>4.2.2</b> Using a dendrogram to evaluate sample quality</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality"><i class="fa fa-check"></i><b>4.3</b> Using Self-organizing Maps for Sample Quality</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#introduction-to-self-organizing-maps"><i class="fa fa-check"></i><b>4.3.1</b> Introduction to Self-organizing Maps</a></li>
-<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-som-for-removing-class-noise"><i class="fa fa-check"></i><b>4.3.2</b> Using SOM for removing class noise</a></li>
-<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-global-accuracy-of-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.3</b> Comparing Global Accuracy of Original and Clean Samples</a></li>
+<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control-overview"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control: overview</a></li>
+<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for sample quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality-control"><i class="fa fa-check"></i><b>4.3</b> Using self-organizing maps for sample quality control</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-1-creating-the-som-map"><i class="fa fa-check"></i><b>4.3.1</b> SOM-based quality assessment part 1: creating the SOM map</a></li>
+<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-2-assessing-confusion-between-labels"><i class="fa fa-check"></i><b>4.3.2</b> SOM-based quality assessment part 2: assessing confusion between labels</a></li>
+<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-3-using-probabilities-to-detect-noisy-samples"><i class="fa fa-check"></i><b>4.3.3</b> SOM-based quality assessment part 3: using probabilities to detect noisy samples</a></li>
+<li class="chapter" data-level="4.3.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.4</b> Comparing Original and Clean Samples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>III Classification</b></span></li>
-<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
 <li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.2</b> Visualizing Samples</a></li>
 <li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.3</b> Common interface to machine learning and deeplearning models</a></li>
@@ -206,32 +241,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#temporal-convolutional-neural-network-tempcnn"><i class="fa fa-check"></i><b>5.8</b> Temporal Convolutional Neural Network (TempCNN)</a></li>
 <li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.9</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#considerations-on-model-choice"><i class="fa fa-check"></i><b>5.10</b> Considerations on model choice</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#data-cube-classification-1"><i class="fa fa-check"></i><b>6.1</b> Data cube classification</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#processing-time-estimates"><i class="fa fa-check"></i><b>6.2</b> Processing time estimates</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
 <li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
+<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
 <li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
-<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
 <li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>9</b> Case studies</a></li>
-<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a><ul>
+<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html#design-decisions"><i class="fa fa-check"></i><b>10.1</b> Design decisions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -255,16 +297,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="working-with-time-series" class="section level1">
+<div id="working-with-time-series" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Working with time series</h1>
 <hr />
 <p>This chapter describes how to access information from time series in SITS.</p>
 <hr />
-<div id="data-structures-for-satellite-time-series" class="section level2">
+<div id="data-structures-for-satellite-time-series" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Data structures for satellite time series</h2>
 <p>The <em>sits</em> package requires a set of time series data, describing properties in spatiotemporal locations of interest. For land use classification, this set consists of samples provided by experts that take in-situ field observations or recognize land classes using high-resolution images. The package can also be used for any type of classification, provided that the timeline and bands of the time series (used for training) match that of the data cubes.</p>
-<p>For handling time series, the package uses a <code>sits tibble</code> to organize time series data with associated spatial information. A <code>tibble</code> is a generalization of a <code>data.frame</code>, the usual way in R to organize data in tables. Tibbles are part of the <code>tidyverse</code>, a collection of R packages designed to work together in data manipulation <span class="citation">[5]</span>. As an example of how the sits tibble works, the following code shows the first three lines of a tibble containing <span class="math inline">\(1,882\)</span> labeled samples of land cover in Mato Grosso state of Brazil. The samples contain time series extracted from the MODIS MOD13Q1 product from 2000 to 2016, provided every <span class="math inline">\(16\)</span> days at <span class="math inline">\(250\)</span>-meter spatial resolution in the Sinusoidal projection. Based on ground surveys and high-resolution imagery, it includes samples of nine classes: “Forest”, “Cerrado”, “Pasture”, “Soybean-fallow”, “Fallow-Cotton”, “Soybean-Cotton”, “Soybean-Corn”, “Soybean-Millet”, and “Soybean-Sunflower”.</p>
-<pre><code>#&gt; # A tibble: 3 x 7
+<p>For handling time series, the package uses a <code>sits tibble</code> to organize time series data with associated spatial information. A <code>tibble</code> is a generalization of a <code>data.frame</code>, the usual way in R to organize data in tables. Tibbles are part of the <code>tidyverse</code>, a collection of R packages designed to work together in data manipulation <span class="citation">[4]</span>. As an example of how the sits tibble works, the following code shows the first three lines of a tibble containing <span class="math inline">\(1,882\)</span> labeled samples of land cover in Mato Grosso state of Brazil. The samples contain time series extracted from the MODIS MOD13Q1 product from 2000 to 2016, provided every <span class="math inline">\(16\)</span> days at <span class="math inline">\(250\)</span>-meter resolution in the Sinusoidal projection. Based on ground surveys and high-resolution imagery, it includes samples of nine classes: “Forest,” “Cerrado,” “Pasture,” “Soybean-fallow,” “Fallow-Cotton,” “Soybean-Cotton,” “Soybean-Corn,” “Soybean-Millet,” and “Soybean-Sunflower.”</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="working-with-time-series.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data set of samples</span></span>
+<span id="cb22-2"><a href="working-with-time-series.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sits)</span>
+<span id="cb22-3"><a href="working-with-time-series.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;samples_matogrosso_mod13q1&quot;</span>)</span>
+<span id="cb22-4"><a href="working-with-time-series.html#cb22-4" aria-hidden="true" tabindex="-1"></a>samples_matogrosso_mod13q1[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 3 × 7
 #&gt;   longitude latitude start_date end_date   label   cube    time_series      
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;list&gt;           
 #&gt; 1     -55.2   -10.8  2013-09-14 2014-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
@@ -272,10 +318,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 3     -51.9   -13.4  2014-09-14 2015-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;</code></pre>
 <p>A sits tibble contains data and metadata. The first six columns contain the metadata: spatial and temporal information, the label assigned to the sample, and the data cube from where the data has been extracted. The spatial location is given in longitude and latitude coordinates for the “WGS84” ellipsoid. For example, the first sample has been labeled "Cerrado, at location (-58.5631, -13.8844) and is considered valid for the period (2007-09-14, 2008-08-28). Informing the dates where the label is valid is crucial for correct classification. In this case, the researchers involved in labeling the samples chose to use the agricultural calendar in Brazil, where the spring crop is planted in the months of September and October, and the autumn crop is planted in the months of February and March. For other applications and other countries, the relevant dates will most likely be different from those used in the example. The <code>time_series</code> column contains the time series data for each spatiotemporal location. This data is also organized as a tibble, with a column with the dates and the other columns with the values for each spectral band.</p>
 </div>
-<div id="utilities-for-handling-time-series" class="section level2">
+<div id="utilities-for-handling-time-series" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Utilities for handling time series</h2>
 <p>The package provides functions for data manipulation and displaying information for sits tibble. For example, <code>sits_labels_summary()</code> shows the labels of the sample set and their frequencies.</p>
-<pre><code>#&gt; # A tibble: 9 x 3
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="working-with-time-series.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_labels_summary</span>(samples_matogrosso_mod13q1)</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 9 × 3
 #&gt;   label         count   prop
 #&gt;   &lt;chr&gt;         &lt;int&gt;  &lt;dbl&gt;
 #&gt; 1 Cerrado         379 0.200 
@@ -288,41 +335,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 8 Soy_Millet      180 0.0951
 #&gt; 9 Soy_Sunflower    26 0.0137</code></pre>
 <p>In many cases, it is helpful to relabel the data set. For example, there may be situations when one wants to use a smaller set of labels, since samples in one label on the original set may not be distinguishable from samples with other labels. We then could use <code>sits_relabel()</code>, which requires a conversion list (for details, see <code>?sits_relabel</code>).</p>
-<p>Given that we have used the tibble data format for the metadata and the embedded time series, one can use the functions from <code>dplyr</code>, <code>tidyr</code>, and <code>purrr</code> packages of the <code>tidyverse</code> <span class="citation">[5]</span> to process the data. For example, the following code uses <code>sits_select()</code> to get a subset of the sample data set with two bands (NDVI and EVI) and then uses the <code>dplyr::filter()</code> to select the samples labelled either as “Cerrado” or “Pasture”.</p>
+<p>Given that we have used the tibble data format for the metadata and the embedded time series, one can use the functions from <code>dplyr</code>, <code>tidyr</code>, and <code>purrr</code> packages of the <code>tidyverse</code> <span class="citation">[4]</span> to process the data. For example, the following code uses <code>sits_select()</code> to get a subset of the sample data set with two bands (NDVI and EVI) and then uses the <code>dplyr::filter()</code> to select the samples labelled either as “Cerrado” or “Pasture.”</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="working-with-time-series.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select NDVI band</span></span>
+<span id="cb26-2"><a href="working-with-time-series.html#cb26-2" aria-hidden="true" tabindex="-1"></a>samples_ndvi <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(samples_matogrosso_mod13q1, </span>
+<span id="cb26-3"><a href="working-with-time-series.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bands =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb26-4"><a href="working-with-time-series.html#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="working-with-time-series.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select only samples with Cerrado label</span></span>
+<span id="cb26-6"><a href="working-with-time-series.html#cb26-6" aria-hidden="true" tabindex="-1"></a>samples_cerrado <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(samples_ndvi, label <span class="sc">==</span> <span class="st">&quot;Cerrado&quot;</span>)</span></code></pre></div>
 </div>
-<div id="time-series-visualisation" class="section level2">
+<div id="time-series-visualisation" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Time series visualisation</h2>
-<p>Given a small number of samples to display, <code>plot</code> tries to group as many spatial locations together. In the following example, the first 12 samples of “Cerrado” class refer to the same spatial location in consecutive time periods. For this reason, these samples are plotted together.</p>
-<div class="figure" style="text-align: center"><span id="fig:cerrado-12"></span>
-<img src="05-timeseries_files/figure-html/cerrado-12-1.png" alt="Plot of the first 'Cerrado' sample from data set" width="70%" />
+<p>Given a small number of samples to display, <code>plot()</code> tries to group as many spatial locations together. In the following example, the first 12 samples of “Cerrado” class refer to the same spatial location in consecutive time periods. For this reason, these samples are plotted together.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="working-with-time-series.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the first 12 samples</span></span>
+<span id="cb27-2"><a href="working-with-time-series.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(samples_cerrado[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,])</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cerrado-12"></span>
+<img src="sitsbook_files/figure-html/cerrado-12-1.png" alt="Plot of the first 'Cerrado' sample" width="70%" />
 <p class="caption">
-Figure 3.1: Plot of the first ‘Cerrado’ sample from data set
+Figure 3.1: Plot of the first ‘Cerrado’ sample
 </p>
 </div>
 <p>For a large number of samples, where the number of individual plots would be substantial, the default visualization combines all samples together in a single temporal interval (even if they belong to different years). All samples with the same band and label are aligned to a common time interval. This plot is useful to show the spread of values for the time series of each band. The strong red line in the plot shows the median of the values, while the two orange lines are the first and third interquartile ranges. The documentation of <code>plot.sits()</code> has more details about the different ways it can display data.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="05-timeseries_files/figure-html/unnamed-chunk-5-1.png" alt="Plot of all Cerrado samples from data set" width="70%" />
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="working-with-time-series.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot all cerrado samples together</span></span>
+<span id="cb28-2"><a href="working-with-time-series.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(samples_cerrado)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-25-1.png" alt="Plot of all Cerrado samples " width="70%" />
 <p class="caption">
-Figure 1.3: Plot of all Cerrado samples from data set
+Figure 3.2: Plot of all Cerrado samples
 </p>
 </div>
 </div>
-<div id="obtaining-time-series-data-from-data-cubes" class="section level2">
+<div id="obtaining-time-series-data-from-data-cubes" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Obtaining time series data from data cubes</h2>
 <p>To get a time series in sits, one has to create a data cube, as described previously. Users can request one or more time series points from a data cube by using <code>sits_get_data()</code>. This function provides a general means of access to image time series. Given a data cube, the user provides the latitude and longitude of the desired location, the bands, and the start date and end date of the time series. If the start and end dates are not provided, it retrieves all the available periods. The result is a tibble that can be visualized using <code>plot()</code>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="05-timeseries_files/figure-html/unnamed-chunk-6-1.png" alt="NDVI and EVI time series fetched from local raster cube." width="70%" />
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="working-with-time-series.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a raster cube with 23 instances for one year</span></span>
+<span id="cb29-2"><a href="working-with-time-series.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the band &quot;ndvi&quot;, &quot;evi&quot; from images available in the &quot;sitsdata&quot; package</span></span>
+<span id="cb29-3"><a href="working-with-time-series.html#cb29-3" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb29-4"><a href="working-with-time-series.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="working-with-time-series.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
+<span id="cb29-6"><a href="working-with-time-series.html#cb29-6" aria-hidden="true" tabindex="-1"></a>raster_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb29-7"><a href="working-with-time-series.html#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">source     =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb29-8"><a href="working-with-time-series.html#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">satellite  =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
+<span id="cb29-9"><a href="working-with-time-series.html#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensor     =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
+<span id="cb29-10"><a href="working-with-time-series.html#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name       =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
+<span id="cb29-11"><a href="working-with-time-series.html#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_dir   =</span> data_dir,</span>
+<span id="cb29-12"><a href="working-with-time-series.html#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;tile&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb29-13"><a href="working-with-time-series.html#cb29-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-14"><a href="working-with-time-series.html#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># a point in the transition forest to pasture in Northern MT</span></span>
+<span id="cb29-15"><a href="working-with-time-series.html#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain a time series from the raster cube for this point</span></span>
+<span id="cb29-16"><a href="working-with-time-series.html#cb29-16" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">sits_get_data</span>(<span class="at">cube      =</span> raster_cube,</span>
+<span id="cb29-17"><a href="working-with-time-series.html#cb29-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">longitude =</span> <span class="sc">-</span><span class="fl">55.57320</span>, </span>
+<span id="cb29-18"><a href="working-with-time-series.html#cb29-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">latitude  =</span> <span class="sc">-</span><span class="fl">11.50566</span>,</span>
+<span id="cb29-19"><a href="working-with-time-series.html#cb29-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">bands     =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb29-20"><a href="working-with-time-series.html#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(series)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-26-1.png" alt="NDVI and EVI time series fetched from local raster cube." width="70%" />
 <p class="caption">
-Figure 1.4: NDVI and EVI time series fetched from local raster cube.
+Figure 3.3: NDVI and EVI time series fetched from local raster cube.
 </p>
 </div>
-<p>A useful case is when a set of labelled samples are available to be used as a training data set. In this case, one usually has trusted observations that are labelled and commonly stored in plain text files in comma-separated values (CSV) or using shapefiles (SHP). Function <code>sits_get_data()</code> takes a CSV or SHP file path as an argument. In the case of CSV text file, they should provide, for each training sample, its latitude and longitude, the start and end dates, and a label associated with a ground sample. An example of a CSV file used is shown below.</p>
-<pre><code>#&gt;   id longitude  latitude start_date   end_date   label
+<p>A useful case is when a set of labelled samples are available to be used as a training data set. In this case, one usually has trusted observations that are labelled and commonly stored in plain text files in comma-separated values (CSV) or using shapefiles (SHP). Function <code>sits_get_data()</code> takes a CSV or SHP file path as an argument. For each training sample, CSV files should provide latitude and longitude, start and end dates that define the temporal bounds, and a label associated with a ground sample. An example of a CSV file used is shown below.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="working-with-time-series.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve a list of samples described by a CSV file</span></span>
+<span id="cb30-2"><a href="working-with-time-series.html#cb30-2" aria-hidden="true" tabindex="-1"></a>samples_csv_file <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/samples/samples_sinop_crop.csv&quot;</span>,</span>
+<span id="cb30-3"><a href="working-with-time-series.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb30-4"><a href="working-with-time-series.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for demonstration, read the CSV file into an R object</span></span>
+<span id="cb30-5"><a href="working-with-time-series.html#cb30-5" aria-hidden="true" tabindex="-1"></a>samples_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(samples_csv_file)</span>
+<span id="cb30-6"><a href="working-with-time-series.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first three lines</span></span>
+<span id="cb30-7"><a href="working-with-time-series.html#cb30-7" aria-hidden="true" tabindex="-1"></a>samples_csv[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt;   id longitude  latitude start_date   end_date   label
 #&gt; 1  1 -55.65931 -11.76267 2013-09-14 2014-08-29 Pasture
 #&gt; 2  2 -55.64833 -11.76385 2013-09-14 2014-08-29 Pasture
 #&gt; 3  3 -55.66738 -11.78032 2013-09-14 2014-08-29  Forest</code></pre>
-<p>The main difference between the files used by <em>sits</em> to retrieve training samples from those used traditionally in remote sensing data analysis is that users are expected to provide the temporal information (<code>start_date</code> and <code>end_date</code>). In the simplest case, all samples share the same start and end data. That is not a strict requirement. Users can specify different dates, as long as they have a compatible duration. For example, the data set <code>samples_modis_4bands</code> provided with the sits package contains samples from different years covering the same duration. These samples were obtained from the MOD13Q1 product, which contains the same number of images per year. Thus, all time series in the data set <code>samples_modis_4bands</code> have the same number of instances.</p>
-<pre><code>#&gt; # A tibble: 5 x 7
+<p>The main difference between the files used by <em>sits</em> to retrieve training samples from those used traditionally in remote sensing data analysis is that users are expected to provide the temporal information (<code>start_date</code> and <code>end_date</code>). In the simplest case, all samples share the same dates. That is not a strict requirement. Users can specify different dates, as long as they have a compatible duration. For example, the data set <code>samples_modis_4bands</code> provided with the sits package contains samples from different years covering the same duration. These samples were obtained from the MOD13Q1 product, which contains the same number of images per year. Thus, all time series in the data set <code>samples_modis_4bands</code> have the same number of instances.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="working-with-time-series.html#cb32-1" aria-hidden="true" tabindex="-1"></a>samples_modis_4bands[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 5 × 7
 #&gt;   longitude latitude start_date end_date   label   cube    time_series      
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;list&gt;           
 #&gt; 1     -55.2   -10.8  2013-09-14 2014-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
@@ -330,54 +415,79 @@ Figure 1.4: NDVI and EVI time series fetched from local raster cube.
 #&gt; 3     -51.9   -13.4  2014-09-14 2015-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
 #&gt; 4     -56.0   -10.1  2005-09-14 2006-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;
 #&gt; 5     -54.6   -10.4  2013-09-14 2014-08-29 Pasture MOD13Q1 &lt;tibble [23 × 5]&gt;</code></pre>
-<p>Given a suitably built sample file, reading the time series in <em>sits</em> is achieved using the <code>sits_get_data</code>. This function has two mandatory parameters for CSV and SHP file; (a) <code>cube</code> which is the name of the R object that describes the data cube; (b) <code>file</code> which is the name of the CSV or SHP file.</p>
-<pre><code>#&gt; # A tibble: 3 x 7
+<p>Given a suitably built CSV sample file, <code>sits_get_data()</code> requires two parameters: (a) <code>cube</code>, the name of the R object that describes the data cube; (b) <code>file</code>, the name of the CSV file.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="working-with-time-series.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the points from a data cube in raster brick format</span></span>
+<span id="cb34-2"><a href="working-with-time-series.html#cb34-2" aria-hidden="true" tabindex="-1"></a>points <span class="ot">&lt;-</span> <span class="fu">sits_get_data</span>(<span class="at">cube =</span> raster_cube, <span class="at">file =</span> samples_csv_file)</span>
+<span id="cb34-3"><a href="working-with-time-series.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show the tibble with the first three points</span></span>
+<span id="cb34-4"><a href="working-with-time-series.html#cb34-4" aria-hidden="true" tabindex="-1"></a>points[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 3 × 7
 #&gt;   longitude latitude start_date end_date   label   cube  time_series      
 #&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt; &lt;list&gt;           
 #&gt; 1     -55.7    -11.8 2013-09-14 2014-08-29 Pasture Sinop &lt;tibble [23 × 3]&gt;
 #&gt; 2     -55.6    -11.8 2013-09-14 2014-08-29 Pasture Sinop &lt;tibble [23 × 3]&gt;
 #&gt; 3     -55.7    -11.8 2013-09-14 2014-08-29 Forest  Sinop &lt;tibble [23 × 3]&gt;</code></pre>
-<p>Users can also specify samples by providing shapefiles in point or polygon format. In this case, the geographical location is inferred from the geometries associated with the shapefile. For files containing points, the geographical location is obtained directly; for files with polygon, the parameter <code>.n_shp_pol</code> (defaults to 20) determines the number of samples to be extracted from each polygon. The temporal information is inferred from the data cube from which the samples are extracted or can be provided explicitly by the user. The label information is taken from the attribute file associated to the shapefile. The parameter <code>shp_attr</code> indicates the name of the column which contains the label to be associated with each time series.</p>
-<pre><code>#&gt; # A tibble: 3 x 7
-#&gt;   longitude latitude start_date end_date   label cube  time_series      
-#&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt; &lt;chr&gt; &lt;list&gt;           
-#&gt; 1     -55.6    -11.8 2013-09-14 2014-08-29 &lt;NA&gt;  Sinop &lt;tibble [23 × 3]&gt;
-#&gt; 2     -55.6    -11.8 2013-09-14 2014-08-29 &lt;NA&gt;  Sinop &lt;tibble [23 × 3]&gt;
-#&gt; 3     -55.6    -11.8 2013-09-14 2014-08-29 &lt;NA&gt;  Sinop &lt;tibble [23 × 3]&gt;</code></pre>
+<p>Users can also specify samples by providing shapefiles in point or polygon format. In this case, the geographical location is inferred from the geometries associated with the shapefile. For files containing points, the geographical location is obtained directly; for files with polygon, the parameter <code>.n_shp_pol</code> (defaults to 20) determines the number of samples to be extracted from each polygon. The temporal information is inferred from the data cube from which the samples are extracted or can be provided explicitly by the user. The label information is taken from the attribute file associated with the shapefile. The parameter <code>shp_attr</code> indicates the name of the column which contains the label to be associated with each time series.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="working-with-time-series.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the input shapefile</span></span>
+<span id="cb36-2"><a href="working-with-time-series.html#cb36-2" aria-hidden="true" tabindex="-1"></a>shp_file <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/shapefiles/agriculture/parcel_agriculture.shp&quot;</span>, </span>
+<span id="cb36-3"><a href="working-with-time-series.html#cb36-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">package =</span> <span class="st">&quot;sits&quot;</span>)</span>
+<span id="cb36-4"><a href="working-with-time-series.html#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="working-with-time-series.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set the start and end dates </span></span>
+<span id="cb36-6"><a href="working-with-time-series.html#cb36-6" aria-hidden="true" tabindex="-1"></a>start_date <span class="ot">&lt;-</span> <span class="st">&quot;2013-09-14&quot;</span></span>
+<span id="cb36-7"><a href="working-with-time-series.html#cb36-7" aria-hidden="true" tabindex="-1"></a>end_date   <span class="ot">&lt;-</span> <span class="st">&quot;2014-08-29&quot;</span></span>
+<span id="cb36-8"><a href="working-with-time-series.html#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="working-with-time-series.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># define the attribute name that contains the label</span></span>
+<span id="cb36-10"><a href="working-with-time-series.html#cb36-10" aria-hidden="true" tabindex="-1"></a>shp_attr <span class="ot">&lt;-</span> <span class="st">&quot;ext_na&quot;</span></span>
+<span id="cb36-11"><a href="working-with-time-series.html#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="working-with-time-series.html#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># define the number of samples to extract from each polygon</span></span>
+<span id="cb36-13"><a href="working-with-time-series.html#cb36-13" aria-hidden="true" tabindex="-1"></a>.n_shp_pol <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb36-14"><a href="working-with-time-series.html#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="working-with-time-series.html#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># read the points in the shapefile and produce a CSV file</span></span>
+<span id="cb36-16"><a href="working-with-time-series.html#cb36-16" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">sits_get_data</span>(<span class="at">cube       =</span> raster_cube, </span>
+<span id="cb36-17"><a href="working-with-time-series.html#cb36-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">file       =</span> shp_file, </span>
+<span id="cb36-18"><a href="working-with-time-series.html#cb36-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">start_date =</span> start_date, </span>
+<span id="cb36-19"><a href="working-with-time-series.html#cb36-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">end_date   =</span> end_date, </span>
+<span id="cb36-20"><a href="working-with-time-series.html#cb36-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">shp_attr   =</span> shp_attr, </span>
+<span id="cb36-21"><a href="working-with-time-series.html#cb36-21" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.n_shp_pol =</span> .n_shp_pol)</span>
+<span id="cb36-22"><a href="working-with-time-series.html#cb36-22" aria-hidden="true" tabindex="-1"></a>samples[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
+<pre class="sourceCode"><code>#&gt; # A tibble: 3 × 0</code></pre>
 </div>
-<div id="filtering-techniques-for-time-series" class="section level2">
+<div id="filtering-techniques-for-time-series" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Filtering techniques for time series</h2>
-<p>Satellite image time series generally is contaminated by atmospheric influence, geolocation error, and directional effects <span class="citation">[6]</span>. Atmospheric noise, sun angle, interferences on observations or different equipment specifications, as well as the very nature of the climate-land dynamics can be sources of variability <span class="citation">[7]</span>. Inter-annual climate variability also changes the phenological cycles of the vegetation, resulting in time series whose periods and intensities do not match on a year-to-year basis. To make the best use of available satellite data archives, methods for satellite image time series analysis need to deal with <em>noisy</em> and <em>non-homogeneous</em> data sets. In this vignette, we discuss filtering techniques to improve time series data that present missing values or noise.</p>
-<p>The literature on satellite image time series has several applications of filtering to correct or smooth vegetation index data. The <code>sits</code> have support for Savitzky–Golay (<code>sits_sgolay()</code>), Whitaker (<code>sits_whittaker()</code>), envelope (<code>sits_envelope()</code>) filters. The first two filters are commonly used in the literature, while the remaining two have been developed by the authors.</p>
-<p>Various somewhat conflicting results have been expressed in relation to the time series filtering techniques for phenology applications. For example, in an investigation of phenological parameter estimation, <span class="citation">7</span> found that the Whittaker and Fourier transform approaches were preferable to the double logistic and asymmetric Gaussian models. They applied the filters to preprocess MERIS NDVI time series for estimating phenological parameters in India. Comparing the same filters as in the previous work, <span class="citation">8</span> found that only Fourier transform and Whittaker techniques improved interclass separability for crop classes and significantly improved overall classification accuracy. The authors used MODIS NDVI time series from the Great Lakes region in North America. <span class="citation">9</span> found that the asymmetric Gaussian model outperforms other filters over high latitude boreal biomes, while the Savitzky-Golay model gives the best reconstruction performance in tropical evergreen broadleaf forests. In the remaining biomes, Whittaker gives superior results. The authors compare all previously mentioned filters plus the Savitzky-Golay method for noise removal in MODIS NDVI data from sites spread worldwide in different climatological conditions. Many other techniques can be found in applications of satellite image time series such as curve fitting <span class="citation">[10]</span>, wavelet decomposition <span class="citation">[11]</span>, mean-value iteration, ARMD3-ARMA5, and 4253H <span class="citation">[12]</span>. Therefore, any comparative analysis of smoothing algorithms depends on the adopted performance measurement.</p>
-<p>One of the main uses of time series filtering is to reduce the noise and miss data produced by clouds in tropical areas. The following examples use data produced by the PRODES project <span class="citation">[13]</span>, which detects deforestation in the Brazilian Amazon rain forest through visual interpretation. This data set is called <code>samples_para_mixl8mod</code> and is provided together with the <strong>sitsdata</strong> package. It has <span class="math inline">\(617\)</span> samples from a region corresponding to the standard Landsat Path/Row 226/064. This is an area in the East of the Brazilian Pará state. It was chosen because of its huge cloud cover from November to March, which is a significant factor in degrading time series quality. Its NDVI and EVI time series were extracted from a combination of MOD13Q1 and Landsat8 images (to best visualize the effects of each filter, we selected only NDVI time series).</p>
-<div id="savitzkygolay-filter" class="section level3">
+<p>Satellite image time series generally is contaminated by atmospheric influence, geolocation error, and directional effects <span class="citation">[5]</span>. Atmospheric noise, sun angle, interferences on observations or different equipment specifications, as well as the very nature of the climate-land dynamics can be sources of variability <span class="citation">[6]</span>. Inter-annual climate variability also changes the phenological cycles of the vegetation, resulting in time series whose periods and intensities do not match on a year-to-year basis. To make the best use of available satellite data archives, methods for satellite image time series analysis need to deal with <em>noisy</em> and <em>non-homogeneous</em> data sets. In this vignette, we discuss filtering techniques to improve time series data that present missing values or noise.</p>
+<p>The literature on satellite image time series has several applications of filtering to correct or smooth vegetation index data. The package supports the well-known Savitzky–Golay (<code>sits_sgolay()</code>) and Whittaker (<code>sits_whittaker()</code>) filters. In an evaluation of MERIS NDVI time series filtering for estimating phenological parameters in India, <span class="citation">[6]</span> found that the Whittaker filter provides good results. <span class="citation">[7]</span> found that the Savitzky-Golay filter is good for reconstruction in tropical evergreen broadleaf forests.</p>
+<div id="savitzkygolay-filter" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Savitzky–Golay filter</h3>
 <p>The Savitzky-Golay filter works by fitting a successive array of <span class="math inline">\(2n+1\)</span> adjacent data points with a <span class="math inline">\(d\)</span>-degree polynomial through linear least squares. The central point <span class="math inline">\(i\)</span> of the window array assumes the value of the interpolated polynomial. An equivalent and much faster solution than this convolution procedure is given by the closed expression
 <span class="math display">\[
   {\hat{x}_{i}=\sum _{j=-n}^{n}C_{j}\,x_{i+j}},
 \]</span>
 where <span class="math inline">\(\hat{x}\)</span> is the the filtered time series, <span class="math inline">\(C_{j}\)</span> are the Savitzky-Golay smoothing coefficients, and <span class="math inline">\(x\)</span> is the original time series.</p>
-<p>The coefficients <span class="math inline">\(C_{j}\)</span> depend uniquely on the polynomial degree (<span class="math inline">\(d\)</span>) and the length of the window data points (given by parameter <span class="math inline">\(n\)</span>). If <span class="math inline">\({d=0}\)</span>, the coefficients are constants <span class="math inline">\({C_{j}=1/(2n+1)}\)</span> and the Savitzky-Golay filter will be equivalent to moving average filter. When the time series are equally spaced, the coefficients have an analytical solution. According to <span class="citation">14</span>, for <span class="math inline">\({d\in{}[2,3]}\)</span> each <span class="math inline">\(C_{j}\)</span> smoothing coefficients can be obtained by
+<p>The coefficients <span class="math inline">\(C_{j}\)</span> depend uniquely on the polynomial degree (<span class="math inline">\(d\)</span>) and the length of the window data points (given by parameter <span class="math inline">\(n\)</span>). If <span class="math inline">\({d=0}\)</span>, the coefficients are constants <span class="math inline">\({C_{j}=1/(2n+1)}\)</span> and the Savitzky-Golay filter will be equivalent to moving average filter. When the time series are equally spaced, the coefficients have an analytical solution. According to <span class="citation">[8]</span>, for <span class="math inline">\({d\in{}[2,3]}\)</span> each <span class="math inline">\(C_{j}\)</span> smoothing coefficients can be obtained by
 <span class="math display">\[
   C_{j}=\frac{3(3n^2+3n-1-5j^2)}{(2n+3)(2n+1)(2n-1)}.
 \]</span></p>
-<p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">[15]</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on a point extracted from the MOD13Q1 product, ranging from 2000-02-18 to 2018-01-01.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
-<img src="05-timeseries_files/figure-html/unnamed-chunk-11-1.png" alt="Savitzky-Golay filter applied on a multi-year NDVI time series." width="70%" />
+<p>In general, the Savitzky-Golay filter produces smoother results for a larger value of <span class="math inline">\(n\)</span> and/or a smaller value of <span class="math inline">\(d\)</span> <span class="citation">[9]</span>. The optimal value for these two parameters can vary from case to case. In SITS, the user can set the order of the polynomial using the parameter <code>order</code> (default = 3), the size of the temporal window with the parameter <code>length</code> (default = 5), and the temporal expansion with the parameter <code>scaling</code> (default = 1). The following example shows the effect of Savitsky-Golay filter on a point extracted from the MOD13Q1 product, ranging from 2000-02-18 to 2018-01-01.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="working-with-time-series.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
+<span id="cb38-2"><a href="working-with-time-series.html#cb38-2" aria-hidden="true" tabindex="-1"></a>point_ndvi <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(point_mt_6bands, <span class="at">band =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb38-3"><a href="working-with-time-series.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># apply Savitzky–Golay filter</span></span>
+<span id="cb38-4"><a href="working-with-time-series.html#cb38-4" aria-hidden="true" tabindex="-1"></a>point_sg <span class="ot">&lt;-</span> <span class="fu">sits_sgolay</span>(point_ndvi, <span class="at">length =</span> <span class="dv">15</span>)</span>
+<span id="cb38-5"><a href="working-with-time-series.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the point and plot the series</span></span>
+<span id="cb38-6"><a href="working-with-time-series.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_merge</span>(point_sg, point_ndvi) <span class="sc">%&gt;%</span> <span class="fu">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-31-1.png" alt="Savitzky-Golay filter applied on a multi-year NDVI time series." width="70%" />
 <p class="caption">
-Figure 3.2: Savitzky-Golay filter applied on a multi-year NDVI time series.
+Figure 3.4: Savitzky-Golay filter applied on a multi-year NDVI time series.
 </p>
 </div>
 <p>Notice that the resulting smoothed curve has both desirable and unwanted properties. For the period 2000 to 2008, the Savitsky-Golay filter remove noise resulting from clouds. However, after 2010, when the region has been converted to agriculture, the filter removes an important part of the natural variability from the crop cycle. Therefore, the <code>length</code> parameter is arguably too big and results in oversmoothing. Users can try to reduce this parameter and analyse the results.</p>
 </div>
-<div id="whittaker-filter" class="section level3">
+<div id="whittaker-filter" class="section level3" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Whittaker filter</h3>
-<p>The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">[16]</span>. The Whittaker filter is a balancing between the residual to the original data and the “smoothness” of the fitted curve. The residual, as measured by the sum of squares of all <span class="math inline">\(n\)</span> time series points deviations, is given by
+<p>The Whittaker smoother attempts to fit a curve that represents the raw data, but is penalized if subsequent points vary too much <span class="citation">[10]</span>. The Whittaker filter is a balancing between the residual to the original data and the “smoothness” of the fitted curve. The residual, as measured by the sum of squares of all <span class="math inline">\(n\)</span> time series points deviations, is given by
 <span class="math display">\[
   RSS=\sum_{i}(x_{i} - \hat{x_{i}})^2,
 \]</span>
-where <span class="math inline">\(x\)</span> and <span class="math inline">\(\hat{x}\)</span> are the original and the filtered time series vectors, respectively. The smoothness is assumed to be the measure of the sum of the squares of the third-order differences of the time series <span class="citation">[17]</span>, which is given by
+where <span class="math inline">\(x\)</span> and <span class="math inline">\(\hat{x}\)</span> are the original and the filtered time series vectors, respectively. The smoothness is assumed to be the measure of the sum of the squares of the third-order differences of the time series <span class="citation">[11]</span>, which is given by
 <span class="math display">\[
   \begin{split}
 S\!S\!D = (\hat{x}_4 - 3\hat{x}_3 + 3\hat{x}_2 - \hat{x}_1)^2 + (\hat{x}_5 - 3\hat{x}_4 + 3\hat{x}_3 - \hat{x}_2)^2 \\ + \ldots + (\hat{x}_n - 3\hat{x}_{n-1} + 3\hat{x}_{n-2} - \hat{x}_{n-3})^2.
@@ -402,10 +512,16 @@ where <span class="math inline">\({\rm I}\)</span> is the identity matrix and
              \right]
 \]</span></p>
 <p>The following example shows the effect of Whitakker filter on a point extracted from the MOD13Q1 product, ranging from 2000-02-18 to 2018-01-01. The <code>lambda</code> parameter controls the smoothing of the filter. By default, it is set to 0.5, a small value. For illustrative purposes, we show the effect of a larger smoothing parameter</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
-<img src="05-timeseries_files/figure-html/unnamed-chunk-12-1.png" alt="Whittaker filter applied on a one-year NDVI time series." width="70%" />
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="working-with-time-series.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take NDVI band of the first sample data set</span></span>
+<span id="cb39-2"><a href="working-with-time-series.html#cb39-2" aria-hidden="true" tabindex="-1"></a>point_ndvi <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(point_mt_6bands, <span class="at">band =</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb39-3"><a href="working-with-time-series.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># apply Whitakker filter</span></span>
+<span id="cb39-4"><a href="working-with-time-series.html#cb39-4" aria-hidden="true" tabindex="-1"></a>point_whit <span class="ot">&lt;-</span> <span class="fu">sits_whittaker</span>(point_ndvi, <span class="at">lambda =</span> <span class="dv">8</span>)</span>
+<span id="cb39-5"><a href="working-with-time-series.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the point and plot the series</span></span>
+<span id="cb39-6"><a href="working-with-time-series.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_merge</span>(point_whit, point_ndvi) <span class="sc">%&gt;%</span> <span class="fu">plot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-32-1.png" alt="Whittaker filter applied on a one-year NDVI time series." width="70%" />
 <p class="caption">
-Figure 3.3: Whittaker filter applied on a one-year NDVI time series.
+Figure 3.5: Whittaker filter applied on a one-year NDVI time series.
 </p>
 </div>
 <p>In the same way as what is observed in the Savitsky-Golay filter, high values of the smoothing parameter <code>lambda</code> produce an oversmoothed time series that reduces the capacity of the time series to represent natural variations on crop growth. For this reason, low smoothing values are recommended when using the <code>sits_whittaker</code> function.</p>
@@ -445,6 +561,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -465,6 +582,10 @@ gitbook.start({
 "text": null
 },
 "download": ["sitsbook.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
