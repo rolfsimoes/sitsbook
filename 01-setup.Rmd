@@ -15,7 +15,7 @@ docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
            --volume ${PWD}/data:/data \
-           brazildatacube/sits-rstudio:1.4.1103 
+           brazildatacube/sits-rstudio:0.13.0
 ```
 
 After the execution of above command, open the URL `http://127.0.0.1:8787` in a web browser, in order to access the RStudio:
