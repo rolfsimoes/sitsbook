@@ -12,7 +12,7 @@ This chapter describes how to access information from time series in SITS.
 
 ## Data structures for satellite time series
 
-The *sits* package requires a set of time series data, describing properties in spatiotemporal locations of interest. For land use classification, this set consists of samples provided by experts that take in-situ field observations or recognize land classes using high-resolution images. The package can also be used for any type of classification, provided that the timeline and bands of the time series (used for training) match that of the data cubes. 
+The `sits` package requires a set of time series data, describing properties in spatiotemporal locations of interest. For land use classification, this set consists of samples provided by experts that take in-situ field observations or recognize land classes using high-resolution images. The package can also be used for any type of classification, provided that the timeline and bands of the time series (used for training) match that of the data cubes. 
 
 For handling time series, the package uses a `sits tibble` to organize time series data with associated spatial information. A `tibble` is a generalization of a `data.frame`, the usual way in R to organize data in tables. Tibbles are part of the `tidyverse`, a collection of R packages designed to work together in data manipulation [@Wickham2017]. As an example of how the sits tibble works, the following code shows the first three lines of a tibble containing $1,882$ labeled samples of land cover in Mato Grosso state of Brazil. The samples contain time series extracted from the MODIS MOD13Q1 product from 2000 to 2016, provided every $16$ days at $250$-meter resolution in the Sinusoidal projection. Based on ground surveys and high-resolution imagery, it includes samples of nine classes: "Forest", "Cerrado", "Pasture", "Soybean-fallow", "Fallow-Cotton", "Soybean-Cotton", "Soybean-Corn", "Soybean-Millet", and "Soybean-Sunflower". 
 
@@ -75,8 +75,8 @@ data_dir <- system.file("extdata/sinop", package = "sitsdata")
 # create a raster metadata file based on the information about the files
 raster_cube <- sits_cube(
     source     = "LOCAL",
-    satellite  = "TERRA",
-    sensor     = "MODIS",
+    origin     = "BDC",
+    collection = "MOD13Q1-6",
     name       = "Sinop",
     data_dir   = data_dir,
     parse_info = c("X1", "X2", "tile", "band", "date")

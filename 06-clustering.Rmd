@@ -42,7 +42,7 @@ After creating a dendrogram, an important question emerges: *where to cut the de
 
 In the example above after calculating the dendrogram, the ARI index indicates that six (6) clusters are the best possible arrangement. However, these clusters may still contain a mixed composition of samples of different classes. 
 
-The result of the `sits_cluster` operation is a `sits_tibble` with one additional column, called "cluster". The function `sits_cluster_frequency` provides information on the composition of each cluster,  
+The result of the `sits_cluster` operation is a `sits_tibble` with one additional column, called "cluster". The function `sits_cluster_frequency()` provides information on the composition of each cluster,  
 
 ```{r}
 clusters
@@ -120,7 +120,7 @@ som_cluster <-
     )
 ```
 
-The output of the `sits_som_map` is a list with 4 tibbles:
+The output of the `sits_som_map()` is a list with 4 tibbles:
 
 - the original set of time series with two additional columns for each time series: `id_sample` (the original id of each sample) and `id_neuron` (the id of the neuron to which it belongs).
 - a tibble with information on the neurons. For each neuron, it gives the prior and posterior probabilities of all labels which occur in the samples assigned to it. 
@@ -186,7 +186,7 @@ new_samples %>%
 
 ### Comparing Original and Clean Samples
 
-To compare the original and clean samples, we run a 5-fold validation on the original and on the cleaned sample set, using the function `sits_kfold_validate()` and a random forest model.  As the results show, the SOM procedure is useful, since the validation improves from 95% to 99%. It should be noted that a k-fold validation procedure measures how well the machine learning model fits the samples. It is not a measure of accuracy of the classification. For more details on accuracy measures, please see [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html).
+To compare the original and clean samples, we run a 5-fold validation on the original and on the cleaned sample set, using the function `sits_kfold_validate()` and a random forest model.  As the results show, the SOM procedure is useful, since the validation improves from 95% to 99%. It should be noted that a k-fold validation procedure measures how well the machine learning model fits the samples and is not a measure of accuracy of the classification. For more details on accuracy measures, please see [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html).
 
 ```{r, message = FALSE, warning = FALSE}
 # run a k-fold validation

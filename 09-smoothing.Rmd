@@ -148,13 +148,12 @@ data_dir <- system.file("extdata/sinop", package = "sitsdata")
 
 # create a raster metadata file based on the information about the files
 raster_cube <- sits_cube(source = "LOCAL",
-                   satellite = "TERRA",
-                   sensor  = "MODIS",
-                   name = "Sinop",
-                   data_dir = data_dir,
-                   parse_info = c("X1", "X2", "tile", "band", "date")
+                       origin     = "BDC",
+                       collection = "MOD13Q1-6",
+                       name = "Sinop",
+                       data_dir = data_dir,
+                       parse_info = c("X1", "X2", "tile", "band", "date")
 )
-
 # classify the raster image and generate a probability file
 raster_probs <- sits_classify(raster_cube, ml_model = rfor_model, 
                               memsize = 1, multicores = 1, 

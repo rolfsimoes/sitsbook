@@ -157,12 +157,11 @@ xgb_model <- sits_train(samples_modis_2bands, ml_method = sits_xgboost())
 # create a data cube based on files
 data_dir <- system.file("extdata/raster/mod13q1", package = "sits")
 cube <- sits_cube(
-    source = "LOCAL",
-    name = "sinop-2014",
-    satellite = "TERRA",
-    sensor = "MODIS",
-    data_dir = data_dir,
-    delim = "_",
+    source     = "LOCAL",
+    origin     = "BDC",
+    collection = "MOD13Q1-6",
+    name       = "Sinop",
+    data_dir   = data_dir,
     parse_info = c("X1", "X2", "tile", "band", "date")
 )
 # classify the data cube with xgb model
