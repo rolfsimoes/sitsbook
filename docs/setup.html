@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,10 +176,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
-<ul>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
@@ -301,22 +298,21 @@ div.csl-indent {
 <h1>Setup</h1>
 <p><strong>sits</strong> is currently available on <a href="https://github.com/e-sensing/sits">GitHub</a>. Thus, installing the package can be accomplished via <a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools</a>, as presented by the code snippet below:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;e-sensing/sits&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="docker-images" class="section level2 unnumbered">
-<h2>Docker images</h2>
-<p>Installing the <strong>sits</strong> package has several dependencies that increase its installation and build time. To speed up the use of <strong>sits</strong> and the required dependencies in the R environment, the <a href="https://github.com/brazil-data-cube">Brazil Data Cube</a> (BDC) project maintains <a href="https://hub.docker.com/r/brazildatacube/sits-rstudio">Docker images</a> of the RStudio Server already configured with <strong>sits</strong>. The command below shows how this image can be used in Docker.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Please also install the “sitsdata” package, which contains data for the examples in the book.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;e-sensing/sitsdata&quot;</span>)</span>
+<span id="cb2-2"><a href="setup.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="er">=====</span></span>
+<span id="cb2-3"><a href="setup.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="setup.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Docker images {-}</span></span>
+<span id="cb2-5"><a href="setup.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="setup.html#cb2-6" aria-hidden="true" tabindex="-1"></a>Installing the <span class="sc">**</span>sits<span class="sc">**</span> package has several dependencies that increase its installation and build time. To speed up the use of <span class="sc">**</span>sits<span class="sc">**</span> and the required dependencies <span class="cf">in</span> the R environment, the [Brazil Data Cube](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>brazil<span class="sc">-</span>data<span class="sc">-</span>cube) (BDC) project maintains [Docker images](https<span class="sc">:</span><span class="er">//</span>hub.docker.com<span class="sc">/</span>r<span class="sc">/</span>brazildatacube<span class="sc">/</span>sits<span class="sc">-</span>rstudio) of the RStudio Server already configured with <span class="sc">**</span>sits<span class="sc">**</span>. The command below shows how this image can be used <span class="cf">in</span> Docker.</span></code></pre></div>
 <pre class="shell"><code>docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
            --volume ${PWD}/data:/data \
-           brazildatacube/sits-rstudio:0.13.0</code></pre>
-<p>After the execution of above command, open the URL <code>http://127.0.0.1:8787</code> in a web browser, in order to access the RStudio:</p>
-<blockquote>
-<p>firefox <a href="http://127.0.0.1:8787" class="uri">http://127.0.0.1:8787</a></p>
-</blockquote>
-<p><code>To login use 'sits' as user and password.</code></p>
-<p>If you prefer a customized build of the SITS Docker images, please, visit the <a href="https://github.com/e-sensing/sits">sits-docker GitHub repository</a>.</p>
+           brazildatacube/sits-rstudio:0.13.0
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; a40f468cf2ef1672486d2ad73f5853c51d4e069a</code></pre>
 
-</div>
 </div>
             </section>
 

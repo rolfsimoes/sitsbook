@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,10 +176,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
-<ul>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
@@ -387,63 +384,62 @@ denote the <span class="math inline">\(N\)</span> logit vectors of a spatiotempo
 <div id="use-of-bayesian-smoothing-in-sits" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Use of Bayesian smoothing in SITS</h2>
 <p>Doing post-processing using Bayesian smoothing in SITS is straightforward. The result of the <code>sits_classify</code> function applied to a data cube is set of probability images, one per class. The next step is to apply the <code>sits_smooth</code> function. By default, this function selects the most likely class for each pixel considering only the probabilities of each class for each pixel. To allow for Bayesian smoothing, it suffices to include the <code>type = bayesian</code> parameter (which is also the default). If desired, the <code>smoothness</code> parameter (associated to the hyperparameter <span class="math inline">\(\sigma^2_k\)</span> described above) can control the degree of smoothness. If so desired, the <code>smoothness</code> parameter can also be expressed as a matrix</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="post-classification-smoothing.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the data for the Mato Grosso state</span></span>
-<span id="cb80-2"><a href="post-classification-smoothing.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;samples_modis_4bands&quot;</span>)</span>
-<span id="cb80-3"><a href="post-classification-smoothing.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-4"><a href="post-classification-smoothing.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
-<span id="cb80-5"><a href="post-classification-smoothing.html#cb80-5" aria-hidden="true" tabindex="-1"></a>samples_2bands <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(samples_modis_4bands, <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
-<span id="cb80-6"><a href="post-classification-smoothing.html#cb80-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-7"><a href="post-classification-smoothing.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="co">#select a rfor model</span></span>
-<span id="cb80-8"><a href="post-classification-smoothing.html#cb80-8" aria-hidden="true" tabindex="-1"></a>rfor_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(samples_2bands, <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>(<span class="at">verbose =</span> <span class="dv">0</span>))</span>
-<span id="cb80-9"><a href="post-classification-smoothing.html#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-10"><a href="post-classification-smoothing.html#cb80-10" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
-<span id="cb80-11"><a href="post-classification-smoothing.html#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-12"><a href="post-classification-smoothing.html#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
-<span id="cb80-13"><a href="post-classification-smoothing.html#cb80-13" aria-hidden="true" tabindex="-1"></a>raster_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(<span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
-<span id="cb80-14"><a href="post-classification-smoothing.html#cb80-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">satellite =</span> <span class="st">&quot;TERRA&quot;</span>,</span>
-<span id="cb80-15"><a href="post-classification-smoothing.html#cb80-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sensor  =</span> <span class="st">&quot;MODIS&quot;</span>,</span>
-<span id="cb80-16"><a href="post-classification-smoothing.html#cb80-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
-<span id="cb80-17"><a href="post-classification-smoothing.html#cb80-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data_dir =</span> data_dir,</span>
-<span id="cb80-18"><a href="post-classification-smoothing.html#cb80-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;tile&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb80-19"><a href="post-classification-smoothing.html#cb80-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb80-20"><a href="post-classification-smoothing.html#cb80-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-21"><a href="post-classification-smoothing.html#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="co"># classify the raster image and generate a probability file</span></span>
-<span id="cb80-22"><a href="post-classification-smoothing.html#cb80-22" aria-hidden="true" tabindex="-1"></a>raster_probs <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(raster_cube, <span class="at">ml_model =</span> rfor_model, </span>
-<span id="cb80-23"><a href="post-classification-smoothing.html#cb80-23" aria-hidden="true" tabindex="-1"></a>                              <span class="at">memsize =</span> <span class="dv">1</span>, <span class="at">multicores =</span> <span class="dv">1</span>, </span>
-<span id="cb80-24"><a href="post-classification-smoothing.html#cb80-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
-<span id="cb80-25"><a href="post-classification-smoothing.html#cb80-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-26"><a href="post-classification-smoothing.html#cb80-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="post-classification-smoothing.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the data for the Mato Grosso state</span></span>
+<span id="cb81-2"><a href="post-classification-smoothing.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;samples_modis_4bands&quot;</span>)</span>
+<span id="cb81-3"><a href="post-classification-smoothing.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="post-classification-smoothing.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select the bands &quot;ndvi&quot;, &quot;evi&quot;</span></span>
+<span id="cb81-5"><a href="post-classification-smoothing.html#cb81-5" aria-hidden="true" tabindex="-1"></a>samples_2bands <span class="ot">&lt;-</span> <span class="fu">sits_select</span>(samples_modis_4bands, <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>))</span>
+<span id="cb81-6"><a href="post-classification-smoothing.html#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="post-classification-smoothing.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co">#select a rfor model</span></span>
+<span id="cb81-8"><a href="post-classification-smoothing.html#cb81-8" aria-hidden="true" tabindex="-1"></a>rfor_model <span class="ot">&lt;-</span> <span class="fu">sits_train</span>(samples_2bands, <span class="at">ml_method =</span> <span class="fu">sits_rfor</span>(<span class="at">verbose =</span> <span class="dv">0</span>))</span>
+<span id="cb81-9"><a href="post-classification-smoothing.html#cb81-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-10"><a href="post-classification-smoothing.html#cb81-10" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/sinop&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb81-11"><a href="post-classification-smoothing.html#cb81-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-12"><a href="post-classification-smoothing.html#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a raster metadata file based on the information about the files</span></span>
+<span id="cb81-13"><a href="post-classification-smoothing.html#cb81-13" aria-hidden="true" tabindex="-1"></a>raster_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(<span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb81-14"><a href="post-classification-smoothing.html#cb81-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">origin     =</span> <span class="st">&quot;BDC&quot;</span>,</span>
+<span id="cb81-15"><a href="post-classification-smoothing.html#cb81-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">collection =</span> <span class="st">&quot;MOD13Q1-6&quot;</span>,</span>
+<span id="cb81-16"><a href="post-classification-smoothing.html#cb81-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">name =</span> <span class="st">&quot;Sinop&quot;</span>,</span>
+<span id="cb81-17"><a href="post-classification-smoothing.html#cb81-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb81-18"><a href="post-classification-smoothing.html#cb81-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;tile&quot;</span>, <span class="st">&quot;band&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb81-19"><a href="post-classification-smoothing.html#cb81-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-20"><a href="post-classification-smoothing.html#cb81-20" aria-hidden="true" tabindex="-1"></a><span class="co"># classify the raster image and generate a probability file</span></span>
+<span id="cb81-21"><a href="post-classification-smoothing.html#cb81-21" aria-hidden="true" tabindex="-1"></a>raster_probs <span class="ot">&lt;-</span> <span class="fu">sits_classify</span>(raster_cube, <span class="at">ml_model =</span> rfor_model, </span>
+<span id="cb81-22"><a href="post-classification-smoothing.html#cb81-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">memsize =</span> <span class="dv">1</span>, <span class="at">multicores =</span> <span class="dv">1</span>, </span>
+<span id="cb81-23"><a href="post-classification-smoothing.html#cb81-23" aria-hidden="true" tabindex="-1"></a>                              <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb81-24"><a href="post-classification-smoothing.html#cb81-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-25"><a href="post-classification-smoothing.html#cb81-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs)</span></code></pre></div>
 <pre class="sourceCode"><code>#&gt; downsample set to c(1,1,1)</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-66"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-66-1.png" alt="Probability values for classified image" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-68-1.png" alt="Probability values for classified image" width="70%" />
 <p class="caption">
 Figure 7.1: Probability values for classified image
 </p>
 </div>
 <p>The plots show the class probabilities, which can then be smoothed by a bayesian smoother.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="post-classification-smoothing.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the result with a bayesian filter</span></span>
-<span id="cb82-2"><a href="post-classification-smoothing.html#cb82-2" aria-hidden="true" tabindex="-1"></a>raster_probs_bayes <span class="ot">&lt;-</span> <span class="fu">sits_smooth</span>(raster_probs, </span>
-<span id="cb82-3"><a href="post-classification-smoothing.html#cb82-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&quot;bayes&quot;</span>,</span>
-<span id="cb82-4"><a href="post-classification-smoothing.html#cb82-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
-<span id="cb82-5"><a href="post-classification-smoothing.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the result</span></span>
-<span id="cb82-6"><a href="post-classification-smoothing.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs_bayes)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="post-classification-smoothing.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the result with a bayesian filter</span></span>
+<span id="cb83-2"><a href="post-classification-smoothing.html#cb83-2" aria-hidden="true" tabindex="-1"></a>raster_probs_bayes <span class="ot">&lt;-</span> <span class="fu">sits_smooth</span>(raster_probs, </span>
+<span id="cb83-3"><a href="post-classification-smoothing.html#cb83-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&quot;bayes&quot;</span>,</span>
+<span id="cb83-4"><a href="post-classification-smoothing.html#cb83-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb83-5"><a href="post-classification-smoothing.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the result</span></span>
+<span id="cb83-6"><a href="post-classification-smoothing.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs_bayes)</span></code></pre></div>
 <pre class="sourceCode"><code>#&gt; downsample set to c(1,1,1)</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-67"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-67-1.png" alt="Probability values smoothed by bayesian method" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-69-1.png" alt="Probability values smoothed by bayesian method" width="70%" />
 <p class="caption">
 Figure 7.2: Probability values smoothed by bayesian method
 </p>
 </div>
 <p>The bayesian smoothing has removed some of local variability associated to misclassified pixels which are different from their neighbors. The impact of smoothing is best appreciated comparing the labelled map produced without smoothing to the one that follows the procedure, as shown below.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-68-1.png" alt="Classified image without smoothing" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-70-1.png" alt="Classified image without smoothing" width="90%" />
 <p class="caption">
 Figure 7.3: Classified image without smoothing
 </p>
 </div>
 <p>The resulting labelled map shows a number of likely misclassified pixels which can be removed using the bayesian smoother.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-69-1.png" alt="Classified image with Bayesian smoothing" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-71-1.png" alt="Classified image with Bayesian smoothing" width="90%" />
 <p class="caption">
 Figure 7.4: Classified image with Bayesian smoothing
 </p>
@@ -479,24 +475,24 @@ W_{i} = \sum_{x_k \in \theta}{\mathcal{N}_{\tau}(\|I(x_k) - I(x_i)\|)\mathcal{N}
 \]</span></p>
 <p>For every pixel, the method takes a considers two factors: the distance between the pixel and its neighbors, and the difference in value between them. Each of the values contributes according to a Gaussian kernel. These factors are calculated independently. Big difference between pixel values reduce the influence of the neighbor in the smoothed pixel. Big distance between pixels also reduce the impact of neighbors. The achieve a satisfactory result, we need to balance the <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\tau\)</span>. As a general rule, the values of <span class="math inline">\(\tau\)</span> should range from 0.05 to 0.50, while the values of <span class="math inline">\(\sigma\)</span> should vary between 4 and 16<span class="citation">[56]</span>. The default values adopted in <em>sits</em> are <code>tau = 0.1</code> and <code>sigma = 8</code>. As the best values of <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\sigma\)</span> depend on the variance of the noisy pixels, users are encouraged to experiment and find parameter values that best fit their requirements.</p>
 <p>The following example shows the behavior of the bilateral smoother.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="post-classification-smoothing.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the result with a bilateral filter</span></span>
-<span id="cb84-2"><a href="post-classification-smoothing.html#cb84-2" aria-hidden="true" tabindex="-1"></a>raster_probs_bil <span class="ot">&lt;-</span> <span class="fu">sits_smooth</span>(raster_probs, </span>
-<span id="cb84-3"><a href="post-classification-smoothing.html#cb84-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&quot;bilateral&quot;</span>,</span>
-<span id="cb84-4"><a href="post-classification-smoothing.html#cb84-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma =</span> <span class="dv">8</span>,</span>
-<span id="cb84-5"><a href="post-classification-smoothing.html#cb84-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">tau =</span> <span class="fl">0.1</span>,</span>
-<span id="cb84-6"><a href="post-classification-smoothing.html#cb84-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
-<span id="cb84-7"><a href="post-classification-smoothing.html#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the result</span></span>
-<span id="cb84-8"><a href="post-classification-smoothing.html#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs_bil)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="post-classification-smoothing.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the result with a bilateral filter</span></span>
+<span id="cb85-2"><a href="post-classification-smoothing.html#cb85-2" aria-hidden="true" tabindex="-1"></a>raster_probs_bil <span class="ot">&lt;-</span> <span class="fu">sits_smooth</span>(raster_probs, </span>
+<span id="cb85-3"><a href="post-classification-smoothing.html#cb85-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&quot;bilateral&quot;</span>,</span>
+<span id="cb85-4"><a href="post-classification-smoothing.html#cb85-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma =</span> <span class="dv">8</span>,</span>
+<span id="cb85-5"><a href="post-classification-smoothing.html#cb85-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">tau =</span> <span class="fl">0.1</span>,</span>
+<span id="cb85-6"><a href="post-classification-smoothing.html#cb85-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">output_dir =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb85-7"><a href="post-classification-smoothing.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the result</span></span>
+<span id="cb85-8"><a href="post-classification-smoothing.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_probs_bil)</span></code></pre></div>
 <pre class="sourceCode"><code>#&gt; downsample set to c(1,1,1)</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-70-1.png" alt="Probability values for classified image smoothed by bilateral filter" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-72-1.png" alt="Probability values for classified image smoothed by bilateral filter" width="70%" />
 <p class="caption">
 Figure 7.5: Probability values for classified image smoothed by bilateral filter
 </p>
 </div>
 <p>The impact on the classified image can be seen in the following example.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
-<img src="sitsbook_files/figure-html/unnamed-chunk-71-1.png" alt="Classified image with bilateral smoothing" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
+<img src="sitsbook_files/figure-html/unnamed-chunk-73-1.png" alt="Classified image with bilateral smoothing" width="90%" />
 <p class="caption">
 Figure 7.6: Classified image with bilateral smoothing
 </p>

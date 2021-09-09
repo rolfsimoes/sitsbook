@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,10 +176,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
-<ul>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
@@ -304,15 +301,24 @@ div.csl-indent {
 <hr />
 <div id="data-cube-classification-1" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Data cube classification</h2>
-<p>To classify a data cube, use the function <code>sits_classify()</code>. This function works in the same for all types of data cubes, regardless of origin. The classification algorithms allows users to choose how many process will run the task in parallel, and also the size of each data chunk to be consumed at each iteration. This strategy enables <code>sits</code> to work on average desktop computers without depleting all computational resources. The code bellow illustrates how to classify a small raster brick image that accompany the package. Once a data cube which has associated files is defined, the steps for classification are:</p>
+<p>To classify a data cube, use the function <code>sits_classify()</code>. This function works in the same way for all types of data cubes, regardless of origin. When working with big EO data, the target environment for <code>sits</code> is a multicore virtual machine located close to the data repository. To achieve efficiency, <code>sits</code> implements parallel processing using the cores of the virtual machine. Users are not burdened with the need to learn how to do multiprocessing and, thus, their learning curve is shortened.</p>
+<p>The authors implemented a new fault tolerant multitasking procedure for big EO data classification. Image classification in <code>sits</code> is done by a cluster of independent workers linked to a virtual machine. To avoid communication overhead, all large payloads are read and stored independently; direct interaction between the main process and the workers is kept at a minimum. The customised approach is depicted in the figure below.</p>
 <ol style="list-style-type: decimal">
-<li>Select a set of training samples.</li>
-<li>Train a machine learning model.</li>
-<li>Classify the data cubes using the model, producing a data cube with class probabilities.</li>
-<li>Label the cube with probabilities, including data smoothing if desired.</li>
+<li>Based on the size of the cube, the~number of cores, and~the available memory, divide the cube into chunks.</li>
+<li>The cube is divided into chunks along its spatial dimensions. Each chunk contains all temporal intervals.</li>
+<li>Assign chunks to the worker cores. Each core processes a block and produces an output image that is a subset of the result.</li>
+<li>After all the subimages are produced, join them to obtain the result.</li>
+<li>If a worker fails to process a block, provide failure recovery and ensure the worker completes the job.</li>
 </ol>
-<p>To reduce processing time, it is necessary to adjust <code>sits_classify()</code> according to the capabilities of the host environment. There is a trade-off between computing time, memory use, and I/O operations. The best trade-off has to be determined by the user, considering issues such disk read speed, number of cores in the server, and CPU performance. The <code>memsize</code> parameter controls the size of the main memory (in GBytes) to be used for classification. A practical approach is to set <code>memsize</code> to about 30% of the total memory available.</p>
-<p>When using the <code>sits_rfor</code> and <code>sits_svm</code> model, users can also specify the number of cores to be used for parallel processing by setting the parameter <code>multicores</code>. In this case, the classification task it is split into different cores.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-65"></span>
+<img src="images/sits_parallel.png" alt="Parallel processing in sits (source: Simoes et al.(2021)" width="90%" height="90%" />
+<p class="caption">
+Figure 6.1: Parallel processing in sits (source: Simoes et al.(2021)
+</p>
+</div>
+<p>This approach has many advantages. It works in any virtual machine that supports R and has no dependencies on proprietary software. Processing is done in a concurrent and independent way, with no communication between workers. Failure of one worker does not cause failure of the big data processing. The~software is prepared to resume classification processing from the last processed chunk, preventing against failures such as memory exhaustion, power supply interruption, or network breakdown. From~an end-user point of view, all work is done smoothly and transparently.</p>
+<p>The classification algorithm allows users to choose how many processes will run the task in parallel, and also the size of each data chunk to be consumed at each iteration. This strategy enables <code>sits</code> to work on average desktop computers without depleting all computational resources. The code bellow illustrates how to classify a large brick image that accompany the package.</p>
+<p>To reduce processing time, it is necessary to adjust <code>sits_classify()</code> according to the capabilities of the host environment. There is a trade-off between computing time, memory use, and I/O operations. The best trade-off has to be determined by the user, considering issues such disk read speed, number of cores in the server, and CPU performance. The <code>memsize</code> parameter controls the size of the main memory (in GBytes) to be used for classification. A practical approach is to set <code>memsize</code> to about 50% of the total memory available in the virtual machine. Users choose the number of cores to be used for parallel processing by setting the parameter <code>multicores</code>. For small imagens, we suggest using a small number of cores (up to 4). In the case of big data, our experience is to use about 50% of the cores.</p>
 </div>
 <div id="processing-time-estimates" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Processing time estimates</h2>
@@ -320,6 +326,7 @@ div.csl-indent {
 <ol style="list-style-type: decimal">
 <li><p>Classification of one year of the entire Cerrado region of Brazil (2,5 million <span class="math inline">\(kmˆ2\)</span>) using 18 tiles of CBERS-4 AWFI images (64 meter resolution), each tile consisting of 10,504 x 6,865 pixels with 24 time instances, using 4 spectral bands, 2 vegetation indexes and a cloud mask, resulting in 1,7 TB, took 16 hours using 100 GB of memory and 20 cores of a virtual machine. The classification was done with a random forest model with 2000 trees.</p></li>
 <li><p>Classification of one year in one tile of LANDSAT-8 images (30 meter resolution), each tile consisting of 11,204 x 7,324 pixels with 24 time instances, using 7 spectral bands, 2 vegetation indexes and a cloud mask, resulting in 157 GB, took 90 minutes using 100 GB of memory and 20 cores of a virtual machine. The classification was done with a random forest model with 2000 trees.</p></li>
+<li><p>The Brazilian Cerrado is covered by 51 Landsat-8 tiles available in the Brazil Data Cube (BDC). Each Landsat tile in the BDC covers a 3<span class="math inline">\(\times\)</span> 2grid in Albers equal area projection with an area of 73,920 km<span class="math inline">\(^2\)</span>, and a size of 11,204 <span class="math inline">\(\times\)</span> 7324 pixels. The~one-year classification period ranges from September 2017 to August 2018, following the agricultural calendar. The~temporal interval is 16 days, resulting in 24 images per tile. We use seven spectral bands plus two vegetation indexes (NDVI and EVI) and the cloud cover information. The total input data size is about 8 TB. A data set of 48,850 samples was used to train a convolutional neural network model using the TempCNN method. All available attributes in the BDC Landsat-8 data cube (two vegetation indices and seven spectral bands) were used for training and classification. The classification was executed on an Ubuntu server with 24 cores and 128 GB memory. Each Landsat-8 tile was classified in an average of 30 min, and~the total classification took about 24 h.</p></li>
 </ol>
 
 </div>
