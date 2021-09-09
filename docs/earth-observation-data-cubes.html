@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Earth observation data cubes | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series</title>
   <meta name="description" content="This book presents sits, an open-source R package for satellite image time series analysis. The package supports the application of machine learning techniques for classification image time series obtained from data cubes." />
-  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Earth observation data cubes | sits: Data Analysis and Machine Learning on Earth Observation Data Cubes with Satellite Image Time Series" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,7 +42,8 @@
   
 <link rel="prev" href="a-taste-of-sits.html"/>
 <link rel="next" href="working-with-time-series.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,22 +60,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -94,7 +96,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,6 +129,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -143,62 +168,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">SITS Book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#main-reference-for-sits"><i class="fa fa-check"></i>Main reference for sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#publications-using-sits"><i class="fa fa-check"></i>Publications using sits</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducible-papers-used-in-building-sits-functions"><i class="fa fa-check"></i>Reproducible papers used in building sits functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#docker-images"><i class="fa fa-check"></i>Docker images</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="part"><span><b>I Overview</b></span></li>
-<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a><ul>
+<li class="chapter" data-level="1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html"><i class="fa fa-check"></i><b>1</b> A taste of sits</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#creating-a-data-cube"><i class="fa fa-check"></i><b>1.1</b> Creating a Data Cube</a></li>
 <li class="chapter" data-level="1.2" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#the-time-series-table"><i class="fa fa-check"></i><b>1.2</b> The time series table</a></li>
 <li class="chapter" data-level="1.3" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#training-a-machine-learning-model"><i class="fa fa-check"></i><b>1.3</b> Training a machine learning model</a></li>
 <li class="chapter" data-level="1.4" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#data-cube-classification"><i class="fa fa-check"></i><b>1.4</b> Data cube classification</a></li>
 <li class="chapter" data-level="1.5" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#spatial-smoothing"><i class="fa fa-check"></i><b>1.5</b> Spatial smoothing</a></li>
-<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.6</b> How the sits API works</a></li>
-<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.7</b> Final remarks</a></li>
+<li class="chapter" data-level="1.6" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#labelling-a-probability-data-cube"><i class="fa fa-check"></i><b>1.6</b> Labelling a probability data cube</a></li>
+<li class="chapter" data-level="1.7" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#how-the-sits-api-works"><i class="fa fa-check"></i><b>1.7</b> How the sits API works</a></li>
+<li class="chapter" data-level="1.8" data-path="a-taste-of-sits.html"><a href="a-taste-of-sits.html#final-remarks"><i class="fa fa-check"></i><b>1.8</b> Final remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a><ul>
+<li class="chapter" data-level="2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html"><i class="fa fa-check"></i><b>2</b> Earth observation data cubes</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Image data cubes as the basis for big Earth observation data analysis</a></li>
 <li class="chapter" data-level="2.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#analysis-ready-data-image-collections"><i class="fa fa-check"></i><b>2.2</b> Analysis-ready data image collections</a></li>
-<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a><ul>
+<li class="chapter" data-level="2.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-and-image-collections-in-sits"><i class="fa fa-check"></i><b>2.3</b> Accessing Data Cubes and Image Collections in SITS</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-data-cubes-in-amazon-web-services"><i class="fa fa-check"></i><b>2.3.1</b> Accessing data cubes in Amazon Web Services</a></li>
 <li class="chapter" data-level="2.3.2" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#accessing-the-brazil-data-cube"><i class="fa fa-check"></i><b>2.3.2</b> Accessing the Brazil Data Cube</a></li>
 <li class="chapter" data-level="2.3.3" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#defining-a-data-cube-using-files"><i class="fa fa-check"></i><b>2.3.3</b> Defining a data cube using files</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="earth-observation-data-cubes.html"><a href="earth-observation-data-cubes.html#regularizing-data-cubes"><i class="fa fa-check"></i><b>2.4</b> Regularizing data cubes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a><ul>
+<li class="chapter" data-level="3" data-path="working-with-time-series.html"><a href="working-with-time-series.html"><i class="fa fa-check"></i><b>3</b> Working with time series</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#data-structures-for-satellite-time-series"><i class="fa fa-check"></i><b>3.1</b> Data structures for satellite time series</a></li>
 <li class="chapter" data-level="3.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#utilities-for-handling-time-series"><i class="fa fa-check"></i><b>3.2</b> Utilities for handling time series</a></li>
 <li class="chapter" data-level="3.3" data-path="working-with-time-series.html"><a href="working-with-time-series.html#time-series-visualisation"><i class="fa fa-check"></i><b>3.3</b> Time series visualisation</a></li>
 <li class="chapter" data-level="3.4" data-path="working-with-time-series.html"><a href="working-with-time-series.html#obtaining-time-series-data-from-data-cubes"><i class="fa fa-check"></i><b>3.4</b> Obtaining time series data from data cubes</a></li>
-<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a><ul>
+<li class="chapter" data-level="3.5" data-path="working-with-time-series.html"><a href="working-with-time-series.html#filtering-techniques-for-time-series"><i class="fa fa-check"></i><b>3.5</b> Filtering techniques for time series</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="working-with-time-series.html"><a href="working-with-time-series.html#savitzkygolay-filter"><i class="fa fa-check"></i><b>3.5.1</b> Savitzky–Golay filter</a></li>
 <li class="chapter" data-level="3.5.2" data-path="working-with-time-series.html"><a href="working-with-time-series.html#whittaker-filter"><i class="fa fa-check"></i><b>3.5.2</b> Whittaker filter</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Clustering</b></span></li>
-<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a><ul>
-<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control</a></li>
-<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for Sample Quality Control</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#creating-a-dendogram"><i class="fa fa-check"></i><b>4.2.1</b> Creating a dendogram</a></li>
-<li class="chapter" data-level="4.2.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-a-dendrogram-to-evaluate-sample-quality"><i class="fa fa-check"></i><b>4.2.2</b> Using a dendrogram to evaluate sample quality</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality"><i class="fa fa-check"></i><b>4.3</b> Using Self-organizing Maps for Sample Quality</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#introduction-to-self-organizing-maps"><i class="fa fa-check"></i><b>4.3.1</b> Introduction to Self-organizing Maps</a></li>
-<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-som-for-removing-class-noise"><i class="fa fa-check"></i><b>4.3.2</b> Using SOM for removing class noise</a></li>
-<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-global-accuracy-of-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.3</b> Comparing Global Accuracy of Original and Clean Samples</a></li>
+<li class="chapter" data-level="4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html"><i class="fa fa-check"></i><b>4</b> Time Series Clustering to Improve the Quality of Training Samples</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#clustering-for-sample-quality-control-overview"><i class="fa fa-check"></i><b>4.1</b> Clustering for sample quality control: overview</a></li>
+<li class="chapter" data-level="4.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#hierachical-clustering-for-sample-quality-control"><i class="fa fa-check"></i><b>4.2</b> Hierachical clustering for sample quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#using-self-organizing-maps-for-sample-quality-control"><i class="fa fa-check"></i><b>4.3</b> Using self-organizing maps for sample quality control</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-1-creating-the-som-map"><i class="fa fa-check"></i><b>4.3.1</b> SOM-based quality assessment part 1: creating the SOM map</a></li>
+<li class="chapter" data-level="4.3.2" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-2-assessing-confusion-between-labels"><i class="fa fa-check"></i><b>4.3.2</b> SOM-based quality assessment part 2: assessing confusion between labels</a></li>
+<li class="chapter" data-level="4.3.3" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#som-based-quality-assessment-part-3-using-probabilities-to-detect-noisy-samples"><i class="fa fa-check"></i><b>4.3.3</b> SOM-based quality assessment part 3: using probabilities to detect noisy samples</a></li>
+<li class="chapter" data-level="4.3.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#comparing-original-and-clean-samples"><i class="fa fa-check"></i><b>4.3.4</b> Comparing Original and Clean Samples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="time-series-clustering-to-improve-the-quality-of-training-samples.html"><a href="time-series-clustering-to-improve-the-quality-of-training-samples.html#conclusion"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>III Classification</b></span></li>
-<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a><ul>
+<li class="chapter" data-level="5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Data Cubes using the SITS package</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#machine-learning-classification"><i class="fa fa-check"></i><b>5.1</b> Machine learning classification</a></li>
 <li class="chapter" data-level="5.2" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#visualizing-samples"><i class="fa fa-check"></i><b>5.2</b> Visualizing Samples</a></li>
 <li class="chapter" data-level="5.3" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#common-interface-to-machine-learning-and-deeplearning-models"><i class="fa fa-check"></i><b>5.3</b> Common interface to machine learning and deeplearning models</a></li>
@@ -206,32 +241,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#support-vector-machines"><i class="fa fa-check"></i><b>5.5</b> Support Vector Machines</a></li>
 <li class="chapter" data-level="5.6" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#extreme-gradient-boosting"><i class="fa fa-check"></i><b>5.6</b> Extreme Gradient Boosting</a></li>
 <li class="chapter" data-level="5.7" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#deep-learning-using-multi-layer-perceptrons"><i class="fa fa-check"></i><b>5.7</b> Deep learning using multi-layer perceptrons</a></li>
-<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#combined-1d-cnn-and-multi-layer-perceptron-networks"><i class="fa fa-check"></i><b>5.8</b> Combined 1D CNN and multi-layer perceptron networks</a></li>
+<li class="chapter" data-level="5.8" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#temporal-convolutional-neural-network-tempcnn"><i class="fa fa-check"></i><b>5.8</b> Temporal Convolutional Neural Network (TempCNN)</a></li>
 <li class="chapter" data-level="5.9" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#residual-1d-cnn-networks-resnet"><i class="fa fa-check"></i><b>5.9</b> Residual 1D CNN Networks (ResNet)</a></li>
+<li class="chapter" data-level="5.10" data-path="machine-learning-for-data-cubes-using-the-sits-package.html"><a href="machine-learning-for-data-cubes-using-the-sits-package.html#considerations-on-model-choice"><i class="fa fa-check"></i><b>5.10</b> Considerations on model choice</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a><ul>
+<li class="chapter" data-level="6" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><i class="fa fa-check"></i><b>6</b> Classification of Images in Data Cubes using Satellite Image Time Series</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#data-cube-classification-1"><i class="fa fa-check"></i><b>6.1</b> Data cube classification</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-images-in-data-cubes-using-satellite-image-time-series.html"><a href="classification-of-images-in-data-cubes-using-satellite-image-time-series.html#processing-time-estimates"><i class="fa fa-check"></i><b>6.2</b> Processing time estimates</a></li>
 </ul></li>
 <li class="part"><span><b>IV Post classification</b></span></li>
-<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a><ul>
+<li class="chapter" data-level="7" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html"><i class="fa fa-check"></i><b>7</b> Post classification smoothing</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a><ul>
+<li class="chapter" data-level="7.2" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bayesian-smoothing"><i class="fa fa-check"></i><b>7.2</b> Bayesian smoothing</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#derivation-of-bayesian-parameters-for-spatiotemporal-smoothing"><i class="fa fa-check"></i><b>7.2.1</b> Derivation of bayesian parameters for spatiotemporal smoothing</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#use-of-bayesian-smoothing-in-sits"><i class="fa fa-check"></i><b>7.3</b> Use of Bayesian smoothing in SITS</a></li>
 <li class="chapter" data-level="7.4" data-path="post-classification-smoothing.html"><a href="post-classification-smoothing.html#bilateral-smoothing"><i class="fa fa-check"></i><b>7.4</b> Bilateral smoothing</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a><ul>
+<li class="chapter" data-level="8" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html"><i class="fa fa-check"></i><b>8</b> Validation and accuracy measurements in SITS</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#validation-techniques"><i class="fa fa-check"></i><b>8.1</b> Validation techniques</a></li>
 <li class="chapter" data-level="8.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#comparing-different-machine-learning-methods-using-k-fold-validation"><i class="fa fa-check"></i><b>8.2</b> Comparing different machine learning methods using k-fold validation</a></li>
-<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a><ul>
+<li class="chapter" data-level="8.3" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#accuracy-assessment"><i class="fa fa-check"></i><b>8.3</b> Accuracy assessment</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#time-series"><i class="fa fa-check"></i><b>8.3.1</b> Time series</a></li>
 <li class="chapter" data-level="8.3.2" data-path="validation-and-accuracy-measurements-in-sits.html"><a href="validation-and-accuracy-measurements-in-sits.html#classified-images"><i class="fa fa-check"></i><b>8.3.2</b> Classified images</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>9</b> Case studies</a></li>
-<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a><ul>
+<li class="chapter" data-level="10" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html"><i class="fa fa-check"></i><b>10</b> Design and extensibility considerations</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="design-and-extensibility-considerations.html"><a href="design-and-extensibility-considerations.html#design-decisions"><i class="fa fa-check"></i><b>10.1</b> Design decisions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -255,40 +297,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="earth-observation-data-cubes" class="section level1">
+<div id="earth-observation-data-cubes" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Earth observation data cubes</h1>
 <hr />
 <p>This chapter describes how to use Earth observation data cubes in SITS.</p>
 <hr />
-<div id="image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis" class="section level2">
+<div id="image-data-cubes-as-the-basis-for-big-earth-observation-data-analysis" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Image data cubes as the basis for big Earth observation data analysis</h2>
 <p>Given the large sizes of the collections of Earth observation data available, there is a clear trend to use cloud computing. In this configuration, cloud services archive large satellite-generated data sets and provide computing facilities to process them. Users can share big Earth observation databases and minimize data download. Investment in infrastructure is minimized, and sharing of data and software increases.</p>
-<p>To take full advantage of the cloud computing model, Earth observation data needs to be available to users as <em>data cubes</em>, whose aim is to organize satellite data for a given area in a consistent spatiotemporal arrangement. Generalizing <span class="citation">[3]</span>, we consider the following definition:</p>
+<p>To take full advantage of the cloud computing model, Earth observation data needs to be available to users as <em>data cubes</em>, whose aim is to organize satellite data for a given area in a consistent spatiotemporal arrangement. Generalizing <span class="citation">[3]</span>, we consider that a <em>data cube</em> should meet the following definition:</p>
 <ol style="list-style-type: decimal">
 <li>A data cube is a four-dimensional structure with dimensions x (longitude or easting), y (latitude or northing), time, and bands.</li>
 <li>Its spatial dimensions refer to a single spatial reference system (SRS). Cells of a data cube have a constant spatial size with respect to the cube’s SRS.</li>
-<li>A set of intervals specifies the temporal dimension.</li>
+<li>The temporal dimension is composed of a set of continuous and equally-spaced intervals.</li>
 <li>For every combination of dimensions, a cell has a single value.</li>
 </ol>
-<p>Conceptually, a data cube defines a compact space. For all positions inside its spatiotemporal extent, it is possible to obtain a valid set of measures. For each position in space, the data cube should provide a valid time series. For each time interval, the data cube should provide a valid 2D image (see Figure <a href="earth-observation-data-cubes.html#fig:dcconcept">2.1</a>). Data cubes provide a useful abstraction for algorithms that extract information from big EO data sets. Machine learning and deep learning algorithms require the input data to be consistent. The dimensionality of the data used for training the model has to be the same as that of the data to be classified. There should be no gaps in the input data and no missing values are allowed.</p>
-<p>Currently, few cloud providers adhere to the full definition of data cubes. One exception is the Brazil Data Cube (BDC) <span class="citation">[4]</span>, which provides data cubes which are regular in both spatial and temporal dimension.</p>
-<div class="figure" style="text-align: center"><span id="fig:dcconcept"></span>
-<img src="images/datacubes_conception.png" alt="Conceptual view of data cubes (source: authors)" width="90%" height="90%" />
+<p>A data cube defines a regular partition of space-time. All cells of a data cube have the same spatiotemporal extent. The spatial resolution of each cell is the same in X and Y dimensions. All temporal intervals are the same. Each cell contains a valid set of measures. For each position in space, the data cube should provide a valid time series. For each time interval, the data cube should provide a valid 2D image (see Figure <a href="earth-observation-data-cubes.html#fig:dcconcept">2.1</a>).</p>
+<p>Data cubes provide a useful abstraction for algorithms that extract information from big EO data sets. Machine learning and deep learning algorithms require the input data to be consistent. The dimensionality of the data used for training the model has to be the same as that of the data to be classified. There should be no gaps in the input data and no missing values are allowed.</p>
+<p>Currently, few cloud services support the above definition of data cubes. Cloud providers such as AWS and Microsoft organize their data as analysis-ready image collection. In the next section, we describe such collections and point out their differences to data cubes.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dcconcept"></span>
+<img src="images/datacube_conception.png" alt="Conceptual view of data cubes (source: authors)" width="90%" height="90%" />
 <p class="caption">
 Figure 2.1: Conceptual view of data cubes (source: authors)
 </p>
 </div>
 </div>
-<div id="analysis-ready-data-image-collections" class="section level2">
+<div id="analysis-ready-data-image-collections" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Analysis-ready data image collections</h2>
-<p>Data available in cloud services such as AWS, Microsoft Planetary Computer, and Digital Earth Africa does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define <em>ARD image collections</em> as:</p>
+<p>Data available in cloud services such as Amazon Web Service (AWS), Microsoft’s Planetary Computer, and Digital Earth Africa (DE Africa) does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define an <em>ARD image collections</em> as:</p>
 <ol style="list-style-type: decimal">
 <li>An ARD image collection is a set of files from a given sensor (or a combined set of sensors) that has been corrected to ensure comparability of measurements between different dates.</li>
 <li>All images are reprojected to a cartographic projection following well-established standards.</li>
-<li>Image collections are cropped into a tiling system. In general, the timeline of different tiles do not match.</li>
+<li>Image collections are cropped into a tiling system.<br />
+</li>
+<li>In general, the timelines of the images that are part of one tile are not regular. Also, these timelines are not the same as those associated to a different tile.</li>
+<li>ARD image collections do not guarantee that every pixel of an image has a valid value, since its images still contains cloudy or missing pixels.</li>
 </ol>
-<p>ARD image collections do not guarantee that every pixel of an image has a valid value. Images still contains cloudy or missing pixels. Figure <a href="earth-observation-data-cubes.html#fig:imagesro">2.2</a> shows images of tile “20LKP” of the Sentinel-2 Level 2A collection available in AWS for different dates. Some of images have a significant number of clouds. The values of cloudy pixels should be replaced by valid values before being ingested into a data cube.</p>
-<div class="figure" style="text-align: center"><span id="fig:imagesro"></span>
+<p>Figure <a href="earth-observation-data-cubes.html#fig:imagesro">2.2</a> shows images of tile “20LKP” of the Sentinel-2 Level 2A collection available in AWS for different dates. Some of images have a significant number of clouds. The values of cloudy pixels should be replaced by valid values before being ingested into a data cube.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:imagesro"></span>
 <img src="images/sentinel-2_20lkp_images.png" alt="Sentinel-2 for tile 20LKP in different dates (source: authors)." width="90%" height="90%" />
 <p class="caption">
 Figure 2.2: Sentinel-2 for tile 20LKP in different dates (source: authors).
@@ -296,56 +342,129 @@ Figure 2.2: Sentinel-2 for tile 20LKP in different dates (source: authors).
 </div>
 <p>A further point concerns the timeline of different tiles. Consider the neighboring Sentinel-2 tiles “20LLP” and “20LKP” for the period 2018-07-13 to 2019-07-28, as they are available in AWS. Tile 20LKP has 71 temporal instances and tile 20 LLP has 144 instances. To process large areas, all tiles have to be organized to follow the same timeline. Thus, users cannot rely on ARD image collections when working with large areas. Users that want to work on multiples tiles of an ARD image collection should use the <code>sits_regularize()</code> function to generate regularly spaced cubes in time from image collection. Please see the session “Regularizing data cubes” below.</p>
 </div>
-<div id="accessing-data-cubes-and-image-collections-in-sits" class="section level2">
+<div id="accessing-data-cubes-and-image-collections-in-sits" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Accessing Data Cubes and Image Collections in SITS</h2>
 <p>To obtain information on cloud image collection, <em>sits</em> uses information provided by implementations of the STAC (SpatioTemporal Asset Catalogue) protocol. [STAC] (<a href="https://stacspec.org/" class="uri">https://stacspec.org/</a>) is a specification of geospatial information which has been adopted by many large image collection providers (e.g., AWS, Microsoft, USGS). A ‘spatiotemporal asset’ is any file that represents information about the earth captured in a certain space and time. To access STAC endpoints, <em>sits</em> uses the <a href="http://github.com/brazil-data-cube/rstac">rstac</a> R package.</p>
-<div id="accessing-data-cubes-in-amazon-web-services" class="section level3">
+<p>All access to data cubes is done using <code>sits_cube()</code>. For cloud services such as AWS, DE Africa, Planetary Computer and the Brazil Data Cube (BDC), the user must provide similar parameters, as shown in the examples below. Please note that most of the examples in this chapter require access keys to cloud repositories and as such are not executable directly. Users need to provide the appropriate access keys to run the examples.</p>
+<div id="accessing-data-cubes-in-amazon-web-services" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Accessing data cubes in Amazon Web Services</h3>
 <p>Users of Amazon Web Services (AWS) can access image collections
 available in the ‘Earth on AWS’ services using <em>sits</em>. For AWS, <em>sits</em> currently
-works with collection “sentinel-s2-l2a”. This will be extended in later versions.</p>
+works with collection “sentinel-s2-l2a.” This will be extended in later versions.</p>
 <p>To work with AWS, users need to provide credentials using environment variables.</p>
-<p>Sentinel-2 level 2A files in AWS are organized by sensor resolution.
-The AWS bands in 10m resolution are “B02”, “B03”, “B04”, and “B08”.
-The 20m bands are “B02”, “B03”, “B04”, “B05”, “B06”, “BO7”, B08“,”B8A“,”B11“, and”B12".
-All 12 bands are available at 60m resolution. To create data cubes in AWS using Sentinel-2 images, users need to specify the <code>s2_resolution</code> parameter. In the example below, the user selects two Sentinel-2 tiles. Each S2 tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.</p>
-<p>The output of the <code>sits_cube</code> function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The <code>s2_cube</code> object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data.</p>
-<p>Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (<code>bbox</code>) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector (“xmin”, “ymin”, “xmax”, “ymax”) with lat/long values in WGS 84; (b) an <em>sf</em> object from the <em>sf</em> package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a <code>bbox</code>, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by <code>sits_classify()</code>, when only the pixels inside the bounding box will be processed.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="earth-observation-data-cubes.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(</span>
+<span id="cb16-2"><a href="earth-observation-data-cubes.html#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AWS_ACCESS_KEY_ID&quot;</span>     <span class="ot">=</span> <span class="er">&lt;</span>your_access_key<span class="sc">&gt;</span>,</span>
+<span id="cb16-3"><a href="earth-observation-data-cubes.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AWS_SECRET_ACCESS_KEY&quot;</span> <span class="ot">=</span> <span class="er">&lt;</span>your_secret_access_key<span class="sc">&gt;</span>,</span>
+<span id="cb16-4"><a href="earth-observation-data-cubes.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AWS_DEFAULT_REGION&quot;</span>    <span class="ot">=</span> <span class="er">&lt;</span>your AWS region<span class="sc">&gt;</span>,</span>
+<span id="cb16-5"><a href="earth-observation-data-cubes.html#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AWS_ENDPOINT&quot;</span>          <span class="ot">=</span> <span class="er">&lt;</span>your AWS endpoint<span class="sc">&gt;</span>,</span>
+<span id="cb16-6"><a href="earth-observation-data-cubes.html#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AWS_REQUEST_PAYER&quot;</span>     <span class="ot">=</span> <span class="st">&quot;requester&quot;</span></span>
+<span id="cb16-7"><a href="earth-observation-data-cubes.html#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Sentinel-2 level 2A files in AWS collection “sentinel-s2-l2a” are organized by sensor resolution. Bands “B02,” “B03,” “B04,” and “B08” AWS are available in 10m resolution.
+Bands “B02,” “B03,” “B04,” “B05,” “B06,” “BO7,” B08“,”B8A“,”B11“, and”B12" are available at 20m resolution. All 12 bands are available at 60m resolution. Because of the availability of some bands at different resolutions, users need to specify the <code>s2_resolution</code> parameter to create Sentinel-2 images data cubes in AWS using collection “sentinel-s2-l2a.” In the example below, the user selects one Sentinel-2 tile. Each S2 tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="earth-observation-data-cubes.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a data cube in AWS</span></span>
+<span id="cb17-2"><a href="earth-observation-data-cubes.html#cb17-2" aria-hidden="true" tabindex="-1"></a>s2_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(<span class="at">source =</span> <span class="st">&quot;AWS&quot;</span>,</span>
+<span id="cb17-3"><a href="earth-observation-data-cubes.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">name =</span> <span class="st">&quot;T20LKP_2018_2019&quot;</span>,</span>
+<span id="cb17-4"><a href="earth-observation-data-cubes.html#cb17-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">collection =</span> <span class="st">&quot;sentinel-s2-l2a&quot;</span>,</span>
+<span id="cb17-5"><a href="earth-observation-data-cubes.html#cb17-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">tiles =</span> <span class="fu">c</span>(<span class="st">&quot;20LKP&quot;</span>),</span>
+<span id="cb17-6"><a href="earth-observation-data-cubes.html#cb17-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-07-18&quot;</span>),</span>
+<span id="cb17-7"><a href="earth-observation-data-cubes.html#cb17-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-07-23&quot;</span>),</span>
+<span id="cb17-8"><a href="earth-observation-data-cubes.html#cb17-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;B02&quot;</span>, <span class="st">&quot;B03&quot;</span>, <span class="st">&quot;B04&quot;</span>, <span class="st">&quot;B08&quot;</span>, <span class="st">&quot;B11&quot;</span>),</span>
+<span id="cb17-9"><a href="earth-observation-data-cubes.html#cb17-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">s2_resolution =</span> <span class="dv">20</span></span>
+<span id="cb17-10"><a href="earth-observation-data-cubes.html#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>The output of the <code>sits_cube()</code> function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The <code>s2_cube</code> object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data.</p>
+<p>Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (<code>bbox</code>) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector (“xmin,” “ymin,” “xmax,” “ymax”) with lat/long values in WGS 84; (b) an <em>sf</em> object from the <em>sf</em> package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a <code>bbox</code>, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by <code>sits_classify()</code>, when only the pixels inside the bounding box will be processed.</p>
+<p>In SITS version 0.13.1, users who do not want to use the <code>sits_regularize()</code> function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. This limitation will be removed in future versions of the package.</p>
 </div>
-<div id="accessing-the-brazil-data-cube" class="section level3">
+<div id="accessing-the-brazil-data-cube" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Accessing the Brazil Data Cube</h3>
 <p>The <a href="http://brazildatacube.org/">Brazil Data Cube</a> (BDC) is being developed by Brazil’s National Institute for Space Research (INPE). Its goal is to create multidimensional data cubes of analysis-ready data Brazil. The BDC uses three hierarchical grids based on the Albers Equal Area projection and SIRGAS 2000 datum. The three grids are generated taking -54 <span class="math inline">\(^\circ\)</span> longitude as the central reference and defining tiles of <span class="math inline">\(6\times4\)</span>, <span class="math inline">\(3\times2\)</span> and <span class="math inline">\(1.5\times1\)</span> degrees. The large grid is composed by tiles of <span class="math inline">\(672\times440\)</span> km<sup>2</sup> and is used for CBERS-4 AWFI collections at 64 meter resolution; each CBERS-4 AWFI tile contains images of <span class="math inline">\(10,504\times6,865\)</span> pixels. The medium grid is used for Landsat-8 OLI collections at 30 meter resolution; tiles have an extension of <span class="math inline">\(336\times220\)</span> km<sup>2</sup> and each image has <span class="math inline">\(11,204\times7,324\)</span> pixels. The small grid covers <span class="math inline">\(168\times110\)</span> km<sup>2</sup> and is used for Sentinel-2 MSI collections at 10m resolutions; each image has <span class="math inline">\(16,806\times10,986\)</span> pixels. The data cubes in the BDC are regularly spaced in time and cloud-corrected.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
 <img src="images/bdc_grid.png" alt="Hierarchical BDC tiling system showing overlayed on Brazilian Biomes (a), illustrating that one large tile (b) contains four medium tiles (c) and that medium tile contains four small tiles" width="50%" height="50%" />
 <p class="caption">
 Figure 2.3: Hierarchical BDC tiling system showing overlayed on Brazilian Biomes (a), illustrating that one large tile (b) contains four medium tiles (c) and that medium tile contains four small tiles
 </p>
 </div>
 <p>To access the Brazil Data Cube, users need to provide their credentials using environmental variables.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="earth-observation-data-cubes.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(</span>
+<span id="cb18-2"><a href="earth-observation-data-cubes.html#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BDC_ACCESS_KEY&quot;</span> <span class="ot">=</span> <span class="er">&lt;</span>your_bdc_access_key<span class="sc">&gt;</span></span>
+<span id="cb18-3"><a href="earth-observation-data-cubes.html#cb18-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Creating a data cube using the BDC is similar to what is required for AWS. The user
 defines an image collection, a spatiotemporal extent, bands, and optionally a bounding box. In the example below, the data cube is defined as one tile (“022024”) of “CB4_64_16D_STK-1” collection which holds CBERS AWFI images at 16 days resolution. Other collections include “LC8_30_16D_STK-1” (Landsat OLI images at 16 days) and “S2_10_16D_STK-1” (Sentinel-2 MSI images at 16 days).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="earth-observation-data-cubes.html#cb19-1" aria-hidden="true" tabindex="-1"></a>cbers_tile <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb19-2"><a href="earth-observation-data-cubes.html#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="st">&quot;BDC&quot;</span>,</span>
+<span id="cb19-3"><a href="earth-observation-data-cubes.html#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">collection =</span> <span class="st">&quot;CB4_64_16D_STK-1&quot;</span>,</span>
+<span id="cb19-4"><a href="earth-observation-data-cubes.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;cbers_022024&quot;</span>,</span>
+<span id="cb19-5"><a href="earth-observation-data-cubes.html#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;NDVI&quot;</span>, <span class="st">&quot;EVI&quot;</span>),</span>
+<span id="cb19-6"><a href="earth-observation-data-cubes.html#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">tiles =</span> <span class="st">&quot;022024&quot;</span>,</span>
+<span id="cb19-7"><a href="earth-observation-data-cubes.html#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="st">&quot;2018-09-01&quot;</span>,</span>
+<span id="cb19-8"><a href="earth-observation-data-cubes.html#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">end_date =</span> <span class="st">&quot;2019-08-28&quot;</span></span>
+<span id="cb19-9"><a href="earth-observation-data-cubes.html#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="defining-a-data-cube-using-files" class="section level3">
+<div id="defining-a-data-cube-using-files" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Defining a data cube using files</h3>
 <p>In some cases, users have downloaded files from image collections and have them available in their computer or in a local network. As <em>sits</em> does not have access to STAC information that describe the files, they should be organized and named to allow SITS to create a data cube.</p>
-<p>All files should be in the same directory and have the same spatial resolution and projection. Each file should contain a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and JPEG 2000) do not include temporal and band information, each file name needs to include date and band. For example, <code>CBERS-4_AWFI_B13_2018-02-02.tif</code> and <code>SENTINEL-2_MSI_L_20_KP_ 20m_B08_2021_03_29.jp2</code> are
-is a valid name. The user should provide parsing information to allow <em>sits</em> to extract the band and the date. In the example above, the parsing info is <code>c("X1", "X2", "band", "date")</code> and the delimiter is <code>"_"</code>.</p>
+<p>All files should be in the same directory and have the same spatial resolution and projection. Each file should contain a single image band for a single date. Since raster files in popular formats (e.g., GeoTiff and JPEG 2000) do not include temporal and band information, each file name needs to include date and band. Information on the tile reference system should be provided.</p>
+<p>When working with local cubes, the following parameters should be provided to the <code>sits_cube()</code> function:</p>
+<ul>
+<li><code>source</code> - value should be “LOCAL”;</li>
+<li><code>name</code> - internal name for the data cube (free user choice);</li>
+<li><code>satellite</code> - name of the satellite (possible values are “LANDSAT-8,” “LANDSAT-7,” “LANDSAT-5,” “TERRA,” “AQUA,” “SENTINEL-2,” “CBERS-4”);</li>
+<li><code>sensor</code> - name of the sensor associated with the image. This should be “OLI’,”ETM" and “TM,” respectively, for LANDSAT-8, LANDSAT-7, and LANDSAT-5. For SENTINEL-2, the only sensor is “MSI.” For the TERRA and AQUA satellites, the “MODIS” sensor is supported. For the CBERS-4 satellite, choose either “AWFI” or “MUX,” depending on the data;</li>
+<li><code>data_dir</code> - directory where the image data is located;</li>
+<li><code>parse_info</code> - information to parse the file names and extract the information on the tile, date and band associated with each individual file. It is assumed that file names contain image descriptors separated by a delimiter (usually "_"). For example, <code>CBERS-4_AWFI_022024_B13_2018-02-02.tif</code> and <code>SENTINEL-2_MSI_L20KP_20m_B08_2021_03_29.jp2</code> are valid file names for sits. The <code>parse_info</code> parameter is a list of strings indicating at which position the names of <code>tile</code>, <code>date</code> and <code>band</code> are to be found. In the two file names above, the parsing info is respectively <code>c("X1", "X2", "tile", band", "date")</code> and <code>c("X1", "X2", "tile", "X3", "band", "date")</code>;</li>
+<li><code>delim</code> - separator character between descriptions in the file name (default is "_").</li>
+</ul>
+<p>The following example shows how to define a data cube based on local files available as part of the <em>sits</em> package.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="earth-observation-data-cubes.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sits)</span>
+<span id="cb20-2"><a href="earth-observation-data-cubes.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cube based on a stack of CBERS data</span></span>
+<span id="cb20-3"><a href="earth-observation-data-cubes.html#cb20-3" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/CBERS&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sitsdata&quot;</span>)</span>
+<span id="cb20-4"><a href="earth-observation-data-cubes.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="earth-observation-data-cubes.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># files are named using the convention </span></span>
+<span id="cb20-6"><a href="earth-observation-data-cubes.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;CB4_64_16D_STK_022024_2018-08-29_2018-09-13_EVI.tif&quot;</span></span>
+<span id="cb20-7"><a href="earth-observation-data-cubes.html#cb20-7" aria-hidden="true" tabindex="-1"></a>cbers_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(</span>
+<span id="cb20-8"><a href="earth-observation-data-cubes.html#cb20-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">source =</span> <span class="st">&quot;LOCAL&quot;</span>,</span>
+<span id="cb20-9"><a href="earth-observation-data-cubes.html#cb20-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">&quot;022024&quot;</span>,</span>
+<span id="cb20-10"><a href="earth-observation-data-cubes.html#cb20-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">satellite =</span> <span class="st">&quot;CBERS-4&quot;</span>,</span>
+<span id="cb20-11"><a href="earth-observation-data-cubes.html#cb20-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">sensor =</span> <span class="st">&quot;AWFI&quot;</span>,</span>
+<span id="cb20-12"><a href="earth-observation-data-cubes.html#cb20-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_dir =</span> data_dir,</span>
+<span id="cb20-13"><a href="earth-observation-data-cubes.html#cb20-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">delim =</span> <span class="st">&quot;_&quot;</span>,</span>
+<span id="cb20-14"><a href="earth-observation-data-cubes.html#cb20-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">parse_info =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;X3&quot;</span>, <span class="st">&quot;X4&quot;</span>, <span class="st">&quot;tile&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;X5&quot;</span>, <span class="st">&quot;band&quot;</span>)</span>
+<span id="cb20-15"><a href="earth-observation-data-cubes.html#cb20-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-16"><a href="earth-observation-data-cubes.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># show the timeline of the cube</span></span>
+<span id="cb20-17"><a href="earth-observation-data-cubes.html#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_timeline</span>(cbers_cube)</span>
+<span id="cb20-18"><a href="earth-observation-data-cubes.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co"># show the bands of the cube</span></span>
+<span id="cb20-19"><a href="earth-observation-data-cubes.html#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_bands</span>(cbers_cube)</span>
+<span id="cb20-20"><a href="earth-observation-data-cubes.html#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the band B16 in the first time instance</span></span>
+<span id="cb20-21"><a href="earth-observation-data-cubes.html#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cbers_cube, <span class="at">band =</span> <span class="st">&quot;NDVI&quot;</span>, <span class="at">time =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="regularizing-data-cubes" class="section level2">
+<div id="regularizing-data-cubes" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Regularizing data cubes</h2>
-<p>Analysis-ready data (ARD) collections available in AWS and DE Africa do not have consistent timelines. In general, images in neighboring tiles have different timelines. This is a problem when classifying large areas, In this case, users may want to produce data cubes with regular time intervals. For example, a user may want to define the best Sentinel-2 pixel in a one-month period. This can be done in <em>sits</em> by the <code>sits_regularize</code>, which calls the “gdalcubes” package<span class="citation">[3]</span>. For details in gdalcubes, please see <a href="https://github.com/appelmar/gdalcubes">https://github.com/appelmar/gdalcubes</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="earth-observation-data-cubes.html#cb4-1"></a>gc_cube &lt;-<span class="st"> </span><span class="kw">sits_regularize</span>(</span>
-<span id="cb4-2"><a href="earth-observation-data-cubes.html#cb4-2"></a>          <span class="dt">cube       =</span> s2_cube,</span>
-<span id="cb4-3"><a href="earth-observation-data-cubes.html#cb4-3"></a>          <span class="dt">name       =</span> <span class="st">&quot;T20LKP_20LLP_2018_2019_1M&quot;</span>,</span>
-<span id="cb4-4"><a href="earth-observation-data-cubes.html#cb4-4"></a>          <span class="dt">dir_images =</span> <span class="kw">tempdir</span>(),</span>
-<span id="cb4-5"><a href="earth-observation-data-cubes.html#cb4-5"></a>          <span class="dt">period     =</span> <span class="st">&quot;P1M&quot;</span>,</span>
-<span id="cb4-6"><a href="earth-observation-data-cubes.html#cb4-6"></a>          <span class="dt">agg_method =</span> <span class="st">&quot;median&quot;</span>,</span>
-<span id="cb4-7"><a href="earth-observation-data-cubes.html#cb4-7"></a>          <span class="dt">resampling =</span> <span class="st">&quot;bilinear&quot;</span>,</span>
-<span id="cb4-8"><a href="earth-observation-data-cubes.html#cb4-8"></a>          <span class="dt">cloud_mask =</span> <span class="ot">TRUE</span></span>
-<span id="cb4-9"><a href="earth-observation-data-cubes.html#cb4-9"></a>)</span></code></pre></div>
-<p>In the above example, the user has selected the <code>s2_cube</code> object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles “20LLP” and “20LKP” associated with this cube are different. The <code>sits_regularize</code> function builds a new data cube, with the same temporal extent as the <code>s2_cube</code> but with the same timeline. In this function, the <code>period</code> parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as “P[n]Y[n]M[n]D”, where Y stands for “years”, “M” for months and “D” for days. Thus, “P1M” stands for a one-month period, “P15D” for a fifteen-day period.</p>
-<p>When joining different images to get the best image for a period, <code>sits_regularize</code> uses an aggregation method, defined by the parameter <code>agg_method</code>. It specifies how individual values of different pixels should be combined. The default is <code>median</code>, which select the most frequent value for the pixel during the desired interval. For more details, see <code>?sits_regularize</code>.</p>
+<p>Analysis-ready data (ARD) collections available in AWS and DE Africa do not have consistent timelines. In general, images in neighboring tiles have different timelines. This is a problem when classifying large areas. In this case, users may want to produce data cubes with regular time intervals. For example, a user may want to define the best Sentinel-2 pixel in a one-month period. This can be done in <em>sits</em> by the function <code>sits_regularize()</code>, which uses the package <em>gdalcubes</em> <span class="citation">[3]</span>. For details in gdalcubes, please see <a href="https://github.com/appelmar/gdalcubes">https://github.com/appelmar/gdalcubes</a>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="earth-observation-data-cubes.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a data cube in AWS</span></span>
+<span id="cb21-2"><a href="earth-observation-data-cubes.html#cb21-2" aria-hidden="true" tabindex="-1"></a>s2_cube <span class="ot">&lt;-</span> <span class="fu">sits_cube</span>(<span class="at">source =</span> <span class="st">&quot;AWS&quot;</span>,</span>
+<span id="cb21-3"><a href="earth-observation-data-cubes.html#cb21-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">name =</span> <span class="st">&quot;T20LKP_2018_2019&quot;</span>,</span>
+<span id="cb21-4"><a href="earth-observation-data-cubes.html#cb21-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">collection =</span> <span class="st">&quot;sentinel-s2-l2a&quot;</span>,</span>
+<span id="cb21-5"><a href="earth-observation-data-cubes.html#cb21-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">tiles =</span> <span class="fu">c</span>(<span class="st">&quot;20LKP&quot;</span>, <span class="st">&quot;20LLP&quot;</span>),</span>
+<span id="cb21-6"><a href="earth-observation-data-cubes.html#cb21-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-07-01&quot;</span>),</span>
+<span id="cb21-7"><a href="earth-observation-data-cubes.html#cb21-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-08-31&quot;</span>),</span>
+<span id="cb21-8"><a href="earth-observation-data-cubes.html#cb21-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bands =</span> <span class="fu">c</span>(<span class="st">&quot;B11&quot;</span>, <span class="st">&quot;CLOUD&quot;</span>),</span>
+<span id="cb21-9"><a href="earth-observation-data-cubes.html#cb21-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">s2_resolution =</span> <span class="dv">60</span></span>
+<span id="cb21-10"><a href="earth-observation-data-cubes.html#cb21-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-11"><a href="earth-observation-data-cubes.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># list the timeline of the AWS S2 cube (there are 12 images)</span></span>
+<span id="cb21-12"><a href="earth-observation-data-cubes.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sits_timeline</span>(s2_cube)</span>
+<span id="cb21-13"><a href="earth-observation-data-cubes.html#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># regularize the cube to one month intervals</span></span>
+<span id="cb21-14"><a href="earth-observation-data-cubes.html#cb21-14" aria-hidden="true" tabindex="-1"></a>reg_cube <span class="ot">&lt;-</span> <span class="fu">sits_regularize</span>(</span>
+<span id="cb21-15"><a href="earth-observation-data-cubes.html#cb21-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">cube       =</span> s2_cube,</span>
+<span id="cb21-16"><a href="earth-observation-data-cubes.html#cb21-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">name       =</span> <span class="st">&quot;T20LKP_20LKP_2OLLP_15D&quot;</span>,</span>
+<span id="cb21-17"><a href="earth-observation-data-cubes.html#cb21-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">dir_images =</span> <span class="fu">tempdir</span>(),</span>
+<span id="cb21-18"><a href="earth-observation-data-cubes.html#cb21-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">period     =</span> <span class="st">&quot;P15D&quot;</span>,</span>
+<span id="cb21-19"><a href="earth-observation-data-cubes.html#cb21-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">agg_method =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb21-20"><a href="earth-observation-data-cubes.html#cb21-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">resampling =</span> <span class="st">&quot;bilinear&quot;</span>,</span>
+<span id="cb21-21"><a href="earth-observation-data-cubes.html#cb21-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">cloud_mask =</span> <span class="cn">TRUE</span></span>
+<span id="cb21-22"><a href="earth-observation-data-cubes.html#cb21-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>In the above example, the user has selected the <code>s2_cube</code> object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles “20LLP” and “20LKP” associated with this cube are different. The <code>sits_regularize()</code> function builds a new data cube, with the same temporal extent as the <code>s2_cube</code> but with the same timeline. In this function, the <code>period</code> parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as “P[n]Y[n]M[n]D,” where Y stands for “years,” “M” for months and “D” for days. Thus, “P1M” stands for a one-month period, “P15D” for a fifteen-day period.</p>
+<p>When joining different images to get the best image for a period, <code>sits_regularize()</code> uses an aggregation method, defined by the parameter <code>agg_method</code>. It specifies how individual values of different pixels should be combined. The default is <code>median</code>, which select the most frequent value for the pixel during the desired interval. For more details, see <code>?sits_regularize</code>.</p>
 
 </div>
 </div>
@@ -378,6 +497,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -398,6 +518,10 @@ gitbook.start({
 "text": null
 },
 "download": ["sitsbook.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

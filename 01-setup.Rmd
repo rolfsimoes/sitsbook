@@ -5,8 +5,22 @@
 ```{r, eval = FALSE}
 devtools::install_github("e-sensing/sits", dependencies = TRUE)
 ```
+<<<<<<< HEAD
 Please also install the "sitsdata" package, which contains data for the examples in the book.
 ```{r, eval = FALSE}
 devtools::install_github("e-sensing/sitsdata")
+=======
+
+## Docker images {-}
+
+Installing the **sits** package has several dependencies that increase its installation and build time. To speed up the use of **sits** and the required dependencies in the R environment, the [Brazil Data Cube](https://github.com/brazil-data-cube) (BDC) project maintains [Docker images](https://hub.docker.com/r/brazildatacube/sits-rstudio) of the RStudio Server already configured with **sits**. The command below shows how this image can be used in Docker.
+
+```{shell, eval = FALSE}
+docker run --detach \
+           --publish 127.0.0.1:8787:8787 \
+           --name my-sits-rstudio \
+           --volume ${PWD}/data:/data \
+           brazildatacube/sits-rstudio:0.13.0
+>>>>>>> a40f468cf2ef1672486d2ad73f5853c51d4e069a
 ```
 
