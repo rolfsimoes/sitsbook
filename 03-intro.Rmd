@@ -80,7 +80,7 @@ plot(tcnn_model)
 ```
 ## Data cube classification
 
-The next step is to classify the data cube. This is achived by using the `sits_classify()` function. The classification produces a set of probability maps, one for each class. For each map, the value of a pixel is proportional to the the probability that it belongs to the class. To visualise the result, we plot the probability maps. In the example below, we show the maps of two classes ("Forest" and "Pasture"). Details of the classification process are available in [Chapter 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html). 
+The next step is to classify the data cube. This is achieved by using the `sits_classify()` function. The classification produces a set of probability maps, one for each class. For each map, the value of a pixel is proportional to the the probability that it belongs to the class. To visualize the result, we plot the probability maps. In the example below, we show the maps of two classes ("Forest" and "Pasture"). Details of the classification process are available in [Chapter 6](https://e-sensing.github.io/sitsbook/classification-of-images-in-data-cubes-using-satellite-image-time-series.html). 
 
 ```{r, fig.cap = "Probability map for classes of each pixel"}
 

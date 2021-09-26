@@ -139,8 +139,6 @@ The SOM grid has 225 neurons, as defined by the product of the parameters `grid_
 ### SOM-based quality assessment part 2: assessing confusion between labels
 
 The second step in SOM-based quality assessment is understanding the confusion between labels. The function `sits_som_evaluate_cluster()` groups neurons by their majority label and produces a tibble.  For each label, the tibble show the percentage of samples with a different label that have been mapped to a neuron whose majority is that label. 
-
-To plot the SOM grid, use `plot()`. The neurons are labelled using the majority voting.
 ```{r}
 # produce a tibble with a summary of the mixed labels
 som_eval <- sits_som_evaluate_cluster(som_cluster)
