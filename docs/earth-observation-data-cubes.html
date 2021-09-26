@@ -33,7 +33,7 @@
 <meta name="author" content="Victor Maus" />
 
 
-<meta name="date" content="2021-09-11" />
+<meta name="date" content="2021-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -454,12 +454,14 @@ defines an image collection, a spatiotemporal extent, bands, and optionally a bo
 <span id="cb22-14"><a href="earth-observation-data-cubes.html#cb22-14" aria-hidden="true" tabindex="-1"></a>reg_cube <span class="ot">&lt;-</span> <span class="fu">sits_regularize</span>(</span>
 <span id="cb22-15"><a href="earth-observation-data-cubes.html#cb22-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">cube       =</span> s2_cube,</span>
 <span id="cb22-16"><a href="earth-observation-data-cubes.html#cb22-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">name       =</span> <span class="st">&quot;T20LKP_20LKP_2OLLP_15D&quot;</span>,</span>
-<span id="cb22-17"><a href="earth-observation-data-cubes.html#cb22-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">dir_images =</span> <span class="fu">tempdir</span>(),</span>
-<span id="cb22-18"><a href="earth-observation-data-cubes.html#cb22-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">period     =</span> <span class="st">&quot;P15D&quot;</span>,</span>
-<span id="cb22-19"><a href="earth-observation-data-cubes.html#cb22-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">agg_method =</span> <span class="st">&quot;median&quot;</span>,</span>
-<span id="cb22-20"><a href="earth-observation-data-cubes.html#cb22-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">resampling =</span> <span class="st">&quot;bilinear&quot;</span>,</span>
-<span id="cb22-21"><a href="earth-observation-data-cubes.html#cb22-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">cloud_mask =</span> <span class="cn">TRUE</span></span>
-<span id="cb22-22"><a href="earth-observation-data-cubes.html#cb22-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb22-17"><a href="earth-observation-data-cubes.html#cb22-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">output_dir =</span> <span class="fu">tempdir</span>(),</span>
+<span id="cb22-18"><a href="earth-observation-data-cubes.html#cb22-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">res =</span> <span class="dv">60</span>,</span>
+<span id="cb22-19"><a href="earth-observation-data-cubes.html#cb22-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">period     =</span> <span class="st">&quot;P15D&quot;</span>,</span>
+<span id="cb22-20"><a href="earth-observation-data-cubes.html#cb22-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">agg_method =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb22-21"><a href="earth-observation-data-cubes.html#cb22-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">cloud_mask =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-22"><a href="earth-observation-data-cubes.html#cb22-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">multicores =</span> <span class="dv">4</span></span>
+<span id="cb22-23"><a href="earth-observation-data-cubes.html#cb22-23" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb22-24"><a href="earth-observation-data-cubes.html#cb22-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>In the above example, the user has selected the <code>s2_cube</code> object defined using AWS (see example above). As described earlier in this chapter, because of the way ARD image collections are built, the timelines of tiles “20LLP” and “20LKP” associated with this cube are different. The <code>sits_regularize()</code> function builds a new data cube, with the same temporal extent as the <code>s2_cube</code> but with the same timeline. In this function, the <code>period</code> parameter controls the temporal interval between two images. Values should abide by the ISO8601 time period specification, which states that time interval should be defined as “P[n]Y[n]M[n]D,” where Y stands for “years,” “M” for months and “D” for days. Thus, “P1M” stands for a one-month period, “P15D” for a fifteen-day period.</p>
 <p>When joining different images to get the best image for a period, <code>sits_regularize()</code> uses an aggregation method, defined by the parameter <code>agg_method</code>. It specifies how individual values of different pixels should be combined. The default is <code>median</code>, which select the most frequent value for the pixel during the desired interval. For more details, see <code>?sits_regularize</code>.</p>
 
