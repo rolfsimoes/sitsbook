@@ -184,7 +184,7 @@ new_samples %>%
 
 ### Comparing Original and Clean Samples
 
-To compare the original and clean samples, we run a 5-fold validation on the original and on the cleaned sample set, using the function `sits_kfold_validate()` and a random forest model.  As the results show, the SOM procedure is useful, since the validation improves from 95% to 99%. It should be noted that a k-fold validation procedure measures how well the machine learning model fits the samples and is not a measure of accuracy of the classification. For more details on accuracy measures, please see [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html).
+To compare the original and clean samples, we run a 4-fold validation on the original and on the cleaned sample set, using the function `sits_kfold_validate()` and a random forest model.  As the results show, the SOM procedure is useful, since the validation improves from 95% to 99%. It should be noted that a k-fold validation procedure measures how well the machine learning model fits the samples and is not a measure of accuracy of the classification. For more details on accuracy measures, please see [Chr 8](https://e-sensing.github.io/sitsbook/validation-and-accuracy-measurements-in-sits.html).
 
 ```{r, message = FALSE, warning = FALSE}
 # run a k-fold validation

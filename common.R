@@ -20,3 +20,16 @@ library(sitsdata)
 library(dtwclust)
 library(magrittr)
 library(distill)
+# verifies if kableExtra package is installed
+if (!requireNamespace("kableExtra", quietly = TRUE)) {
+    install.packages("kableExtra")
+}
+library("kableExtra")
+
+show_table <- function(tb) {
+    kableExtra::kbl(tb) %>% 
+        kableExtra::kable_material()
+}
+    
+
+

@@ -10,7 +10,9 @@ This chapter describes how to use Earth observation data cubes in SITS.
 
 ---
 
-## Image data cubes as the basis for big Earth observation data analysis
+## Introduction
+
+### Image data cubes as the basis for big Earth observation data analysis
 
 Given the large sizes of the collections of Earth observation data available, there is a clear trend to use cloud computing. In this configuration, cloud services archive large satellite-generated data sets and provide computing facilities to process them. Users can share big Earth observation databases and minimize data download. Investment in infrastructure is minimized, and sharing of data and software increases. 
 
@@ -31,7 +33,7 @@ Currently, few cloud services support the above definition of data cubes. Cloud 
 knitr::include_graphics("images/datacube_conception.png")
 ```
 
-## Analysis-ready data image collections 
+### Analysis-ready data image collections 
 
 Data available in cloud services such as Amazon Web Service (AWS), Microsoft's Planetary Computer, and Digital Earth Africa (DE Africa) does not adhere to the definition of data cubes stated above. These data sets are better described as collections of analysis-ready data (ARD) which have been processed by space agencies to improve multidate comparability. Such processing includes conversion from radiance measures at the top of the atmosphere to reflectance measures from ground areas. Variations in sun incidence angles are also compensated. The image is usually reprocessed to a well-known cartographic projection. We define an *ARD image collections* as:
 
@@ -49,51 +51,114 @@ knitr::include_graphics("images/sentinel-2_20lkp_images.png")
 
 A further point concerns the timeline of different tiles. Consider the neighboring Sentinel-2 tiles "20LLP" and "20LKP" for the period 2018-07-13 to 2019-07-28, as they are available in AWS. Tile 20LKP has 71 temporal instances and tile 20 LLP has 144 instances. To process large areas, all tiles have to be organized to follow the same timeline. Thus, users cannot rely on ARD image collections when working with large areas. Users that want to work on multiples tiles of an ARD image collection should use the `sits_regularize()` function to generate regularly spaced cubes in time from image collection. Please see the session "Regularizing data cubes" below. 
 
+### Differences betwen Open Data and Requester-Pays Collections
+
+There are two types of collections available in cloud providers. Some collections are available as "open data". In this case, users can access such data without payment. Some open data providers (e.g., Brazil Data Cube) require an access token which is free to obtain. A "requester-pays" collection requires users to cover cost of extracting data from the provider. Providers such as AWS have both open data and requester-pays collection.
+
+### Data providers and collections supported by SITS
+
+As of version 0.15.0, `sits` supports the following cloud providers:
+
+1. AWS (Amazon Web Services)
+2. BDC (Brazil Data Cube)
+3. DEAFRICA (Digital Earth Africa)
+4. Planetary Computer (Microsoft)
+5. Landsat (USGS)
+
+The package also supports services that allow access to individual time series:
+
+1. WTSS (Web Time Series Service), provided by the Brazil Data Cube
+2. SATVEG, provided by the Center for Agricultural Informatics of Brazil's Agricultural Research Agency(EMBRAPA)
+
+To find out which collections are supported by `sits`, use `sits_list_collections()`. 
+
+```{r}
+# list the AWS collections supported by sits
+sits_list_collections(source = "AWS")
+```
+```{r}
+# list the DEAFRICA collections supported by sits
+sits_list_collections(source = "DEAFRICA")
+```
+
+
 ## Accessing Data Cubes and Image Collections in SITS
 
 To obtain information on cloud image collection, `sits` uses information provided by implementations of the STAC (SpatioTemporal Asset Catalogue) protocol. [STAC] (https://stacspec.org/) is a specification of geospatial information which has been adopted by many large image collection providers (e.g., AWS, Microsoft, USGS). A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. To access STAC endpoints, `sits` uses the [rstac](http://github.com/brazil-data-cube/rstac) R package.
 
-All access to data cubes is done using `sits_cube()`. For cloud services such as AWS, DE Africa, Planetary Computer and the Brazil Data Cube (BDC), the user must provide similar parameters, as shown in the examples below. Please note that most of the examples in this chapter require access keys to cloud repositories and as such are not executable directly. Users need to provide the appropriate access keys to run the examples.
+All access to data cubes is done using `sits_cube()`. Please note that most of the examples in this chapter require access keys to cloud repositories and as such are not executable directly. Users need to provide the appropriate access keys to run the examples.
 
+## Creating a data cube: general view 
 
-### Accessing data cubes in Amazon Web Services
+The `sits_cube()` function requires the following common parameters:
 
-Users of Amazon Web Services (AWS) can access image collections
-available in the 'Earth on AWS' services using `sits`. For AWS, `sits` currently 
-works with collection "sentinel-s2-l2a". This will be extended in later versions. 
+1. `source`: name of the provider from the list of providers suported by `sits`. See the next section for a description of the providers.
+2. `collection`: a collection available in the provider and supported by `sits`. See the next section to learn how to get information on collections.
+3. `url`: URL associated to the STAC endpoint of the provider. In most cases, `sits` has information about the default endpoint, so this parameter can be omitted. 
+4. `tiles`: Most satellites, when organised as analysis-ready data, conform to a reference system that divides Earth into granules or tiles. By specifying one or more tiles, the user selects a region of interest. in practice, either `tiles` or `roi` should be specified. 
+5. `roi`: a region of interest. Can be defined using: (a) a named vector ("lon_min", "lon_max", "lat_min", "lat_max") with lat/long values in WGS 84; (b) an *sf* object from the *sf* package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a `roi`, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by `sits_classify()`, when only the pixels inside the region will be processed.
+6. `start_date`: the initial date for the temporal interval containing the time series of images.
+7. `end_date`: the final date for the temporal interval containing the time series of images.
 
-To work with AWS,  users need to provide credentials using environment variables.
-```{r,eval = FALSE}
+```{r, eval=FALSE}
+
+new_cube <- sits_cube(
+               # main parameters
+               source = <a provider supported by sits>,
+               collection = <a collection supported by the provider>,
+               url   = <URL for the STAC endpoint of the data source>,
+               tiles = <one of more tiles that are defined by collection reference system>,
+               bands = <bands used for processing>,
+               roi   = <region of interest>,
+               start_date = <initial date for the temporal interval>,
+               end_date = <initial date for the temporal interval>
+)
+
+```
+
+The output of the `sits_cube()` function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The `new_cube` object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data. 
+
+The `sits_cube()` function has other parameters that are specific to certain types of cubes, as discussed below. 
+
+### Accessing data cubes in Amazon Web Services 
+
+In AWS, there are two types of collections: open-data and requester-pays data. Open data collections can be accessed worldwide without cost. Requester-pays collections require payment associated to an AWS account. Users with access to AWS EC2 virtual machines may select requester-pays collection for efficiency reasons, specially if their machines are in the same geographical region as the collection. Version 0.15.0 of `sits` supports collections "SENTINEL-S2-L2A" (requester-pays) and "SENTINEL-S2-L2A-COGS" (open-data). Both collections support all Sentinel-2/2A bands.  The bands in 10m resolution are "B02", "B03", "B04", and "B08". The  20m bands are "B05", "B06", "B07", B8A", "B8A", "B11", and "B12". Bands "B01" and "B09" are available at 60m resolution. 
+
+The example below shows how to access one tile of the "SENTINEL-S2-L2A-COGS" collection. Such access does not require AWS credentials, since the collection is open data.
+
+```{r}
+# create a data cube covering an area in the Brazilian Amazon
+# Sentinel-2 images over the Rondonia region
+s2_20LKP_cube <- sits_cube(
+        source = "AWS",
+        collection = "sentinel-s2-l2a-cogs",
+        tiles = "20LKP",
+        start_date = "2018-07-12",
+        end_date = "2019-07-28",
+        bands = c("B04", "B08", "B11", "CLOUD")
+)
+# show the data cube 
+show_table(s2_20LKP_cube[,1:8])
+```
+
+The attributes of individual image files that are part of the data cube can be assessed by listing the `file_info` column of the tibble. This column contains a list that points to the file information tibble. Since the bands have different resolutions, one should use `sits_regularize()` (described below) to produce a regular cube. 
+
+```{r}
+# show the first 10 images of the cube
+show_table(s2_20LKP_cube$file_info[[1]][1:10,])
+```
+
+To access Sentinel-2/2A level 2A files in collection "SENTINEL-S2-L2A" users  need to provide AWS credentials to access this collection, since it is not open data. These credentials are "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY", which should be informed as environment variables, as shown below.
+
+```{r, eval=FALSE}
 Sys.setenv(
-    "AWS_ACCESS_KEY_ID"     = <your_access_key>,
-    "AWS_SECRET_ACCESS_KEY" = <your_secret_access_key>,
-    "AWS_DEFAULT_REGION"    = <your AWS region>,
-    "AWS_ENDPOINT"          = <your AWS endpoint>,
-    "AWS_REQUEST_PAYER"     = "requester"
+     "AWS_ACCESS_KEY_ID"     = <your_access_key>,
+     "AWS_SECRET_ACCESS_KEY" = <your_secret_access_key>
 )
 ```
 
-Sentinel-2 level 2A files in AWS collection "sentinel-s2-l2a" are organized by sensor resolution. Bands "B02", "B03", "B04", and "B08" AWS are available in 10m resolution. 
-Bands "B02", "B03", "B04", "B05", "B06", "BO7", B08", "B8A", "B11", and "B12" are available at 20m resolution. All 12 bands are available at 60m resolution. Because of the availability of some bands at different resolutions, users need to specify the `s2_resolution` parameter to create Sentinel-2 images data cubes in AWS using collection "sentinel-s2-l2a". In the example below, the user selects one Sentinel-2 tile. Each S2 tile is an 100x100 km2 orthoimage in UTM/WGS84 projection.
 
-```{r, eval = FALSE}
-# creating a data cube in AWS
-s2_cube <- sits_cube(source = "AWS",
-                     name = "T20LKP_2018_2019",
-                     collection = "sentinel-s2-l2a",
-                     tiles = c("20LKP"),
-                     start_date = as.Date("2018-07-18"),
-                     end_date = as.Date("2018-07-23"),
-                     bands = c("B02", "B03", "B04", "B08", "B11"),
-                     s2_resolution = 20
-)
-```
-
-The output of the `sits_cube()` function is composed of metadata about the images that satisfy the requirements stated in its parameters (spatiotemporal extent, resolution, and area of interest). The `s2_cube` object created in the above statement is a tibble that has the information required for further processing, but does not contain the actual data. 
-
-Instead of specifying the region of interest by listing the image collection tiles, users can also provide a bounding box (`bbox`) whose parameters allow a selection of an area of interest. Bounding boxes can be defined using: (a) a named vector ("xmin", "ymin", "xmax", "ymax") with lat/long values in WGS 84; (b) an *sf* object from the *sf* package, a data frame with feature attributes and feature geometries; or (c) a GeoJSON geometry (RFC 7946). When selecting images that compose a data cube based on a `bbox`, sits does not crop them directly; the software selects the images that intersect with it. The information is used later by `sits_classify()`, when only the pixels inside the bounding box will be processed.
-
-In SITS version 0.14.0, users who do not want to use the `sits_regularize()` function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. This limitation will be removed in future versions of the package. 
+In SITS version 0.15.0, users who do not want to use the `sits_regularize()` function and prefer to use AWS images directly can only create valid data cubes if the images belong to the same tile. However, we do not recommend such practice, since `sits_regularize()` produces more consistent data cubes. 
 
 
 ### Accessing the Brazil Data Cube
@@ -127,6 +192,12 @@ cbers_tile <- sits_cube(
 )
 ```
 
+### Accessing Digital Earth Africa 
+
+Digital Earth Africa is The Digital Earth Africa (DE Africa) Map is a website for map-based access to spatial information. ... DE Africa is leveraging international Earth Observation (EO) data and science to produce new information and services that benefit African countries.
+
+Our platform and services enable African governments, industry and decision makers to track changes across the continent in unprecedented detail. This provides valuable insights for better decision making across many areas, including flooding, drought, soil and coastal erosion, agriculture, forest cover, land use and land cover change, water availability and quality, and changes to human settlements. 
+
 ### Defining a data cube using files
 
 In some cases, users have downloaded files from image collections and have them available in their computer or in a local network. As *sits* does not have access to STAC information that describe the files, they should be organized and named to allow SITS to create a data cube. 
@@ -135,10 +206,8 @@ All files should be in the same directory and have the same spatial resolution a
 
 When working with local cubes, the following parameters should be provided to the `sits_cube()` function:
 
-- `source` - value should be "LOCAL";
-- `name` - internal name for the data cube (free user choice);
-- `origin` - name of the original data (possible values are "BDC" (Brazil Data Cube), "AWS" (Amazon Web Services), or "DEA" (Digital Earth Africa));
-- `collection` - name of the collection from where the data was extracted. This should be "MOD13Q1-6", "CB4_64_16D_STK-1", "LC8_30_16D_STK-1" and "S2-SEN2COR_10_16D_STK-1", respectively, for CBERS-4, LANDSAT-8, and SENTINEL-2 in the case of the BDC. For "AWS", the only collection currently supported is "SENTINEL-S2-L2A". In the case of "DEA", the supported collection is "S2_L2A". More collections will be added in future versions of the ;
+- `source` - name of the original data provider (possible values are "BDC" (Brazil Data Cube), "AWS" (Amazon Web Services), USGS (USGS Landsat), "MS-PC" (Microsoft Planetary Computer) or "DEAFRICA" (Digital Earth Africa)). 
+- `collection` - name of the collection from where the data was extracted. Please use function `sits_list_collections()` to see which collections are supported. 
 - `data_dir` - directory where the image data is located;
 - `parse_info` - information to parse the file names and extract the information on the tile, date and band associated with each individual file. It is assumed that file names contain image descriptors separated by a delimiter (usually "_"). For example, `CBERS-4_AWFI_022024_B13_2018-02-02.tif` and `SENTINEL-2_MSI_L20KP_20m_B08_2021_03_29.jp2` are valid file names for sits. The `parse_info` parameter is a list of strings indicating at which position the names of `tile`, `date` and `band` are to be found. In the two file names above, the parsing info is respectively `c("X1", "X2", "tile", band", "date")` and `c("X1", "X2", "tile", "X3", "band", "date")`;
 - `delim` - separator character between descriptions in the file name (default is "_").
@@ -153,9 +222,7 @@ data_dir <- system.file("extdata/CBERS", package = "sitsdata")
 # files are named using the convention 
 # "CB4_64_16D_STK_022024_2018-08-29_2018-09-13_EVI.tif"
 cbers_cube <- sits_cube(
-      source = "LOCAL",
-      name = "022024",
-      origin = "BDC",
+      source = "BDC",
       collection = "MOD13Q1-6",
       data_dir = data_dir,
       delim = "_",
