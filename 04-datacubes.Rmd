@@ -258,11 +258,13 @@ sits_timeline(s2_cube)
 reg_cube <- sits_regularize(
           cube       = s2_cube,
           name       = "T20LKP_20LKP_2OLLP_15D",
-          dir_images = tempdir(),
+          output_dir = tempdir(),
+          res = 60,
           period     = "P15D",
           agg_method = "median",
-          resampling = "bilinear",
-          cloud_mask = TRUE
+          cloud_mask = TRUE,
+          multicores = 4
+          
 )
 ```
 
